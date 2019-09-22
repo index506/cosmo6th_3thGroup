@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>문제 선택</title>
+
+    <!-- 철욱 -->
+    <link rel="stylesheet" href="./css/init.css" />
+    <link rel="stylesheet" href="./css/main.css"/>
+    <link rel="stylesheet" href="./css/lnb.css"/>
+    <!-- //철욱 -->
+
+
+    <link rel="stylesheet" href="./css/myCommon.css" />
+    <link rel="stylesheet" href="./css/quiz/selectOption.css" />
+
+    <script src="./js/jQuizry-2.1.1.min.js"></script>
+</head>
+<body>
+    <!--main_header_wrap-->
+    <div id="main_header_wrap">
+        <!--main_header-->
+        <header id="main_header">
+            <!--main_logo-->
+            <h1 id="main_logo">
+              <a href="../../index.html"><img src="http://placehold.it/150x70"></a>
+            </h1>
+            <!--//main_logo-->
+            <!--main_gnb-->
+            <div id="main_gnb">
+                <ul class="list">
+                    <li class="item_0">
+                        <a href="#"><p>시험안내</p></a>
+                    </li>
+                    <li class="item_1">
+                        <a href="../Lee/index.html"><p>교재구매</p></a>
+                        <ul class="list hover">
+                            <a href="../Lee/index.html"><li class="item_0">구매목록</li></a>
+                            <a href="../Lee/cart.html"><li class="item_1">장바구니</li></a>
+                        </ul>
+                    </li>
+                    <li class="item_2">
+                        <a href="../An/selectOption.html"><p>문제유형</p></a>
+                    </li>
+                    <li class="item_3">
+                        <a href="../Nam/post_list.html"><p>커뮤니티</p></a>
+                        <ul class="list hover">
+                            <a href="../Nam/post_list.html"><li class="item_0">공지사항</li></a>
+                            <a href="../Nam/post_list.html"><li class="item_1">자유 게시판</li></a>
+                            <a href="../Nam/post_list.html"><li class="item_2">질문 게시판</li></a>
+                        </ul>
+                    </li>
+                    <li class="item_4">
+                        <a href="../Jeong/PrivacyPolicyStatement.html"><p>고객센터</p></a>
+                        <ul class="list hover">
+                            <a href="../Jeong/PrivacyPolicyStatement.html"><li class="item_0">개인정보보호정책</li></a>
+                            <a href="../Jeong/accessTerms.html"><li class="item_1">이용약관</li></a>
+                            <a href="../Jeong/sitemap.html"><li class="item_2">사이트맵</li></a>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--//main_gnb-->
+            <!--top_menu-->
+            <div id="top_menu">
+                <!--<ul class="list stateLogOut">
+                    <a href="../Yoo/회원가입.html"><li class="item_0"><p>회원가입</p></li></a>
+                    <a href="#"><li class="item_1"><p>로그인</p></li></a>
+                    <a href="../Jeong/sitemap.html"><li class="item_2"><p>사이트맵</p></li></a>
+                </ul>-->
+                <ul class="list stateLogIn">
+                    <a href="../Yoo/회원수정.html"><li class="item_0"><p>회원정보</p></li></a>
+                    <a href="#"><li class="item_0"><p>로그아웃</p></li></a>
+                    <a href="../Jeong/sitemap.html"><li class="item_1"><p>사이트맵</p></li></a>
+                </ul>
+            </div>
+            <!--//top_menu-->
+        </header>
+        <!--//main_header-->
+    </div>
+    <!--//main_header_wrap-->
+
+
+    <!--section-->
+    <section>
+
+
+
+        <!-- lnb -->
+        <div class="lnb">
+            <div>
+                <img class="top" src="./images/image_support/Quiz.jpg"/>
+                
+                <img class="bottom" src="./images/image_support/left_t08.gif"/>
+            </div>
+        </div>
+        <!-- //lnb -->
+
+
+
+
+        <!-- option_wrap -->
+        <div id="option_wrap">
+            <div id="option_title">
+                <h3>문제 유형</h3>
+            </div>
+            <!-- form -->
+            <form id="option_form" method="GET" action="./solveQuiz.html">
+                <fieldset>
+                    <legend class="hidden">
+                        기출문제 선택
+                    </legend>
+                    <!-- year_area -->
+                    <div id="year_area" class="q_area">
+                        <h4>1. 기출문제를 선택해주세요.</h4>
+                        <select class="year_select" name="year">
+                            <option value="20190427">2019년 04월 27일</option>
+                            <option value="20190303">2019년 03월 03일</option>
+                        </select>
+                    </div>
+                    <!-- subject_area -->
+                    <div id="subject_area" class="q_area">
+                        <h4>2. 과목을 선택해주세요.</h4>
+                        <ul class="subject_ul">
+                            <li class="subject_li">
+                                <input id="part1_check" name="part1" type="checkbox" value="20" checked="" >
+                                <label for="part1_check">1과목 : 데이터베이스 [20문항]</label>
+                            </li>
+                            <li class="subject_li">
+                                <input id="part2_check" name="part2" type="checkbox" value="20" checked="" >
+                                <label for="part2_check">2과목 : 전자계산기 구조 [20문항]</label>
+                            </li>
+                            <li class="subject_li">
+                                <input id="part3_check" name="part3" type="checkbox" value="20" checked="" >
+                                <label for="part3_check">3과목 : 운영체제 [20문항]</label>
+                            </li>
+                            <li class="subject_li">
+                                <input id="part4_check" name="part4" type="checkbox" value="20" checked="" >
+                                <label for="part4_check">4과목 : 소프트웨어 공학 [20문항]</label>
+                            </li>
+                            <li class="subject_li">
+                                <input id="part5_check" name="part5" type="checkbox" value="20" checked="" >
+                                <label for="part5_check">5과목 : 데이터 통신 [20문항]</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- //subject_area -->
+                    <!-- btn_area -->
+                    <div id="btn_area" class="q_area">
+                        <div id="solve_div" class="btn_div">
+                            <input type="submit" id="solve_sub" class="btn_sub_a" value="문제풀기">
+                        </div>
+                        <div id="cancle_div" class="btn_div">
+                            <a id="cancel_a" class="btn_sub_a"  href="../../index.html"  >취소</a>
+                        </div>
+                    </div>
+                    <!-- //btn_area -->
+                </fieldset>
+            </form>
+            <!-- //option_form -->
+        </div>
+        <!-- //option_wrap -->
+    </section>
+    <!--//section-->
+    
+
+    
+
+
+
+
+    <!--main_footer-->
+    <footer id="main_footer">
+        <img src="./images/bottom_long_bar.gif">
+        <ul>
+            <li><a href="../Jeong/accessTerms.html"><img src="./images/footer_menu_2.gif"/></a></li><li>|</li>
+            <li><a href="../Jeong/PrivacyPolicyStatement.html"><img src="./images/footer_menu_3.gif"/></a></li><li>|</li>
+            <li><a href="#"><img src="./images/footer_menu_4.gif"/></a></li><li>|</li>
+            <li><a href="#"><img src="./images/footer_menu_5.gif"/></a></li><li>|</li>
+            <li><a href="../Jeong/sitemap.html"><img src="./images/footer_menu_6.gif"/></a></li>
+        </ul>
+        <hr/>
+    </footer>
+    <!--//main_footer-->
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="./css/init.css" />
+    <link rel="stylesheet" href="./css/cart.css" />
+    <script type="text/javascript" src="./js/jquery-2.1.1.min.js"> </script>
+    <script type="text/javascript" src="./js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="./js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="./js/prefixfree.min.js"></script>
+    <script src="./js/cart.js"></script>
+</head>
+
+<body>
+    <!--main_header_wrap-->
+    <div id="main_header_wrap">
+        <!--main_header-->
+        <header id="main_header">
+            <!--main_logo-->
+            <h1 id="main_logo">
+                <a href="../../index.html"><img src="http://placehold.it/150x70"></a>
+            </h1>
+            <!--//main_logo-->
+            <!--main_gnb-->
+            <div id="main_gnb">
+                <ul class="list">
+                    <li class="item_0">
+                        <a href="#"><p>시험안내</p></a>
+                    </li>
+                    <li class="item_1">
+                        <a href="../Lee/index.html"><p>교재구매</p></a>
+                        <ul class="list hover">
+                            <a href="../Lee/index.html"><li class="item_0">구매목록</li></a>
+                            <a href="../Lee/cart.html"><li class="item_1">장바구니</li></a>
+                        </ul>
+                    </li>
+                    <li class="item_2">
+                        <a href="../An/selectOption.html"><p>문제유형</p></a>
+                    </li>
+                    <li class="item_3">
+                        <a href="../Nam/post_list.html"><p>커뮤니티</p></a>
+                        <ul class="list hover">
+                            <a href="../Nam/post_list.html"><li class="item_0">공지사항</li></a>
+                            <a href="../Nam/post_list.html"><li class="item_1">자유 게시판</li></a>
+                            <a href="../Nam/post_list.html"><li class="item_2">질문 게시판</li></a>
+                        </ul>
+                    </li>
+                    <li class="item_4">
+                        <a href="../Jeong/PrivacyPolicyStatement.html"><p>고객센터</p></a>
+                        <ul class="list hover">
+                            <a href="../Jeong/PrivacyPolicyStatement.html"><li class="item_0">개인정보보호정책</li></a>
+                            <a href="../Jeong/accessTerms.html"><li class="item_1">이용약관</li></a>
+                            <a href="../Jeong/sitemap.html"><li class="item_2">사이트맵</li></a>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--//main_gnb-->
+            <!--top_menu-->
+            <div id="top_menu">
+                <!--<ul class="list">
+                    <a href="../Yoo/signUp.html"><li class="item_0"><p>회원가입</p></li></a>
+                    <a href="../Seok/login_main.html"><li class="item_1"><p>로그인</p></li></a>
+                    <a href="../Jeong/sitemap.html"><li class="item_2"><p>사이트맵</p></li></a>
+                </ul>-->
+                <ul class="list stateLogIn">
+                    <!--<a href="./index.html"><li class="item_0"><p>메인페이지</p></li></a>-->
+                    <a href="../Yoo/inforChange.html"><li class="item_1"><p>회원정보</p></li></a>
+                    <a href="#"><li class="item_2"><p>로그아웃</p></li></a>
+                    <a href="../Jeong/sitemap.html"><li class="item_3"><p>사이트맵</p></li></a>
+                </ul>
+            </div>
+            <!--//top_menu-->
+        </header>
+        <!--//main_header-->
+    </div>
+    <!--//main_header_wrap-->
+
+    <form>
+        <!-- wrap -->
+        <div id="wrap">
+            <p class="process">주문완료&nbsp;</p>
+            <p class="process">주문결제 >&nbsp;</p>
+            <p class="process">장바구니 >&nbsp;</p>
+            <!-- lnb -->
+            <div class="lnb">
+                <div>
+                    <img class="top" src="./images/201508270312264232400.jpg" />
+                    <ul>
+                        <a href="./index.html">
+                            <li>구매목록</li>
+                        </a>
+                        <a href="./cart.html">
+                            <li>장바구니</li>
+                        </a>
+                    </ul>
+                    <img class="bottom" src="./images/left_t08.gif" />
+                </div>
+            </div>
+            <!-- //lnb -->
+
+            <!-- orderSheet -->
+            <h2 id="orderSheet">주문서</h2>
+            <!-- //orderSheet -->
+
+            <!-- innerWrap -->
+            <div id="innerWrap">
+                <!-- table -->
+                <table id="table" border="1px" cellspacing="0">
+                    <tr>
+                        <th>상품명</th>
+                        <th>판매가</th>
+                        <th>할인가</th>
+                        <th width="13.8%">수량</th>
+                        <th>합계</th>
+                        <th>삭제</th>
+                    </tr>
+                    <tr>
+                        <td>리눅스마스터 1급</td>
+                        <td>22,000원</td>
+                        <td>19,000원</td>
+                        <td>
+                            <!--<input type="text" class="amtInners">
+                            <div class="amtInners">
+                                <img src="./images/icon_quantity_up.gif" class="amtButton cursor" />
+                                <img src="./images/icon_quantity_down.gif" class="amtButton cursor" />
+                            </div>
+                            -->
+                            <input type="number" class="inputNumber">
+                            <img src="./images/icn_modify.gif" class="amtModify" />
+                        </td>
+                        <td>19,000원</td>
+                        <td>
+                            <input type="checkbox">
+                        </td>
+                    </tr>
+                </table>
+                <!-- //table -->
+                <a href="../Lee/order.html" class="pay button">결제하기</a>
+                <a href="../Lee/index.html" class="back button">돌아가기</a>
+            </div>
+            <!-- //innerWrap -->
+        </div>
+        <!-- //wrap -->
+    </form>
+
+</body>
+
+</html>

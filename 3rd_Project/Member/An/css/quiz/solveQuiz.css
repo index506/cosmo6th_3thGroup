@@ -1,0 +1,136 @@
+/* quiz_wrap */
+#quiz_wrap { 
+    margin: 0 10px;
+    width: 750px; 
+    font-size: 16px; 
+    background-color: #f1f1f1; 
+}
+
+
+/* quiz_form */
+#quiz_form { 
+    margin: 20px; width: 710px;
+    background-color: white;
+}
+#quiz_form > fieldset { 
+    padding: 15px; 
+} 
+
+/* info_area */
+#info_area {
+    margin-bottom: 20px; height: 50px;
+}
+
+/* content_area */
+#content_area{
+    margin-top: 3px; padding: 10px;
+    border: 2px solid #e1e1e1;
+    border-radius: 10px;
+    box-shadow: -1px -1px 1px 1px #f1f1f1;
+    float: left;
+}
+/* quiz_area */
+#quiz_area{
+ 
+}
+.quiz_table {
+    width: 420px;
+}
+.not_now { 
+    display: none;
+}
+.quiz_table > thead > tr > td {
+    padding-bottom: 20px;
+}
+.quiz_table > tbody > tr > td:first-child {
+    vertical-align: top;
+}
+/* btn_area1 */
+#btn_area1 { 
+    overflow: hidden;  
+    float: left;
+}
+#prevNext{
+    margin-top: 20px; padding: 0 100px;
+    overflow: hidden;
+}
+#prev, #next{
+    padding: 5px;
+    border: 4px solid #c9d1c9;
+    font-weight: bold; color: #f9f9f9;
+    background-color: darkgreen;
+    float: left;
+}
+#prev{
+    margin: 0 20px;
+    border-radius: 50px 0 0 50px;
+}
+#next{
+
+    border-radius: 0 50px 50px 0;
+}
+
+
+
+
+/* move_area */
+#move_area {
+    width: 214px; height: 540px;
+    background-image: url('../../images/solveQuiz/move_bar.gif');
+    background-repeat: no-repeat;
+    padding-top: 100px;
+    padding-left: 10px;
+    float: right;
+    position: relative;
+}
+#gbtn{
+    height: 450px;
+}
+
+.go_btn_non {
+    margin-right: 2px; padding-left: -10px; width: 34px; height: 34px;
+    background-image: url('/An/images/solveQuiz/move_btn_non.gif');
+    color: #ffffff; font-size: 12px; text-decoration: none; text-align: center;
+    border: 0;
+}
+
+.go_btn_is {
+    margin-right: 2px; width: 34px; height: 34px;
+    background-image: url('/An/images/solveQuiz/move_btn_is.gif');
+    color: #ffffff; font-size: 12px; text-decoration: none;
+    border: 0;
+}
+
+
+/* btn_area2 */
+#btn_area2{
+    position: absolute;
+    bottom: 40px;
+}
+
+#save_div { 
+    float: left; 
+}
+#back_div { 
+    float: right; 
+}
+.btn_div { 
+    
+    margin: 0 10px; 
+}
+
+.btn_sub_a { 
+    width: 80px; height: 30px; 
+    border: 0; border-radius: 5px; 
+    background-color: darkgreen;
+    color: white; cursor: pointer;  
+}
+#save_sub { 
+    font: 16px/1.5em "돋움", tahoma; 
+}
+#back_a { 
+    display: block; 
+    text-align: center; line-height: 30px; 
+}
+
+
