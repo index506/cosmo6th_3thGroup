@@ -8,4 +8,5 @@ $(document).ready(function(){
     $("#main_header_wrap").mouseleave(function(){
         $("#main_gnb .menu").removeClass("hover");
     });
+    //gi
 });
