@@ -1,0 +1,13 @@
+/* move area */
+#move_area {
+    background-image: url('../../images/solveQuiz/move-bar-take.png');
+    background-repeat: no-repeat;
+}
+
+.go_btn {
+    background-image: url('../../images/solveQuiz/move_btn_non.gif');
+}
+
+.go_btn.is {
+    background-image: url('../../images/solveQuiz/move_btn_is.gif');
+}

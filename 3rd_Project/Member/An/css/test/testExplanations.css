@@ -1,0 +1,26 @@
+/* commentary */
+
+.explanations_area{
+    width: 420px;
+    margin-top: 20px;
+}
+
+.explanations_area p {
+    margin-top: 10px;
+    line-height: 125%;
+}
+
+/* move_area */
+
+#move_area {
+    background-image: url('../../images/solveQuiz/move-bar-exp.png');
+    background-repeat: no-repeat;
+}
+
+.correct {
+    background-image: url('../../images/solveQuiz/btn-correct.gif');
+}
+
+.wrong {
+    background-image: url('../../images/solveQuiz/btn-wrong.gif');
+}
