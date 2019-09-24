@@ -1,0 +1,193 @@
+*{margin: 0; padding: 0;}
+ol,ul{list-style: none;}
+a{outline: 0; text-decoration: none;}
+img{border: 0;}
+body{font-size: 14px; font-family: "돋움", tahoma, sans-serif;}
+
+/*main_header*/
+#main_header{width: 970px; height: 80px; margin: 0 auto; position: relative;}
+/*main_logo*/
+#main_logo{position: absolute; left: 0; top:5px;}
+
+/*main_gnb*/ 
+#main_gnb p{font-size: 16px; width: 90px; height: 45px; line-height: 45px; font-weight: bold; color: black;}
+#main_gnb>.list{position: absolute; left: 165px; top:20px;}
+#main_gnb>.list li{float: left; margin: 0 12px; width: 90px; height: 40px; text-align: center;}
+#main_gnb .hover{z-index: 1;}
+#main_gnb .hover li{border: 1px solid #e5e5e5; font-size: 13px; width: 150px; height: 35px; line-height: 35px; background-color: white; text-align: left; color: rgb(85, 85, 85); margin-left: 0; padding-left: 14px; display:none;}
+
+/*top_menu*/
+#top_menu p{font-size: 12px; height: 26px; line-height: 26px; font-weight: bold; color: rgb(162,162,162);}
+#top_menu>.list{position: absolute; right: 0; top: 0;}
+#top_menu>.list li{float: left; margin: 10px 8px 0;}
+
+#main_image{width: 970px; height: 300px; margin: 0 auto;}
+
+#main_firsec{width: 970px; height: 100px; margin: 5px auto; overflow: hidden;}
+#main_firsec > #main_login {float: left; width: 350px; height: 100px; background-color: aqua; margin-right: 5px; position: relative;}
+#main_firsec > article {width: 615px; height: 100px; background-color: aqua; float: left;}
+
+#main_login div{width: 130px; height: 60px; background-color: yellowgreen; position: absolute; top: 20px; font-size: 25px; text-align: center; line-height: 60px;}
+#main_login .login{left: 30px;}
+#main_login .assign{right: 30px;}
+
+
+
+
+/* wrap (전체랩) */
+#wrap{position: relative; width:970px; height:2000px; margin:50px auto 0;}
+
+/* --------------------------------------------------------- */
+
+/* processWrap (장바구니 랩) */
+div.processWrap{position: absolute; right:35px;}
+
+/* process (장바구니,주문결제,주문완료) */
+p.process {float: right; font-size: 19px; font-weight: bold; padding:10px 0;}
+p.process:nth-child(2){color:rgb(38, 130, 187);}
+
+/* --------------------------------------------------------- */
+
+/* lnb (로컬네비게이션) */
+.lnb{width: 200px; height: 100%; position: absolute; left:0;}
+.lnb>div{height: 300px; border-left: 1px solid antiquewhite; position: relative;}
+.lnb>div>img{position: absolute; left: 0;}
+.lnb>div>.top{top: 0;}
+.lnb>div>.bottom{bottom: 0;}
+.lnb>div>ul{padding-left: 15px; padding-top: 50px;}
+.lnb>div>ul li{padding-bottom: 10px; font-size: 12px; color: black; font-weight: bold;}
+
+/* --------------------------------------------------------- */
+
+/* shipping (배송정보) */
+#shipping{position:absolute; right:40px; width:710px; height:400px;}
+
+/* innerWrap1 (내부랩) */
+#innerWrap1{position: absolute; right:0; top:35px; width:710px; border:3px solid darkgray; box-sizing: border-box; overflow: hidden;}
+
+#table1 th{width:140px; background:#f9f9f9; color:#666666; text-align: left; 
+padding:20px 5px 20px 25px; border-bottom:1px solid #ededed;}
+
+#table1 td{padding:0 20px; border-bottom:1px solid #ededed;}
+
+#table1 tr{border-bottom: 1px solid black;}
+
+/* value1 (이름입력 Input) */
+input.value1{width: 191px;}
+
+/* deliver (배송지선택) */
+.label{display:inline-block; width:90px; height:35px; line-height: 35px; border:0.5px solid gray; text-align:center; border-radius: 3px;}
+.label:hover{cursor: pointer;}
+
+#first{display:none;}
+#second{display:none;}
+
+#first:checked ~ section.buttons > label:nth-of-type(1){background:#4d5d7b; color:white;}
+#second:checked ~ section.buttons > label:nth-of-type(2){background:#4d5d7b; color:white;}
+
+/* value4 (주소지입력 Input) */
+input.value4{width:460px;}
+
+/* shippingDemand */
+#shippingDemand{vertical-align: middle;}
+.shippingInput{width:460px; vertical-align: middle; display: none;}
+
+/* --------------------------------------------------------- */
+
+/* payment (결제정보) */
+#payment{position:absolute; top:400px; right:40px; width:710px; height:400px;}
+
+/* innerWrap2 (내부랩) */
+#innerWrap2{position: absolute; right:0; top:35px; width:710px; border:3px solid darkgray; box-sizing: border-box;}
+
+#table2 th{width:173px; background:#f9f9f9; color:#666666; text-align: left; padding:20px 5px 20px 25px; border-bottom:1px solid #ededed;}
+
+#table2 td{padding:20px; border-bottom:1px solid #ededed;}
+
+/* 결제정보 */
+.payWay{padding:20px; width:450px; height:140px; border:2px solid #ededed;}
+.payWay input {width:180px;}
+.payWay select {width:100px;}
+.payWay .deposit {width:160px; height:35px; line-height: 35px; background:#4d5d7b; text-align:center; margin-bottom: 20px; color:white; border-radius: 3px;}
+.payWay .depositGuide {display:inline-block; width:140px; height:30px; line-height:30px; text-align:center; border:0.5px solid darkgray; vertical-align: middle; border-radius: 3px; font-size: 13px;}
+.payWay .depositGuide:hover{cursor: pointer;}
+.depositExplain{position:absolute; top:190px; right:-140px; width:300px; overflow:hidden; border:2px solid #dddddd; font-size: 10px; color:rgb(128, 128, 128); padding:5px 10px; list-style: disc; z-index: 1; background: #f9f9f9; display:none;}
+.depositExplain li{margin:10px 0 10px 10px;}
+
+/* --------------------------------------------------------- */
+
+/* information (주문상품 정보) */
+#information{position:absolute; right:40px; top:700px; width:710px; height:300px;}
+
+/* innerWrap3 (내부랩) */
+#innerWrap3{position: absolute; right:0; top:35px; width:710px; border:3px solid darkgray; overflow: hidden; box-sizing: border-box;}
+
+#table3 th{background:#f9f9f9;; color:#666666; text-align: left; 
+padding:20px; border-bottom:1px solid #ededed; border-right:1px solid #ededed; text-align: center;}
+
+#table3 td{border:1px solid #ededed; text-align: center;}
+
+.productBox{padding:15px;}
+.productImg{float:left;}
+.productExplain{line-height: 70px;}
+
+/* --------------------------------------------------------- */
+
+/* paymentSum (결제금액) */
+#paymentSum{position:absolute; right:40px; top:935px; width:710px; height:300px;}
+
+/* innerWrap4 (내부랩) */
+#innerWrap4{position: absolute; right:0; top:35px; width:710px; border:3px solid darkgray; overflow: hidden; box-sizing: border-box;}
+
+#table4 th{background:#f9f9f9;; color:#666666; text-align: left; 
+padding:20px; border-bottom:1px solid #ededed; border-right:1px solid #ededed; text-align: center;}
+
+#table4 td{border:1px solid #ededed; text-align: center; padding:20px;}
+
+
+#payButton{width:270px; height:70px; line-height: 70px; position:absolute; background: #e55; right:260px; bottom:820px; font-size: 20px; color:white; font-weight: bold; text-align: center; border-radius: 5px; cursor: pointer;}
+
+/* --------------------------------------------------------- */
+
+/* buyerApproval (주문자 동의) */
+#buyerApproval{position:absolute; right:40px; top:1200px; width:710px; height:300px;}
+
+/* innerWrap5 (내부랩) */
+#innerWrap5{position: absolute; right:0px; top:36px; width:710px; border:3px solid darkgray; overflow: hidden; box-sizing: border-box; font-size: 12px;}
+
+.slide{width:705px;}
+
+.approvalBox{border-bottom: 1px solid #ededed; padding:20px;}
+
+.approval{width:20px; height:20px; vertical-align: middle;}
+
+.approvalContents{display: inline-block; width:90px; height:30px; line-height:30px; text-align:center; border:1px solid #c3c3c3; font-size: 12px; border-radius:3px; float:right; cursor: pointer;}
+
+.approvalBoxSub{background: #f9f9f9; color:#999; font-size: 11px; padding:20px; margin-top: 10px;}
+
+.approvalBoxSub2{background: #f9f9f9; padding:20px; margin-top: 10px; color:#999;}
+.approvalBoxSub2 textarea{width:255px; height:100px; padding:20px;}
+.approvalBoxSub2 textarea:nth-child(1){margin-right: 20px;}
+.approvalBoxSub2 p {margin-bottom: 10px; color:black;}
+
+.marginLine{border:0.5px solid #ededed; margin:10px 0;}
+
+/* --------------------------------------------------------- */
+
+#title{position: absolute; left:0; color:white; background: darkgray; padding:7px; border-radius: 5px;}
+
+/* input 공통 */
+input{height:30px; padding:0 10px; text-align: left;}
+input.value2,input.value3{width:35px;}
+
+select{height:34px; padding:0 7px;}
+
+/* footer */
+#main_footer{width: 970px; margin: 20px auto 0; bottom:0;}
+#main_footer ul{overflow: hidden; height: 16px; margin-bottom: 5px; text-align: center; width: 970px;}
+#main_footer ul>li{float: left; padding: 0 20px;}
+#main_footer ul>li:first-child{margin-left: 5px;}
+
+
+
+
