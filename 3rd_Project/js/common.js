@@ -8,7 +8,7 @@ $(document).ready(function(){
     $("#main_header_wrap").mouseleave(function(){
         $("#main_gnb .menu").removeClass("hover");
     });
-    function incompletion(){
+    $(".alert_ready").click(function(){
         alert("준비중입니다.");
-    }
+    });
 });
