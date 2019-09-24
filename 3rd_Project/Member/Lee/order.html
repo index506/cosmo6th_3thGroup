@@ -40,6 +40,7 @@
 
             // if ~ else ~ if 문은 하나의 if문으로 잡혀있기 때문에 전체 else if 조건문 중에 하나라도 true가 된다면 나머지는 모두 false가 되어 조건문을 빠져나온다.
 
+                // 이름,연락처,주소 입력여부
                 for (index = 1; index <= 4; index++) {
                     if ($('input.value' + index).val() == "") {
                         if(index==1)
@@ -52,17 +53,6 @@
                             alert("주소를 입력해주세요.");
 
                         $('input.value' + index).focus(); 
-                            // if (i == 2 || i == 3) {
-                            //     $('input.value' + i).on("change keyup paste", function () {
-                            //         keyCode = window.event.keyCode;
-
-                            //         while (!((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105) || keyCode == 8 || keyCode == 9 || keyCode == 46 || keyCode == 37 || keyCode == 39)) {
-                            //             alert("error");
-                            //             $('input.value' + i).value = $('input.value' + i).value.replace(/[^0-9\.]/g,''); //숫자를 제외한 문자를 지워준다.
-                            //             $('input.value' + i).focus();
-                            //         }
-                            //     });
-                            // }
                         break;
                     } else if (index==2 || index ==3){
                         //  regexp : 숫자가 아닌 문자
@@ -73,20 +63,23 @@
                             $('input.value' + index).val("").focus();
                             alert("숫자만 입력해주세요.");
                             break;
-                        }
-                    }
-                }
+                        } //if
+                    } // else if
+                } //for
+
 
                 // 입금은행 선택여부
-                if(index == 5 && $('.selectedBank').val()==""){
+                // scrollTop() offset() 함수 : https://blog.naver.com/seoyoung0425/221360205224
+                if(index == 5 && $('input.selectedBank').val()==""){
                     var offset = $('input.value1').offset();
                     $('html').scrollTop(offset.top);
                     alert("입금은행을 선택해주세요.");
                 } else 
                     index++;
 
+
                 // 주문자 동의 체크여부
-                // scrollTop() offset() : https://blog.naver.com/seoyoung0425/221360205224
+                // scrollTop() offset() 함수 : https://blog.naver.com/seoyoung0425/221360205224
                 if(index == 6 && !$('input.approvalAll').prop("checked")){
                     var offset = $('input.approvalAll').offset();
                     $('html').scrollTop(offset.top);
@@ -94,31 +87,21 @@
                 } else
                     index++;
 
+                // 모든 조건 만족시, 페이지 이동
+                if(index == 7){
+                    if(confirm("결제를 진행하시겠습니까?"))
+                        location.href = "completed.html";
+                }
+                /* 
+                    location.href : 새로운 페이지로 이동
+                    (※ 크롬에서 사용시에는 location.href = "URL주소";)
+                    
+                    location.replace : 현재 페이지를 새로운 페이지로 변경
+
+                    https://blog.naver.com/dlaskarud2/221430844039
+                    https://blog.naver.com/kinsoo007/221328538363
+                */
             });
-
-            // 연락처 입력제한
-            // https://blog.naver.com/dh3115/221201635567
-            // $('input.cellphone').on("change keyup paste", function () {
-            //     console.log("key")
-            //     keyCode = window.event.keyCode;
-            //     var value = $(this).val();
-            //     var length = value.length;
-            //     if (length < 5) {
-
-            //         if ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105) || keyCode == 8 || keyCode == 9 || keyCode == 46 || keyCode == 37 || keyCode == 39) {
-            //         }
-            //         else {
-            //             $(this).val(value.substr(0, 4))
-            //             alert("숫자만 입력해주세요.");
-            //             $(this).focus();
-            //         }
-            //     } else {
-            //         value.replace(value.substr(4, 1), "");
-            //         alert("4자리 이하로 입력해주세요.");
-            //         $(this).focus();
-
-            //     }
-            // });
         });
     </script>
 </head>
