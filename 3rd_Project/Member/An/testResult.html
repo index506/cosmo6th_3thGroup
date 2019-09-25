@@ -16,11 +16,11 @@
     <link rel="stylesheet" href="./css/myCommon.css" />
     <link rel="stylesheet" href="./css/test/testCommon.css" />
     <link rel="stylesheet" href="./css/test/take-result.css" />
-    <link rel="stylesheet" href="./css/test/takeTest.css" />
+    <link rel="stylesheet" href="./css/test/testResult.css" />
 
     <script src="./js/jquery-2.1.1.min.js"></script>
     <script src="./js/take-result.js"></script>
-    <script src="./js/testTake.js"></script>
+    <script src="./js/testResult.js"></script>
 </head>
 
 <body>
@@ -161,13 +161,12 @@
 
 
 
-        <!-- content_wrap -->
         <div id="content_wrap">
             <div id="content_title">
-                <h3>시험 풀기</h3>
+                <h3>시험 결과</h3>
             </div>
             <!-- quiz_form -->
-            <form id="quiz_form" action="./testResult.html">
+            <form id="quiz_form">
                 <!-- fieldset -->
                 <fieldset>
                     <legend class="hidden">
@@ -179,27 +178,24 @@
                             <span>정보처리기사 - </span><span>2019년 04월 27일</span>
                         </div>
                         <div>
-                            <span>남은시간 - </span><span class="time">TIME</span>
+                            <span>걸린시간 - </span><span>01:15:33</span>
                         </div>
                     </div>
                     <!-- //info_area -->
                     <!-- content_area -->
                     <div id="content_area">
-                        
-                        <div id="btn_area1" class="btn_area">
-                            <span id="prev" class="btn left-btn">◀ 이전</span>
-                            <span id="next" class="btn right-btn">다음 ▶</span>
-                        </div>
-                    </div>
-                    <!-- //content_area -->
-                    <!-- move_area -->
-                    <div id="move_area" class="q_area">
-                        <div id="gbtn">
-                            
-                        </div>
+                        <ul>
+                            <li>[맞은 개수] </li>
+                            <li>1과목: 19/20</li>
+                            <li>2과목: 12/20</li>
+                            <li>3과목: 15/20</li>
+                            <li>4과목: 14/20</li>
+                            <li>5과목: 16/20</li>
+                            <li>총합: 86/100</li>
+                        </ul>
                         <!-- btn_area2 -->
                         <p id="btn_area2" class="btn_area">
-                            <input type="submit" id="save" class="btn" value="제출">
+                            <a id="back_a" class="btn" href="./testExplanations.html">해설보기</a>
                             <a id="back_a" class="btn" onclick="history.back();">돌아가기</a>
                         </p>
                         <!-- //btn_area2 -->

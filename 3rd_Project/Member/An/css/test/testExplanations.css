@@ -1,3 +1,5 @@
+
+
 /* commentary */
 
 .explanations_area{
@@ -10,6 +12,20 @@
     line-height: 125%;
 }
 
+/* quiz_box radio */
+
+.quiz_box li label {
+    padding-left: 22px;
+    display: inline-block;
+    background:url('../../images/solveQuiz/batsu.png') left 7px no-repeat;
+    background-size: 15px;
+}
+
+.quiz_box li label.is {
+    background:url('../../images/solveQuiz/maru.png') left 7px no-repeat;
+    background-size: 15px;
+}
+
 /* move_area */
 
 #move_area {
@@ -18,9 +34,6 @@
 }
 
 .correct {
-    background-image: url('../../images/solveQuiz/btn-correct.gif');
-}
-
-.wrong {
-    background-image: url('../../images/solveQuiz/btn-wrong.gif');
+    background-image: url('../../images/solveQuiz/btn-correct.gif')left 7px no-repeat;
+    background-size: 15px;
 }

@@ -14,13 +14,12 @@
     <!-- //철욱 -->
 
     <link rel="stylesheet" href="./css/myCommon.css" />
-    <link rel="stylesheet" href="./css/test/testCommon.css" />
     <link rel="stylesheet" href="./css/test/take-result.css" />
-    <link rel="stylesheet" href="./css/test/testExplanations.css" />
+    <link rel="stylesheet" href="./css/test/takeTest.css" />
 
     <script src="./js/jquery-2.1.1.min.js"></script>
     <script src="./js/take-result.js"></script>
-    <script src="./js/testExplanations.js"></script>
+    <script src="./js/testTake.js"></script>
 </head>
 
 <body>
@@ -161,13 +160,10 @@
 
 
 
-        <!-- content_wrap -->
-        <div id="content_wrap">
-            <div id="content_title">
-                <h3>시험 해설</h3>
-            </div>
+        <!-- quiz_wrap -->
+        <div id="quiz_wrap">
             <!-- quiz_form -->
-            <form id="quiz_form">
+            <form id="quiz_form" action="./testResult.html">
                 <!-- fieldset -->
                 <fieldset>
                     <legend class="hidden">
@@ -179,7 +175,7 @@
                             <span>정보처리기사 - </span><span>2019년 04월 27일</span>
                         </div>
                         <div>
-                            <span>걸린시간 - </span><span>01:15:33</span>
+                            <span>남은시간 - </span><span class="time">TIME</span>
                         </div>
                     </div>
                     <!-- //info_area -->
@@ -187,8 +183,33 @@
                     <div id="content_area">
                         <!-- quiz_area -->
                         <div id="quiz_area">
-                            <!--
                             <div id="quiz_box_1" class="quiz_box now">
+                                <div id="quiz_table_1" class="quiz_table now">
+                                    <!--
+                                    <ul>
+                                        <li>
+                                            <span>01.</span>
+                                            <span>데크(Deque)에 대한 설명으로 옳지 않은 것은?</span>
+                                        </li>
+                                        <li>
+                                            <span><input id="answer1_1" class="answer" type="radio" name="1" value="1" /></span>
+                                            <span><label for="answer1_1">입력 제한 데크는 Shelf이고, 출력 제한 테크는 Scroll이다.</label></span>
+                                        </li>
+                                        <li>
+                                            <span><input id="answer1_2" class="answer" type="radio" name="1" value="2" /></span>
+                                            <span><label for="answer1_2">삽입과 삭제가 리스트의 양쪽 끝에서 발생할 수 있는 자료 구조이다.</label></span>
+                                        </li>
+                                        <li>
+                                            <span><input id="answer1_3" class="answer" type="radio" name="1" value="3" /></span>
+                                            <span><label for="answer1_3">스택과 큐의 장점으로 구성한 것이다.</label></span>
+                                        </li>
+                                        <li>
+                                            <span><input id="answer1_4" class="answer" type="radio" name="1" value="4" /></span>
+                                            <span><label for="answer1_4">Double Ended Queue의 약자이다.</label></span>
+                                        </li>
+                                    </ul>
+                                </div>-->
+                                <!--
                                 <table id="quiz_table_1" class="quiz_table now">
                                     <thead>
                                         <tr>
@@ -198,39 +219,24 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td></td>
-                                            <td>
-                                                <img src="./images/solveQuiz/maru.png">
-                                                <lable>입력 제한 데크는 Shelf이고, 출력 제한 테크는 Scroll이다.</lable>
-                                            </td>
+                                            <td><input id="answer1_1" class="answer" type="radio" name="1" value="1" /></td>
+                                            <td><label for="answer1_1">입력 제한 데크는 Shelf이고, 출력 제한 테크는 Scroll이다.</label></td>
                                         </tr>
                                         <tr>
-                                            <td></td>
-                                            <td>
-                                                <img src="./images/solveQuiz/batsu.png">
-                                                <label>삽입과 삭제가 리스트의 양쪽 끝에서 발생할 수 있는 자료 구조이다.</label>
-                                            </td>
+                                            <td><input id="answer1_2" class="answer" type="radio" name="1" value="2" /></td>
+                                            <td><label for="answer1_2">삽입과 삭제가 리스트의 양쪽 끝에서 발생할 수 있는 자료 구조이다.</label></td>
                                         </tr>
                                         <tr>
-                                            <td></td>
-                                            <td>
-                                                <img src="./images/solveQuiz/batsu.png">
-                                                <label>스택과 큐의 장점으로 구성한 것이다.</label>
-                                            </td>
+                                            <td><input id="answer1_3" class="answer" type="radio" name="1" value="3" /></td>
+                                            <td><label for="answer1_3">스택과 큐의 장점으로 구성한 것이다.</label></td>
                                         </tr>
                                         <tr>
-                                            <td></td>
-                                            <td>
-                                                <img src="./images/solveQuiz/batsu.png">
-                                                <label>Double Ended Queue의 약자이다.</label>
-                                            </td>
+                                            <td><input id="answer1_4" class="answer" type="radio" name="1" value="4" /></td>
+                                            <td><label for="answer1_4">Double Ended Queue의 약자이다.</label></td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div class="explanations_area">
-                                    <p><span class="explanations_head">오답률> </span><span class="explanations_body">70%</span></p>
-                                    <p><span class="explanations_head">해설> </span><span class="explanations_body">삽입과 삭제가 리스트의 양쪽 끝에서 발생할 수 있는 자료 구조이다.삽입과 삭제가 리스트의 양쪽 끝에서 발생할 수 있는 자료 구조이다.</span></p>
-                                </div>
+                                -->
                             </div>
                             <div id="quiz_box_2" class="quiz_box">
                                 <table id="quiz_table_2" class="quiz_table">
@@ -242,45 +248,28 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td></td>
-                                            <td>
+                                            <td colspan="2">
                                                 <img src="https://img.comcbt.com/cbt/data/j4/j420190427/j420190427m2.gif?1560202322">
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td></td>
-                                            <td>
-                                                <img src="./images/solveQuiz/batsu.png">
-                                                <label>2</label>
-                                            </td>
+                                            <td><input id="answer2_1" class="answer" type="radio" name="2" value="1" /></td>
+                                            <td><label for="answer2_1">2</label></td>
                                         </tr>
                                         <tr>
-                                            <td></td>
-                                            <td>
-                                                <img src="./images/solveQuiz/batsu.png">
-                                                <label>3</label>
-                                            </td>
+                                            <td><input id="answer2_2" class="answer" type="radio" name="2" value="2" /></td>
+                                            <td><label for="answer2_2">3</label></td>
                                         </tr>
                                         <tr>
-                                            <td></td>
-                                            <td>
-                                                <img src="./images/solveQuiz/maru.png">
-                                                <label>4</label>
-                                            </td>
+                                            <td><input id="answer2_3" class="answer" type="radio" name="2" value="3" /></td>
+                                            <td><label for="answer2_3">3</label></td>
                                         </tr>
                                         <tr>
-                                            <td></td>
-                                            <td>
-                                                <img src="./images/solveQuiz/batsu.png">
-                                                <label>8</label>
-                                            </td>
+                                            <td><input id="answer2_4" class="answer" type="radio" name="2" value="4" /></td>
+                                            <td><label for="answer2_4">8</label></td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div class="explanations_area">
-                                    <p><span class="explanations_head">오답률> </span><span class="explanations_body">50%</span></p>
-                                    <p><span class="explanations_head">해설> </span><span class="explanations_body">스택과 큐는.....스택과 큐는.....스택과 큐는.....스택과 큐는.....스택과 큐는.....</span></p>
-                                </div>
                             </div>
                             <div id="quiz_box_3" class="quiz_box">
                                 <table id="quiz_table_3" class="quiz_table">
@@ -292,40 +281,24 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td></td>
-                                            <td>
-                                                <img src="./images/solveQuiz/batsu.png">
-                                                <label>∃</label>
-                                            </td>
+                                            <td><input id="answer3_1" class="answer" type="radio" name="3" value="1" /></td>
+                                            <td><label for="answer3_1">∃</label></td>
                                         </tr>
                                         <tr>
-                                            <td></td>
-                                            <td>
-                                                <img src="./images/solveQuiz/batsu.png">
-                                                <lable>∈</label>
-                                            </td>
+                                            <td><input id="answer3_2" class="answer" type="radio" name="3" value="2" /></td>
+                                            <td><label for="answer3_2">∈</label></td>
                                         </tr>
                                         <tr>
-                                            <td></td>
-                                            <td>
-                                                <img src="./images/solveQuiz/batsu.png">
-                                                <label>∀</label>
-                                            </td>
+                                            <td><input id="answer3_3" class="answer" type="radio" name="3" value="3" /></td>
+                                            <td><label for="answer3_3">∀</label></td>
                                         </tr>
                                         <tr>
-                                            <td></td>
-                                            <td>
-                                                <img src="./images/solveQuiz/maru.png">
-                                                <label>U</label>
-                                            </td>
+                                            <td><input id="answer3_4" class="answer" type="radio" name="3" value="4" /></td>
+                                            <td><label for="answer3_4">U</label></td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div class="explanations_area">
-                                    <p><span>오답률> </span><span>55%</span></p>
-                                    <p><span>해설> </span><span>∀는.....스택과 큐는.....스택과 큐는.....스택과 큐는.....스택과 큐는.....</span></p>
-                                </div>
-                            </div>-->
+                            </div>
                         </div>
                         <!-- //quiz_area -->
                         <!-- btn_area1 -->
@@ -339,10 +312,11 @@
                     <!-- move_area -->
                     <div id="move_area" class="q_area">
                         <div id="gbtn">
+                            
                         </div>
                         <!-- btn_area2 -->
                         <p id="btn_area2" class="btn_area">
-                            <input type="submit" id="save_sub" class="btn" value="제출">
+                            <input type="submit" id="save" class="btn" value="제출">
                             <a id="back_a" class="btn" onclick="history.back();">돌아가기</a>
                         </p>
                         <!-- //btn_area2 -->
@@ -353,7 +327,7 @@
             </form>
             <!-- //quiz_form -->
         </div>
-        <!-- //content_wrap -->
+        <!-- //quiz_wrap -->
     </section>
     <!--//section-->
 

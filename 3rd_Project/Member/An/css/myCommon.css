@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap');
 
+/* reset */
+ol, ul, li {
+	list-style: none;
+}
+
+/*  */
+
 .hidden {  
     display: none;
 }
-
 
 .bor_top {
     border-top: 1px solid black;
@@ -13,7 +19,7 @@
     border-bottom: 1px solid black;
 }
 
-
+/* btn */
 .btn_area {
     margin-top: 15px;
     text-align: center;
@@ -31,7 +37,6 @@
     background: linear-gradient(156deg, #ABCD79, #1D250E);
     cursor: pointer;
 }
-
 
 .left-btn {
     border-radius: 50px 0 0 50px;
