@@ -1,0 +1,15 @@
+#provision{
+    width: 700px;
+    float: left;
+}
+.top20 {
+    margin: 20px 0 !important;
+}
+
+#tx1{
+    text-align:left;
+    resize: none;
+}
+
+
+

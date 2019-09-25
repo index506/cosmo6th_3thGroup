@@ -14,6 +14,7 @@
     <!-- //철욱 -->
 
     <link rel="stylesheet" href="./css/myCommon.css" />
+    <link rel="stylesheet" href="./css/test/testCommon.css" />
     <link rel="stylesheet" href="./css/test/take-result.css" />
     <link rel="stylesheet" href="./css/test/takeTest.css" />
 
@@ -160,8 +161,11 @@
 
 
 
-        <!-- quiz_wrap -->
-        <div id="quiz_wrap">
+        <!-- content_wrap -->
+        <div id="content_wrap">
+            <div id="content_title">
+                <h3>시험 풀기</h3>
+            </div>
             <!-- quiz_form -->
             <form id="quiz_form" action="./testResult.html">
                 <!-- fieldset -->
@@ -181,105 +185,11 @@
                     <!-- //info_area -->
                     <!-- content_area -->
                     <div id="content_area">
-                        <!-- quiz_area -->
-                        <div id="quiz_area">
-                            <div id="quiz_box_1" class="quiz_box now">
-                                <table id="quiz_table_1" class="quiz_table now">
-                                    <thead>
-                                        <tr>
-                                            <td>01.</td>
-                                            <td>데크(Deque)에 대한 설명으로 옳지 않은 것은?</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><input id="answer1_1" class="answer" type="radio" name="1" value="1" /></td>
-                                            <td><label for="answer1_1">입력 제한 데크는 Shelf이고, 출력 제한 테크는 Scroll이다.</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input id="answer1_2" class="answer" type="radio" name="1" value="2" /></td>
-                                            <td><label for="answer1_2">삽입과 삭제가 리스트의 양쪽 끝에서 발생할 수 있는 자료 구조이다.</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input id="answer1_3" class="answer" type="radio" name="1" value="3" /></td>
-                                            <td><label for="answer1_3">스택과 큐의 장점으로 구성한 것이다.</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input id="answer1_4" class="answer" type="radio" name="1" value="4" /></td>
-                                            <td><label for="answer1_4">Double Ended Queue의 약자이다.</label></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div id="quiz_box_2" class="quiz_box">
-                                <table id="quiz_table_2" class="quiz_table">
-                                    <thead>
-                                        <tr>
-                                            <td>02.</td>
-                                            <td>다음 트리에서 터미널 노드 수는?</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td colspan="2">
-                                                <img src="https://img.comcbt.com/cbt/data/j4/j420190427/j420190427m2.gif?1560202322">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><input id="answer2_1" class="answer" type="radio" name="2" value="1" /></td>
-                                            <td><label for="answer2_1">2</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input id="answer2_2" class="answer" type="radio" name="2" value="2" /></td>
-                                            <td><label for="answer2_2">3</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input id="answer2_3" class="answer" type="radio" name="2" value="3" /></td>
-                                            <td><label for="answer2_3">4</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input id="answer2_4" class="answer" type="radio" name="2" value="4" /></td>
-                                            <td><label for="answer2_4">8</label></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div id="quiz_box_3" class="quiz_box">
-                                <table id="quiz_table_3" class="quiz_table">
-                                    <thead>
-                                        <tr>
-                                            <td>03.</td>
-                                            <td>관계해석에서 ‘for all : 모든 것에 대하여’의 의미를 나타내는 논리 기호는?</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><input id="answer3_1" class="answer" type="radio" name="3" value="1" /></td>
-                                            <td><label for="answer3_1">∃</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input id="answer3_2" class="answer" type="radio" name="3" value="2" /></td>
-                                            <td><label for="answer3_2">∈</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input id="answer3_3" class="answer" type="radio" name="3" value="3" /></td>
-                                            <td><label for="answer3_3">∀</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input id="answer3_4" class="answer" type="radio" name="3" value="4" /></td>
-                                            <td><label for="answer3_4">U</label></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <!-- //quiz_area -->
-                        <!-- btn_area1 -->
+                        
                         <div id="btn_area1" class="btn_area">
                             <span id="prev" class="btn left-btn">◀ 이전</span>
                             <span id="next" class="btn right-btn">다음 ▶</span>
                         </div>
-                        <!-- //btn_area1 -->
                     </div>
                     <!-- //content_area -->
                     <!-- move_area -->
@@ -289,8 +199,8 @@
                         </div>
                         <!-- btn_area2 -->
                         <p id="btn_area2" class="btn_area">
-                            <input type="submit" id="save_sub" class="btn" value="제출">
-                            <a id="back_a" class="btn" href="./selectOption.html">돌아가기</a>
+                            <input type="submit" id="save" class="btn" value="제출">
+                            <a id="back_a" class="btn" onclick="history.back();">돌아가기</a>
                         </p>
                         <!-- //btn_area2 -->
                     </div>
@@ -300,7 +210,7 @@
             </form>
             <!-- //quiz_form -->
         </div>
-        <!-- //quiz_wrap -->
+        <!-- //content_wrap -->
     </section>
     <!--//section-->
 

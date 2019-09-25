@@ -29,15 +29,17 @@
 
         $(function () {
 
-            console.log(typeof $('span.price').text());
-            // 판매가,할인가,합계를 addComma() 함수 사용하여 최초입력
+            // 페이지 출력시 판매가,할인가,합계를 최초입력
+            // addComma() : 숫자 타입값을 매개변수로 받아 콤마를 추가하여 문자열로 반환해주는 함수
             $('span.price').each(function () {
-                $(this).text(addComma($(this).text()));
+                var value = $(this).text();
+                $(this).text(addComma(Number(value)));
             });
 
             // 장바구니 [수량] 변경 시, 1보다 작은 값을 입력하면 alert(알림창)
             $('.inputNumber').on("change keyup paste", function () {
                 var value = $(this).val();
+                 // window.event.keyCode == 13 : 엔터(Enter)
                 if (window.event.keyCode == 13 && value != "") {
                     $('.amtModify').click();
                     $('.inputNumber').blur();

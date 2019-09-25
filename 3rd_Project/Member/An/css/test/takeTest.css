@@ -1,13 +1,17 @@
+/* quiz_box radio */
+
+.quiz_box li input[type='radio'] {
+    display:none;
+}
+
+.quiz_box li input[type='radio']:checked + label {
+    background:url('../../images/solveQuiz/radio_check.png') left 7px no-repeat;
+    background-size: 15px;
+}
+
 /* move area */
 #move_area {
     background-image: url('../../images/solveQuiz/move-bar-take.png');
     background-repeat: no-repeat;
 }
 
-.go_btn {
-    background-image: url('../../images/solveQuiz/move_btn_non.gif');
-}
-
-.go_btn.is {
-    background-image: url('../../images/solveQuiz/move_btn_is.gif');
-}

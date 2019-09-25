@@ -1,26 +1,5 @@
-/* hidden */
-.hidden {
-    display: none;
-}
 
 
-/* option_wrap */
-#option_wrap { 
-    margin: 0 10px;
-    width: 750px; 
-    font-size: 16px; 
-    background-color: #f1f1f1;
-}
-
-/* option_title */
-#option_title {
-    background-color: white;
-    margin: 20px; width: 710px;
-}
-
-#option_title > h3 {
-    padding: 10px;
-}
 
 /* option_form */
 #option_form { 
@@ -54,5 +33,11 @@ select {
 }
 .subject_li > label { 
     cursor: pointer; 
+}
+
+/* btn area */
+.btn_area {
+    text-align: initial;
+    margin-left: 22px;
 }
 

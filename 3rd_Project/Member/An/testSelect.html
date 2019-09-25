@@ -14,17 +14,10 @@
 
 
     <link rel="stylesheet" href="./css/myCommon.css" />
+    <link rel="stylesheet" href="./css/test/testCommon.css" />
     <link rel="stylesheet" href="./css/test/testSelect.css" />
-    <style>
-    .btn_area {
-        text-align: initial;
-        margin-left: 22px;
-    }
-    </style>
-
     <script src="./js/jquery-2.1.1.min.js"></script>
     <script src="./js/testSelect.js"></script>
-
 </head>
 <body>
 
@@ -111,28 +104,27 @@
 
 
 
-        <!-- option_wrap -->
-        <div id="option_wrap">
-            <div id="option_title">
+        <!-- content_wrap -->
+        <div id="content_wrap">
+            <div id="content_title">
                 <h3>시험 선택</h3>
             </div>
             <!-- form -->
             <form id="option_form" method="GET" action="./testTake.html">
                 <fieldset>
+                    <!--
                     <legend class="hidden">
-                        기출문제 선택
+                        시험 선택
                     </legend>
-                    <!-- license_area -->
+
                     <div id="license_area" class="q_area">
                         <h4>1. 자격증을 선택해주세요.</h4>
                         <select id="license_select" class="license_select" name="license" onchange="selectlicense()">
                             <option value="">------------</option>
                             <option value="20190427">정보처리기사</option>
-                            <option value="20190303">JLPT N1</option>
+                            <option value="20190303">JLPT N2</option>
                         </select>
                     </div>
-                    <!-- //license_area -->
-                    <!-- year_area -->
                     <div id="year_area" class="q_area hidden">
                         <h4>2. 기출문제를 선택해주세요.</h4>
                         <select id="year_select" class="year_select" name="year"  onchange="selectYear()">
@@ -141,8 +133,6 @@
                             <option value="20190303">2019년 03월 03일</option>
                         </select>
                     </div>
-                    <!-- //year_area -->
-                    <!-- subject_area -->
                     <div id="subject_area" class="q_area hidden">
                         <h4>3. 과목을 선택해주세요.</h4>
                         <ul class="subject_ul">
@@ -164,22 +154,20 @@
                             </li>
                             <li class="subject_li">
                                 <input id="part5_check" name="part5" type="checkbox" value="20" checked="" >
-                                <label for="part5_check">5과목 : 데이터 통신 [20문항]</label>
+                                <label for="part5_check">5과목 : 소프트웨어 공학 [20문항]</label>
                             </li>
                         </ul>
                     </div>
-                    <!-- //subject_area -->
-                    <!-- btn_area -->
                     <p id="btn_area" class="btn_area hidden">
                         <input type="submit" id="solve_sub" class="btn" value="문제풀기">
-                        <a id="cancel_a" class="btn"  href="./index.html"  >취소</a>
+                        <a id="cancel_a" class="btn" onclick="history.back();">돌아가기</a>
                     </p>
-                    <!-- //btn_area -->
+                    -->
                 </fieldset>
             </form>
             <!-- //option_form -->
         </div>
-        <!-- //option_wrap -->
+        <!-- //content_wrap -->
     </section>
     <!--//section-->
     

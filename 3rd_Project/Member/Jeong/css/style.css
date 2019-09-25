@@ -2,7 +2,7 @@
 #sitemap ul:nth-child(3){margin-right: 0}
 #sitemap ul li{color: black; margin-bottom: 5px;}
 
-#PPS{font: 12px/1.5em "돋움", tahoma;}
+#PPS,#AT{font: 12px/1.5em "돋움", tahoma;}
 
 #mypage p{margin-left: 10px; margin-bottom: 10px;}
 #mypage table{border: 1px solid orange;}

@@ -14,6 +14,7 @@
     <!-- //철욱 -->
 
     <link rel="stylesheet" href="./css/myCommon.css" />
+    <link rel="stylesheet" href="./css/test/testCommon.css" />
     <link rel="stylesheet" href="./css/test/take-result.css" />
     <link rel="stylesheet" href="./css/test/testExplanations.css" />
 
@@ -160,8 +161,11 @@
 
 
 
-        <!-- quiz_wrap -->
-        <div id="quiz_wrap">
+        <!-- content_wrap -->
+        <div id="content_wrap">
+            <div id="content_title">
+                <h3>시험 해설</h3>
+            </div>
             <!-- quiz_form -->
             <form id="quiz_form">
                 <!-- fieldset -->
@@ -183,6 +187,7 @@
                     <div id="content_area">
                         <!-- quiz_area -->
                         <div id="quiz_area">
+                            <!--
                             <div id="quiz_box_1" class="quiz_box now">
                                 <table id="quiz_table_1" class="quiz_table now">
                                     <thead>
@@ -317,10 +322,10 @@
                                     </tbody>
                                 </table>
                                 <div class="explanations_area">
-                                    <p><span class="explanations_head">오답률> </span><span class="explanations_body">55%</span></p>
-                                    <p><span class="explanations_head">해설> </span><span class="explanations_body">∀는.....스택과 큐는.....스택과 큐는.....스택과 큐는.....스택과 큐는.....</span></p>
+                                    <p><span>오답률> </span><span>55%</span></p>
+                                    <p><span>해설> </span><span>∀는.....스택과 큐는.....스택과 큐는.....스택과 큐는.....스택과 큐는.....</span></p>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                         <!-- //quiz_area -->
                         <!-- btn_area1 -->
@@ -338,7 +343,7 @@
                         <!-- btn_area2 -->
                         <p id="btn_area2" class="btn_area">
                             <input type="submit" id="save_sub" class="btn" value="제출">
-                            <a id="back_a" class="btn" href="./selectOption.html">돌아가기</a>
+                            <a id="back_a" class="btn" onclick="history.back();">돌아가기</a>
                         </p>
                         <!-- //btn_area2 -->
                     </div>
@@ -348,7 +353,7 @@
             </form>
             <!-- //quiz_form -->
         </div>
-        <!-- //quiz_wrap -->
+        <!-- //content_wrap -->
     </section>
     <!--//section-->
 
