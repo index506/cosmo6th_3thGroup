@@ -22,16 +22,16 @@
             return ranNum;
         }
         function confirmNum(){
-            if($('.confirmNum').val()==1234)
-                window.location.href="reset_pwd.html";
-            };
+            if($('.confirmNum').val()==1234){
+                window.location.href='reset_pwd.html';
+            }else alert('틀림');
+        }
+            
         $(document).ready(function(){
 
             certiNum(function(){
                 
             });
-            
-
 
         });
     </script>
@@ -117,7 +117,7 @@
         <div class="certi_box">
             <p>회원 가입시 입력한 이메일을 적어주시면 인증번호를 보내드립니다.</p>
             
-            <input type="email" placeholder="이메일을 입력해주세요. "><button onclick="certiNum();">인증번호 보내기</button></br>
+            <input  placeholder="이메일을 입력해주세요. " type="email"><button onclick="certiNum();">인증번호 보내기</button></br>
 
             <input type="text" class="confirmNum"><button onclick="confirmNum();">인증번호 확인</button>
 
