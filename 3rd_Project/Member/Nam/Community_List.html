@@ -102,16 +102,16 @@
                 <!--board_main-->
                 <nav id="board_main">
                     <!--board_search-->
-                    <div id="board_search"> 
-                        &nbsp; &nbsp;
-                        <input type="checkbox">제목
-                        <input type="checkbox">내용
-                        <input type="checkbox">이름
-                        <input name="search" type="text" size="15" class="input">&nbsp; 
-                        <button><img src="http://placehold.it/35x19" align="center"></button>
-                        &nbsp; &nbsp;
-                    </div>
-                    <!--//board_search-->
+                    <div class="board_search"> 
+                        &nbsp;
+                        <input type="checkbox" name="title" class="search_tit" checked>제목
+                        <input type="checkbox" name="content" class="search_con">내용
+                        <input type="checkbox" name="name" class="search_nam">이름
+                        <input type="text" size="15" class="search_inp">
+                        <button class="search_btn"
+                        onclick="search_click();"><img src="images/detect.png" width="12px"> 검색</button>
+                        </div>
+                        <!--//board_search-->
                     <!--board_section-->
                     <div id="board_section">
                         <!--board_section_header-->
@@ -142,7 +142,8 @@
                         <table class="board_section_notice">
                             <tr>
                                 <td class="board_section_icon">
-                                    x
+                                    <img src="images/icn_notice.gif"
+                                    width="13px">
                                 </td>
                                 <td class="board_section_title">
                                     <a href="#"><p>공지사항 최신 글입니다.</p></a>
@@ -157,14 +158,15 @@
                                     <p>765</p>
                                 </td>
                                 <td class="board_section_file">
-                                    <p>x</p>
+                                    <img class="file_on"src="images/icon.png">
                                 </td>
                             </tr>
                         </table>
                         <table class="board_section_notice">
                             <tr>
                                 <td class="board_section_icon">
-                                    x
+                                    <img src="images/icn_notice.gif"
+                                    width="13px">
                                 </td>
                                 <td class="board_section_title">
                                     <a href="#"><p>공지사항 최신 글입니다.</p></a>
@@ -179,14 +181,15 @@
                                     <p>765</p>
                                 </td>
                                 <td class="board_section_file">
-                                    <p>x</p>
+                                    <img class="file_on"src="images/icon.png">
                                 </td>
                             </tr>
                         </table>
                         <table class="board_section_notice">
                             <tr>
                                 <td class="board_section_icon">
-                                    x
+                                    <img src="images/icn_notice.gif"
+                                    width="13px">
                                 </td>
                                 <td class="board_section_title">
                                     <a href="#"><p>공지사항 최신 글입니다.</p></a>
@@ -201,7 +204,7 @@
                                     <p>765</p>
                                 </td>
                                 <td class="board_section_file">
-                                    <p>x</p>
+                                    <img class="file_on"src="images/icon.png">
                                 </td>
                             </tr>
                         </table>
@@ -225,7 +228,6 @@
                                     <p>765</p>
                                 </td>
                                 <td class="board_section_file">
-                                    <p>x</p>
                                 </td>
                             </tr>
                         </table>
@@ -247,7 +249,6 @@
                                     <p>765</p>
                                 </td>
                                 <td class="board_section_file">
-                                    <p>x</p>
                                 </td>
                             </tr>
                         </table>
@@ -269,7 +270,6 @@
                                     <p>765</p>
                                 </td>
                                 <td class="board_section_file">
-                                    <p>x</p>
                                 </td>
                             </tr>
                         </table>
@@ -291,7 +291,6 @@
                                     <p>765</p>
                                 </td>
                                 <td class="board_section_file">
-                                    <p>x</p>
                                 </td>
                             </tr>
                         </table>
@@ -313,7 +312,6 @@
                                     <p>765</p>
                                 </td>
                                 <td class="board_section_file">
-                                    <p>x</p>
                                 </td>
                             </tr>
                         </table>
@@ -335,7 +333,6 @@
                                     <p>765</p>
                                 </td>
                                 <td class="board_section_file">
-                                    <p>x</p>
                                 </td>
                             </tr>
                         </table>  
@@ -357,7 +354,6 @@
                                     <p>765</p>
                                 </td>
                                 <td class="board_section_file">
-                                    <p>x</p>
                                 </td>
                             </tr>
                         </table>
@@ -379,7 +375,7 @@
                                     <p>765</p>
                                 </td>
                                 <td class="board_section_file">
-                                    <p>x</p>
+                                    <img class="file_on"src="images/icon.png">
                                 </td>
                             </tr>
                         </table>
@@ -401,7 +397,7 @@
                                     <p>765</p>
                                 </td>
                                 <td class="board_section_file">
-                                    <p>x</p>
+                                    <img class="file_on"src="images/icon.png">
                                 </td>
                             </tr>
                         </table>
@@ -423,7 +419,6 @@
                                     <p>765</p>
                                 </td>
                                 <td class="board_section_file">
-                                    <p>x</p>
                                 </td>
                             </tr>
                         </table>  
@@ -445,7 +440,6 @@
                                     <p>765</p>
                                 </td>
                                 <td class="board_section_file">
-                                    <p>x</p>
                                 </td>
                             </tr>
                         </table>  
@@ -467,7 +461,6 @@
                                     <p>765</p>
                                 </td>
                                 <td class="board_section_file">
-                                    <p>x</p>
                                 </td>
                             </tr>
                         </table>     
@@ -489,7 +482,7 @@
                                     <p>765</p>
                                 </td>
                                 <td class="board_section_file">
-                                    <p>x</p>
+                                    <img class="file_on"src="images/icon.png">
                                 </td>
                             </tr>
                         </table>     
@@ -511,7 +504,6 @@
                                     <p>765</p>
                                 </td>
                                 <td class="board_section_file">
-                                    <p>x</p>
                                 </td>
                             </tr>
                         </table>  
@@ -533,28 +525,32 @@
                                     <p>765</p>
                                 </td>
                                 <td class="board_section_file">
-                                    <p>x</p>
                                 </td>
                             </tr>
                         </table>      
                         <!--//board_section_main-->
                         <!--board_write-->
-                        <button id="board_write">글쓰기</button>
+                        <button id="board_write"  
+                        onclick="write_click();"><img src="images/write.gif"> 글쓰기</button>
                         <!--//board_write-->
                         <!--board_page_number--> 
-                        <table id="board_page_number" border="1">
-                            <td><button><img src="http://placehold.it/35x19"></button></td>
-                            <td><a href="#">&nbsp;1&nbsp;</a></td>
-                            <td><a href="#">&nbsp;2&nbsp;</a></td>
-                            <td><a href="#">&nbsp;3&nbsp;</a></td>
-                            <td><a href="#">&nbsp;4&nbsp;</a></td>
-                            <td><a href="#">&nbsp;5&nbsp;</a></td>
-                            <td><a href="#">&nbsp;6&nbsp;</a></td>
-                            <td><a href="#">&nbsp;7&nbsp;</a></td>
-                            <td><a href="#">&nbsp;8&nbsp;</a></td>
-                            <td><a href="#">&nbsp;9&nbsp;</a></td>
-                            <td><a href="#">&nbsp;10&nbsp;</a></td>
-                            <td><button><img src="http://placehold.it/35x19"></button></td>
+                        <table id="board_page_number">
+                            <td class="pg_before">
+                                <a href="#"><img src="images/board_before.gif"></a>
+                            </td>
+                            <td class="pg_num"><a href="#">1</a></td>
+                            <td class="pg_num"><a href="#">2</a></td>
+                            <td class="pg_num"><a href="#">3</a></td>
+                            <td class="pg_num"><a href="#">4</a></td>
+                            <td class="pg_num"><a href="#">5</a></td>
+                            <td class="pg_num"><a href="#">6</a></td>
+                            <td class="pg_num"><a href="#">7</a></td>
+                            <td class="pg_num"><a href="#">8</a></td>
+                            <td class="pg_num"><a href="#">9</a></td>
+                            <td class="pg_num"><a href="#">10</a></td>
+                            <td class="pg_next">
+                                <a href="#"><img src="images/board_next.gif"></a>
+                            </td>
                         </table>
                         <!--//board_page_number--> 
                     </nav>
