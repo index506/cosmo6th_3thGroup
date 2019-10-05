@@ -34,27 +34,3 @@
 
 
 /* btn_area */
-#btn_area { 
-    margin: 10px auto; width: 400px; 
-    overflow: hidden; 
-}
-.btn_div { 
-    margin: 0 10px; 
-}
-
-
-.btn_sub { 
-    margin-right: 25px; width: 100px; height: 30px; 
-    border: 0; border-radius: 5px; 
-    background-color: darkgreen;
-    color: white; 
-    cursor: pointer;  
-    float: left
-}
-#save_sub { 
-    font: 16px/1.5em "돋움", tahoma; 
-}
-#back_a { 
-    display: block; 
-    text-align: center; line-height: 30px; 
-}

@@ -15,7 +15,6 @@
 
     <link rel="stylesheet" href="./css/myCommon.css" />
     <link rel="stylesheet" href="./css/post/writeForm.css" />
-    <link rel="stylesheet" href="./css/post/postWrite.css" />
 
     <script src="./js/jQuizry-2.1.1.min.js"></script>
 </head>
@@ -168,7 +167,7 @@
 
         <!-- write_wrap -->
         <div id="write_wrap" method="GET">
-            <form id="write_form">
+            <form id="write_form" name="writeForm">
                 <fieldset>
                     <legend class="hidden">
                         <h3>게시글 쓰기</h3>
@@ -176,30 +175,22 @@
                     <table id="write_table">
                         <tr id="title">
                             <td class="item">제목</td>
-                            <td><input type="text" size="50"></td>
-                            <td><span>임시 저장된 글 ▼</span></td>
+                            <td><input type="text" size="50" name="title" value="[RE]게시글 테스트"></td>
                         </tr>
                         <tr id="content">
                             <td class="item">내용</td>
-                            <td colspan="2"><textarea name="content" cols="80" rows="20" maxlength="1000"></textarea></td>
+                            <td><textarea name="content" cols="80" rows="20" maxlength="1000"></textarea></td>
                         </tr>
                         <tr id="file">
                             <td class="item">파일</td>
-                            <td colspan="2"><input type="file" size="25"></td>
+                            <td><input type="file" size="25"></td>
                         </tr>
                     </table>
                     <!-- btn_area -->
-                    <div id="btn_area" class="q_area">
-                        <div id="tmp_div" class="btn_div">
-                            <input type="submit" id="tmp_sub" class="btn_sub" value="임시저장">
-                        </div>
-                        <div id="save_div" class="btn_div">
-                            <input type="submit" id="save_sub" class="btn_sub" value="등록">
-                        </div>
-                        <div id="back_div" class="btn_div">
-                            <a id="back_a" class="btn_sub" href="#">취소</a>
-                        </div>
-                    </div>
+                    <p class="btn_area">
+                        <input type="submit" id="save" class="btn" value="답글 등록">
+                        <a id="back_a" class="btn" onclick="history.back();">돌아가기</a>
+                    </p>
                     <!-- btn_area -->
                 </fieldset>
             </form>

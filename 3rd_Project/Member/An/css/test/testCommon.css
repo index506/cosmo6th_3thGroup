@@ -3,14 +3,22 @@
     margin-left: 10px;
     width: 750px; 
     background-color: #f1f1f1;
+    position: relative;
 }
 
 /* content_title */
 #content_title {
     background-color: white;
     margin: 15px; width: 720px;
+    position: relative;
+}
+#content_title::after { 
+    content: ''; 
+    display: table; 
+    clear: both 
 }
 
 #content_title > h3 {
     padding: 10px;
+    float: left;
 }

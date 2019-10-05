@@ -12,11 +12,11 @@
     <link rel="stylesheet" href="./css/main.css" />
     <link rel="stylesheet" href="./css/lnb.css" />
     <!-- //철욱 -->
-
     <link rel="stylesheet" href="./css/myCommon.css" />
-    <link rel="stylesheet" href="./css/post/postDelete.css" />
-
-    <script src="./js/jQuizry-2.1.1.min.js"></script>
+    <script>
+        alert("삭제에 성공하셨습니다.");
+        location.href="../../index.html";
+    </script>
 </head>
 
 <body>
@@ -167,23 +167,7 @@
 
         <!-- write_wrap -->
         <div id="delete_wrap" method="GET">
-            <form id="delete_form">
-                <fieldset>
-                    <legend class="hidden">
-                        <h3>게시글 삭제</h3>
-                    </legend>
-                    <div id="password">
-                        <p>삭제하시려면 비밀번호를 입력해주세요.</p>
-                        <input type="password">
-                    </div>
-                    <!-- btn_area -->
-                    <div id="btn_area" class="q_area">  
-                        <input type="submit" id="del_sub" class="btnStyle" value="삭제">
-                        <a id="back_a" class="btnStyle" href="#">취소</a>
-                    </div>
-                    <!-- btn_area -->
-                </fieldset>
-            </form>
+            
         </div>
         <!-- //write_wrap -->
     </section>

@@ -17,10 +17,12 @@
     <link rel="stylesheet" href="./css/test/testCommon.css" />
     <link rel="stylesheet" href="./css/test/take-result.css" />
     <link rel="stylesheet" href="./css/test/takeTest.css" />
+    <link rel="stylesheet" href="./css/test/manual.css" />
 
     <script src="./js/jquery-2.1.1.min.js"></script>
     <script src="./js/take-result.js"></script>
     <script src="./js/testTake.js"></script>
+    <script src="./js/manual.js"></script>
 </head>
 
 <body>
@@ -165,6 +167,7 @@
         <div id="content_wrap">
             <div id="content_title">
                 <h3>시험 풀기</h3>
+                <button class="manual_btn btn manual_item">?</button>
             </div>
             <!-- quiz_form -->
             <form id="quiz_form" action="./testResult.html">
@@ -179,22 +182,21 @@
                             <span>정보처리기사 - </span><span>2019년 04월 27일</span>
                         </div>
                         <div>
-                            <span>남은시간 - </span><span class="time">TIME</span>
+                            <span>남은시간 - </span><span class="time manual_item">TIME</span>
                         </div>
                     </div>
                     <!-- //info_area -->
                     <!-- content_area -->
                     <div id="content_area">
-                        
                         <div id="btn_area1" class="btn_area">
                             <span id="prev" class="btn left-btn">◀ 이전</span>
-                            <span id="next" class="btn right-btn">다음 ▶</span>
+                            <span id="next" class="btn right-btn manual_item">다음 ▶</span>
                         </div>
                     </div>
                     <!-- //content_area -->
                     <!-- move_area -->
                     <div id="move_area" class="q_area">
-                        <div id="gbtn">
+                        <div id="gbtn" class="manual_item">
                             
                         </div>
                         <!-- btn_area2 -->

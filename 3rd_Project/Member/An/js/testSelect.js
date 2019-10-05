@@ -36,9 +36,9 @@ $(document).ready(function(){
     ];
 
     var txt='';
-    txt+='<div id="license_area" class="q_area">';
+    txt+='<div id="license_area" class="q_area manual_item">';
     txt+='<h4>1. 자격증을 선택해주세요.</h4>';
-    txt+='<select id="license_select" class="license_select" name="license" onchange="selectlicense();">';
+    txt+='<select id="license_select" class="license_select " name="license" onchange="selectlicense();">';
     txt+='<option value="">------------</option>';
     for(var i=1; i<=2; i++){
         txt+='<option value="'+testLicense[i-1]+'">'+testLicense[i-1]+'</option>';
@@ -46,7 +46,7 @@ $(document).ready(function(){
 
     txt+='</select>';
     txt+='</div>';
-    txt+='<div id="year_area" class="q_area hidden">';
+    txt+='<div id="year_area" class="q_area hidden manual_item">';
     txt+='<h4>2. 기출문제를 선택해주세요.</h4>';
     txt+='<select id="year_select" class="year_select" name="year"  onchange="selectYear();">';
     txt+='<option value="">------------</option>';
@@ -55,7 +55,7 @@ $(document).ready(function(){
     }
     txt+='</select>';
     txt+='</div>';
-    txt+='<div id="subject_area" class="q_area hidden">';
+    txt+='<div id="subject_area" class="q_area hidden manual_item">';
     txt+='<h4>3. 과목을 선택해주세요.</h4>';
     txt+='<ul class="subject_ul">';
     for(var i=1; i<=5; i++){

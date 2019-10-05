@@ -14,9 +14,16 @@
     <!-- //철욱 -->
 
     <link rel="stylesheet" href="./css/myCommon.css" />
-    <link rel="stylesheet" href="./css/article/postRead.css" />
+    <link rel="stylesheet" href="./css/post/postRead.css" />
 
     <script src="./js/jQuizry-2.1.1.min.js"></script>
+    <script>
+        function delConfirm(){
+            if(confirm("정말로 삭제하시겠습니까?"))
+                location.href="./postDelete.html";
+            
+        }
+    </script>
 </head>
 
 <body>
@@ -154,8 +161,6 @@
 
 
 
-
-
         <!-- read_wrap -->
         <div id="read_wrap">
             <div id="board_title">
@@ -186,8 +191,8 @@
                 <div id="post_bottom_area" class="p_area">
                     <div id="btn_area">
                         <a id="reply_btn" href="./postReply.html"><img src="./images/post/reply.btn.gif" title="답변" alt="답변"></a>
-                        <a id="delete_btn" href="./postDelete.html"><img src="./images/post/delete_btn.gif" title="삭제" alt="삭제"></a>
                         <a id="modify_btn" href="./postModify.html"><img src="./images/post/modify_btn.gif" title="수정" alt="수정"></a>
+                        <a id="delete_btn"><img src="./images/post/delete_btn.gif" title="삭제" alt="삭제" onclick="delConfirm();"></a>
                         <a id="list_btn" href="#"><img src="./images/post/list_btn.gif" title="목록" alt="목록"></a>
                     </div>
                 </div>

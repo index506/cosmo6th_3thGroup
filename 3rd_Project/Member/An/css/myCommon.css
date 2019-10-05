@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap');
 
 /* reset */
+* {
+    font-family: 'Nanum Gothic', sans-serif;
+}
 ol, ul, li {
 	list-style: none;
 }
+
+
 
 /*  */
 
@@ -30,7 +35,7 @@ ol, ul, li {
     margin: 0 5px;
     padding: 6px 15px;
     border: 2px solid #5C753B; border-radius: 5px;
-    font-family: 'Nanum Gothic', sans-serif;
+    
     font-size: 15px; text-align: center;
     text-decoration: none; color:#fff;
     background: -webkit-linear-gradient(156deg, #ABCD79, #1D250E);

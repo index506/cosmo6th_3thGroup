@@ -16,8 +16,10 @@
     <link rel="stylesheet" href="./css/myCommon.css" />
     <link rel="stylesheet" href="./css/test/testCommon.css" />
     <link rel="stylesheet" href="./css/test/testSelect.css" />
+    <link rel="stylesheet" href="./css/test/manual.css" />
     <script src="./js/jquery-2.1.1.min.js"></script>
     <script src="./js/testSelect.js"></script>
+    <script src="./js/manual.js"></script>
 </head>
 <body>
 
@@ -108,61 +110,12 @@
         <div id="content_wrap">
             <div id="content_title">
                 <h3>시험 선택</h3>
+                <button class="manual_btn btn manual_item">?</button>
             </div>
             <!-- form -->
             <form id="option_form" method="GET" action="./testTake.html">
                 <fieldset>
-                    <!--
-                    <legend class="hidden">
-                        시험 선택
-                    </legend>
-
-                    <div id="license_area" class="q_area">
-                        <h4>1. 자격증을 선택해주세요.</h4>
-                        <select id="license_select" class="license_select" name="license" onchange="selectlicense()">
-                            <option value="">------------</option>
-                            <option value="20190427">정보처리기사</option>
-                            <option value="20190303">JLPT N2</option>
-                        </select>
-                    </div>
-                    <div id="year_area" class="q_area hidden">
-                        <h4>2. 기출문제를 선택해주세요.</h4>
-                        <select id="year_select" class="year_select" name="year"  onchange="selectYear()">
-                            <option value="">------------</option>
-                            <option value="20190427">2019년 04월 27일</option>
-                            <option value="20190303">2019년 03월 03일</option>
-                        </select>
-                    </div>
-                    <div id="subject_area" class="q_area hidden">
-                        <h4>3. 과목을 선택해주세요.</h4>
-                        <ul class="subject_ul">
-                            <li class="subject_li">
-                                <input id="part1_check" name="part1" type="checkbox" value="20" checked="" >
-                                <label for="part1_check">1과목 : 데이터베이스 [20문항]</label>
-                            </li>
-                            <li class="subject_li">
-                                <input id="part2_check" name="part2" type="checkbox" value="20" checked="" >
-                                <label for="part2_check">2과목 : 전자계산기 구조 [20문항]</label>
-                            </li>
-                            <li class="subject_li">
-                                <input id="part3_check" name="part3" type="checkbox" value="20" checked="" >
-                                <label for="part3_check">3과목 : 운영체제 [20문항]</label>
-                            </li>
-                            <li class="subject_li">
-                                <input id="part4_check" name="part4" type="checkbox" value="20" checked="" >
-                                <label for="part4_check">4과목 : 소프트웨어 공학 [20문항]</label>
-                            </li>
-                            <li class="subject_li">
-                                <input id="part5_check" name="part5" type="checkbox" value="20" checked="" >
-                                <label for="part5_check">5과목 : 소프트웨어 공학 [20문항]</label>
-                            </li>
-                        </ul>
-                    </div>
-                    <p id="btn_area" class="btn_area hidden">
-                        <input type="submit" id="solve_sub" class="btn" value="문제풀기">
-                        <a id="cancel_a" class="btn" onclick="history.back();">돌아가기</a>
-                    </p>
-                    -->
+                    
                 </fieldset>
             </form>
             <!-- //option_form -->
@@ -173,8 +126,6 @@
     
 
     
-
-
 
 
     <!--main_footer-->
