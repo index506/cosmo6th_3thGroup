@@ -65,8 +65,7 @@ $(document).ready(function(){
         txt+='</li>';
     }
     txt+='<p id="btn_area" class="btn_area hidden">';
-    txt+='<input type="submit" id="solve_sub" class="btn" value="문제풀기">';
-    txt+='<a id="cancel_a" class="btn" onclick="history.back();">돌아가기</a>';
+    txt+='<input type="submit" id="solve_sub" class="btn" value="시험풀기">';
     txt+='</p>';
     $('#option_form fieldset').append(txt);
     
