@@ -3,6 +3,7 @@ $(document).ready(function(){
         var index = $(this).parent().parent().index();
         $("#main_gnb .gnb_"+index+" .menu").addClass("hover");
         $("#main_gnb .gnb_list").not(".gnb_"+index).children(".menu").removeClass("hover");
+        console.log(this);
     });
     $("#main_header_wrap").mouseleave(function(){
         $("#main_gnb .menu").removeClass("hover");
