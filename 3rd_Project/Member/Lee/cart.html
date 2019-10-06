@@ -42,13 +42,16 @@
             $('.inputNumber').on("change keyup paste", function () {
                 var value = $(this).val();
                  // window.event.keyCode == 13 : 엔터(Enter)
-                if (window.event.keyCode == 13 && value != "") {
-                    $('.amtModify').click();
-                    $('.inputNumber').blur();
-                } else if (value < 1 && value != "") {
+                if (value != "" && value < 1)  {
                     alert("최소 구매수량은 1개입니다.");
                     $(this).val("1").focus();
-                } else if (window.event.keyCode == 13 && value == "") {
+                } else if (value != "" && value > 999){
+                    alert("최대 구매수량은 999개입니다.");
+                    $(this).val("999").focus();
+                } else if (value != "" && window.event.keyCode == 13) {
+                    $('.amtModify').click();
+                    $('.inputNumber').blur();
+                } else if (value == "" && window.event.keyCode == 13) {
                     alert("최소 구매수량은 1개입니다.");
                     $(this).val("1").focus();
                 }
