@@ -46,10 +46,14 @@
             // 교재구매 [수량] 변경 시, 1보다 작은 값을 입력하면 alert(경고창)
             $('input[type=number]').on("change keyup paste", function () {
                 var value = $(this).val();
-                if (value < 1 && value != "") {
+                if(value != "" && value < 1 ){
                     alert("최소 구매수량은 1개입니다.");
                     $(this).val("1").focus();
                 } 
+                else if (value != "" && value > 999){
+                    alert("최대 구매수량은 999개입니다.");
+                    $(this).val("999").focus();
+                }
                 else if (window.event.keyCode == 13 && value != "") {
                     $(this).parent().parent().next().click();
                 }
@@ -126,7 +130,7 @@
             <!--top_menu-->
             <div id="top_menu">
                 <ul class="on">
-                    <li><a href="javascript:;" title="회원가입">회원가입</a></li>
+                    <li><a href="../Yoo/Membership Join.html" title="회원가입">회원가입</a></li>
                     <li><a href="../Seok/login_main.html" title="로그인">로그인</a></li>
                     <li><a href="../Jeong/sitemap.html" title="사이트맵">사이트맵</a></li>
                 </ul>
