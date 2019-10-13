@@ -46,7 +46,7 @@ p.process:nth-child(2){color:rgb(38, 130, 187);}
 /* --------------------------------------------------------- */
 
 /* shipping (배송정보) */
-#shipping{position:absolute; right:40px; width:710px; height:400px;}
+#shipping{position:absolute; right:40px; width:710px;}
 
 /* innerWrap1 (내부랩) */
 #innerWrap1{position: absolute; right:0; top:35px; width:710px; border:3px solid darkgray; box-sizing: border-box; overflow: hidden;}
@@ -81,7 +81,7 @@ input.value4{width:460px;}
 /* --------------------------------------------------------- */
 
 /* payment (결제정보) */
-#payment{position:absolute; top:400px; right:40px; width:710px; height:400px;}
+#payment{position:absolute; top:400px; right:40px; width:710px;}
 
 /* innerWrap2 (내부랩) */
 #innerWrap2{position: absolute; right:0; top:35px; width:710px; border:3px solid darkgray; box-sizing: border-box;}
@@ -103,7 +103,7 @@ input.value4{width:460px;}
 /* --------------------------------------------------------- */
 
 /* information (주문상품 정보) */
-#information{position:absolute; right:40px; top:700px; width:710px; height:300px;}
+#information{position:absolute; right:40px; top:700px; width:710px;}
 
 /* innerWrap3 (내부랩) */
 #innerWrap3{position: absolute; right:0; top:35px; width:710px; border:3px solid darkgray; overflow: hidden; box-sizing: border-box;}
@@ -120,7 +120,7 @@ padding:20px; border-bottom:1px solid #ededed; border-right:1px solid #ededed; t
 /* --------------------------------------------------------- */
 
 /* paymentSum (결제금액) */
-#paymentSum{position:absolute; right:40px; top:935px; width:710px; height:300px;}
+#paymentSum{position:absolute; right:40px; top:935px; width:710px;}
 
 /* innerWrap4 (내부랩) */
 #innerWrap4{position: absolute; right:0; top:35px; width:710px; border:3px solid darkgray; overflow: hidden; box-sizing: border-box;}
@@ -136,7 +136,7 @@ padding:20px; border-bottom:1px solid #ededed; border-right:1px solid #ededed; t
 /* --------------------------------------------------------- */
 
 /* buyerApproval (주문자 동의) */
-#buyerApproval{position:absolute; right:40px; top:1200px; width:710px; height:300px;}
+#buyerApproval{position:absolute; right:40px; top:1200px; width:710px;}
 
 /* innerWrap5 (내부랩) */
 #innerWrap5{position: absolute; right:0px; top:36px; width:710px; border:3px solid darkgray; overflow: hidden; box-sizing: border-box; font-size: 12px;}

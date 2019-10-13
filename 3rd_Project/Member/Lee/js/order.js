@@ -37,10 +37,14 @@ $(document).ready(function () {
             $(this).find("span").text("내용보기");
             imgOff(this);
             state = false;
+            $("#wrap").css('height','1350px');
+            $("#payButton").css('bottom','170px');
         } else {
             $(this).find("span").text("내용닫기");
             imgOn(this);
             state = true;
+            $("#wrap").css('height','2000px');
+            $("#payButton").css('bottom','820px');
         }
         return false;
     });
