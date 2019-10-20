@@ -11,5 +11,9 @@
     resize: none;
 }
 
+select{
+    vertical-align: middle;
+}
+
 
 

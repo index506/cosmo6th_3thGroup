@@ -12,6 +12,65 @@
     <script type="text/javascript" src="../../js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
     <script type="text/javascript" src="../../js/common.js"></script>
+    <script>
+        $(function(){
+
+            // 회원아이디 input태그
+            $("input[type=name]:eq(0)").blur(function () {
+                //자리수 입력제한 조건
+            });
+
+            // 비밀번호 확인 input태그
+            $("input[type=password]:eq(1)").blur(function(){
+                
+                var pwd1 = $("input[type=password]:eq(0)").val();
+                var pwd2 = $("input[type=password]:eq(1)").val();
+
+                if(pwd1 != pwd2){
+                    $(this).next().text("비밀번호가 일치하지 않습니다.").css('color','red');
+                    $(this).val("");
+                } else if (pwd1 == pwd2) {
+                    $(this).next().text("");
+                }
+
+            });
+
+            // [가입] 버튼 클릭시 동작
+            $("img[alt=가입]").click(function(){
+
+                var index = 0;
+
+                // 서비스 이용약관 및 개인정보 보호정책 동의여부 확인
+                
+                for(var i=1; i<=2; i++){
+
+                    if($("input[name=chk_accept"+i+"]").prop("checked")){
+                        index++;
+                    } else{
+                        var message;
+
+                        if(i==1)
+                            message = "서비스 이용약관";
+                        else if (i==2)
+                            message = "개인정보 보호정책";
+                        
+                        alert(message + "에 동의해주세요.");
+                        break;
+                    }
+                }
+
+            });
+
+            // 이메일 선택시 자동입력
+            $("#email select").change(function(){
+                
+                var value = $(this).find("option:not(:first):selected").val();
+                $("#email input[type=text]:eq(1)").val(value);
+
+            });
+            
+        });
+    </script>
 
     <link rel="stylesheet" href="./css/join.css"/>
     <link rel="stylesheet" href="./css/add.css"/>
@@ -255,7 +314,7 @@
                         </textarea>
                     </div>
                     <div class="top20">
-                        <input type="checkbox" name="chk_accept">약관에 동의합니다.
+                        <input type="checkbox" name="chk_accept1">약관에 동의합니다.
                     </div>
                 </div>
                 <div class="top20">
@@ -453,7 +512,7 @@ JPT 성적
                     </div>
                 </div>
                 <div class="top20"> 
-                    <input type="checkbox" name="chk_accept1">개인정보정책에 동의합니다.
+                    <input type="checkbox" name="chk_accept2">개인정보정책에 동의합니다.
                 </div>
             </div>                        
             <!-- //provision -->
@@ -463,30 +522,29 @@ JPT 성적
                <div id="id">
                     <ul>
                         <li>
-                        <img src="images/join_st2_tit03_1.gif" alt="회원아이디" id="id_1"/>
-                        <label  class="he"><input type="name"/> 영문/숫자조합으로 8~16자리</label>
+                        <img src="images/join_st2_tit03_1.gif" alt="회원아이디" id="id_1"/><label class="he"><input type="name" placeholder=" 영문/숫자조합 8~16자리"/></label>
                         </li>
                     </ul>
                 </div>
                <div id="pass">
-                   <img src="images/join_st2_tit03_2.gif" alt="비밀번호"/><label class="he"><input type="password"/> 영문/숫자조합으로 9~16자리</label>
+                   <img src="images/join_st2_tit03_2.gif" alt="비밀번호"/><label class="he"><input type="password" placeholder=" 영문/숫자조합 8~16자리"/></label>
                </div>
                <div id="repass">
-                   <img src="images/join_st2_tit03_3.gif" alt="비밀번호확인"/><label class="he"><input type="password"/></label>
+                   <img src="images/join_st2_tit03_3.gif" alt="비밀번호확인"/><label class="he"><input type="password"/> <span></span></label>
                </div>
                <div id="person">
-                   <img src="images/join_st2_tit03_6.gif" alt="개인정보"/><label class="he">이름(한글) : <input type="name"/>
+                   <img src="images/join_st2_tit03_6.gif" alt="개인정보"/><label class="he">이름 : <input type="name"/><span></span>
                    생년월일 : <input type="date"/></label>
                </div>
                <div id="email">
                    <img src="images/join_st2_tit03_7.gif" alt="이메일"/><label class="he"><input type="text"/> @ <input type="text"/>
-                   <select><option>naver.com</option><option>daum.net</option><option>google.com</option><option>직접 입력</option>
+                   <select><option>직접입력</option><option value="naver.com">naver.com</option><option value="daum.net">daum.net</option><option value="google.com">google.com</option>
                    </select></input></label>
                </div>
                <div id="adress"> <!-- <fieldset id = "field" style = "height:50px"> -->
                    <img src="images/join_st2_tit03_8.gif" alt="주소"/><label class="he">
                    <!-- <form action = "#" accept-charset="utf-8" name = "person_info" method = "get"> </form>-->
-                   <input type="text"/>-<input type="text"/>
+                   <input type="text"/> - <input type="text"/>
                    <input style="margin-left:5px"type="button" value="우편번호검색"/></label>
                    <!-- </fieldset> -->
                </div>
