@@ -168,6 +168,8 @@ input.value2,input.value3{width:35px;}
 
 select{height:34px; padding:0 7px;}
 
+textarea{resize:none; text-align: left;}
+
 /* footer */
 #main_footer{width: 970px; margin: 20px auto 0;}
 #main_footer ul{overflow: hidden; height: 16px; margin-bottom: 5px; text-align: center; width: 970px;}

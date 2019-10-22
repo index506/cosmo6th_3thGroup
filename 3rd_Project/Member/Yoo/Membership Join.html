@@ -15,9 +15,28 @@
     <script>
         $(function(){
 
-            // 회원아이디 input태그
+            // 회원아이디 input태그, 자리수 입력제한 조건
             $("input[type=name]:eq(0)").blur(function () {
-                //자리수 입력제한 조건
+                
+                var value = $(this).val();
+                 // value = $(this).val() : input의 값을 저장
+                // var regType1 = /^[A-Za-z0-9+]{8,16}$/; 
+                // var regExp1 = (/^[A-Za-z]{8,16}$/);
+                // var regExp2 = (/(0-9){8,16}$/);
+                   // regExp1 = (/[^a-z0-9]/) : 정규표현식, 영문/숫자조합을 제외한 문자를 판별
+
+                // 영문/숫자조합 이외의 문자를 입력했을 때의 예외처리
+                var reg1 = /^[a-z0-9]{8,16}$/;    // a-z 0-9 중에 7자리 부터 14자리만 허용 한다는 뜻이구요
+                var reg2 = /[a-z]/g;    
+                var reg3 = /[0-9]/g;
+                if(reg1.test(value) &&  reg2.test(value) && reg3.test(value)){
+                // regExp1.test(value) : input태그의 값이 정규표현식 일치하면 true, 일치하지 않으면 false를 반환
+                    $(this).next().text("");
+                } else{ 
+                    $(this).val("");
+                    $(this).next().text("영문/숫자조합 8~16자리를 입력해주세요.").css('color','red');
+                }
+                
             });
 
             // 비밀번호 확인 input태그
@@ -522,15 +541,15 @@ JPT 성적
                <div id="id">
                     <ul>
                         <li>
-                        <img src="images/join_st2_tit03_1.gif" alt="회원아이디" id="id_1"/><label class="he"><input type="name" placeholder=" 영문/숫자조합 8~16자리"/></label>
+                        <img src="images/join_st2_tit03_1.gif" alt="회원아이디" id="id_1"/><label class="he"><input type="name" placeholder=" 영문/숫자조합 8~16자리" maxlength="16"/> <span></span></label>
                         </li>
                     </ul>
                 </div>
                <div id="pass">
-                   <img src="images/join_st2_tit03_2.gif" alt="비밀번호"/><label class="he"><input type="password" placeholder=" 영문/숫자조합 8~16자리"/></label>
+                   <img src="images/join_st2_tit03_2.gif" alt="비밀번호"/><label class="he"><input type="password" placeholder=" 영문/숫자조합 8~16자리" maxlength="16"/> <span></span></label>
                </div>
                <div id="repass">
-                   <img src="images/join_st2_tit03_3.gif" alt="비밀번호확인"/><label class="he"><input type="password"/> <span></span></label>
+                   <img src="images/join_st2_tit03_3.gif" alt="비밀번호확인"/><label class="he"><input type="password" maxlength="16"/> <span></span></label>
                </div>
                <div id="person">
                    <img src="images/join_st2_tit03_6.gif" alt="개인정보"/><label class="he">이름 : <input type="name"/><span></span>
@@ -542,11 +561,7 @@ JPT 성적
                    </select></input></label>
                </div>
                <div id="adress"> <!-- <fieldset id = "field" style = "height:50px"> -->
-                   <img src="images/join_st2_tit03_8.gif" alt="주소"/><label class="he">
-                   <!-- <form action = "#" accept-charset="utf-8" name = "person_info" method = "get"> </form>-->
-                   <input type="text"/> - <input type="text"/>
-                   <input style="margin-left:5px"type="button" value="우편번호검색"/></label>
-                   <!-- </fieldset> -->
+                   <img src="images/join_st2_tit03_8.gif" alt="주소"/><label class="he"><input type="text" style="width:415px;"/></label>           <!-- <form action = "#" accept-charset="utf-8" name = "person_info" method = "get"> </form>--><!-- </fieldset> -->
                </div>
                <div id="home">
                    <img src="images/join_st2_tit03_9.gif" alt="전화번호"/>
