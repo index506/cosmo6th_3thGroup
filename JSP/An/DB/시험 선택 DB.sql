@@ -5,7 +5,7 @@ create table test_license(
 
 create table test_year(
     year_num number(10) primary key, /* (1부터 1씩 증가) */
-    year_name DATE, /* [2018/12/02] */
+    year_date DATE, /* [2018/12/02] */
     license_name VARCHAR2(30),
     
     CONSTRAINT fk_year_license FOREIGN KEY(license_name)
@@ -50,12 +50,18 @@ select * from test_license;
 select * from test_year;
 select * from test_subject;
 
+/* select license */
+SELECT license_name, license_abbreviation FROM test_license
+
+/* select year */
+SELECT year_date FROM test_year WHERE license_name='정보처리기사';
+
+SELECT year_date FROM test_year WHERE license_name in ('정보처리기사')
 
 /* drop YEAR - SUBJECT - LICENSE*/
 drop table test_subject;
 drop table test_year;
 drop table test_license;
-
 
 /* drop 시퀀스 */
 drop SEQUENCE seq_year_num;
