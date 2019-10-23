@@ -53,3 +53,13 @@
 0:0:0:0:0:0:0:1 - - [22/Oct/2019:20:28:58 +0900] "GET /TeamProject/Member/Lee/images/buybook/img_book_07.jpg HTTP/1.1" 404 1188
 0:0:0:0:0:0:0:1 - - [22/Oct/2019:20:28:58 +0900] "GET /TeamProject/Member/Lee/images/buybook/img_book_08.jpg HTTP/1.1" 404 1188
 0:0:0:0:0:0:0:1 - - [22/Oct/2019:20:29:03 +0900] "GET /TeamProject/Member/Nam/Notice_List.html HTTP/1.1" 404 1166
+127.0.0.1 - - [22/Oct/2019:20:37:23 +0900] "GET / HTTP/1.1" 404 1115
+0:0:0:0:0:0:0:1 - - [22/Oct/2019:20:37:24 +0900] "GET /TeamProject/index.jsp HTTP/1.1" 200 10478
+0:0:0:0:0:0:0:1 - - [22/Oct/2019:20:37:24 +0900] "GET /TeamProject/Member/Lee/images/buybook/img_book_02.jpg HTTP/1.1" 404 1188
+0:0:0:0:0:0:0:1 - - [22/Oct/2019:20:37:24 +0900] "GET /TeamProject/Member/Lee/images/buybook/img_book_01.jpg HTTP/1.1" 404 1188
+0:0:0:0:0:0:0:1 - - [22/Oct/2019:20:37:24 +0900] "GET /TeamProject/Member/Lee/images/buybook/img_book_03.jpg HTTP/1.1" 404 1188
+0:0:0:0:0:0:0:1 - - [22/Oct/2019:20:37:24 +0900] "GET /TeamProject/Member/Lee/images/buybook/img_book_04.jpg HTTP/1.1" 404 1188
+0:0:0:0:0:0:0:1 - - [22/Oct/2019:20:37:24 +0900] "GET /TeamProject/Member/Lee/images/buybook/img_book_06.jpg HTTP/1.1" 404 1188
+0:0:0:0:0:0:0:1 - - [22/Oct/2019:20:37:24 +0900] "GET /TeamProject/Member/Lee/images/buybook/img_book_07.jpg HTTP/1.1" 404 1188
+0:0:0:0:0:0:0:1 - - [22/Oct/2019:20:37:24 +0900] "GET /TeamProject/Member/Lee/images/buybook/img_book_05.jpg HTTP/1.1" 404 1188
+0:0:0:0:0:0:0:1 - - [22/Oct/2019:20:37:24 +0900] "GET /TeamProject/Member/Lee/images/buybook/img_book_08.jpg HTTP/1.1" 404 1188
