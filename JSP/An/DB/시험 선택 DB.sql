@@ -84,3 +84,6 @@ drop table test_license;
 drop SEQUENCE seq_year_num;
 drop SEQUENCE seq_subject_num;
 
+
+/* commit */
+commit;
