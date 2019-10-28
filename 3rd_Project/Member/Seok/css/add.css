@@ -1,0 +1,33 @@
+#start{
+    width: 970px;
+    position: relative;
+    margin:0 auto;
+}
+#check{
+    float: right;
+    position: relative;
+    left: -50%;
+}
+/* #id{
+    float: right;
+    position: relative;
+    left: -50%;
+}
+#id li{
+    float: left;
+    position: relative;
+    left: 50%;
+} */
+#check li {
+    float: left;
+    position: relative;
+    left: 50%;
+}
+#check #pro{
+    margin-left : 30px;
+}
+.he{
+    position: relative;
+    top : -15px;
+    margin-left:5px;
+}
