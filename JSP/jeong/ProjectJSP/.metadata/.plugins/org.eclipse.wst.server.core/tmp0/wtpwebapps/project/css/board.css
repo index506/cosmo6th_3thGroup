@@ -1,0 +1,97 @@
+/*board_main*/
+#board_main{
+    width: 710px;
+    margin: 2px 0px; 
+}
+
+/*board_search*/
+.board_search{ 
+    float : right;
+    background-color: #f1f8ec;
+}
+
+.search_btn{
+    margin: 0 10px;
+}
+
+
+/*#board_section*/
+#board_section{ 
+    width: 710px; 
+    float : right;
+    margin: 5px 0px;    
+    position: relative;
+}
+
+/*board_write*/
+#board_section > #board_write{
+    margin: 10px auto; 
+    float : right;
+}
+
+/*board_page_number*/
+#board_section > #board_page_number{
+    margin: 10px auto; 
+}
+
+/* board_section_header */
+#board_section #board_section_header{  
+    font-weight: bold;
+    border:0;
+    background-color: rgb(217,217,217);
+}
+
+/*board_section_notice*/
+#board_section .board_section_notice{  
+    border:0;
+    border-bottom-width:1px; 
+    border-bottom-color:rgb(217,217,217); 
+    background-color: yellow;
+    border-bottom-style:solid;
+}
+
+.board_section_icon{
+    text-align: center;
+    width: 6%;
+}
+
+.board_section_title p{ 
+    text-align: center;
+    width: 348px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.board_section_Username{ 
+    text-align: center;
+    width: 100px;
+}
+
+.board_section_date{ 
+    text-align: center;
+    width: 120px;
+}
+
+.board_section_view{ 
+    text-align: center;
+    width: 75px;
+}
+
+.board_section_file{ 
+    text-align: center;
+    width: 35px;
+}
+
+/*board_section_main*/
+#board_section .board_section_main{  
+    border:0;
+    border-bottom-width:1px; 
+    border-bottom-color:rgb(217,217,217); 
+    border-bottom-style:solid;
+}
+
+.board_section_number{
+    text-align: center;
+    width: 6%;
+}
