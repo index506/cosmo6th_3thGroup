@@ -5,6 +5,7 @@
 <%
 	request.setCharacterEncoding("utf-8");
 %>
+<script type="text/javascript" src="js/member.js"></script>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -496,7 +497,7 @@ JPT 성적
 			</div>
 			<!-- //provision -->
 
-			<form id="assign" action="${contextPath}/member/addMember.do" method="post">
+			<form id="assign" name="frm"action="${contextPath}/member/addMember.do" method="post">
 				<!-- join -->
 				<div id="join">
 					<div id="id">
@@ -536,8 +537,6 @@ JPT 성적
 						<label class="he">
 							<input type="text" name="address" style="width: 415px;" />
 						</label>
-						<!-- <form action = "#" accept-charset="utf-8" name = "person_info" method = "get"> </form>-->
-						<!-- </fieldset> -->
 					</div>
 					<div id="home">
 						<img src="images/join_st2_tit03_9.gif" alt="전화번호" />
