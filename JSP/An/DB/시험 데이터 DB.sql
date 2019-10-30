@@ -2,7 +2,7 @@
 create table TEST_EIP_20190427(
     test_num number(5) primary key,
     test_title VARCHAR2(500),
-    test_imageName VARCHAR2(50) default NULL,    
+    test_imageIs VARCHAR2(2) default NULL,    
     test_1 VARCHAR2(250), 
     test_2 VARCHAR2(250), 
     test_3 VARCHAR2(250), 
@@ -13,7 +13,7 @@ create table TEST_EIP_20190427(
 create table TEST_EIP_20190303(
     test_num number(5) primary key,
     test_title VARCHAR2(500),
-    test_imageName VARCHAR2(50) default NULL,    
+    test_imageIs VARCHAR2(2) default NULL,    
     test_1 VARCHAR2(250), 
     test_2 VARCHAR2(250), 
     test_3 VARCHAR2(250), 
@@ -24,7 +24,7 @@ create table TEST_EIP_20190303(
 create table TEST_LM1_20190316(
     test_num number(5) primary key,
     test_title VARCHAR2(500),
-    test_imageName VARCHAR2(50) default NULL,    
+    test_imageIs VARCHAR2(2) default NULL,    
     test_1 VARCHAR2(250), 
     test_2 VARCHAR2(250), 
     test_3 VARCHAR2(250), 
@@ -35,7 +35,7 @@ create table TEST_LM1_20190316(
 create table TEST_LM1_20190921(
     test_num number(5) primary key,
     test_title VARCHAR2(500),
-    test_imageName VARCHAR2(50) default NULL,    
+    test_imageIs VARCHAR2(2) default NULL,    
     test_1 VARCHAR2(250), 
     test_2 VARCHAR2(250), 
     test_3 VARCHAR2(250), 
