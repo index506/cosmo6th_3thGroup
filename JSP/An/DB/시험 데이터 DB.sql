@@ -46,25 +46,6 @@ create table TEST_LM1_20190921(
 
 
 
-/* create 해답 */
-create table ANSWER_EIP_20190427(
-    test_num number(5) primary key,
-    test_answer number(5),
-    
-    CONSTRAINT fk_ANSWER_EIP_20190427_num FOREIGN KEY(test_num)
-    REFERENCES TEST_EIP_20190427(test_num)
-); /* 정보처리기사 EIP(Engineer Information Processing)*/
-
-create table ANSWER_EIP_20190303(
-    test_num number(5) primary key,
-    test_answer number(5),
-    
-    CONSTRAINT fk_ANSWER_EIP_20190303_num FOREIGN KEY(test_num)
-    REFERENCES TEST_EIP_20190303(test_num)
-); /* 정보처리기사 EIP(Engineer Information Processing)*/
-
-
-
 /* select ALL */
 SELECT * FROM TEST_EIP_20190427;
 SELECT * FROM TEST_EIP_20190303;
@@ -78,14 +59,8 @@ SELECT * FROM TEST_EIP_20190427 WHERE TEST_IMAGENAME IS NULL;
 SELECT * FROM TEST_EIP_20190303 WHERE TEST_IMAGENAME IS NOT NULL;
 SELECT * FROM TEST_EIP_20190303 WHERE TEST_IMAGENAME IS NULL;
 
-SELECT * FROM ANSWER_EIP_20190427;
-SELECT * FROM ANSWER_EIP_20190303;
-
 
 /* drop */
-DROP TABLE ANSWER_EIP_20190427; 
-DROP TABLE ANSWER_EIP_20190303; 
-
 DROP TABLE TEST_EIP_20190427; 
 DROP TABLE TEST_EIP_20190303; 
 DROP TABLE TEST_LM1_20190921; 
