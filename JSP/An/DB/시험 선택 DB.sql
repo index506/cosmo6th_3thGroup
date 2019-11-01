@@ -41,8 +41,9 @@ insert into test_year values(seq_year_num.NEXTVAL,'2019/03/03', '정보처리기사');
 insert into test_year values(seq_year_num.NEXTVAL,'2019/04/27', '정보처리기사');
 insert into test_year values(seq_year_num.NEXTVAL,'2020/03/08', '정보처리기사');
 
-insert into test_year values(seq_year_num.NEXTVAL,'2019/09/21', '리눅스마스터 1급');
 insert into test_year values(seq_year_num.NEXTVAL,'2019/03/16', '리눅스마스터 1급');
+insert into test_year values(seq_year_num.NEXTVAL,'2019/09/21', '리눅스마스터 1급');
+
 
 /* 과목 insert 번호, 과목이름, 과목문제수, 과목개수, 과목 시험시간, 개정년도, 자격증번호*/
 insert into test_subject values(seq_subject_num.NEXTVAL,'데이터베이스/전자계산기 구조/운영체제/소프트웨어 공학/데이터 통신', '1~20/21~40/41~60/61~80/81~100' ,5, 150, '2000/01/01', '정보처리기사' );
@@ -50,6 +51,8 @@ insert into test_subject values(seq_subject_num.NEXTVAL,'소프트웨어 설계/소프트�
 insert into test_subject values(seq_subject_num.NEXTVAL,'리눅스 실무의 이해/리눅스 시스템 관리/네트워크 및 서비스의 활용', '1~20/21~60/61~100',3, 100, '2000/01/01', '리눅스마스터 1급');
 
 
+
+/*--------------------------------------*/
 
 
 /* select ALL */
@@ -76,6 +79,8 @@ FROM test_subject WHERE license_name='정보처리기사' AND subject_revision IN(
     WHERE license_name='정보처리기사' AND subject_revision < '2019/03/03'
 )
 
+
+/*--------------------------------------*/
 
 
 

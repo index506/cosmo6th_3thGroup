@@ -1,0 +1,80 @@
+
+
+/* membership_withdrawal*/
+.outWrap{
+    width: 700px;
+    margin-left: 30px;
+}
+.line{
+    width: 700px; 
+    margin-top: 15px;
+    height: 32px;
+    border-bottom: 2px solid #454545;
+}
+.t_memout{
+    margin-left: 10px;
+
+}
+.textalert{
+    width: 700px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.combine_box{
+    background:#fbfbfb;
+    border: 1px solid #dbdbdb;
+    padding: 10px;
+    margin-left: 10px;
+    width: 600px;
+}
+.list_check{
+    display: inline-block;
+    padding: 5px 0 0 10px;
+}
+.list_check > li{
+    float: left; width: 250px; padding: 7px 0;
+    color: #666; vertical-align: top;
+}
+.list_check > li > input {
+    vertical-align: top; margin-right: 3px;
+}
+.h_text{
+    
+    margin: 25px 10px 10px 10px;
+    width: 700px;
+}
+
+.btn{
+    margin: 20px;
+    text-align: center;
+    
+}
+.btn > a {
+    
+    margin: 10px 20px;
+    display: inline-block;
+    background-color: #960a0a;
+    border-radius: 7px; line-height: 36px;
+}
+.btn > a:last-child {   
+    background-color: #a09c9c;
+}
+.btn > a:first-child > span {
+    display: block; width: 135px; height: 36px;
+    font-size: 17px; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: black; font-weight: bolder;
+    background: url(../images/mytmall_v4.gif) no-repeat 0 -295px;
+    text-indent: -5000px;
+}
+.btn > a:last-child > span {
+    display: block; width: 76px; height: 36px;
+    font-size: 19px; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: black; font-weight: bolder;
+    background: url(../images/mytmall_v4.gif) no-repeat -82px -129px;
+    text-indent: -5000px;
+}
+textarea{
+    margin-left: 10px;
+}

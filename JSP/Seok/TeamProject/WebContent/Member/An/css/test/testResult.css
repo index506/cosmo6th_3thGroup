@@ -1,0 +1,21 @@
+/* info_area */
+#info_area {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 2px solid #e1e1e1;
+    border-radius: 10px;
+    box-shadow: -1px -1px 1px 1px #f1f1f1;
+    font-size: 15px;
+}
+
+#content_area{
+    width: 690px;
+    font-size: 15px;
+}
+
+
+/* btn area */
+.btn_area {
+    text-align: initial;
+    
+}
