@@ -117,8 +117,8 @@ padding:20px; border-bottom:1px solid #ededed; border-right:1px solid #ededed; t
 
 #table3 td{border:1px solid #ededed; text-align: center;}
 
-.productBox{padding:15px;}
-.productImg{float:left;}
+.productBox{padding-top:20px;}
+.productImg{width:60px; height:80px;}
 .productExplain{line-height: 70px;}
 
 /* --------------------------------------------------------- */
