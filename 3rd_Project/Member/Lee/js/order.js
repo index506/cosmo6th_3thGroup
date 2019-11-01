@@ -37,14 +37,17 @@ $(document).ready(function () {
             $(this).find("span").text("내용보기");
             imgOff(this);
             state = false;
-            $("#wrap").css('height','1350px');
-            $("#payButton").css('bottom','170px');
+            var height = parseInt($("#wrap").css('height').substr(0,4));
+            $("#wrap").css('height',height-670+"px");
+            $("#buyerApproval").css('bottom','410px'); //주문자동의
+
         } else {
             $(this).find("span").text("내용닫기");
             imgOn(this);
             state = true;
-            $("#wrap").css('height','2000px');
-            $("#payButton").css('bottom','820px');
+            var height = parseInt($("#wrap").css('height').substr(0,4));
+            $("#wrap").css('height',height+670+"px");
+            $("#buyerApproval").css('bottom','1080px'); //주문자동의
         }
         return false;
     });
@@ -55,6 +58,23 @@ $(document).ready(function () {
             $(".approvalButton").prop("checked", true);
         } else {
             $(".approvalButton").prop("checked", false);
+        }
+    });
+
+    $("input[id='deposit']").on("click",function(){
+
+        if($(this).prop("checked")){
+            var height = parseInt($("#wrap").css('height').substr(0,4));
+            $("#wrap").css('height',height+100+"px"); // 전체랩
+            $(".depositBox").css('display','block'); // 결제정보
+            $("#information").css('top','690px'); // 주문상품정보
+            
+        } else{
+            var height = parseInt($("#wrap").css('height').substr(0,4));
+            $("#wrap").css('height',height-100+"px"); // 전체랩
+            $(".depositBox").css('display','none'); // 결제정보
+            $("#information").css('top','600px'); // 주문상품정보
+ 
         }
     });
 
