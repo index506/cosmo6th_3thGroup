@@ -21,7 +21,7 @@
 /* //header */
 
 /* wrap (전체랩) */
-#wrap{position: relative; width:970px; height:2000px; margin:50px auto 0;}
+#wrap{position: relative; width:970px; height:1900px; margin:50px auto 0;}
 
 /* --------------------------------------------------------- */
 
@@ -91,10 +91,14 @@ input.value4{width:460px;}
 #table2 td{padding:20px; border-bottom:1px solid #ededed;}
 
 /* 결제정보 */
-.payWay{padding:20px; width:450px; height:140px; border:2px solid #ededed;}
-.payWay input {width:180px;}
+.payWay{padding:20px; width:450px; overflow:hidden; border:2px solid #ededed;}
+.payWay input[type="text"] {width:180px;}
+.payWay input[type="checkbox"] {display:none;}
+
 .payWay select {width:100px;}
-.payWay .deposit {width:160px; height:35px; line-height: 35px; background:#4d5d7b; text-align:center; margin-bottom: 20px; color:white; border-radius: 3px;}
+.payWay .deposit {width:160px; height:35px; line-height: 35px; text-align:center; margin-bottom: 20px; color:white; border-radius: 3px; display:block; border:0.5px solid gray; color:black; cursor: pointer;}
+.depositBox{display:none;}
+.payWay input[id="deposit"]:checked + .deposit {background:#4d5d7b; color:white;}
 .payWay .depositGuide {display:inline-block; width:140px; height:30px; line-height:30px; text-align:center; border:0.5px solid darkgray; vertical-align: middle; border-radius: 3px; font-size: 13px;}
 .payWay .depositGuide:hover{cursor: pointer;}
 .depositExplain{position:absolute; top:190px; right:-140px; width:300px; overflow:hidden; border:2px solid #dddddd; font-size: 10px; color:rgb(128, 128, 128); padding:5px 10px; list-style: disc; z-index: 1; background: #f9f9f9; display:none;}
@@ -103,7 +107,7 @@ input.value4{width:460px;}
 /* --------------------------------------------------------- */
 
 /* information (주문상품 정보) */
-#information{position:absolute; right:40px; top:700px; width:710px;}
+#information{position:absolute; right:40px; top:600px; width:710px;}
 
 /* innerWrap3 (내부랩) */
 #innerWrap3{position: absolute; right:0; top:35px; width:710px; border:3px solid darkgray; overflow: hidden; box-sizing: border-box;}
@@ -113,14 +117,14 @@ padding:20px; border-bottom:1px solid #ededed; border-right:1px solid #ededed; t
 
 #table3 td{border:1px solid #ededed; text-align: center;}
 
-.productBox{padding:15px;}
-.productImg{float:left;}
+.productBox{padding-top:20px;}
+.productImg{width:60px; height:80px;}
 .productExplain{line-height: 70px;}
 
 /* --------------------------------------------------------- */
 
 /* paymentSum (결제금액) */
-#paymentSum{position:absolute; right:40px; top:935px; width:710px;}
+#paymentSum{position:absolute; right:40px; bottom:290px; width:710px;}
 
 /* innerWrap4 (내부랩) */
 #innerWrap4{position: absolute; right:0; top:35px; width:710px; border:3px solid darkgray; overflow: hidden; box-sizing: border-box;}
@@ -131,12 +135,12 @@ padding:20px; border-bottom:1px solid #ededed; border-right:1px solid #ededed; t
 #table4 td{border:1px solid #ededed; text-align: center; padding:20px;}
 
 
-#payButton{width:270px; height:70px; line-height: 70px; position:absolute; background: #e55; right:260px; bottom:820px; font-size: 20px; color:white; font-weight: bold; text-align: center; border-radius: 5px; cursor: pointer;}
+#payButton{width:270px; height:70px; line-height: 70px; position:absolute; background: #e55; right:260px; bottom:100px; font-size: 20px; color:white; font-weight: bold; text-align: center; border-radius: 5px; cursor: pointer;}
 
 /* --------------------------------------------------------- */
 
 /* buyerApproval (주문자 동의) */
-#buyerApproval{position:absolute; right:40px; top:1200px; width:710px;}
+#buyerApproval{position:absolute; right:40px; bottom:1080px; width:710px;}
 
 /* innerWrap5 (내부랩) */
 #innerWrap5{position: absolute; right:0px; top:36px; width:710px; border:3px solid darkgray; overflow: hidden; box-sizing: border-box; font-size: 12px;}
@@ -157,6 +161,10 @@ padding:20px; border-bottom:1px solid #ededed; border-right:1px solid #ededed; t
 .approvalBoxSub2 p {margin-bottom: 10px; color:black;}
 
 .marginLine{border:0.5px solid #ededed; margin:10px 0;}
+
+/* --------------------------------------------------------- */
+
+#payButton{width:270px; height:70px; line-height: 70px; position:absolute; background: #e55; right:260px; bottom:30px; font-size: 20px; color:white; font-weight: bold; text-align: center; border-radius: 5px; cursor: pointer;}
 
 /* --------------------------------------------------------- */
 
