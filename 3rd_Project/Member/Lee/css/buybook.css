@@ -47,6 +47,6 @@ width:100px; height:30px; border:1px solid lightgray; background:rgb(96, 160, 19
 
 /* 전체 input태그 수직정렬  */
 input{vertical-align: middle;}
-input[type="number"]{width:40px; vertical-align: middle; text-align: center;}
+input[type="number"]{width:82px; vertical-align: middle; text-align: center;}
 img.icnModify{vertical-align: middle;}
 img.icnModify:hover{cursor: pointer;}
