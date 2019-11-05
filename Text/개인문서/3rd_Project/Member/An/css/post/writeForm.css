@@ -1,0 +1,36 @@
+/* wrap */
+#write_wrap { 
+    margin: 0 10px;
+    width: 750px; 
+    font-size: 16px; 
+    background-color: #f1f1f1;
+}
+
+/* form */
+#write_form { 
+    background-color: white;
+    margin: 20px; width: 710px; 
+}
+#write_form > fieldset { 
+    padding: 15px; 
+} 
+
+/* table */
+#write_table { 
+    border-spacing: 5px;
+}
+#write_table td:first-child { 
+    padding: 0 10px; 
+}
+
+.item { 
+    text-align: center;
+    background: #dddddd; 
+}
+
+#write_table input[type="text"], textarea {
+    padding: 5px;
+}
+
+
+/* btn_area */
