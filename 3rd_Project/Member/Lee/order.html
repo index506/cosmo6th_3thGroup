@@ -20,8 +20,9 @@
             $('input[type="radio"]').change(function () {
                 if ($('#first').is(':checked')) {
                     $('input.value1').val("이유의");
-                    $('input.value2, input.value3').val("1234");
-                    $('input.value4').val("서울특별시 송파구 가락2동 쌍용APT XXX-XXXX");
+                    $('input.value2').val("4106");
+                    $('input.value3').val("1562");
+                    $('input.value4').val("서울특별시 송파구 가락2동 쌍용APT");
                 } else if ($('#second').is(':checked')) {
                     for(var i=1; i<=4; i++)
                         $('input.value'+i).val("");
@@ -55,6 +56,7 @@
 
                         $('input.value' + index).focus(); 
                         break;
+
                     } else if (index==2 || index ==3){
                         //  regexp : 숫자가 아닌 문자
                         var regexp = /[^0-9]/g;  
@@ -67,19 +69,21 @@
                         } //if
                     } // else if
                 } //for
-
+                
 
                 // 입금은행 선택여부
                 // scrollTop() offset() 함수 : https://blog.naver.com/seoyoung0425/221360205224
-                if($("input[id='deposit']").prop("checked")){
-                    if(index == 5 && $('input.selectedBank').val()==""){
+                if(index == 5 && $("input[id='deposit']").prop("checked")==true){
+                    if($('input.selectedBank').val()==""){
+
                     var offset = $('input.value1').offset();
+
                     $('html').scrollTop(offset.top);
                     alert("입금은행을 선택해주세요.");
-                } else 
-                    index++;
+                    } else 
+                        index++;
 
-                } else {
+                } else if (index == 5 && $("input[id='deposit']").prop("checked")==false){
                     alert("결제정보를 선택해주세요.");
                     var offset = $('input.value1').offset();
                     $('html').scrollTop(offset.top);
@@ -356,7 +360,7 @@
                         </td>
                         <td>1</td>
                         <td><strong>25,000</strong>원</td>
-                        <td>(-)<strong>2,500</strong>원</td>
+                        <td><strong>2,500</strong>원</td>
                         <td><strong style="color:red;">22,500</strong>원</td>
                         <td>무료</td>
                     </tr>
@@ -383,10 +387,10 @@
                         <th>최종 결제금액</th>
                     </tr>
                     <tr>
-                        <td>10,000원</td>
-                        <td>0원</td>
-                        <td>0원</td>
-                        <td>10,000원</td>
+                        <td>25,000원</td>
+                        <td>무료</td>
+                        <td>2,500원</td>
+                        <td>22,500원</td>
                     </tr>
                 </table>
             </div>
