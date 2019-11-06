@@ -64,7 +64,7 @@
                      // regexp 정규표현식 함수 : https://gilugi407.blog.me/221327342192
                         if(regexp.test(temp)){
                             $('input.value' + index).val("").focus();
-                            alert("숫자만 입력해주세요.");
+                            alert("연락처는 숫자만 입력해주세요.");
                             break;
                         } //if
                     } // else if
@@ -84,7 +84,7 @@
                         index++;
 
                 } else if (index == 5 && $("input[id='deposit']").prop("checked")==false){
-                    alert("결제정보를 선택해주세요.");
+                    alert("결제수단을 선택해주세요.");
                     var offset = $('input.value1').offset();
                     $('html').scrollTop(offset.top);
                 }
