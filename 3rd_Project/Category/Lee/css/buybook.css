@@ -1,0 +1,52 @@
+/* wrap (전체 랩) */
+#wrap{position: relative; width:970px; height:1600px; margin:50px auto 0; }
+
+/* lnb (로컬네비게이션) */
+.lnb{width: 200px; height: 100%; position: absolute; left:0;}
+.lnb>div{height: 300px; border-left: 1px solid antiquewhite; position: relative;}
+.lnb>div>img{position: absolute; left: 0;}
+.lnb>div>.top{top: 0;}
+.lnb>div>.bottom{bottom: 0;}
+.lnb>div>ul{padding-left: 15px; padding-top: 50px;}
+.lnb>div>ul li{padding-bottom: 10px; font-size: 12px; color: black; font-weight: bold;}
+
+/* title (문제집&교재구매 이미지) */
+#wrap > #title{position:absolute; left:220px;}
+
+/* buy_book (내부 랩)*/
+#wrap > #buy_book{width: 710px; overflow: hidden; border:2px solid gray; box-sizing: border-box; position: absolute; right:40px; top:60px;}
+
+/* book_title (교재제목) */
+.book_title strong {font-size: 18px;}
+.book_title {margin-top:20px; margin-bottom: -15px; width:100%; overflow: hidden;}
+.book_title span{width:345px; display: inline-block;}
+.book_title span:nth-child(1){float:left; margin-left: 5px;}
+.book_title span:nth-child(2){float:right; margin-right: 5px;}
+
+/* box (교재정보, box1 ~ box8) */
+#buy_book > .box{width:340px; height:298px; float:left; position: relative; border:1px solid black; margin:20px 5px;}
+
+/* imageBox(이미지) */
+.box > .imageBox{float:left;}
+.box > .imageBox > img{width:198px; height:297px; margin-top:1px;}
+
+/* textBox (설명글) */
+.box > .textBox{float:left; padding:8px;}
+p{line-height: 50px;}
+
+/* buyBox (체크박스+구매하기 버튼) */
+.box > .buyBox{position: absolute; right:10px; bottom:10px; width:120px; height:25px; line-height: 25px;
+    text-align: center; border:0.5px solid lightgray;
+color:rgb(102, 102, 102);}
+
+.buyBox:hover{border-color:black; color:black; cursor: pointer;}
+
+/* buyButton (최하단 구매하기 버튼) */
+#buy_book > .buyButton{float:left; margin:30px 305px 10px;
+width:100px; height:30px; border:1px solid lightgray; background:rgb(96, 160, 199); border-radius: 5px; text-align: center; line-height: 30px; color:white; font-weight: bold; cursor: pointer;}
+
+/* 전체 input태그 수직정렬  */
+input{vertical-align: middle;}
+input[type="number"]{width:82px; vertical-align: middle; text-align: center;}
+img.icnModify{vertical-align: middle;}
+img.icnModify:hover{cursor: pointer;}
