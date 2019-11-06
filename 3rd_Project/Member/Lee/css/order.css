@@ -140,7 +140,7 @@ padding:20px; border-bottom:1px solid #ededed; border-right:1px solid #ededed; t
 /* --------------------------------------------------------- */
 
 /* buyerApproval (주문자 동의) */
-#buyerApproval{position:absolute; right:40px; bottom:1080px; width:710px;}
+#buyerApproval{position:absolute; right:40px; bottom:1000px; width:710px;}
 
 /* innerWrap5 (내부랩) */
 #innerWrap5{position: absolute; right:0px; top:36px; width:710px; border:3px solid darkgray; overflow: hidden; box-sizing: border-box; font-size: 12px;}
