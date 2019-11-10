@@ -1,3 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> <!-- jstl을 사용하기 위한 디렉티브 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"></c:set> 
+<%
+    request.setCharacterEncoding("UTF-8"); //요청 받아온 글자 깨지지 안도록 UTF-8설정
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -5,24 +13,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <link rel="stylesheet" href="../../css/init.css"/>
-    <link rel="stylesheet" href="../../css/common.css"/>
-    <script type="text/javascript" src="../../js/jquery-2.1.1.min.js"> </script>
-    <script type="text/javascript" src="../../js/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="../../js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
-    <script type="text/javascript" src="../../js/common.js"></script>
+    <link rel="stylesheet" href="${contextPath}/css/init.css"/>
+    <link rel="stylesheet" href="${contextPath}/css/common.css"/>
+    <script type="text/javascript" src="${contextPath}/js/jquery-2.1.1.min.js"> </script>
+    <script type="text/javascript" src="${contextPath}/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/prefixfree.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/common.js"></script>
     <!--개인 css, js-->
-    <link rel="stylesheet" href="./css/find_id.css">
+    <link rel="stylesheet" href="${contextPath}/Member/Seok/css/find_id.css">
 
     <title>Find_ID2</title>
     <script language="javascript">
-        function login(){
-            window.location.href="login_main.html";
+        function login(){        	
+            window.location.href="login_main.jsp";
         }
-        function password(){
-            window.location.href="find_pwd.html";
-        }
+        
     </script>
 
 </head>
@@ -33,7 +39,7 @@
     <header id="main_header">
         <!--main_logo-->
         <h1 id="main_logo">
-            <a href="../../index.html" title="title"><img src="http://placehold.it/150x70" alt="title"></a>
+            <a href="${contextPath}/index.jsp" title="title"><img src="http://placehold.it/150x70" alt="title"></a>
         </h1>
         <!--//main_logo-->
         <!--main_gnb-->
@@ -109,11 +115,11 @@
         <h2>고객님의 아이디 </h2>
         <p>고객님의 정보와 일치하는 아이디입니다. </p>
         <div class="idInfoBox">
-            <p >아이디 : <em>index506 </em> <span>가입일 :2019.05.06 </span></p>
+            <p >아이디 : <em>${FindIDinfo.id} </em> <span>가입일 : ${FindIDinfo.assignDate}</span></p>
         </div>
         <p class="btns">
             <button><a href="javascript:login();">로그인하기</a></button>
-            <button><a href="javascript:password();">비밀번호 찾기</a></button>
+            <button><a href="find_pwd.jsp;">비밀번호 찾기</a></button>
         </p>
         </div>
         <!--//find_id2-->

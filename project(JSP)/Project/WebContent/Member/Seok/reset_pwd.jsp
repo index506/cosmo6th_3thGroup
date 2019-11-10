@@ -1,3 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> <!-- jstl을 사용하기 위한 디렉티브 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"></c:set> 
+<%
+    request.setCharacterEncoding("UTF-8"); //요청 받아온 글자 깨지지 안도록 UTF-8설정
+%>     
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -60,26 +68,24 @@
 			});
 		});
 		function pwdCheck(){
+			var pwd1 = $("#pwd_lbl").val();
+			var pwd2 = $("#pwd2_lbl").val();
 			// 비밀번호 확인 input태그
-			$("#pwd2_lbl").blur(function() {
-				
-				var pwd1 = $("#pwd_lbl").val();
-				var pwd2 = $("#pwd2_lbl").val();
-
+			$("#pwd2_lbl").blur(function() {												
 				if (pwd1 != pwd2) {
 					$(".hidden2").css('display','block').css('color','red');
 					//$(this).next().text("비밀번호가 일치하지 않습니다.").css('color', 'red');
 					//$(this).val("");
-				} else if (pwd1 == pwd2) {
-					$(this).next().text("");
-					
-					//frmLogin.method="post";
-	    			//frmLogin.action="${contextPath}/login/loginCheck.do";
-	    			//frmLogin.submit();
-				}
+				} 
 			});
-		}
-		
+			if (pwd1 == pwd2) {
+				alert("here");
+				frmLogin.method="post";
+    			frmLogin.action="${contextPath}/login/resetPWD.do";
+    			frmLogin.submit();
+    			$(this).next().text("");
+			}
+		}		
 	</script>
 </head>
 <body>
@@ -160,7 +166,7 @@
     <div id="PPS" class="content">
     
     <!-- reset_password-->    
-    <form action="">
+    <form method="post" name="frmLogin"  encType="UTF-8">
     <div class="pwd3_wrap">
         <h2>비밀번호 재설정</h2>
         <p>비밀번호 작성시 9~20자리 가능, 알파벳 소문자, 숫자, 특수기호 조합</p>

@@ -1,16 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> <!-- jstl을 사용하기 위한 디렉티브 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"></c:set> 
+<%
+    request.setCharacterEncoding("UTF-8"); //요청 받아온 글자 깨지지 안도록 UTF-8설정
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../../css/init.css"/>
-    <link rel="stylesheet" href="../../css/common.css"/>
-    <script type="text/javascript" src="../../js/jquery-2.1.1.min.js"> </script>
-    <script type="text/javascript" src="../../js/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="../../js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
-    <script type="text/javascript" src="../../js/common.js"></script>
+    <link rel="stylesheet" href="${contextPath}/css/init.css"/>
+    <link rel="stylesheet" href="${contextPath}/css/common.css"/>
+    <script type="text/javascript" src="${contextPath}/js/jquery-2.1.1.min.js"> </script>
+    <script type="text/javascript" src="${contextPath}/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/prefixfree.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/common.js"></script>
     <!--개인 css, js-->
     <link rel="stylesheet" href="./css/find_pwd.css"/>
 
@@ -19,9 +27,9 @@
     <script language="javascript">
         // 고객아이디에 맞는 
         function nextStep(){
-            if($('.input_wrap > input').val()==123){
-                window.location.href="find_pwd2.html";
-            }else alert('없는 아이디 입니다.');
+            if($('.input_wrap > input').val()=="user1"){
+                window.location.href="find_pwd2.jsp";
+            }else if($('.input_wrap > input').val()=="") alert('아이디를 입력해주세요.');
             
         }
     </script>
@@ -43,7 +51,7 @@ hr{opacity: 0.5;margin: 10px auto;}
         <header id="main_header">
             <!--main_logo-->
             <h1 id="main_logo">
-                <a href="../../index.html" title="title"><img src="http://placehold.it/150x70" alt="title"></a>
+                <a href="${contextPath}/index.html" title="title"><img src="http://placehold.it/150x70" alt="title"></a>
             </h1>
             <!--//main_logo-->
             <!--main_gnb-->
@@ -119,11 +127,11 @@ hr{opacity: 0.5;margin: 10px auto;}
             <img src="./images/password.png">
         </div>
         <div class="input_wrap">
-            <input type="text" placeholder=" 아이디를 입력해주세요." >
+            <input type="text" placeholder=" 아이디를 입력해주세요." name="userid" >
             <div class="next_btn"><a href="javascript:nextStep();">다음 단계</a></div>
         </div>
         <hr>
-        <p>●  아이디를 찾으시나요?  <a href="find_id.html">아이디 찾기 〉</a></p>
+        <p>●  아이디를 찾으시나요?  <a href="find_id.jsp">아이디 찾기 〉</a></p>
     </div>
     <!--//find_password-->
             </div>
