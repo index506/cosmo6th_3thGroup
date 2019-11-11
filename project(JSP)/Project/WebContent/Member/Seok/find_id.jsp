@@ -1,25 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> <!-- jstl을 사용하기 위한 디렉티브 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"></c:set> 
+<%
+    request.setCharacterEncoding("UTF-8"); //요청 받아온 글자 깨지지 안도록 UTF-8설정
+%> 
 <!DOCTYPE html>
 <html lang="ko">
-<head>
+<head>   
+    <title>find ID</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>mypage</title>
-    <link rel="stylesheet" href="../../css/init.css"/>
-    <link rel="stylesheet" href="../../css/common.css"/>
-    <script type="text/javascript" src="../../js/jquery-2.1.1.min.js"> </script>
-    <script type="text/javascript" src="../../js/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="../../js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
-    <script type="text/javascript" src="../../js/common.js"></script>
+    <link rel="stylesheet" href="${contextPath}/css/init.css"/>
+    <link rel="stylesheet" href="${contextPath}/css/common.css"/>
+    <script type="text/javascript" src="${contextPath}/js/jquery-2.1.1.min.js"> </script>
+    <script type="text/javascript" src="${contextPath}/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/prefixfree.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/common.js"></script>
     <!--개인 css, js-->
     <link rel="stylesheet" href="./css/find_id.css">
     <script language="javascript">
         // 인증번호 맞으면 다음 절차로 페이지이동 
         function numberCheck(){
-            if($('.numConfirm').val()==123){
-                window.location.href="find_id2.html";
-            }else if($('.numConfirm').val()!=123){
+            if($('.numConfirm').val()==456123){
+            	
+            	frmfindid.method="post";
+    			frmfindid.action="${contextPath}/login/findid.do";
+    			frmfindid.submit();
+                
+            }else if($('.numConfirm').val()!=456123){
                 alert('인증번호가 다릅니다.');
             }
         }
@@ -107,10 +119,10 @@
             <img src="./images/id.png" >
         </div>
         
-        <form>
-            <p class="name">이름   <input type="text"></p><br>
+        <form name="frmfindid" method="post"  encType="UTF-8">
+            <p class="name">이름   <input type="text" name="name" ></p><br>
             <p class="mail_add">이메일 주소  
-                <input type="email">
+                <input type="email" name="email">
                 <button>인증번호 보내기</button>
             </p>
             <p class="numcheck" >

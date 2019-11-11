@@ -1,31 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> <!-- jstl을 사용하기 위한 디렉티브 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"></c:set> 
+<%
+    request.setCharacterEncoding("UTF-8"); //요청 받아온 글자 깨지지 안도록 UTF-8설정
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../../css/init.css"/>
-    <link rel="stylesheet" href="../../css/common.css"/>
-    <script type="text/javascript" src="../../js/jquery-2.1.1.min.js"> </script>
-    <script type="text/javascript" src="../../js/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="../../js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
-    <script type="text/javascript" src="../../js/common.js"></script>
-    <!--개인 css, js-->
-    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="${contextPath}/css/init.css"/>
+    <link rel="stylesheet" href="${contextPath}/css/common.css"/>
+    <script type="text/javascript" src="${contextPath}/js/jquery-2.1.1.min.js"> </script>
+    <script type="text/javascript" src="${contextPath}/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/prefixfree.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/common.js"></script>
+    <!--개인 css, js-->    
 
-    <title>Login Page</title>
-    <script>
-        function member(){
-            window.location.href="Member/An/postRead.html";
-        };
-        function id(){
-            window.location.href="find_id.html";
-        };
-        function password(){
-            window.location.href="find_pwd.html";
-        };
+    <link rel="stylesheet" href="./css/Withdrawal_1.css"/>
+    
+    <script type="text/javascript">
+    function mv_cancle(){
+    	if (confirm("정말 취소하시겠습니까??") == true){
+    	    window.location.href="${contextPath}/index.jsp";
+    	}else{//취소
+    	    return;
+    	}
+    	}
+    function withdrawal(){
+    	if (confirm("정말 회원 탈퇴하시겠습니까??") == true){
+    	    window.location.href="${contextPath}/index.jsp";
+    	}else{//취소
+    	    return;
+    	}
+    	}	
     </script>
+    <title>회원탈퇴신청</title>
 </head>
 <body>
     <!--main_header_wrap-->
@@ -34,7 +48,7 @@
         <header id="main_header">
             <!--main_logo-->
             <h1 id="main_logo">
-                <a href="../../index.html" title="title"><img src="http://placehold.it/150x70" alt="title"></a>
+                <a href="${contextPath}/index.html" title="title"><img src="http://placehold.it/150x70" alt="title"></a>
             </h1>
             <!--//main_logo-->
             <!--main_gnb-->
@@ -103,31 +117,49 @@
                 <img class="bottom" src="./images/image_support/left_t08.gif"/>
             </div>
         </div>
-    <div id="PPS" class="content">
-    <!--Login-->
-    <form>
-    <div class="loginWrap">
+        <div id="PPS" class="content">
+              
+    <!--회원탈퇴-->
+    <div class="outWrap">
+    <div class="line">
+    <h2 class="t_memout"><span>회원 탈퇴</span></h2>
+    </div>
+    <br>
+    <div class="textalert">
+        <span> | "회원 탈퇴 후 재가입시에는 신규회원가입으로 처리되어 탈퇴 전의 회원 정보는 복구 되지 않습니다."</span>
+    </div>
     <div>
-        <a href="javascript:window.location.reload();"><img src="http://placehold.it/500x160" title="mainPic"></a>
+        <h3 class="h_text">
+            <span>서비스 이용 중 불편사항을 선택해주세요.(복수선택가능)</span>
+        </h3>
     </div>
-    <input class="login_id" placeholder="   아이디" maxlength="20"
-    type="text" required="required" name="user_id"><br>
-    <input class="login_pwd" placeholder="   비밀번호" maxlength="20" 
-    type="password" required="required" name="user_pw">
-    <hr class="loginhr">
-    <p class="btn_login">
-        <a  href="#">로그인</a>
-    </p>
-
-    <div class="buttonwrap">
-        <div class="memberbutton"><a href="javascript:member();" ><img src="./images/login_b_12.gif" title="회원가입"></a></div>
-        <div class="idsearch"><a href="javascript:id();"><img src="./images/login_b_15.gif" title="id 찾기"></a></div>
-        <div class="pwdsearch"><a href="javascript:password();"><img src="./images/login_b_17.gif" title="비밀번호 찾기"></div>
+    <div class="combine_box">
+        <ul class="list_check">
+            <li><input title="checkbox" type="checkbox" value="01"><label for="chk1">이용빈도 낮음</label></li>
+            <li><input title="checkbox" type="checkbox" value="02"><label for="chk1">개인정보유출</label></li>
+            <li><input title="checkbox" type="checkbox" value="03"><label for="chk1">자료 부족</label></li>
+            <li><input title="checkbox" type="checkbox" value="04"><label for="chk1">기타</label></li>
+        </ul>
+    </div>
+    <div>
+        <h3 class="h_text">
+            <span>그 이외에 남기고 싶으신 의견이 있으시면 기재해주세요.</span>
+        </h3>
+    </div>
+    <div>
+        <textarea title="textarea" cols="80" rows="7" ></textarea>
+    </div>
+    <div class="btn">
+        <a href="javascript:withdrawal();">
+            <span>회원 탈퇴 신청</span>
+        </a>
+        <a href="javascript:mv_cancle();">
+            <span>취소</span>
+        </a>
     </div>
     </div>
-    </form>
-    <!--//Login-->
-    </div>
+    <!--//회원탈퇴-->
+</div>
 </section>
 <!--//section-->
 <!--main_footer-->
@@ -142,6 +174,6 @@
     </ul>
     <hr/>
 </footer>
-<!--//main_footer-->    
+<!--//main_footer-->
 </body>
 </html>

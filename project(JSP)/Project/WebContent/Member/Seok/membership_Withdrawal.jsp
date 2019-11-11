@@ -1,31 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> <!-- jstl을 사용하기 위한 디렉티브 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"></c:set> 
+<%
+    request.setCharacterEncoding("UTF-8"); //요청 받아온 글자 깨지지 안도록 UTF-8설정
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../../css/init.css"/>
-    <link rel="stylesheet" href="../../css/common.css"/>
-    <script type="text/javascript" src="../../js/jquery-2.1.1.min.js"> </script>
-    <script type="text/javascript" src="../../js/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="../../js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
-    <script type="text/javascript" src="../../js/common.js"></script>
+    <link rel="stylesheet" href="${contextPath}/css/init.css"/>
+    <link rel="stylesheet" href="${contextPath}/css/common.css"/>
+    <script type="text/javascript" src="${contextPath}/js/jquery-2.1.1.min.js"> </script>
+    <script type="text/javascript" src="${contextPath}/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/prefixfree.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/common.js"></script>
     <!--개인 css, js-->
-    <link rel="stylesheet" href="./css/login.css">
-
-    <title>Login Page</title>
+    <link rel="stylesheet" href="./css/Withdrawal.css"/>
     <script>
-        function member(){
-            window.location.href="Member/An/postRead.html";
-        };
-        function id(){
-            window.location.href="find_id.html";
-        };
-        function password(){
-            window.location.href="find_pwd.html";
-        };
+        function pwdConfirm(){
+            if($('#mem_pwd').val()=='password1234'){
+            	
+                window.location.href="membership_Withdrawal2.jsp";
+            }else{
+            	alert('비밀번호가 맞지 않습니다.');
+            	$('#mem_pwd').val().focus();
+            }
+        }
+        
+
     </script>
+
+    <title>Membership_withdrawal</title>
 </head>
 <body>
     <!--main_header_wrap-->
@@ -34,7 +44,7 @@
         <header id="main_header">
             <!--main_logo-->
             <h1 id="main_logo">
-                <a href="../../index.html" title="title"><img src="http://placehold.it/150x70" alt="title"></a>
+                <a href="${contextPath}/index.html" title="title"><img src="http://placehold.it/150x70" alt="title"></a>
             </h1>
             <!--//main_logo-->
             <!--main_gnb-->
@@ -103,45 +113,39 @@
                 <img class="bottom" src="./images/image_support/left_t08.gif"/>
             </div>
         </div>
-    <div id="PPS" class="content">
-    <!--Login-->
-    <form>
-    <div class="loginWrap">
-    <div>
-        <a href="javascript:window.location.reload();"><img src="http://placehold.it/500x160" title="mainPic"></a>
-    </div>
-    <input class="login_id" placeholder="   아이디" maxlength="20"
-    type="text" required="required" name="user_id"><br>
-    <input class="login_pwd" placeholder="   비밀번호" maxlength="20" 
-    type="password" required="required" name="user_pw">
-    <hr class="loginhr">
-    <p class="btn_login">
-        <a  href="#">로그인</a>
-    </p>
-
-    <div class="buttonwrap">
-        <div class="memberbutton"><a href="javascript:member();" ><img src="./images/login_b_12.gif" title="회원가입"></a></div>
-        <div class="idsearch"><a href="javascript:id();"><img src="./images/login_b_15.gif" title="id 찾기"></a></div>
-        <div class="pwdsearch"><a href="javascript:password();"><img src="./images/login_b_17.gif" title="비밀번호 찾기"></div>
-    </div>
-    </div>
-    </form>
-    <!--//Login-->
-    </div>
-</section>
-<!--//section-->
-<!--main_footer-->
-<footer id="main_footer">
-    <img src="./images/bottom_long_bar.gif">
-    <ul>
-        <li><a href="../Jeong/accessTerms.html"  title="이용약관"><img src="./images/footer_menu_2.gif" alt="이용약관"/></a></li><li>|</li>
-        <li><a href="../Jeong/PrivacyPolicyStatement.html" title="개인정보취급방침"><img src="./images/footer_menu_3.gif" alt="개인정보취급방침"/></a></li><li>|</li>
-        <li><a href="#" class="alert_ready"><img src="./images/footer_menu_4.gif" alt="이메일주소무단수집거부"/></a></li><li>|</li>
-        <li><a href="#" class="alert_ready"><img src="./images/footer_menu_5.gif" alt="Contact us"/></a></li><li>|</li>
-        <li><a href="../Jeong/sitemap.html" title="사이트맵"><img src="./images/footer_menu_6.gif" alt="사이트맵"/></a></li>
-    </ul>
-    <hr/>
-</footer>
-<!--//main_footer-->    
+        <div id="PPS" class="content">   
+        <!--password_confirm-->
+        <div class="pw_inner">
+            <h2 class="tit">비밀번호 재확인</h2>
+            <p class="pw_info">회원님의 개인정보를 안전하게 보호하기 위해 비밀번호를 다시 한 번 확인합니다.</p><br>
+            <div class="pw_box">
+                <form>
+                    <p class="login_id"> 아이디 <em>user1 ${isLogon.user_id} </em></p>
+                    <div class="write_box">
+                        <input type="password" id="mem_pwd" placeholder="비밀번호를 입력하세요." maxlength="20">
+                        <button type="submit" class="btn_ok" onclick="pwdConfirm();">
+                            <span>확인</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--//password_confirm-->
+            </div>
+    </section>
+    <!--//section-->
+   <!--main_footer-->
+   <footer id="main_footer">
+        <img src="./images/bottom_long_bar.gif">
+        <ul>
+            <li><a href="../Jeong/accessTerms.html"  title="이용약관"><img src="./images/footer_menu_2.gif" alt="이용약관"/></a></li><li>|</li>
+            <li><a href="../Jeong/PrivacyPolicyStatement.html" title="개인정보취급방침"><img src="./images/footer_menu_3.gif" alt="개인정보취급방침"/></a></li><li>|</li>
+            <li><a href="#" class="alert_ready"><img src="./images/footer_menu_4.gif" alt="이메일주소무단수집거부"/></a></li><li>|</li>
+            <li><a href="#" class="alert_ready"><img src="./images/footer_menu_5.gif" alt="Contact us"/></a></li><li>|</li>
+            <li><a href="../Jeong/sitemap.html" title="사이트맵"><img src="./images/footer_menu_6.gif" alt="사이트맵"/></a></li>
+        </ul>
+        <hr/>
+    </footer>
+    <!--//main_footer-->
 </body>
 </html>
