@@ -15,15 +15,13 @@
 /* quiz_box radio */
 
 .quiz_box li label {
-    padding-left: 22px;
-    display: inline-block;
-    background:url('../../images/solveQuiz/batsu.png') left 7px no-repeat;
-    background-size: 15px;
+    background:url('../../images/solveQuiz/batsu.png') left 8.3px no-repeat;
+    background-size: 14px;
 }
 
-.quiz_box li label.is {
-    background:url('../../images/solveQuiz/maru.png') left 7px no-repeat;
-    background-size: 15px;
+.quiz_box li label.current {
+    background:url('../../images/solveQuiz/maru.png') left 8.3px no-repeat;
+    background-size: 14px;
 }
 
 /* move_area */
@@ -33,7 +31,9 @@
     background-repeat: no-repeat;
 }
 
-.correct {
-    background-image: url('../../images/solveQuiz/btn-correct.gif')left 7px no-repeat;
-    background-size: 15px;
+.go_btn.wrong {
+    background-image: url('../../images/solveQuiz/move_btn_is.gif');
+}
+.go_btn.current {
+    background-image: url('../../images/solveQuiz/move_btn_non.gif');
 }

@@ -53,14 +53,14 @@
 
 
 /* manual testTake & testExplanations 설명문 */
-.right-btn::after {
+.left-btn::after {
     content: "[이전/다음]\A\A -버튼을 클릭하면\A 이전/다음 문제로 이동합니다.";
-    bottom: 14px; left: 65px;
+    bottom: 14px; right: 60px;
 }
 
-#gbtn::after {
+#move_area::after {
     content: "[번호 이동]\A\A -원하는 번호를 클릭하면\A 해당 번호의 문제로\A 이동합니다.";
-    top: 3px; left: 15px;
+    top: 85px; right: 45px;
 }
 
 /* manual testTake 설명문 */
