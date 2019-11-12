@@ -14,6 +14,7 @@
     <script type="text/javascript" src="../../js/common.js"></script>
 
     <link rel="stylesheet" href="./css/mypage.css"/>
+    <script type="text/javascript" src="./js/mypage.js"></script>
 </head>
 <body>
     <!--main_header_wrap-->
@@ -22,7 +23,7 @@
         <header id="main_header">
             <!--main_logo-->
             <h1 id="main_logo">
-                <a href="../../index.html" title="title"><img src="http://placehold.it/150x70" alt="title"></a>
+                <a href="../../index.html" title="title"><img src="../../images/main.jpg" alt="title" width="150px" height="70px"></a>
             </h1>
             <!--//main_logo-->
             <!--main_gnb-->
@@ -32,29 +33,29 @@
                         <h2><a href="javascript:;" title="시험안내" class="alert_ready">시험안내</a></h2>
                     </li>
                     <li class="gnb_list gnb_1">
-                        <h2><a href="../Lee/buybook.html" title="교재구매">교재구매</a></h2>
+                        <h2><a href="../../Category/Book/buybook.html" title="교재구매">교재구매</a></h2>
                         <ul class="menu">
-                            <a href="../Lee/buybook.html" title="구매목록"><li>구매목록</li></a>
-                            <a href="../Lee/cart.html" title="장바구니"><li>장바구니</li></a>
+                            <a href="../../Category/Book/buybook.html" title="구매목록"><li>구매목록</li></a>
+                            <a href="../../Category/Book/cart.html" title="장바구니"><li>장바구니</li></a>
                         </ul>
                     </li>
                     <li class="gnb_list gnb_2">
-                        <h2><a href="../An/testSelect.html" title="문제유형">문제유형</a></h2>
+                        <h2><a href="../../Category/Test/testSelect.html" title="문제유형">문제유형</a></h2>
                     </li>
                     <li class="gnb_list gnb_3">
-                        <h2><a href="../Nam/Notice_List.html" title="커뮤니티">커뮤니티</a></h2>
+                        <h2><a href="../../Member/Nam/Notice_List.html" title="커뮤니티">커뮤니티</a></h2>
                         <ul class="menu">
-                            <a href="../Nam/Notice_List.html" title="공지사항"><li>공지사항</li></a>
-                            <a href="../Nam/Community_List.html" title="자유 게시판"><li>자유 게시판</li></a>
-                            <a href="../Nam/Question_List.html" title="질문 게시판"><li>질문 게시판</li></a>
+                            <a href="../../Member/Nam/Notice_List.html" title="공지사항"><li>공지사항</li></a>
+                            <a href="../../Member/Nam/Community_List.html" title="자유 게시판"><li>자유 게시판</li></a>
+                            <a href="../../Member/Nam/Question_List.html" title="질문 게시판"><li>질문 게시판</li></a>
                         </ul>
                     </li>
                     <li class="gnb_list gnb_4">
-                        <h2><a href="../Jeong/PrivacyPolicyStatement.html" title="고객센터">고객센터</a></h2>
+                        <h2><a href="../../Category/Service/PrivacyPolicyStatement.html" title="고객센터">고객센터</a></h2>
                         <ul class="menu">
-                            <a href="../Jeong/PrivacyPolicyStatement.html" title="개인정보보호정책"><li>개인정보보호정책</li></a>
-                            <a href="../Jeong/accessTerms.html" title="이용약관"><li>이용약관</li></a>
-                            <a href="../Jeong/sitemap.html" title="사이트맵"><li>사이트맵</li></a>
+                            <a href="../../Category/Service/PrivacyPolicyStatement.html" title="개인정보보호정책"><li>개인정보보호정책</li></a>
+                            <a href="../../Category/Service/accessTerms.html" title="이용약관"><li>이용약관</li></a>
+                            <a href="../../Category/Service/sitemap.html" title="사이트맵"><li>사이트맵</li></a>
                         </ul>
                     </li>
                 </ul>
@@ -63,14 +64,14 @@
             <!--top_menu-->
             <div id="top_menu">
                 <ul class="on">
-                    <li><a href="../Yoo/Membership Join.html" title="회원가입">회원가입</a></li>
-                    <li><a href="../Seok/login_main.html" title="로그인">로그인</a></li>
-                    <li><a href="../Jeong/sitemap.html" title="사이트맵">사이트맵</a></li>
+                    <li><a href="../../Category/Member/signup.html" title="회원가입">회원가입</a></li>
+                    <li><a href="javascript:;" title="로그인" class="loginOnOff">로그인</a></li>
+                    <li><a href="../../Category/Service/sitemap.html" title="사이트맵">사이트맵</a></li>
                 </ul>
                 <ul>
-                    <li><a href="../Jeong/mypage.html" title="회원정보">회원정보</a></li>
-                    <li><a href="javascript:;" title="로그아웃">로그아웃</a></li>
-                    <li><a href="../Jeong/sitemap.html" title="사이트맵">사이트맵</a></li>
+                    <li><a href="../../Category/Service/mypage.html" title="회원정보">회원정보</a></li>
+                    <li><a href="javascript:;" title="로그아웃" class="loginOnOff">로그아웃</a></li>
+                    <li><a href="../../Category/Service/sitemap.html" title="사이트맵">사이트맵</a></li>
                 </ul>
             </div>
             <!--//top_menu-->
@@ -90,28 +91,73 @@
             <br>
             <!--주문내역-->
             <h3>주문내역</h3>
+            <div class="day_search">
+                <input type="button" name="month" value="1개월"/>
+                <input type="button" name="month" value="3개월"/>
+                <input type="button" name="month" value="6개월"/>
+                <input type="date" name="min_day" value="2019-11-12"/> ~ 
+                <input type="date" name="max_day" value="2019-11-12"/>
+                <input type="button" name="search" value="검색""/>
+            </div>
             <table class="order">
                 <tr class="head">
                     <th width="20%">날짜</th>
                     <th width="65%">상품정보</th>
                     <th>상태</th>
                 </tr>
-                <tr class="body">
-                    <td class="date">2019-09-15</td>
+                <tr class="body on">
+                    <td class="date"></td>
                     <td class="content">
-                        <img src="../Book/images/buybook/img_book_01.jpg">
-                        <p class="first">예문사(저)</p>
-                        <p class="second">정보처리기사 필기(ALL-PASS)</p>
-                        <p class="third">수량: 1개 / 주소 : 서울특별시 00구 00동 00아파트</p>
+                        <img src="">
+                        <p class="first company"></p>
+                        <p class="second bookname"></p>
+                        <p class="third">수량: <span class="count"></span> / 주소 : <span class="address"></span></p>
                     </td>
-                    <td class="status">배송완료</td>
+                    <td class="status"></td>
+                </tr>
+                <tr class="body on">
+                    <td class="date"></td>
+                    <td class="content">
+                        <img src="">
+                        <p class="first company"></p>
+                        <p class="second bookname"></p>
+                        <p class="third">수량: <span class="count"></span> / 주소 : <span class="address"></span></p>
+                    </td>
+                    <td class="status"></td>
+                </tr>
+                <tr class="body on">
+                    <td class="date"></td>
+                    <td class="content">
+                        <img src="">
+                        <p class="first company"></p>
+                        <p class="second bookname"></p>
+                        <p class="third">수량: <span class="count"></span> / 주소 : <span class="address"></span></p>
+                    </td>
+                    <td class="status"></td>
+                </tr>
+                <tr class="body on">
+                    <td class="date"></td>
+                    <td class="content">
+                        <img src="">
+                        <p class="first company"></p>
+                        <p class="second bookname"></p>
+                        <p class="third">수량: <span class="count"></span> / 주소 : <span class="address"></span></p>
+                    </td>
+                    <td class="status"></td>
                 </tr>
                 <tr class="body off">
-                    <td colspan="3">최근 한 달간 주문내역이 없습니다.</td>
+                    <td colspan="3">주문내역이 없습니다.</td>
                 </tr>
                 <tr class="foot">
                     <td colspan="3"></td>
                 </tr>
+                <tr class="number">
+                    <td colspan="3">
+                        <br>
+                        <span class="on">1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                    </td>
+                </tr>
+                <tr></tr>
             </table>
             <!--//주문내역-->
             <!--문제기록-->
@@ -124,16 +170,47 @@
                     <th width="25%">기출문제 날짜</th>
                     <th width="15%">점수</th>
                 </tr>
-                <tr class="body">
-                    <td>2019-09-15 16시 1분 51초</td>
-                    <td>1시간 32분 42초</td>
-                    <td>정보처리기사</td>
-                    <td>2019년 9월 21일</td>
-                    <td>55점</td>
+                <tr class="body on">
+                    <td class="finish"></td>
+                    <td class="lead"></td>
+                    <td class="name"></td>
+                    <td class="day"></td>
+                    <td class="grade"></td>
+                </tr>
+                <tr class="body on">
+                    <td class="finish"></td>
+                    <td class="lead"></td>
+                    <td class="name"></td>
+                    <td class="day"></td>
+                    <td class="grade"></td>
+                </tr>
+                <tr class="body on">
+                    <td class="finish"></td>
+                    <td class="lead"></td>
+                    <td class="name"></td>
+                    <td class="day"></td>
+                    <td class="grade"></td>
+                </tr>
+                <tr class="body on">
+                    <td class="finish"></td>
+                    <td class="lead"></td>
+                    <td class="name"></td>
+                    <td class="day"></td>
+                    <td class="grade"></td>
+                </tr>
+                <tr class="body off">
+                    <td colspan="5">문제 기록이 없습니다.</td>
                 </tr>
                 <tr class="foot">
                     <td colspan="5"></td>
                 </tr>
+                <tr class="number">
+                    <td colspan="5">
+                        <br>
+                        <span class="on">1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                    </td>
+                </tr>
+                <tr></tr>
             </table>
             <!--//문제기록-->
         </div>
