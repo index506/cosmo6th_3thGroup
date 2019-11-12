@@ -1,82 +1,45 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>회원가입</title>
-    <link rel="stylesheet" href="../../css/init.css"/>
-    <link rel="stylesheet" href="../../css/common.css"/>
-    <script type="text/javascript" src="../../js/jquery-2.1.1.min.js"> </script>
-    <script type="text/javascript" src="../../js/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="../../js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
-    <script type="text/javascript" src="../../js/common.js"></script>
-	<script>
-		$(function() {
-			// 회원아이디 input태그, 자리수 입력제한 조건
-			$("input[type=name]:eq(0)").blur(function(){
-				var value = $(this).val();
-				// value = $(this).val() : input의 값을 저장
-				// var regType1 = /^[A-Za-z0-9+]{8,16}$/; 
-				// var regExp1 = (/^[A-Za-z]{8,16}$/);
-				// var regExp2 = (/(0-9){8,16}$/);
-				// regExp1 = (/[^a-z0-9]/) : 정규표현식, 영문/숫자조합을 제외한 문자를 판별
-	
-				// 영문/숫자조합 이외의 문자를 입력했을 때의 예외처리
-				var reg1 = /^[a-z0-9]{8,16}$/; // a-z 0-9 중에 7자리 부터 14자리만 허용 한다는 뜻이구요
-				var reg2 = /[a-z]/g;
-				var reg3 = /[0-9]/g;
-				if (reg1.test(value) && reg2.test(value)
-						&& reg3.test(value)) {
-					// regExp1.test(value) : input태그의 값이 정규표현식 일치하면 true, 일치하지 않으면 false를 반환
-					$(this).next().text("");
-				} else {
-					$(this).val("");
-					$(this).next().text("영문/숫자조합 8~16자리를 입력해주세요.").css(
-							'color', 'red');
-				}
-			});
-	
-			// 비밀번호 확인 input태그
-			$("input[type=password]:eq(1)").blur(function() {
-				var pwd1 = $("input[type=password]:eq(0)").val();
-				var pwd2 = $("input[type=password]:eq(1)").val();
-	
-				if (pwd1 != pwd2) {
-					$(this).next().text("비밀번호가 일치하지 않습니다.").css('color', 'red');
-					$(this).val("");
-				} else if (pwd1 == pwd2) {
-					$(this).next().text("");
-				}
-			});
-			// [가입] 버튼 클릭시 동작
-			$("img[alt=가입]").click(function() {
-				var index = 0;
-				// 서비스 이용약관 및 개인정보 보호정책 동의여부 확인
-				for (var i = 1; i <= 2; i++) {
-					if ($("input[name=chk_accept" + i + "]").prop("checked")) {
-						index++;
-					} else {
-						var message;
-						if (i == 1)
-							message = "서비스 이용약관";
-						else if (i == 2)
-							message = "개인정보 보호정책";
-						alert(message + "에 동의해주세요.");
-						break;
-					}
-				}
-			});
-			// 이메일 선택시 자동입력
-			$("#email select").change(function() {
-				var value = $(this).find("option:not(:first):selected").val();
-				$("#email input[type=text]:eq(1)").val(value);
-			});
-		});
-	</script>
-	<link rel="stylesheet" href="./css/join.css" />
-	<link rel="stylesheet" href="./css/add.css" />
+    <title>회원 가입</title>
+    
+    <style>
+   	
+	.textmove{	
+	width:80%;
+	height:100%;
+	}
+	 #table1{
+	 	margin-left:200px;
+	 	width:75%;
+	 	border-collapse: separate;
+  		border-spacing: 0 12px;
+        border: 1px solid #bcbcbc;        
+      }
+      #table2{
+      margin-left:200px;
+      }
+     th, td{
+     	cellpadding:5px;
+      	border:none;
+      }      
+	</style>
+    <link rel="stylesheet" href="css/init.css"/>
+    <link rel="stylesheet" href="css/common.css"/>
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"> </script>
+    <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/prefixfree.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/member.js"></script>
+    <script type="text/javascript" src="js/number.js"></script>
+    <script type="text/javascript" src="js/hangul.js"></script>
+    <script type="text/javascript" src="js/alphanumber.js"></script>
+    <link rel="stylesheet" href="css/add.css"/>
 </head>
 <body>
     <!--main_header_wrap-->
@@ -141,9 +104,9 @@
         <!--//main_header-->
     </div>
     <!--//main_header_wrap-->
-	<!--section-->
-	<section>
-		<div class="lnb">
+    <!--section-->
+    <section>
+        <div class="lnb">
 			<div>
 				<img class="top"
 					src="./images/image_support/201508270312264232400.jpg" />
@@ -153,23 +116,18 @@
 				<img class="bottom" src="./images/image_support/left_t08.gif" />
 			</div>
 		</div>
-		<!-- main wrap -->
-		<div id="main_wrap" class="content">
-			<!-- 첫 태그 -->
-			<!-- provision -->
-			<div id="provision">
-				<div>
-					<div>
-						<img src="./images/join_st_01.gif" alt="회원가입" />
-					</div>
-					<div>
-						<img src="./images/join_st_tit02.gif" alt="국제통역 번역" />
-					</div>
-					<div class="top20">
-						<img src="images/join_st_tit03.gif" alt="이용약관" />
-					</div>
-					<div class="top20">
-						<textarea id="tx1" cols="90" rows="15">
+		<table>
+			
+		<tr>
+			<th>문제은행 사이트 서비스 약관이용 약관<th>
+		</tr>
+		</table>
+		<form name="frm" method="post">
+		<table id="table2">
+		<tr>
+			<th>문제은행 사이트 서비스 개인정보이용 약관<th>
+		</tr>
+			<textarea  cols="101" rows="15">
 | 국제통역번역협회 회원 이용자약관 | 
 
 제 1 장 총 칙 
@@ -321,18 +279,16 @@
 1. 회사와 이용자 간에 발생한 서비스 이용에 관한 분쟁에 대하여는 대한민국 법을 적용하며, 본 분쟁으로 인한 소는 대한민국의 법원에 제기합니다.
 
 부 칙 1. (시행일) 본 약관은 2009년 1월 1일부터 시행됩니다.
-                        </textarea>
-					</div>
-					<div class="top20">
-						<input type="checkbox" name="chk_accept1">약관에 동의합니다.
-					</div>
-				</div>
-				<div class="top20">
-					<div>
-						<img src="images/stip_tit04.gif" alt="보호정책" />
-					</div>
-					<div class="top20">
-						<textarea id="tx1" cols="90" rows="15">                           										  	
+			</textarea>
+		
+		<br>
+		<tr>
+
+			<input type="checkbox" name=agree id="chk1">약관에 동의합니다.
+		</tr>
+		</table>
+		<table id="table2">
+			<textarea cols="101" rows="15">                           										  	
 | 국제통역번역협회 회원의 개인정보취급방침 |  
 
 '국제통역번역협회'는 (이하 '회사'는) 고객님의 개인정보를 중요시하며, "정보통신망 이용촉진 및 정보보호"에 관한 법률을 준수하고 있습니다. 
@@ -383,7 +339,7 @@ JPT 성적
 - 사이트 통계용(매트릭스)
 
 06. 제3자 개인 정보 제공 및 위탁 처리 
-회사는 귀하의 개인정보를 <개인정보의 수집 및 이용목적>에서 고지한 범위 내에서 사용하며, 동 범위를 초과하여 이용하거나 타인 또는 타기업기관에 제공하지 않습니다. 
+회사는 귀하의 개인정보를 개인정보의 수집 및 이용목적 에서 고지한 범위 내에서 사용하며, 동 범위를 초과하여 이용하거나 타인 또는 타기업기관에 제공하지 않습니다. 
 
 다만, 아래의 경우에는 예외로 합니다. 
 - 이용자들이 사전에 동의한 경우
@@ -520,109 +476,59 @@ JPT 성적
 
 17. 고지의 의무 
 현 개인정보 취급방침은 2008년 1월 1일부터 시행되며 회사의 방침, 정부의 정책 또는 보안 기술의 변경 등에 따라 내용의 추가, 삭제 및 수정이 있을 시에는 개정 7일 전부터 홈페이지의 '공지'란을 통해 고지할 것입니다.
-                        </textarea>
-					</div>
-				</div>
-				<div class="top20">
-					<input type="checkbox" name="chk_accept2">개인정보정책에 동의합니다.
-				</div>
-			</div>
-			<!-- //provision -->
-
-			<form id="assign" action="${contextPath}/member/addMember.do" method="post">
-				<!-- join -->
-				<div id="join">
-					<div id="id">
-						<img src="images/join_st2_tit03_1.gif" alt="회원아이디" id="id_1" />
-						<label class="he"><input type="text" name="id" placeholder=" 영문/숫자조합 8~16자리" maxlength="16" /> <span></span></label>
-					</div>
-					<div id="pass">
-						<img src="images/join_st2_tit03_2.gif" alt="비밀번호" />
-						<label class="he"><input type="password" name="pwd" placeholder=" 영문/숫자조합 8~16자리" maxlength="16" /> <span></span></label>
-					</div>
-					<div id="repass">
-						<img src="images/join_st2_tit03_3.gif" alt="비밀번호확인" />
-						<label class="he"><input type="password" name="repwd" maxlength="16" /> <span></span></label>
-					</div>
-					<div id="person">
-						<img src="images/join_st2_tit03_6.gif" alt="개인정보" />
-						<label class="he">
-							이름 : <input type="text" name="name"/><span></span>
-						</label>
-					</div>
-					<div id="email">
-						<img src="images/join_st2_tit03_7.gif" alt="이메일" />
-						<label class="he">
-							<input type="text" name="email1"/> @ 
-							<input type="text" name="email2"/>
-								<select>
-									<option>직접입력</option>
-									<option value="naver.com">naver.com</option>
-									<option value="daum.net">daum.net</option>
-									<option value="google.com">google.com</option>
-								</select>
-						</label>
-					</div>
-					<div id="adress">
-						<!-- <fieldset id = "field" style = "height:50px"> -->
-						<img src="images/join_st2_tit03_8.gif" alt="주소" />
-						<label class="he">
-							<input type="text" name="address" style="width: 415px;" />
-						</label>
-						<!-- <form action = "#" accept-charset="utf-8" name = "person_info" method = "get"> </form>-->
-						<!-- </fieldset> -->
-					</div>
-					<div id="home">
-						<img src="images/join_st2_tit03_9.gif" alt="전화번호" />
-						<label class="he">
-							<input type="text" name="tel1"/>
-								<select>
-									<option>051</option>
-									<option>02</option>
-									<option>031</option>
-									<option>032</option>
-									<option>033</option>
-								</select> - 
-							<input type="text" name="tel2"/> - 
-							<input type="text" name="tel3"/>
-						</label>
-					</div>
-					<div id="phone">
-						<img src="images/join_st2_tit03_10.gif" alt="휴대전화" />
-						<label class="he">
-							<input type="text" name="phone1"/>
-							<select>
-								<option>010</option>
-								<option>011</option>
-							</select> - 
-							<input type="text" name="phone2"/> - 
-							<input type="text" name="phone3"/>
-						</label>
-					</div>
-					<div id="check">
-						<ul>
-							<li><a href="javascript:;" onclick="document.getElementById('assign').submit();"><img src="images/join_btn02.gif" alt="가입" /></a></li>
-							<li id="pro"><a href="#"><img src="images/join_btn04.gif" alt="취소" /></a></li>
-						</ul>
-					</div>
-				</div>
-				<!-- //join -->
-			</form>
-		</div>
-		<!-- //main wrap -->
-	</section>
+            
+            </textarea>			
+		
+		<br>
+		<tr>
+			<input type="checkbox" name="agree" id="chk2" style="margin-left:200px">개인정보정책에 동의합니다.
+		</tr>
+		</table>
+			<table id="table1">
+				<tr>
+				<th>아이디 <th><input type="text" class="textmove" id="alphaNumeric" name="id" placeholder="영문/숫자조합  8~15자리"></th></th>
+				</tr>
+				<th>비밀번호<th><input type="password" id="txtPassword1" class="textmove" name="pwd" placeholder="영문/숫자/특수문자조합  8~15자리" size=25 ></th></th>
+				</tr>
+				<tr>
+				<th>비밀번호확인<th><input type="password" id="txtPassword2" class="textmove" name="pwdcheck"></th>
+				</tr>
+				<tr>
+				<th>이름<th><input type="text" id="hangul" name="name" class="textmove"></th></th>
+				</tr>
+				<tr>
+				<th>이메일<th><input type="email" name="email" id="email" class="textmove"></th>
+				</tr>
+				<tr>
+				<th>주소<th><input type="text" name="adress" class="textmove"></th>
+				</tr>
+				<tr>
+				<th>집 전화<th><input type="text" class="onlyNumber textmove"  name="home" size=35 maxlength="11" placeholder="'-'을 제외한 집전화번호를 입력해 주세요" style="ime-mode disabled"  ></th>
+				</tr>
+				<tr>
+				<th>휴대전화<th><input type="text" class="onlyNumber textmove" name="phone" size=35 maxlength="11" placeholder=" '-'을 제외한 휴대폰번호를 입력해 주세요" style="ime-mode disabled"  ></th>
+				</tr>
+				<tr>
+				<td colspan="2" align ="center" border="none">
+				<input type="button" name="nextBtn" alt="가입" value="회원가입" onclick="joinCheck();" style="margin-right:15px; width:15%; height:100%;" />
+				<input type="reset" alt="취소" value="취소" style="width:15%; height:100%;"/>
+				</td>
+				</tr>
+			</table>
+	</form>
+ </section>
     <!--main_footer-->
     <footer id="main_footer">
-		<img src="./images/bottom_long_bar.gif">
-		<ul>
-			<li><a href="#"><img src="./images/footer_menu_2.gif"/></a></li><li>|</li>
-			<li><a href="#"><img src="./images/footer_menu_3.gif"/></a></li><li>|</li>
-			<li><a href="#"><img src="./images/footer_menu_4.gif"/></a></li><li>|</li>
-			<li><a href="#"><img src="./images/footer_menu_5.gif"/></a></li><li>|</li>
-			<li><a href="#"><img src="./images/footer_menu_6.gif"/></a></li>
-		</ul>
-		<hr/>
-</footer>
-<!--//main_footer-->
+            <img src="./images/bottom_long_bar.gif">
+            <ul>
+                <li><a href="#"><img src="./images/footer_menu_2.gif"/></a></li><li>|</li>
+                <li><a href="#"><img src="./images/footer_menu_3.gif"/></a></li><li>|</li>
+                <li><a href="#"><img src="./images/footer_menu_4.gif"/></a></li><li>|</li>
+                <li><a href="#"><img src="./images/footer_menu_5.gif"/></a></li><li>|</li>
+                <li><a href="#"><img src="./images/footer_menu_6.gif"/></a></li>
+            </ul>
+            <hr/>
+    </footer>
+    <!--//main_footer-->
 </body>
 </html>

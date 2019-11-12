@@ -1,32 +1,26 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../../css/init.css"/>
-    <link rel="stylesheet" href="../../css/common.css"/>
-    <script type="text/javascript" src="../../js/jquery-2.1.1.min.js"> </script>
-    <script type="text/javascript" src="../../js/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="../../js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
-    <script type="text/javascript" src="../../js/common.js"></script>
-    <!--개인 css, js-->
-    <link rel="stylesheet" href="/css/login.css">
+    <title>답글 쓰기</title>
 
-    <title>Login Page</title>
-    <script>
-        function member(){
-            window.location.href="signup.html";
-        };
-        function id(){
-            window.location.href="find_id.html";
-        };
-        function password(){
-            window.location.href="find_pwd.html";
-        };
-    </script>
+    <!-- 철욱 -->
+    <link rel="stylesheet" href="./css/init.css"/>
+    <link rel="stylesheet" href="./css/common.css"/>
+    <script type="text/javascript" src="./js/jquery-2.1.1.min.js"> </script>
+    <script type="text/javascript" src="./js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="./js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="./js/prefixfree.min.js"></script>
+    <script type="text/javascript" src="./js/common.js"></script>
+    <!-- //철욱 -->
+
+    <link rel="stylesheet" href="./css/myCommon.css" />
+    <link rel="stylesheet" href="./css/writeForm.css" />
 </head>
+
 <body>
     <!--main_header_wrap-->
     <div id="main_header_wrap">
@@ -75,7 +69,7 @@
             <!--top_menu-->
             <div id="top_menu">
                 <ul class="on">
-                    <li><a href="javascript:;" title="회원가입">회원가입</a></li>
+                    <li><a href="../Yoo/Membership Join.html" title="회원가입">회원가입</a></li>
                     <li><a href="../Seok/login_main.html" title="로그인">로그인</a></li>
                     <li><a href="../Jeong/sitemap.html" title="사이트맵">사이트맵</a></li>
                 </ul>
@@ -90,58 +84,108 @@
         <!--//main_header-->
     </div>
     <!--//main_header_wrap-->
+
+
+
+
+
     <!--section-->
     <section>
+
+
+
+
+
+        <!-- lnb --->
         <div class="lnb">
             <div>
-                <img class="top" src="./images/image_support/201508270312264232400.jpg"/>
+                <img class="top" src="./images/image_support/Lnb_title_2.jpg" />
                 <ul>
-                    <a href="../Jeong/PrivacyPolicyStatement.html"><li>개인정보보호정책</li></a>
-                    <a href="../Jeong/accessTerms.html"><li>이용약관</li></a>
-                    <a href="../Jeong/sitemap.html"><li>사이트맵</li></a>
+                    <a href="../Nam/Notice_List.html">
+                        <li>공지사항</li>
+                    </a>
+                    <a href="../Nam/Community_List.html">
+                        <li>자유게시판</li>
+                    </a>
+                    <a href="../Nam/Question_List.html">
+                        <li>질문게시판</li>
+                    </a>
                 </ul>
-                <img class="bottom" src="./images/image_support/left_t08.gif"/>
+                <img class="bottom" src="../../images/image_support/left_t08.gif" />
             </div>
         </div>
-    <div id="PPS" class="content">
-    <!--Login-->
-    <form>
-    <div class="loginWrap">
-    <div id="loginlogo">
-        <a href="javascript:window.location.reload();"><img src="/images/login_logo.png" title="mainPic"></a>
-    </div>
-    <input class="login_id" placeholder="   아이디" maxlength="20"
-    type="text" required="required" name="user_id"><br>
-    <input class="login_pwd" placeholder="   비밀번호" maxlength="20" 
-    type="password" required="required" name="user_pw">
-    <hr class="loginhr">
-    <p class="btn_login">
-        <a  href="#">로그인</a>
-    </p>
+        <!-- //lnb -->
 
-    <div class="buttonwrap">
-        <div class="memberbutton"><a href="javascript:member();" ><img src="./images/login_b_12.gif" title="회원가입"></a></div>
-        <div class="idsearch"><a href="javascript:id();"><img src="./images/login_b_15.gif" title="id 찾기"></a></div>
-        <div class="pwdsearch"><a href="javascript:password();"><img src="./images/login_b_17.gif" title="비밀번호 찾기"></div>
-    </div>
-    </div>
-    </form>
-    <!--//Login-->
-    </div>
-</section>
-<!--//section-->
-<!--main_footer-->
-<footer id="main_footer">
-    <img src="./images/bottom_long_bar.gif">
-    <ul>
-        <li><a href="../Jeong/accessTerms.html"  title="이용약관"><img src="./images/footer_menu_2.gif" alt="이용약관"/></a></li><li>|</li>
-        <li><a href="../Jeong/PrivacyPolicyStatement.html" title="개인정보취급방침"><img src="./images/footer_menu_3.gif" alt="개인정보취급방침"/></a></li><li>|</li>
-        <li><a href="#" class="alert_ready"><img src="./images/footer_menu_4.gif" alt="이메일주소무단수집거부"/></a></li><li>|</li>
-        <li><a href="#" class="alert_ready"><img src="./images/footer_menu_5.gif" alt="Contact us"/></a></li><li>|</li>
-        <li><a href="../Jeong/sitemap.html" title="사이트맵"><img src="./images/footer_menu_6.gif" alt="사이트맵"/></a></li>
-    </ul>
-    <hr/>
-</footer>
-<!--//main_footer-->    
+
+
+
+
+
+
+        <!-- write_wrap -->
+        <div id="write_wrap" method="GET">
+            <form id="write_form" name="writeForm">
+                <fieldset>
+                    <legend class="hidden">
+                        <h3>게시글 쓰기</h3>
+                    </legend>
+                    <table id="write_table">
+                        <tr id="title">
+                            <td class="item">제목</td>
+                            <td><input type="text" size="50" name="title" value="[RE]게시글 테스트"></td>
+                        </tr>
+                        <tr id="content">
+                            <td class="item">내용</td>
+                            <td><textarea name="content" cols="80" rows="20" maxlength="1000"></textarea></td>
+                        </tr>
+                        <tr id="file">
+                            <td class="item">파일</td>
+                            <td><input type="file" size="25"></td>
+                        </tr>
+                    </table>
+                    <!-- btn_area -->
+                    <p class="btn_area">
+                        <input type="submit" id="save" class="btn" value="답글 등록">
+                        <a id="back_a" class="btn" onclick="history.back();">돌아가기</a>
+                    </p>
+                    <!-- btn_area -->
+                </fieldset>
+            </form>
+        </div>
+        <!-- //write_wrap -->
+    </section>
+    <!--//section-->
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--main_footer-->
+    <footer id="main_footer">
+        <img src="../../images/bottom_long_bar.gif">
+        <ul>
+            <li><a href="#"><img src="../../images/footer_menu_2.gif" /></a></li>
+            <li>|</li>
+            <li><a href="#"><img src="../../images/footer_menu_3.gif" /></a></li>
+            <li>|</li>
+            <li><a href="#"><img src="../../images/footer_menu_4.gif" /></a></li>
+            <li>|</li>
+            <li><a href="#"><img src="../../images/footer_menu_5.gif" /></a></li>
+            <li>|</li>
+            <li><a href="#"><img src="../../images/footer_menu_6.gif" /></a></li>
+        </ul>
+        <hr />
+    </footer>
+    <!--//main_footer-->
+
+
 </body>
+
 </html>
