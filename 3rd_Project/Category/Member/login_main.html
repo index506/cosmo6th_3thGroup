@@ -12,12 +12,12 @@
     <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
     <script type="text/javascript" src="../../js/common.js"></script>
     <!--개인 css, js-->
-    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="/css/login.css">
 
     <title>Login Page</title>
     <script>
         function member(){
-            window.location.href="Member/An/postRead.html";
+            window.location.href="signup.html";
         };
         function id(){
             window.location.href="find_id.html";
@@ -107,8 +107,8 @@
     <!--Login-->
     <form>
     <div class="loginWrap">
-    <div>
-        <a href="javascript:window.location.reload();"><img src="http://placehold.it/500x160" title="mainPic"></a>
+    <div id="loginlogo">
+        <a href="javascript:window.location.reload();"><img src="/images/login_logo.png" title="mainPic"></a>
     </div>
     <input class="login_id" placeholder="   아이디" maxlength="20"
     type="text" required="required" name="user_id"><br>

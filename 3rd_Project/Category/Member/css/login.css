@@ -5,6 +5,10 @@
     width: 500px; height: 485px;
     margin: 50px auto;
 }
+#loginlogo {
+    width: 225px;
+    margin: 0 auto;
+}
 .login_id{
     margin: 20px auto;
     border: 1px solid #ddd;
@@ -18,9 +22,7 @@
     border-radius: 3px;
     box-sizing: border-box;
     width: 100% ; height: 50px;
-
 }
-
 .btn_login{
     background: #0555ebb7;
     border-radius: 3px; text-align: center;

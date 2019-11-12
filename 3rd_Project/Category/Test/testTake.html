@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="./css/test/takeTest.css" />
     <link rel="stylesheet" href="./css/test/manual.css" />
 
+    <script src="./js/testCommonData.js"></script>
     <script src="./js/take-result.js"></script>
     <script src="./js/testTake.js"></script>
     <script src="./js/manual.js"></script>
@@ -113,7 +114,6 @@
 
 
 
-
         <!-- content_wrap -->
         <div id="content_wrap">
             <div id="content_title">
@@ -130,34 +130,36 @@
                     <!-- info_area -->
                     <div id="info_area">
                         <div>
-                            <span>정보처리기사 - </span><span>2019년 04월 27일</span>
+                            <span>정보처리기사 - </span><span>2019년 03월 03일</span>
                         </div>
                         <div>
-                            <span>남은시간 - </span><span class="time manual_item">TIME</span>
+                            <span>남은시간 - </span><input type="text" class="timer" name="timer" value="" readonly>
                         </div>
                     </div>
                     <!-- //info_area -->
                     <!-- content_area -->
                     <div id="content_area">
-                        <div id="btn_area1" class="btn_area">
-                            <span id="prev" class="btn left-btn">◀ 이전</span>
-                            <span id="next" class="btn right-btn manual_item">다음 ▶</span>
-                        </div>
+                        
                     </div>
                     <!-- //content_area -->
                     <!-- move_area -->
-                    <div id="move_area" class="q_area">
-                        <div id="gbtn" class="manual_item">
-                            
+                    <div id="move_area" class="q_area manual_item">
+                        <div id="gbtn">
                         </div>
                         <!-- btn_area2 -->
                         <p id="btn_area2" class="btn_area">
-                            <input type="submit" id="save" class="btn" value="제출">
-                            <a id="back_a" class="btn" onclick="history.back();">돌아가기</a>
+                            <span id="prev" class="btn left-btn manual_item">◀ 이전</span>
+                            <span id="next" class="btn right-btn">다음 ▶</span>
                         </p>
                         <!-- //btn_area2 -->
                     </div>
                     <!-- //move_area -->
+                    <!-- btn_area1 -->
+                    <div id="btn_area1" class="btn_area">
+                        <input type="submit" id="save" class="btn" value="제출">
+                        <input type="button" class="btn" value="시험 재선택" onclick="location.href='testSelect.html'" >           
+                    </div>
+                    <!-- //btn_area1 -->
                 </fieldset>
                 <!-- //fieldset -->
             </form>
