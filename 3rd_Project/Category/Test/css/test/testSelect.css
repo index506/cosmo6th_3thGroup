@@ -1,10 +1,7 @@
-
-
-
 /* option_form */
 #option_form { 
     background-color: white;
-    margin: 20px; width: 710px; 
+    margin: 15px; width: 710px; 
 }
 
 #option_form > fieldset { 
@@ -33,6 +30,15 @@ select {
 }
 .subject_li > label { 
     cursor: pointer; 
+}
+
+/* timer */
+#timer_area ul{
+	margin-top:10px;
+}
+#timer_area ul li {
+	display:inline-block;
+	margin-left:22px;
 }
 
 /* btn area */

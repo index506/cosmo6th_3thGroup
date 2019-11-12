@@ -3,17 +3,30 @@
 function idCheck(){
    
 }
-
 /* 회원가입 검증 */
 var pw_passed = true;
 function joinCheck(){
-   //틀리면 false
-	  if(document.frm.id.value.length == 0){
-	      alert("아이디를 입력해주세요.")
+	var chkbox = document.getElementsByName('agree');
+	var chk = false; 
+	for(var i=0 ; i<chkbox.length ; i++) {
+		if(chkbox[i].checked) {
+			chk = true; 
+		} 
+		else {
+			chk = false; 
+			} 
+		}
+		if(!chk) {
+			alert("모든 약관에 동의해 주세요.");
+			return true;
+		}
+		
+		if(document.frm.id.value.length == 0){
+	      alert("아이디를 입력해주세요.");
 	      document.frm.id.focus();
 	      return false;
 	   }else if(document.frm.id.value.length < 8 || document.frm.id.value.length > 16){
-		   alert("아이디를 정확하게 입력해주세요.")
+		   alert("아이디를 정확하게 입력해주세요.");
 		   document.frm.id.focus();
 	   		document.frm.id.value = "";
 		      return false; 
