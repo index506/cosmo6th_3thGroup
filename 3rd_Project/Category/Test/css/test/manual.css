@@ -1,0 +1,70 @@
+/* manual */
+.manual_bg {
+    width: 750px;
+    background: rgba(0, 0, 0, 0.3);
+    position: absolute; left: 0; top: 0;
+    z-index: 77;
+    display: none;
+}
+.manual_btn {
+    height: 36px; margin-right: 0;
+    float: right;
+    z-index: 100;
+}
+.manual_item {
+    position: relative;
+}
+.manual_item::after {
+    padding: 7px;
+    background: rgba(30, 30, 30, 0.9);
+    border: 2px solid #5C753B; border-radius: 10px;
+    color: white; text-align: left;
+    position: absolute; 
+    white-space: pre;
+    z-index: 120;
+    display: none;
+}
+
+.manual_show::after {
+    display: block;
+}
+
+/* manual 공통 설명문 */
+.manual_btn::after {
+    content: "[?] on/off\A\A -다시 한번 클릭하면\A 설명문이 사라집니다.";
+    top: 10px; right: 30px;
+}
+
+/* manual testSelect 설명문 */
+#license_area::after {
+    content: "[자격증 선택]\A\A -원하는 자격증을 선택해주세요.";
+    top: 0px; left: 140px;
+}
+
+#year_area::after {
+    content: "[기출문제]\A\A -선택하신 자격증의 기출문제를 선택해주세요.";
+    top: 0px; left: 160px;
+}
+
+#subject_area::after {
+    content: "[과목]\A\A -선택하신 기출문제의 과목들을 선택해주세요.";
+    top: 0px; left: 130px;
+}
+
+
+/* manual testTake & testExplanations 설명문 */
+.left-btn::after {
+    content: "[이전/다음]\A\A -버튼을 클릭하면\A 이전/다음 문제로 이동합니다.";
+    bottom: 14px; right: 60px;
+}
+
+#move_area::after {
+    content: "[번호 이동]\A\A -원하는 번호를 클릭하면\A 해당 번호의 문제로\A 이동합니다.";
+    top: 85px; right: 45px;
+}
+
+/* manual testTake 설명문 */
+.time::after {
+    content: "[남은시간]\A\A -타이머가 종료되면\A 자동으로 시험이 제출됩니다.";
+    bottom: 4px; left: 50px;
+}

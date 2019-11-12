@@ -1,0 +1,49 @@
+/* option_form */
+#option_form { 
+    background-color: white;
+    margin: 15px; width: 710px; 
+}
+
+#option_form > fieldset { 
+    
+    border: none;
+    padding: 15px; 
+}
+
+.q_area { 
+    margin-bottom: 20px; 
+}
+
+select { 
+    margin: 10px; margin-left: 22px; 
+}
+
+/* subject_area */
+.subject_ul { 
+    margin: 10px; margin-left: 17px;
+}
+.subject_li { 
+    margin: 5px; 
+}
+.subject_li > input { 
+    cursor: pointer; 
+}
+.subject_li > label { 
+    cursor: pointer; 
+}
+
+/* timer */
+#timer_area ul{
+	margin-top:10px;
+}
+#timer_area ul li {
+	display:inline-block;
+	margin-left:22px;
+}
+
+/* btn area */
+.btn_area {
+    text-align: initial;
+    margin-left: 22px;
+}
+

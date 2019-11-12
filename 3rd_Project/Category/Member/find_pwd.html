@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Find Password</title>
     <link rel="stylesheet" href="../../css/init.css"/>
     <link rel="stylesheet" href="../../css/common.css"/>
     <script type="text/javascript" src="../../js/jquery-2.1.1.min.js"> </script>
@@ -12,9 +11,10 @@
     <script type="text/javascript" src="../../js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
     <script type="text/javascript" src="../../js/common.js"></script>
-
     <!--개인 css, js-->
     <link rel="stylesheet" href="./css/find_pwd.css"/>
+
+    <title>Find Password</title>
     
     <script language="javascript">
         // 고객아이디에 맞는 
@@ -22,9 +22,19 @@
             if($('.input_wrap > input').val()==123){
                 window.location.href="find_pwd2.html";
             }else alert('없는 아이디 입니다.');
+            
         }
     </script>
-    
+    <style>
+        /* find pwd */
+.pwd_wrap{width: 670px;height: 300px; margin: 50px;}
+.pwd_img{width: 260px; height: 130px;margin: 0 auto;}
+.input_wrap { margin: 20px auto;width: 410px; height: 50px;}
+.input_wrap > input{ width: 300px; height: 40px;}
+.next_btn{ width: 100px; height: 40px; background-color: blue; text-align: center; border-radius: 3px; line-height: 40px; float:right;}
+.next_btn > a {display: block;font-weight: bolder;color: aliceblue;font-size: 20px;}
+hr{opacity: 0.5;margin: 10px auto;}
+    </style>
 </head>
 <body>
     <!--main_header_wrap-->
@@ -74,7 +84,7 @@
             <!--top_menu-->
             <div id="top_menu">
                 <ul class="on">
-                    <li><a href="../Yoo/Membership Join.html" title="회원가입">회원가입</a></li>
+                    <li><a href="javascript:;" title="회원가입">회원가입</a></li>
                     <li><a href="../Seok/login_main.html" title="로그인">로그인</a></li>
                     <li><a href="../Jeong/sitemap.html" title="사이트맵">사이트맵</a></li>
                 </ul>
@@ -87,35 +97,36 @@
             <!--//top_menu-->
         </header>
         <!--//main_header-->
+        </div>
+        <!--//main_header_wrap-->
+        <!--section-->
+        <section>
+            <div class="lnb">
+                <div>
+                    <img class="top" src="./images/image_support/201508270312264232400.jpg"/>
+                    <ul>
+                        <a href="../Jeong/PrivacyPolicyStatement.html"><li>개인정보보호정책</li></a>
+                        <a href="../Jeong/accessTerms.html"><li>이용약관</li></a>
+                        <a href="../Jeong/sitemap.html"><li>사이트맵</li></a>
+                    </ul>
+                    <img class="bottom" src="./images/image_support/left_t08.gif"/>
+                </div>
+            </div>
+            <div id="PPS" class="content">
+    <!--find_password-->
+    <div class="pwd_wrap">
+        <div class="pwd_img">
+            <img src="./images/password.png">
+        </div>
+        <div class="input_wrap">
+            <input type="text" placeholder=" 아이디를 입력해주세요." >
+            <div class="next_btn"><a href="javascript:nextStep();">다음 단계</a></div>
+        </div>
+        <hr>
+        <p>●  아이디를 찾으시나요?  <a href="find_id.html">아이디 찾기 〉</a></p>
     </div>
-    <!--//main_header_wrap-->
-    <!--section-->
-    <section>
-        <div class="lnb">
-            <div>
-                <img class="top" src="./images/image_support/201508270312264232400.jpg"/>
-                <ul>
-                    <a href="../Yoo/Membership Modify.html"><li>회원정보</li></a>
-                    <a href="../Seok/find_id.html"><li>아이디 찾기</li></a>
-                    <a href="../Seok/find_pwd.html"><li>비밀번호 찾기</li></a>
-                    <a href="../Seok/membership_Withdrawal.html"><li>회원 탈퇴</li></a>
-                </ul>
-                <img class="bottom" src="./images/image_support/left_t08.gif"/>
-            </div>
-        </div>
-        <!--find_password-->
-        <div class="pwd_wrap" class="content">
-            <div class="pwd_img">
-                <img src="./images/password.png">
-            </div>
-            <div class="input_wrap">
-                <input type="text" placeholder=" 아이디를 입력해주세요." >
-                <div class="next_btn"><a href="javascript:nextStep();">다음 단계</a></div>
-            </div>
-            <hr>
-            <p>●  아이디를 찾으시나요?  <a href="find_id.html">아이디 찾기 〉</a></p>
-        </div>
     <!--//find_password-->
+            </div>
     </section>
     <!--//section-->
     <!--main_footer-->
@@ -127,7 +138,8 @@
             <li><a href="#" class="alert_ready"><img src="./images/footer_menu_4.gif" alt="이메일주소무단수집거부"/></a></li><li>|</li>
             <li><a href="#" class="alert_ready"><img src="./images/footer_menu_5.gif" alt="Contact us"/></a></li><li>|</li>
             <li><a href="../Jeong/sitemap.html" title="사이트맵"><img src="./images/footer_menu_6.gif" alt="사이트맵"/></a></li>
-        </ul><hr/>
+        </ul>
+        <hr/>
     </footer>
     <!--//main_footer-->
 </body>
