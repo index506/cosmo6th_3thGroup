@@ -15,11 +15,12 @@
     <link rel="stylesheet" href="./css/Withdrawal.css"/>
     <script>
         function pwdConfirm(){
-            if($('#mem_pwd').val()==1234){
-                window.location.href="membership_Withdrawal2.html"
-            }else alert('틀림');
+            if($('#mem_pwd').val()=="password1234"){
+                location.href="membership_Withdrawal2.html";
+            }else {
+                alert("비밀번호가 틀렸습니다.");
+            }
         }
-        
 
     </script>
 
@@ -112,7 +113,7 @@
                     <p class="login_id"> 아이디 <em>index506 </em></p>
                     <div class="write_box">
                         <input type="password" id="mem_pwd" placeholder="비밀번호를 입력하세요." maxlength="20">
-                        <button type="submit" class="btn_ok" onclick="pwdConfirm();">
+                        <button type="button" class="btn_ok" onclick="pwdConfirm();">
                             <span>확인</span>
                         </button>
                     </div>

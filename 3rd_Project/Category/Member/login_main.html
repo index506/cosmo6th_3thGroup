@@ -12,10 +12,19 @@
     <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
     <script type="text/javascript" src="../../js/common.js"></script>
     <!--개인 css, js-->
-    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="./css/login.css">
 
     <title>Login Page</title>
     <script>
+    function login_validate(){
+
+        if(document.frmLogin.user_id.value=="user1"&&document.frmLogin.user_pw.value=="password1234"){
+            window.location.href="../../index.html";
+        }else{
+            alert("아이디와 비밀번호가 틀렸습니다.");
+        }
+    };
+
         function member(){
             window.location.href="signup.html";
         };
@@ -105,10 +114,10 @@
         </div>
     <div id="PPS" class="content">
     <!--Login-->
-    <form>
+    <form name="frmLogin" method="POST">
     <div class="loginWrap">
     <div id="loginlogo">
-        <a href="javascript:window.location.reload();"><img src="/images/login_logo.png" title="mainPic"></a>
+        <a href="javascript:window.location.reload();"><img src="./images/login_logo.png" title="mainPic"></a>
     </div>
     <input class="login_id" placeholder="   아이디" maxlength="20"
     type="text" required="required" name="user_id"><br>
@@ -116,7 +125,7 @@
     type="password" required="required" name="user_pw">
     <hr class="loginhr">
     <p class="btn_login">
-        <a  href="#">로그인</a>
+        <a  href="javascript:login_validate();">로그인</a>
     </p>
 
     <div class="buttonwrap">
