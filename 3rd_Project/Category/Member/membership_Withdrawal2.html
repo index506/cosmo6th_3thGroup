@@ -14,6 +14,20 @@
 
     <link rel="stylesheet" href="./css/Withdrawal_1.css"/>
     <title>회원탈퇴신청</title>
+    <script>
+        function Withdrawal(){                      
+
+            if(confirm("정말 회원탈퇴 하시겠습니까?")==true){
+                alert("탈퇴가 완료되었습니다. 감사합니다.");
+                window.location.href="../../index.html";
+            }else return;
+        }
+        function Withdrawal_cancle(){
+            if(confirm("정말 회원탈퇴를 취소하시겠습니까?")==true){
+                window.location.href="../../index.html";
+            }else return;
+        }
+    </script>
 </head>
 <body>
     <!--main_header_wrap-->
@@ -124,10 +138,10 @@
         <textarea title="textarea" cols="80" rows="7" ></textarea>
     </div>
     <div class="btn">
-        <a href="#">
+        <a href="javascript:Withdrawal();">
             <span>회원 탈퇴 신청</span>
         </a>
-        <a href="#">
+        <a href="javascript:Withdrawal_cancle();">
             <span>취소</span>
         </a>
     </div>
