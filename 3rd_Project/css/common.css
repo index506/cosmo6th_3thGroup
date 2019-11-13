@@ -37,6 +37,9 @@ section>.lnb>div>.top{top: 0;}
 section>.lnb>div>.bottom{bottom: 0;}
 section>.lnb>div>ul{padding-left: 15px; padding-top: 50px;}
 section>.lnb>div>ul li{padding-bottom: 10px; font-size: 12px; color: black; font-weight: bold;}
+section>.lnb>div>ul li a{color: black;}
+section>.lnb>div>ul li a.on{color:rgb(38, 130, 187);}
+section>.lnb>div>ul li a:hover{color:rgb(38, 130, 187);}
 
 /* section_content */
 section .content{margin-left: 10px;}

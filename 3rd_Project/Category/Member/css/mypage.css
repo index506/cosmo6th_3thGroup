@@ -15,8 +15,18 @@
 #mypage table tr.body td.content p.second{top: 35px;}
 #mypage table tr.body td.content p.third{top: 55px; color: #777; font-size: 12.5px;}
 #mypage table tr.body td.status{font-size: 16px; font-weight: bold;}
+
 #mypage table tr.foot td{height: 2px; background-color: rgb(170, 170,170);}
 
+#mypage table tr.number td{height: 33px;}
+#mypage table tr.number td span{margin-left: 15px; cursor: pointer;}
+
+#mypage table tr.number td span:first-of-type{margin-left: 0;}
+
+#mypage table tr.number td span.on{cursor: text; font-weight: bold; color: red; font-size: 15px;}
+
+#mypage table.order{height: 480px;}
+#mypage table.test{height: 270px;}
 #mypage table.test tr.body td{height: 50px;}
 
 /*#mypage table.order tr.body.off{display: none;}*/
