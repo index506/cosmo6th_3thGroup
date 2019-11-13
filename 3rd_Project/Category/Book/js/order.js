@@ -19,6 +19,15 @@ $(document).ready(function () {
             $(".shippingInput").css("display", "none");
     });
 
+    // 무통장입금 버튼 선택/해제시 동작
+    $("input[id='deposit']").on("click",function(){
+
+        if($(this).prop("checked"))
+            $(".depositBox").css('display','block'); // 결제정보
+        else
+            $(".depositBox").css('display','none'); // 결제정보
+    });
+
     // 주문자동의 내용보기/내용닫기
     function imgOn(t) {
         var img = $(t).find("img");
@@ -37,17 +46,11 @@ $(document).ready(function () {
             $(this).find("span").text("내용보기");
             imgOff(this);
             state = false;
-            var height = parseInt($("#wrap").css('height').substr(0,4));
-            $("#wrap").css('height',height-670+"px");
-            $("#buyerApproval").css('bottom','410px'); //주문자동의
 
         } else {
             $(this).find("span").text("내용닫기");
             imgOn(this);
             state = true;
-            var height = parseInt($("#wrap").css('height').substr(0,4));
-            $("#wrap").css('height',height+670+"px");
-            $("#buyerApproval").css('bottom','1080px'); //주문자동의
         }
         return false;
     });
@@ -58,23 +61,6 @@ $(document).ready(function () {
             $(".approvalButton").prop("checked", true);
         } else {
             $(".approvalButton").prop("checked", false);
-        }
-    });
-
-    $("input[id='deposit']").on("click",function(){
-
-        if($(this).prop("checked")){
-            var height = parseInt($("#wrap").css('height').substr(0,4));
-            $("#wrap").css('height',height+100+"px"); // 전체랩
-            $(".depositBox").css('display','block'); // 결제정보
-            $("#information").css('top','690px'); // 주문상품정보
-            
-        } else{
-            var height = parseInt($("#wrap").css('height').substr(0,4));
-            $("#wrap").css('height',height-100+"px"); // 전체랩
-            $(".depositBox").css('display','none'); // 결제정보
-            $("#information").css('top','600px'); // 주문상품정보
- 
         }
     });
 
