@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>게시글 상세보기</title>
+
+    <!-- 철욱 -->
+    <link rel="stylesheet" href="../css/init.css"/>
+    <link rel="stylesheet" href="../css/common.css"/>
+    <script type="text/javascript" src="../../../js/jquery-2.1.1.min.js"> </script>
+    <script type="text/javascript" src="../../../js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="../../../js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../../../js/prefixfree.min.js"></script>
+    <script type="text/javascript" src="../../../js/common.js"></script>
+    <!-- //철욱 -->
+
+    <link rel="stylesheet" href="../css/myCommon.css" />
+    <link rel="stylesheet" href="../css/postRead.css">
+
+    <link rel="stylesheet" href="../css/commet.css" />
+</head>
+<body>
+<!--main_header_wrap-->
+<div id="main_header_wrap">
+    <!--main_header-->
+    <header id="main_header">
+        <!--main_logo-->
+        <h1 id="main_logo">
+            <a href="../../../index.html" title="title"><img src="../../../images/main.jpg" alt="title" width="150px" height="70px"></a>
+        </h1>
+        <!--//main_logo-->
+            <!--main_gnb-->
+            <div id="main_gnb">
+                <ul class="gnb">
+                    <li class="gnb_list gnb_0">
+                        <h2><a href="javascript:;" title="시험안내" class="alert_ready">시험안내</a></h2>
+                    </li>
+                    <li class="gnb_list gnb_1 login">
+                        <h2><a href="../../Book/buybook.html" title="교재구매">교재구매</a></h2>
+                        <ul class="menu">
+                            <a href="../../Book/buybook.html" title="구매목록"><li>구매목록</li></a>
+                            <a href="../../Book/cart.html" title="장바구니"><li>장바구니</li></a>
+                        </ul>
+                    </li>
+                    <li class="gnb_list gnb_2 login">
+                        <h2><a href="../../Test/testSelect.html" title="문제유형">문제유형</a></h2>
+                    </li>
+                    <li class="gnb_list gnb_3">
+                        <h2><a href="../../Board/Notice_List_1.html" title="커뮤니티">커뮤니티</a></h2>
+                        <ul class="menu">
+                            <a href="../../Board/Notice_List_1.html" title="공지사항"><li>공지사항</li></a>
+                            <a href="../../Board/Community_List_1.html" title="자유 게시판"><li>자유 게시판</li></a>
+                            <a href="../../Board/Question_List_1.html" title="질문 게시판"><li>질문 게시판</li></a>
+                        </ul>
+                    </li>
+                    <li class="gnb_list gnb_4">
+                        <h2><a href="../../Service/PrivacyPolicyStatement.html" title="고객센터">고객센터</a></h2>
+                        <ul class="menu">
+                            <a href="../../Service/PrivacyPolicyStatement.html" title="개인정보보호정책"><li>개인정보보호정책</li></a>
+                            <a href="../../Service/accessTerms.html" title="이용약관"><li>이용약관</li></a>
+                            <a href="../../Service/sitemap.html" title="사이트맵"><li>사이트맵</li></a>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--//main_gnb-->
+        <!--top_menu-->
+        <div id="top_menu">
+            <ul class="on">
+                <li><a href="../../Member/signup.html" title="회원가입">회원가입</a></li>
+                <li><a href="javascript:;" title="로그인" class="loginOnOff">로그인</a></li>
+                <li><a href="../../Service/sitemap.html" title="사이트맵">사이트맵</a></li>
+            </ul>
+            <ul>
+                <li><a href="../../Member/mypage.html" title="회원정보">회원정보</a></li>
+                <li><a href="javascript:;" title="로그아웃" class="loginOnOff">로그아웃</a></li>
+                <li><a href="../../Service/sitemap.html" title="사이트맵">사이트맵</a></li>
+            </ul>
+        </div>
+        <!--//top_menu-->
+    </header>
+    <!--//main_header-->
+</div>
+<!--//main_header_wrap-->
+    <!--section-->
+    <section>
+        <!-- lnb -->
+        <div class="lnb">
+            <div>
+                <img class="top" src="../../../images/image_support/sideTitle_community.jpg"/>
+                <ul>
+                    <li><a href="../Notice_List_1.html">공지사항</a></li>
+                    <li><a href="../Community_List_1.html" class="on">자유 게시판</a></li>
+                    <li><a href="../Question_List_1.html">질문 게시판</a></li>
+                </ul>
+                <img class="bottom" src="../../../images/image_support/left_t08.gif"/>
+            </div>
+        </div>
+        <!-- //lnb -->
+        <!-- read_wrap -->
+        <div id="read_wrap">
+            <div id="board_title">
+                <h2>공지사항</h2>
+            </div>
+            <!-- post_area -->
+            <div id="post_area">
+                <!-- post_up_area -->
+                <div id="post_up_area" class="p_area">
+                    <span id="post_title">시험문제 갱신</span>
+                </div>
+                <!-- //post_up_area -->
+                <!-- post_down_area -->
+                <div id="post_down_area" class="p_area">
+                    <span id="post_name">관리자</span>
+                    <span id="post_date">2019/11/02</span>
+                </div>
+                <!-- //post_down_area -->
+                <!-- post_content_area -->
+                <div id="post_content_area" class="p_area">
+                    <div id="post_content">
+                        시험 문제가 갱신되었습니다</br>
+                    </div>
+                </div>
+                <!-- //post_content_area -->
+                <!-- post_bottom_area -->
+                <div id="post_bottom_area" class="p_area">
+                    <div id="btn_area">
+                        <a id="delete_btn" href="../postDelete.html"><img src="../images/post/delete_btn.gif" title="삭제" alt="삭제"></a>
+                        <a id="modify_btn" href="../postModify.html"><img src="../images/post/modify_btn.gif" title="수정" alt="수정"></a>
+                        <a id="list_btn" href="../Notice_List_2.html"><img src="../images/post/list_btn.gif" title="목록" alt="목록"></a>
+                    </div>
+                    </div>
+                <!-- //post_bottom_area -->
+                    </div>
+                </div>
+                <!-- //comment_area -->
+            </div>
+            <!-- //post_area -->
+        </div>
+        <!-- //read_wrap -->
+    </section>
+    <!--//section-->
+    <!--main_footer-->
+    <footer id="main_footer">
+        <img src="../../../images/bottom_long_bar.gif">
+        <ul>
+            <li><a href="../../../Category/Service/accessTerms.html"  title="이용약관"><img src="../../../images/footer_menu_2.gif" alt="이용약관"/></a></li><li>|</li>
+            <li><a href="#" class="alert_ready"><img src="../../../images/footer_menu_4.gif" alt="이메일주소무단수집거부"/></a></li><li>|</li>
+            <li><a href="#" class="alert_ready"><img src="../../../images/footer_menu_5.gif" alt="Contact us"/></a></li><li>|</li>
+            <li><a href="../../Service/PrivacyPolicyStatement.html" title="개인정보취급방침"><img src="../../../images/footer_menu_3.gif" alt="개인정보취급방침"/></a></li><li>|</li>
+            <li><a href="../../../Category/Service/sitemap.html" title="사이트맵"><img src="../../../images/footer_menu_6.gif" alt="사이트맵"/></a></li>
+        </ul>
+        <hr/>
+    </footer>
+    <!--//main_footer-->
+</body>
+
+</html>
