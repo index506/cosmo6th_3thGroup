@@ -98,7 +98,7 @@ function joinCheck(){
    }
    else{
 	alert("회원가입을 축하드립니다.");
-	location.href="../../index.html"
+	location.href="../../index.html";
    }
    return true;
 }
