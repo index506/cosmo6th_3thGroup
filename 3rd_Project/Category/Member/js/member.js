@@ -18,9 +18,15 @@ function joinCheck(){
 		}
 		if(!chk) {
 			alert("모든 약관에 동의해 주세요.");
-			return true;
+			return false;
 		}
-		
+//		var getCheck = RegExp(/^[A-Za-z0-9_\-]{8,15}$/);
+		var getCheck = /^[A-Za-z0-9+]{8,15}$/;
+		var pattern1 = /[0-9]/;
+	    var pattern2 = /[a-zA-Z]/;
+	    var pattern3 = /[~!@\#$%<>^&*]/;     // 원하는 특수문자 추가 제거
+	    var pw_msg = "";
+	    
 		if(document.frm.id.value.length == 0){
 	      alert("아이디를 입력해주세요.");
 	      document.frm.id.focus();
@@ -30,15 +36,16 @@ function joinCheck(){
 		   document.frm.id.focus();
 	   		document.frm.id.value = "";
 		      return false; 
-	   }
+	   }else if(!pattern1.test(pw) && !pattern2.test(pw)){
+		   alert("형식에 맞게 입력해주세요");
+		   document.frm.id.value = ""; 
+		   return false; 
+	   }		
 	  var pw = document.getElementById("txtPassword1").value; //비밀번호
 	    var pw2 = document.getElementById("txtPassword2").value; // 확인 비밀번호
 //	    var id = document.getElementById("txtId").value; // 아이디
 	    pw_passed = true;
-	    var pattern1 = /[0-9]/;
-	    var pattern2 = /[a-zA-Z]/;
-	    var pattern3 = /[~!@\#$%<>^&*]/;     // 원하는 특수문자 추가 제거
-	    var pw_msg = "";
+	    
 	    if(pw.length == 0) {
 	           alert("비밀번호를 입력해주세요");
 	           return false;
@@ -76,7 +83,7 @@ function joinCheck(){
    }
    if(document.frm.adress.value.length == 0){
       alert("주소를 입력해주세요.")
-      document.frm.address.focus();
+      document.frm.adress.focus();
       return false;
    }
    if(document.frm.home.value.length == 0){
@@ -89,15 +96,9 @@ function joinCheck(){
       document.frm.phone.focus();
       return false;
    }
-// if(document.frm.pwd.value.length < 4){
-// alert("비밀번호는 4글자 이상으로 반드시 입력해주세요.")
-// document.frm.pwd.focus();
-// return false;
-//}
-//if(document.frm.pwd.value != document.frm.pwdcheck.value){
-// alert("비밀번호가 일치하지 않습니다.")
-// document.frm.pwdcheck.focus();
-// return false;
-//}
+   else{
+	alert("회원가입을 축하드립니다.");
+	location.href="../../index.html"
+   }
    return true;
 }
