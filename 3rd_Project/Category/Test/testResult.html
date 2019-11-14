@@ -43,14 +43,14 @@
                     <li class="gnb_list gnb_0">
                         <h2><a href="javascript:;" title="시험안내" class="alert_ready">시험안내</a></h2>
                     </li>
-                    <li class="gnb_list gnb_1">
+                    <li class="gnb_list gnb_1 login">
                         <h2><a href="../../Category/Book/buybook.html" title="교재구매">교재구매</a></h2>
                         <ul class="menu">
                             <a href="../../Category/Book/buybook.html" title="구매목록"><li>구매목록</li></a>
                             <a href="../../Category/Book/cart.html" title="장바구니"><li>장바구니</li></a>
                         </ul>
                     </li>
-                    <li class="gnb_list gnb_2">
+                    <li class="gnb_list gnb_2 login">
                         <h2><a href="../../Category/Test/testSelect.html" title="문제유형">문제유형</a></h2>
                     </li>
                     <li class="gnb_list gnb_3">
@@ -118,7 +118,7 @@
                 <h3>시험 결과</h3>
             </div>
             <!-- quiz_form -->
-            <form id="quiz_form">
+            <form id="quiz_form"  action="testExplanations.html">
                 <!-- fieldset -->
                 <fieldset>
                     <legend class="hidden">
@@ -127,10 +127,10 @@
                     <!-- info_area -->
                     <div id="info_area">
                         <div>
-                            <span>정보처리기사 - </span><span>2019년 04월 27일</span>
+                            <span>정보처리기사 - </span><span>2019년 03월 03일</span>
                         </div>
                         <div>
-                            <span>걸린시간 - </span><span>01:15:33</span>
+                            <span>남은시간 - </span><span>01:15:33</span>
                         </div>
                     </div>
                     <!-- //info_area -->
@@ -147,8 +147,8 @@
                         </ul>
                         <!-- btn_area2 -->
                         <p id="btn_area2" class="btn_area">
-                            <input type="button" class="btn" value="해설보기" onclick="location.href='testExplanations.html'" >           
-                            <input type="button" class="btn" value="시험 재선택" onclick="location.href='testSelect.html'" >           
+                            <input type="submit" id="save" class="btn" value="해설보기">
+                            <input type="button" class="btn" value="시험 재선택" onclick="location.href='testSelect.html'" >
                         </p>
                         <!-- //btn_area2 -->
                     </div>

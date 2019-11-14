@@ -19,7 +19,7 @@ function joinCheck1(){
 		var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 				if(exptext.test(email)==false){
 			//이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우			
-			alert("이 메일형식이 올바르지 않습니다.");
+			alert("이메일형식이 올바르지 않습니다.");
 			document.frm.email.focus();
 			document.frm.email.value="";
 			return false;
@@ -40,15 +40,9 @@ function joinCheck1(){
       document.frm.phone.focus();
       return false;
    }
-// if(document.frm.pwd.value.length < 4){
-// alert("비밀번호는 4글자 이상으로 반드시 입력해주세요.")
-// document.frm.pwd.focus();
-// return false;
-//}
-//if(document.frm.pwd.value != document.frm.pwdcheck.value){
-// alert("비밀번호가 일치하지 않습니다.")
-// document.frm.pwdcheck.focus();
-// return false;
-//}
+   else{
+		alert("회원정보 변경이 완료되었습니다.");
+		location.href="../../index.html";
+	   }
    return true;
 }
