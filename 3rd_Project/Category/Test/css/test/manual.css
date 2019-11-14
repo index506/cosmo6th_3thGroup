@@ -29,42 +29,51 @@
     display: block;
 }
 
+
+
 /* manual 공통 설명문 */
 .manual_btn::after {
-    content: "[?] on/off\A\A -다시 한번 클릭하면\A 설명문이 사라집니다.";
+    content: "[?]\A클릭하면 설명문이 사라집니다.";
     top: 10px; right: 30px;
 }
 
+
+
 /* manual testSelect 설명문 */
 #license_area::after {
-    content: "[자격증 선택]\A\A -원하는 자격증을 선택해주세요.";
+    content: "[자격증 선택]\A원하는 자격증을 선택해주세요.";
     top: 0px; left: 140px;
 }
 
 #year_area::after {
-    content: "[기출문제]\A\A -선택하신 자격증의 기출문제를 선택해주세요.";
+    content: "[기출문제]\A선택하신 자격증의 기출문제를 선택해주세요.";
     top: 0px; left: 160px;
 }
 
 #subject_area::after {
-    content: "[과목]\A\A -선택하신 기출문제의 과목들을 선택해주세요.";
+    content: "[과목]\A선택하신 기출문제의 과목들을 선택해주세요.\A*과목을 반드시 하나 이상 체크해주세요.*";
     top: 0px; left: 130px;
+}
+
+#timer_area::after {
+    content: "[시간 제한 여부]\A선택하신 시험의 타이머 기능 작동를 선택해주세요.";
+    bottom: 4px; left: 125px;
 }
 
 
 /* manual testTake & testExplanations 설명문 */
 .left-btn::after {
-    content: "[이전/다음]\A\A -버튼을 클릭하면\A 이전/다음 문제로 이동합니다.";
+    content: "[이전/다음]\A이전/다음 문제로 이동합니다.";
     bottom: 14px; right: 60px;
 }
 
 #move_area::after {
-    content: "[번호 이동]\A\A -원하는 번호를 클릭하면\A 해당 번호의 문제로\A 이동합니다.";
-    top: 85px; right: 45px;
+    content: "[번호 이동]\A클릭한 번호의 문제로 이동합니다.";
+    top: 110px; right: 195px;
 }
 
 /* manual testTake 설명문 */
 .time::after {
-    content: "[남은시간]\A\A -타이머가 종료되면\A 자동으로 시험이 제출됩니다.";
-    bottom: 4px; left: 50px;
+    content: "[타이머]\A타이머가 종료되면\A 자동으로 시험이 제출됩니다.";
+    bottom: 4px; left: 125px;
 }
