@@ -11,7 +11,30 @@ $(document).ready(function(){
     $(".alert_ready").click(function(){
         alert("준비중입니다.");
     });
-    $("#top_menu .loginOnOff").click(function(){
+
+    $(".loginOnOff").click(function(){
         $("#top_menu ul").toggleClass("on");
+        if($(this).text()=="로그인"){
+            $("#main_login").css("display","none");
+            $("#main_logout").css("display","block");
+        }else{
+            $("#main_login").css("display","block");
+            $("#main_logout").css("display","none");
+        }
+    });
+
+    $("#main_gnb .gnb .login a").click(function(){
+        if($("#top_menu .on .loginOnOff").text()=="로그인"){
+            alert("로그인 후 이용가능합니다.");
+            var a = $(this).attr("href");
+            a = a.replace('../','#');
+            a = a.replace('./','#');
+            $(this).attr("href",a);
+        }else{
+            var a = $(this).attr("href");
+            a = a.replace('#','../');
+            a = a.replace('#','./');
+            $(this).attr("href",a);
+        }
     });
 });

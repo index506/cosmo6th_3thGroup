@@ -11,7 +11,20 @@ $(document).ready(function(){
     $(".alert_ready").click(function(){
         alert("준비중입니다.");
     });
-    $("#top_menu .loginOnOff").click(function(){
+    $("#top_menu .on .loginOnOff").click(function(){
         $("#top_menu ul").toggleClass("on");
+        alert("hi");
     });
+
+    $("#top_menu .on .loginOnOff").click(function(){
+        alert("hi");
+        if($(this).text()=="로그인"){
+            $("#main_login").css("display","none");
+            $("#main_logout").css("display","block");
+        }else{
+            $("#main_login").css("display","block");
+            $("#main_logout").css("display","none");
+        }
+    });
+    
 });
