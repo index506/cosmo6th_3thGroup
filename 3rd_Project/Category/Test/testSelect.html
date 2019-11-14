@@ -113,10 +113,45 @@
                 <button class="manual_btn btn manual_item">?</button>
             </div>
             <!-- form -->
-            <form id="option_form" name="frm" method="GET" action="./testTake.html">
+            <form id="option_form" name="frm" method="GET" action="testTake.html">
                 <fieldset>
-                    
-                </fieldset>
+                
+                <div id="license_area" class="q_area manual_item">
+                    <h4>1. 자격증을 선택해주세요.</h4>
+                    <select id="license_select" class="license_select " name="license" onchange="selectlicense();">
+                        <!-- 자격증 삽입 -->
+                    </select>
+                </div>
+                <div id="year_area" class="q_area manual_item">
+                    <h4>2. 기출문제를 선택해주세요.</h4>
+                    <select id="year_select" class="year_select" name="year" onchange="selectYear();">
+                        <!-- 기출문제 삽입 -->
+                    </select>
+                </div>
+                <div id="subject_area" class="q_area manual_item">
+                    <h4>3. 과목을 선택해주세요.</h4>
+                    <ul class="subject_ul">
+                        <!-- 과목 삽입 -->
+                    </ul>
+                </div>
+                <div id="timer_area" class="q_area manual_item">
+                    <h4>4. 시간 제한 여부를 선택해주세요.</h4>
+                    <ul>
+                        <li id="timeInsert">
+                            <!-- 시간 삽입 -->
+                            <input type="radio" id="timer_yes" name="timer" value="150" checked="checked">
+                            <label for="timer_yes">예</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="timer_no" name="timer" value="">
+                            <label for="timer_no">아니오</label>
+                        </li>
+                    </ul>
+                </div>
+                <p id="btn_area" class="btn_area">
+                    <input type="submit" id="solve_sub" class="btn" value="시험풀기" onclick="return selectCheck();">
+                </p>
+            </fieldset>
             </form>
             <!-- //option_form -->
         </div>

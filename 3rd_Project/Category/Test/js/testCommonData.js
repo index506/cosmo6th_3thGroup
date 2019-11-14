@@ -42,6 +42,11 @@ var subjects = [
    ,'데이터 통신'
 ];
 
+var time = [
+    '150'
+    ,'100'
+]
+
 /* 1~3번 문제 */
 var quiz = new Array();
 quiz[0] = [
