@@ -114,6 +114,41 @@
                 */
             });
 
+            $(".goToCart").click(function(){
+                if($("#top_menu .on .loginOnOff").text()=="로그아웃"){
+
+                    if(confirm("작성중인 내용은 저장되지 않습니다." + '\n' + "장바구니 페이지로 이동하시겠습니까?"))
+                        return true;
+                    else 
+                        return false;
+                    
+                } else{
+                    return false;
+                }
+                
+            });
+
+            $(".goToBuybook").click(function(){
+
+                if($("#top_menu .on .loginOnOff").text()=="로그아웃"){
+
+                    if(confirm("작성중인 내용은 저장되지 않습니다." + '\n' + "구매목록 페이지로 이동하시겠습니까?"))
+                        return true;
+                    else
+                        return false;
+                      
+                } else{
+                    return false;
+                }
+            });
+
+            $(".lnb .goToCart, .lnb .goToBuybook").click(function(){
+                if($("#top_menu .on .loginOnOff").text()=="로그인"){
+                    alert("로그인 후 이용가능합니다.");
+                    return false;
+                }
+            });
+
         });
     </script>
 </head>
@@ -134,10 +169,10 @@
                         <h2><a href="javascript:;" title="시험안내" class="alert_ready">시험안내</a></h2>
                     </li>
                     <li class="gnb_list gnb_1 login">
-                        <h2><a href="../../Category/Book/buybook.html" title="교재구매">교재구매</a></h2>
+                        <h2><a href="../../Category/Book/buybook.html" title="교재구매" class="goToBuybook">교재구매</a></h2>
                         <ul class="menu">
-                            <a href="../../Category/Book/buybook.html" title="구매목록"><li>구매목록</li></a>
-                            <a href="../../Category/Book/cart.html" title="장바구니"><li>장바구니</li></a>
+                            <a href="../../Category/Book/buybook.html" title="구매목록" class="goToBuybook"><li>구매목록</li></a>
+                            <a href="../../Category/Book/cart.html" title="장바구니" class="goToCart"><li>장바구니</li></a>
                         </ul>
                     </li>
                     <li class="gnb_list gnb_2 login">
@@ -187,12 +222,12 @@
         <!-- lnb -->
         <div class="lnb">
             <div>
-                <img class="top" src="../../images/image_support/sideTitle_orderbook.jpg"" />
+                <img class="top" src="../../images/image_support/sideTitle_orderbook.jpg"/>
                 <ul>
-                    <a href="#">
+                    <a href="../../Category/Book/buybook.html" title="구매목록" class="goToBuybook">
                         <li>구매목록</li>
                     </a>
-                    <a href="#">
+                    <a href="../../Category/Book/cart.html" title="장바구니" class="goToCart">
                         <li>장바구니</li>
                     </a>
                 </ul>
