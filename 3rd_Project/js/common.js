@@ -23,18 +23,24 @@ $(document).ready(function(){
         }
     });
 
+    var buffer;
     $("#main_gnb .gnb .login a").click(function(){
         if($("#top_menu .on .loginOnOff").text()=="로그인"){
             alert("로그인 후 이용가능합니다.");
             var a = $(this).attr("href");
-            a = a.replace('../','#');
-            a = a.replace('./','#');
-            $(this).attr("href",a);
+            buffer=a.charAt(1);
+            if(buffer=='/'){
+                a = a.replace('./','#');    
+            }else{
+                a = a.replace('../','#');    
+            }$(this).attr("href",a);
         }else{
             var a = $(this).attr("href");
-            a = a.replace('#','../');
-            a = a.replace('#','./');
-            $(this).attr("href",a);
+            if(buffer=='/'){
+                a = a.replace('#','./');
+            }else{
+                a = a.replace('#','../');
+            }$(this).attr("href",a);
         }
     });
 });
