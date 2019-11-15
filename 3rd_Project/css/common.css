@@ -41,8 +41,6 @@ section>.lnb>div>ul li a{color: black;}
 section>.lnb>div>ul li a.on{color:rgb(38, 130, 187);}
 section>.lnb>div>ul li a:hover{color:rgb(38, 130, 187);}
 
-off
-
 /* section_content */
 section .content{margin-left: 10px;}
 section .content{width: 710px;}
