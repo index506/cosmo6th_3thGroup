@@ -10,23 +10,25 @@
 /*main_section*/
 section{margin: 3px auto; width: 970px; overflow: hidden;}
 section>div{float: left;}
-/*main_login*/
-#main_login{width: 319px; height: 97px; background-color: rgb(58, 126, 207); position: relative; display: none;}
-#main_login.on{display: block;}
-#main_login.out div{width: 110px; height: 60px; background-color: yellowgreen; position: absolute; top: 20px; font-size: 23px; font-weight: bold; text-align: center; line-height: 60px; color: black;}
-#main_login.out .loginBtn{left: 30px;}
-#main_login.out .assignBtn{right: 30px;}
 
-#main_login.in{background-color: white; border-top: 1px solid blue; border-bottom: 1px solid blue;}
-#main_login.in div{position: absolute; top:25px; left: 20px;}
-#main_login.in div p{padding-bottom: 15px;}
-#main_login.in div a{color: black; padding-right: 10px;}
-#main_login.in div a:hover{text-decoration: underline;}
+/*main_login*/
+div.member{width: 319px; height: 97px; background-color: rgb(58, 126, 207); position: relative; display: none;}
+div.member.on{display: block;}
+#main_login div{width: 110px; height: 60px; background-color: yellowgreen; position: absolute; top: 20px; font-size: 23px; font-weight: bold; text-align: center; line-height: 60px; color: black;}
+#main_login .loginBtn{left: 30px;}
+#main_login .assignBtn{right: 30px;}
+#main_logout{background-color: white; border-top: 1px solid blue; border-bottom: 1px solid blue;}
+#main_logout div{position: absolute; top:25px; left: 20px;}
+#main_logout div p{padding-bottom: 15px;}
+#main_logout div a{color: black; padding-right: 10px;}
+#main_logout div a:hover{text-decoration: underline;}
+
 /*main_table*/
 #main_table{width: 648px; height: 100px; margin-left: 3px;}
 #main_table>.row{width: 100%; height: 47px; border-top: 1px solid blue; border-bottom: 1px solid blue; overflow: hidden;}
 #main_table>ul>li{float: left; text-align: center; height: 27px; font-size: 12px; line-height: 27px; position: relative; margin: 10px 0;}
 #main_table>ul>li::before{content: " "; background: url('../images/table_bar.gif') no-repeat; width: 10px; height: 10px; top: 7px; left: 0; position : absolute;}
+
 #main_table>ul>.item_0::before{background: none;}
 #main_table>.line{width: 100%; height: 1px;}
 #main_table>.first>li{font-weight: bold;}
@@ -42,7 +44,8 @@ section>div{float: left;}
 
 .articles{box-sizing: border-box; width: 323px; padding: 20px; float: left;}
 .articles h2{font-size: 18px; overflow: hidden; margin-bottom: 15px;}
-.articles h2 a{font-size: 12px; font-weight: normal; float: right; padding-top: 5px; color:black}
+.articles h2 a{font-size: 12px; font-weight: normal; float: right; padding-top: 5px; color:black;}
 .articles ul li{overflow: hidden; color:black; margin-top: 7px;}
 .articles ul a{color:black;}
-.articles ul li span{float: right; color:gray;}
+.articles ul li span.title{display: inline-block; width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.articles ul li span.day{float: right; color:gray;}

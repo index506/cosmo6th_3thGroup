@@ -38,15 +38,15 @@
                     </li>
                     <li class="gnb_list gnb_1">
                     	<c:if test='${isLogon}'>
-                    		<h2><a href="${contextPath}/Member/Lee/buybook.jsp" title="교재구매">교재구매</a></h2>
+                    		<h2><a href="${contextPath}/Category/Book/buybook.jsp" title="교재구매">교재구매</a></h2>
                     	</c:if>
                     	<c:if test="${empty isLogon}">
                     		<h2><a href="javascript:logoff();" title="교재구매">교재구매</a></h2>
                     	</c:if>
                         <ul class="menu">
                         	<c:if test='${isLogon}'>
-                            	<li><a href="${contextPath}/Member/Lee/buybook.jsp" title="구매목록">구매목록</a></li>
-                            	<li><a href="${contextPath}/Member/Lee/cart.jsp" title="장바구니">장바구니</a></li>
+                            	<li><a href="${contextPath}/Category/Book/buybook.jsp" title="구매목록">구매목록</a></li>
+                            	<li><a href="${contextPath}/Category/Book/cart.jsp" title="장바구니">장바구니</a></li>
                             </c:if>
                             <c:if test="${empty isLogon}">
                             	<li><a href="javascript:logoff();" title="구매목록">구매목록</a></li>
@@ -56,26 +56,26 @@
                     </li>
                     <li class="gnb_list gnb_2">
 	                    <c:if test='${isLogon}'>
-                    		<h2><a href="${contextPath}/Member/An/testSelect.jsp" title="문제유형">문제유형</a></h2>
+                    		<h2><a href="${contextPath}/Category/Test/testSelect.jsp" title="문제유형">문제유형</a></h2>
                     	</c:if>
                     	<c:if test="${empty isLogon}">
                     		<h2><a href="javascript:logoff();" title="문제유형">문제유형</a></h2>
                     	</c:if>
                     </li>
                     <li class="gnb_list gnb_3">
-                        <h2><a href="${contextPath}/Member/Nam/Notice_List.jsp" title="커뮤니티">커뮤니티</a></h2>
+                        <h2><a href="${contextPath}/Category/Board/Notice_List.jsp" title="커뮤니티">커뮤니티</a></h2>
                         <ul class="menu">
-                            <li><a href="${contextPath}/Member/Nam/Notice_List.jsp" title="공지사항">공지사항</a></li>
-                            <li><a href="${contextPath}/Member/Nam/Community_List.jsp" title="자유 게시판">자유 게시판</a></li>
-                            <li><a href="${contextPath}/Member/Nam/Question_List.jsp" title="질문 게시판">질문 게시판</a></li>
+                            <li><a href="${contextPath}/Category/Board/Notice_List.jsp" title="공지사항">공지사항</a></li>
+                            <li><a href="${contextPath}/Category/Board/Community_List.jsp" title="자유 게시판">자유 게시판</a></li>
+                            <li><a href="${contextPath}/Category/Board/Question_List.jsp" title="질문 게시판">질문 게시판</a></li>
                         </ul>
                     </li>
                     <li class="gnb_list gnb_4">
-                        <h2><a href="${contextPath}/Member/Jeong/privacyPolicyStatement.jsp" title="고객센터">고객센터</a></h2>
+                        <h2><a href="${contextPath}/Category/Service/privacyPolicyStatement.jsp" title="고객센터">고객센터</a></h2>
                         <ul class="menu">
-                            <li><a href="${contextPath}/Member/Jeong/privacyPolicyStatement.jsp" title="개인정보보호정책">개인정보보호정책</a></li>
-                            <li><a href="${contextPath}/Member/Jeong/accessTerms.jsp" title="이용약관">이용약관</a></li>
-                            <li><a href="${contextPath}/Member/Jeong/sitemap.jsp" title="사이트맵">사이트맵</a></li>
+                            <li><a href="${contextPath}/Category/Service/privacyPolicyStatement.jsp" title="개인정보보호정책">개인정보보호정책</a></li>
+                            <li><a href="${contextPath}/Category/Service/accessTerms.jsp" title="이용약관">이용약관</a></li>
+                            <li><a href="${contextPath}/Category/Service/sitemap.jsp" title="사이트맵">사이트맵</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -85,18 +85,18 @@
             <div id="top_menu">
            		<c:if test="${empty isLogon}">
            			<ul>
-		               	<li><a href="${contextPath}/Member/Yoo/signup.jsp" title="회원가입">회원가입</a></li>
-		               	<li><a href="${contextPath}/Member/Seok/login_main.jsp" title="로그인">로그인</a></li>
-		               	<li><a href="${contextPath}/Member/Jeong/sitemap.jsp" title="사이트맵">사이트맵</a></li>
+		               	<li><a href="${contextPath}/Category/Member/signup.jsp" title="회원가입">회원가입</a></li>
+		               	<li><a href="${contextPath}/Category/Member/login_main.jsp" title="로그인">로그인</a></li>
+		               	<li><a href="${contextPath}/Category/Service/sitemap.jsp" title="사이트맵">사이트맵</a></li>
 	               	</ul>
            		</c:if>
            		<c:if test="${isLogon}">
            			<ul>
-	                    <li><a href="${contextPath}/Member/Jeong/mypage.jsp" title="회원정보">회원정보</a></li>
+	                    <li><a href="${contextPath}/Category/Member/mypage.jsp" title="회원정보">회원정보</a></li>
 	                    <li>
 	                    	<a href="javascript:logout();" title="로그아웃" onclick="submit();">로그아웃</a>
 	                    </li>
-	                    <li><a href="${contextPath}/Member/Jeong/sitemap.jsp" title="사이트맵">사이트맵</a></li>
+	                    <li><a href="${contextPath}/Category/Service/sitemap.jsp" title="사이트맵">사이트맵</a></li>
 	                </ul>
            		</c:if>
             </div>

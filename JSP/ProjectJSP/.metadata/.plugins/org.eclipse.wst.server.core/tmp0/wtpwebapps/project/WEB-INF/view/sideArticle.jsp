@@ -17,9 +17,9 @@
     	<div>
         	<img class="top" src="${contextPath}/images/image_support/201508270312264232402.jpg"/>
         	<ul>
-	           <li><a href="${contextPath}/Member/Nam/Notice_List.jsp">공지사항</a></li>
-	           <li><a href="${contextPath}/Member/Nam/Community_List.jsp">자유 게시판</a></li>
-	           <li><a href="${contextPath}/Member/Nam/Question_List.jsp">질문 게시판</a></li>
+	           <li><a href="${contextPath}/Category/Board/Notice_List.jsp">공지사항</a></li>
+	           <li><a href="${contextPath}/Category/Board/Community_List.jsp">자유 게시판</a></li>
+	           <li><a href="${contextPath}/Category/Board/Question_List.jsp">질문 게시판</a></li>
 	       </ul>
 	       <img class="bottom" src="${contextPath}/images/image_support/left_t08.gif"/>
 	   </div>

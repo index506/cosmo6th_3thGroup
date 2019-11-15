@@ -17,8 +17,8 @@
 	    <div>
 	        <img class="top" src="${contextPath}/images/image_support/201508270312264232403.jpg"/>
 	        <ul>
-	            <li><a href="./index.html">구매목록</a></li>
-	            <li><a href="#">장바구니</a></li>
+	            <li><a href="${contextPath}/Category/Book/buybook.jsp">구매목록</a></li>
+	            <li><a href="${contextPath}/Category/Book/cart.jsp">장바구니</a></li>
 	        </ul>
 	        <img class="bottom" src="./images/left_t08.gif" />
 	    </div>

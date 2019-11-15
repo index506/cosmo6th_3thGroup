@@ -17,7 +17,7 @@
     	<div>
         	<img class="top" src="${contextPath}/images/image_support/201508270312264232401.jpg"/>
 	        	<ul>
-		           <li><a href="${contextPath}/Category/Service/mypage.jsp">회원정보</a></li>
+		           <li><a href="${contextPath}/Category/Member/mypage.jsp">회원정보</a></li>
 		           <li><a href="${contextPath}/Category/Member/memberModify.jsp">회원정보 수정</a></li>
 		           <li><a href="${contextPath}/Category/Member/find_id.jsp">아이디 찾기</a></li>
 		           <li><a href="${contextPath}/Category/Member/find_pwd.jsp">비밀번호 찾기</a></li>
