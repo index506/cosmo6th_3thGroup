@@ -7,7 +7,6 @@ INDEX VERSION 1.4+C:\Users\KOSMO-08\Documents\GitHub\cosmo6th_3thGroup\JSP\Proje
 4272254881.index
 4188486731.index
 3934336059.index
-1273617053.index
 4293387275.index
 1273617053.index
 3956467352.index
