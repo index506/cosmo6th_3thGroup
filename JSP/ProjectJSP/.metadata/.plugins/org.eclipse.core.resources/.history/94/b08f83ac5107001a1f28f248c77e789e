@@ -12,6 +12,4 @@ public class MemberVO {
 	private Date assignDate;
 	private boolean admin;
 	
-	
-	
 }
