@@ -24,7 +24,7 @@ $(document).ready(function(){
     });
 
     var buffer;
-    $("#main_gnb .gnb .login a").click(function(){
+    $(".login a").click(function(){
         if($("#top_menu .on .loginOnOff").text()=="로그인"){
             alert("로그인 후 이용가능합니다.");
             var a = $(this).attr("href");
