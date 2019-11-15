@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>게시글 상세보기</title>
+
+    <!-- 철욱 -->
+    <link rel="stylesheet" href="../css/init.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/lnb.css" />
+    <!-- //철욱 -->
+
+    <link rel="stylesheet" href="../css/myCommon.css" />
+    <link rel="stylesheet" href="../css/postRead.css" />
+
+    <link rel="stylesheet" href="../css/commet.css" />
+
+    <script src="./js/jQuizry-2.1.1.min.js"></script>
+</head>
+<body>
+<!--main_header_wrap-->
+<div id="main_header_wrap">
+    <!--main_header-->
+    <header id="main_header">
+        <!--main_logo-->
+        <h1 id="main_logo">
+            <a href="../index.html"><img src="http://placehold.it/150x70"></a>
+        </h1>
+        <!--//main_logo-->
+        <!--main_gnb-->
+        <div id="main_gnb">
+            <ul class="list">
+                <li class="item_0">
+                    <a href="#"><p>시험안내</p></a>
+                </li>
+                <li class="item_1">
+                    <a href="#"><p>교재구매</p></a>
+                    <!--
+                    <ul class="list hover">
+                        <a href="#"><li class="item_0">구매목록</li></a>
+                        <a href="#"><li class="item_1">장바구니</li></a>
+                    </ul>
+                    -->
+                </li>
+                <li class="item_2">
+                    <a href="#"><p>문제유형</p></a>
+                </li>
+                <li class="item_3">
+                    <a href="#"><p>커뮤니티</p></a>
+                <!--
+                    <ul class="list hover">
+                        <a href="#"><li class="item_0">공지사항</li></a>
+                        <a href="#"><li class="item_1">자유 게시판</li></a>
+                        <a href="#"><li class="item_2">질문 게시판</li></a>
+                    </ul>
+                -->
+                </li>
+                <li class="item_4">
+                    <a href="#"><p>고객센터</p></a>
+                <!--
+                    <ul class="list hover">
+                        <a href="#"><li class="item_0">Q&A</li></a>
+                        <a href="#"><li class="item_1">개인정보보호정책</li></a>
+                        <a href="#"><li class="item_2">이용약관</li></a>
+                        <a href="./sitemap.html"><li class="item_3">사이트맵</li></a>
+                    </ul>
+                </li>
+                -->
+            </ul>
+        </div>
+        <!--//main_gnb-->
+        <!--top_menu-->
+        <div id="top_menu">
+            <ul class="list">
+                <a href="#"><li class="item_0"><p>회원가입</p></li></a>
+                <a href="#"><li class="item_1"><p>로그인</p></li></a>
+                <a href="#"><li class="item_2"><p>FAQ</p></li></a>
+                <a href="../sitemap.html"><li class="item_3"><p>사이트맵</p></li></a>
+            </ul>
+        </div>
+        <!--//top_menu-->
+    </header>
+    <!--//main_header-->
+</div>
+<!--//main_header_wrap-->
+    <!--section-->
+    <section>
+        <!-- lnb -->
+        <div class="lnb">
+            <div>
+                <img class="top" src="../images/image_support/201508270312264232400.jpg" />
+                <ul>
+                    <a href="#">
+                        <li>Q&A</li>
+                    </a>
+                    <a href="#">
+                        <li>개인정보보호정책</li>
+                    </a>
+                    <a href="#">
+                        <li>이용약관</li>
+                    </a>
+                    <a href="./sitemap.html">
+                        <li>사이트맵</li>
+                    </a>
+                </ul>
+                <img class="bottom" src="../images/image_support/left_t08.gif" />
+            </div>
+        </div>
+        <!-- //lnb -->
+        <!-- read_wrap -->
+        <div id="read_wrap">
+            <div id="board_title">
+                <h2>자유 게시판</h2>
+            </div>
+            <!-- post_area -->
+            <div id="post_area">
+                <!-- post_up_area -->
+                <div id="post_up_area" class="p_area">
+                    <span id="post_title">회원님들 힘내라고 붕어빵 사진 올립니다</span>
+                </div>
+                <!-- //post_up_area -->
+                <!-- post_down_area -->
+                <div id="post_down_area" class="p_area">
+                    <span id="post_name">남기호</span>
+                    <span id="post_date">2019-12-11</span>
+                </div>
+                <!-- //post_down_area -->
+                <!-- post_content_area -->
+                <div id="post_content_area" class="p_area">
+                    <div id="post_content">
+                        다같이 붕어빵보고 힘내요
+                    </div>
+                </div>
+                <!-- //post_content_area -->
+                <!-- post_bottom_area -->
+                <div id="post_bottom_area" class="p_area">
+                    <div id="btn_area">
+                        <a id="delete_btn" href="../postDelete.html"><img src="../images/post/delete_btn.gif" title="삭제" alt="삭제"></a>
+                        <a id="modify_btn" href="../postModify.html"><img src="../images/post/modify_btn.gif" title="수정" alt="수정"></a>
+                        <a id="list_btn" href="../Community_List.html"><img src="../images/post/list_btn.gif" title="목록" alt="목록"></a>
+                    </div>
+                </div>
+                <!-- //post_bottom_area -->
+                <!-- comment_area -->
+                <div class="comment_area">
+                    <div id="comment_up_area" class="p_area">
+                        <span id="post_name">comments : </span>
+                    </div>
+                        <div id="comment_0" class="comment_box  bor_bot">
+                            <div class="comment_info">
+                                <a class="comment_write">유상민</a>
+                                <span class="comment_date">2019-12-11</span>
+                            </div>
+                            <button class="comment_btn" id="comment_mod">수정</button>
+                            <button class="comment_btn">삭제</button>
+                            <div class="comment_content">
+                                맛있겠다
+                            </div>
+                        </div>
+                        <div id="comment_1" class="comment_box bor_bot">
+                            <div class="comment_info">
+                                <a class="comment_write">안영우</a>
+                                <span class="comment_date">2019-12-11</span>
+                            </div>
+                            <button class="comment_btn" id="comment_mod">수정</button>
+                            <button class="comment_btn">삭제</button>
+                            <div class="comment_content">
+                                먹고싶다
+                            </div>
+                        </div>
+                        <div id="comment_1" class="comment_box bor_bot">
+                            <div class="comment_info">
+                                <a class="comment_write">정철욱</a>
+                                <span class="comment_date">2019-12-11</span>
+                            </div>
+                            <button class="comment_btn" id="comment_mod">수정</button>
+                            <button class="comment_btn">삭제</button>
+                            <div class="comment_content">
+                                배고프다
+                            </div>
+                        </div>
+                        <!-- comment_write_area -->
+                    <div class="comment_write_area">
+                        <form>
+                            <div>
+                                <textarea class="comment_textarea" cols="50" rows="4"></textarea>
+                                <input class="reg_btn" type="submit" value="등록">
+                            </div>
+                        </form>
+                    </div>
+                    <!-- //comment_write_area -->
+                    </div>
+                </div>
+                <!-- //comment_area -->
+            </div>
+            <!-- //post_area -->
+        </div>
+        <!-- //read_wrap -->
+    </section>
+    <!--//section-->
+    <!--main_footer-->
+    <footer id="main_footer">
+        <img src="./images/bottom_long_bar.gif">
+        <ul>
+            <li><a href="#"><img src="../images/footer_menu_2.gif" /></a></li>
+            <li>|</li>
+            <li><a href="#"><img src="../images/footer_menu_3.gif" /></a></li>
+            <li>|</li>
+            <li><a href="#"><img src="../images/footer_menu_4.gif" /></a></li>
+            <li>|</li>
+            <li><a href="#"><img src="../images/footer_menu_5.gif" /></a></li>
+            <li>|</li>
+            <li><a href="#"><img src="../images/footer_menu_6.gif" /></a></li>
+        </ul>
+        <hr />
+    </footer>
+    <!--//main_footer-->
+
+
+</body>
+
+</html>
