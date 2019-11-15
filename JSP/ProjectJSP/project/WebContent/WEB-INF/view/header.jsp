@@ -10,15 +10,6 @@
 <head>
 <meta charset="utf-8">
 <title>header</title>
-<script>
-	function logout(){
-		alert("로그아웃 되었습니다.");
-		window.open("${contextPath}/login/logout.do","_self","toolbar=no");
-	}
-	function logoff(){
-		alert("로그인 후 이용가능합니다.");
-	}
-</script>
 </head>
 <body>
     <!--main_header_wrap-->

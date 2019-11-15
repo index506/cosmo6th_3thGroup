@@ -21,12 +21,6 @@
     <script type="text/javascript" src="${contextPath}/js/prefixfree.min.js"></script>
     <script type="text/javascript" src="${contextPath}/js/common.js"></script>
     <script type="text/javascript" src="${contextPath}/js/main.js"></script>
-    <script>
-		function logout(){
-			alert("로그아웃 되었습니다.");
-			window.open("${contextPath}/login/logout.do","_self","toolbar=no");
-		}
-    </script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/view/header.jsp" flush="false"/>

@@ -17,7 +17,7 @@ $(document).ready(function(){
     });
 
     //로그인 여부에 따른 메인 페이지 화면 변화
-    $(".loginOnOff").click(function(){
+    /*$(".loginOnOff").click(function(){
         $("#top_menu ul").toggleClass("on");
         if($(this).text()=="로그인"){
             $("#main_login").css("display","none");
@@ -26,5 +26,14 @@ $(document).ready(function(){
             $("#main_login").css("display","block");
             $("#main_logout").css("display","none");
         }
-    });
+    });*/
 });
+
+function logout(){
+	alert("로그아웃 되었습니다.");
+	window.open("${contextPath}/member/logout.do","_self","toolbar=no");
+}
+
+function logoff(){
+	alert("로그인 후 이용가능합니다.");
+}
