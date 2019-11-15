@@ -1,7 +1,0 @@
-INDEX VERSION 1.131
-C:\Users\KOSMO-02\Documents\GitHub\cosmo6th_3thGroup\JSP\jeong\ProjectJSP\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\314088565.index
-\project\src
-C:\Users\KOSMO-02\Documents\GitHub\cosmo6th_3thGroup\JSP\jeong\ProjectJSP\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1273617053.index
-\project\src
-C:\Users\KOSMO-02\Documents\GitHub\cosmo6th_3thGroup\JSP\jeong\ProjectJSP\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2892046229.index
-\project\src

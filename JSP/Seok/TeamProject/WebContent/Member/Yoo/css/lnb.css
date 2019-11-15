@@ -1,8 +1,0 @@
-section{width: 970px !important; margin: 20px auto 0 !important; overflow: hidden;}
-section>.lnb{width: 200px !important; height: 100% !important; margin-right:10px !important;  }
-section>.lnb>div{height: 300px !important; border-left: 1px solid antiquewhite ; position: relative; }
-section>.lnb>div>img{position: absolute; left: 0 !important;}
-section>.lnb>div>.top{top: 0 !important;}
-section>.lnb>div>.bottom{bottom: 0 !important;}
-section>.lnb>div>ul{padding-left: 15px !important; padding-top: 50px !important;}
-section>.lnb>div>ul li{padding-bottom: 10px !important; font-size: 12px; color: black; font-weight: bold;}

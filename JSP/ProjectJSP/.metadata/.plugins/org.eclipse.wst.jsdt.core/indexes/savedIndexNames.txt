@@ -1,0 +1,12 @@
+INDEX VERSION 1.4+C:\Users\KOSMO-08\Documents\GitHub\cosmo6th_3thGroup\JSP\ProjectJSP\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+314088565.index
+4293387275.index
+720333125.index
+2086902704.index
+2892046229.index
+3581163120.index
+3934336059.index
+1273617053.index
+2708182727.index
+2696049360.index
+4188486731.index
