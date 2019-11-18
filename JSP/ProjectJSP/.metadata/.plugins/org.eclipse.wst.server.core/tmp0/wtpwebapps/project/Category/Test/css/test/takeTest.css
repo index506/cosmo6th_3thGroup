@@ -1,0 +1,53 @@
+/* time */
+.timer {
+	border:none;
+	border-right:0px; 
+	border-top:0px; 
+	border-left:0px; 
+	border-bottom:0px;
+	font-size: 15px;
+    font-family: 'Nanum Gothic', tahoma, sans-serif;
+}
+
+.timer:focus {
+	 outline: none;
+}
+
+
+/* quiz_box radio */
+.quiz_box li label {
+    background:url('../../images/solveQuiz/radio_non.png') left 8.3px no-repeat;
+	background-size: 14px;
+}
+
+
+.quiz_box li input[type='radio'] {
+    display:none;
+}
+
+.quiz_box li input[type='radio']:checked + label {
+    background:url('../../images/solveQuiz/radio_check.png') left 8.3px no-repeat;
+    background-size: 14px;
+}
+
+/* move area */
+#move_area {
+    background-image: url('../../images/solveQuiz/move-bar-take.png');
+    background-repeat: no-repeat;
+}
+
+/* go_btn is */
+.go_btn {
+    margin: 0 -1px 3px 0;
+    width: 34px; height: 34px;
+    color: #ffffff; font-size: 12px; text-decoration: none; text-align: center;
+    border: 0;
+}
+
+.go_btn {
+    background-image: url('../../images/solveQuiz/move_btn_non.gif');
+}
+.go_btn.is {
+    background-image: url('../../images/solveQuiz/move_btn_is.gif');
+}
+

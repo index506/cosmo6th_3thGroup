@@ -1,0 +1,49 @@
+/* wrap (전체 랩) */
+#wrap{width:970px; overflow:hidden; margin:50px auto 0; }
+
+/* lnb (로컬네비게이션) */
+.lnb{width: 200px; height: 100%; float:left;}
+.lnb>div{height: 300px; border-left: 1px solid antiquewhite; position: relative;}
+.lnb>div>img{position: absolute; left: 0;}
+.lnb>div>.top{top: 0;}
+.lnb>div>.bottom{bottom: 0;}
+.lnb>div>ul{padding-left: 15px; padding-top: 50px;}
+.lnb>div>ul li{padding-bottom: 10px; font-size: 12px; color: black; font-weight: bold;}
+
+/* title (문제집&교재구매 타이틀) */
+#title{float:left; margin-left:20px;}
+
+/* buy_book (내부 랩)*/
+#buy_book{width: 710px; overflow: hidden; border:2px solid gray; box-sizing: border-box; float:right; margin-right:40px;}
+
+/* boxWrap (교재 랩) */
+.boxWrap{float:left; margin:20px 5px 0 5px;}
+
+/* book_title (교재제목) */
+h3 {font-size: 18px;}
+
+/* box (교재정보, box1 ~ box8) */
+.box{width:340px; height:298px; border:1px solid black; margin-top: 5px;}
+
+/* imageBox(이미지) */
+.imageBox{float:left;}
+.imageBox > img{width:198px; height:297px; margin-top:1px;}
+
+/* textBox (설명글) */
+.textBox{float:right; width:126px; padding:8px;}
+p{line-height: 50px;}
+
+/* buyBox (체크박스+구매하기 버튼) */
+.buyBox{width:120px; float:right; height:25px; margin-right: 10px;}
+
+.buyBox:hover{cursor: pointer;}
+
+/* buyButton (최하단 구매하기 버튼) */
+.buyButton{float:left; margin:30px 305px 10px;
+width:100px; height:30px; border:1px solid lightgray; background:rgb(96, 160, 199); border-radius: 5px; text-align: center; line-height: 30px; color:white; font-weight: bold; cursor: pointer;}
+
+/* 전체 input태그 수직정렬  */
+input{vertical-align: middle;}
+input[type="number"]{width:82px; vertical-align: middle; text-align: center;}
+img.icnModify{vertical-align: middle;}
+img.icnModify:hover{cursor: pointer;}
