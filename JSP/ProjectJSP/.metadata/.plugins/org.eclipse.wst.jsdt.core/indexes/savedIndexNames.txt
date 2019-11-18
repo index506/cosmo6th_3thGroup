@@ -1,25 +1,7 @@
-<<<<<<< HEAD
 INDEX VERSION 1.4+C:\Users\KOSMO-02\Documents\GitHub\cosmo6th_3thGroup\JSP\ProjectJSP\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
 2757525811.index
 2419746903.index
 4132751067.index
-=======
-INDEX VERSION 1.4+C:\Users\KOSMO-08\Documents\GitHub\cosmo6th_3thGroup\JSP\ProjectJSP\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-2086902704.index
-720333125.index
-2954251462.index
-2892046229.index
-3448043247.index
-4272254881.index
-4188486731.index
-3934336059.index
-4293387275.index
-1273617053.index
-3956467352.index
-2696049360.index
-1751933822.index
-2708182727.index
-314088565.index
->>>>>>> 35dc81a7dbfc5fb7078f2ff4e44ff489dc018f2a
 3581163120.index
 4090598035.index
+1595072015.index
