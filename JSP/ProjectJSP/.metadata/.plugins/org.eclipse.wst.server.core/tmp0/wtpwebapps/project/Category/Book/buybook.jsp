@@ -115,36 +115,37 @@
                 <div class="box">
                     <!-- imageBox -->
                     <div class="imageBox">
-                        <img src="${contextPath}/Category/Book/images/buybook/img_book_${bookLists.number}.jpg"/>
+                        <img src="${contextPath}/Category/Book/images/buybook/img_book_${bookLists.imgURL}.jpg"/>
                     </div>
                     <!-- //imageBox -->
 
+					<form action="AllController/cartConfirm.do" name="frm" method="post">
                     <!-- textBox -->
                     <div class="textBox">
-                        <p>
-               <form action="AllController/cartConfirm.do" name="frm" method="post">
-	                            정가 : ${bookLists.price}원
-	               <input type="hidden" name="price" value="${bookLists.price}">
-	                            <br>
-	                            할인가 : ${bookLists.salePrice}원
-	               <input type="hidden" name="salePrice" value="${bookLists.salePrice}">
-	                            <br>
-	               ${bookLists.publisher}<span style="font-size:12px;">(저)</span>
-	               <input type="hidden" name="publisher" value="${bookLists.publisher}">
-	                            <br>
-	                            발행 : ${bookLists.writeDate}
-	               <input type="hidden" name="writeDate" value="${bookLists.writeDate}">
-	                            <br>
-	                            수량 : <input type="number" name="quantity" value="1">
-	                        </p>
-	                    </div>
-	                    <!-- //textBox -->
-	                    <input type="submit" class="buyBox" value="장바구니 담기">
-                </form>
+		                   <p>
+			                            정가 : ${bookLists.price}원
+			               <input type="hidden" name="price" value="${bookLists.price}">
+			                            <br>
+			                            할인가 : ${bookLists.salePrice}원
+			               <input type="hidden" name="salePrice" value="${bookLists.salePrice}">
+			                            <br>
+			               ${bookLists.publisher}<span style="font-size:12px;">(저)</span>
+			               <input type="hidden" name="publisher" value="${bookLists.publisher}">
+			                            <br>
+			                            발행 : ${bookLists.writeDate}
+			               <input type="hidden" name="writeDate" value="${bookLists.writeDate}">
+			                            <br>
+			                            수량 : <input type="number" name="quantity" value="1">
+                           </p>
+                    </div>
+                    <!-- //textBox -->
+                    <input type="submit" class="buyBox" value="장바구니 담기">
+           			</form>
                 </div>
                 <!-- //box1 -->
             </div>
             <!-- //boxWrap -->
+            </c:forEach>
 
             <!-- buyButton -->
             <div class="buyButton">
@@ -153,7 +154,7 @@
             <!-- //buyButton -->
         </div>
         <!-- //buy_book -->
-        </c:forEach>
+        
     </div>
     <!-- //wrap -->
 
