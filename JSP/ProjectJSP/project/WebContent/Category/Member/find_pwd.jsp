@@ -24,26 +24,7 @@
 
     <title>Find Password</title>
     
-    <script language="javascript">
-        // 고객아이디에 맞는 
-        function nextStep(){
-        	var user_id = frm.user_id.value;
-        	if((user_id.length==0||user_id=="")){
-    			alert("ID는 필수입니다. ");
-    			frm.user_id.focus();
-    		}else if(user_id.length<=4||user_id.length>=21){
-    			alert("아이디는 5글자이상 20글자 이하만 입력가능합니다.");    			
-    			frm.user_id.focus();
-    		}else{        			
-    			frm.method="post";
-    			frm.action="${contextPath}/login/find_pwd.do";
-    			frm.submit();
-    		}	
-            	
-            	
-            
-        }
-    </script>
+    <script type="text/javascript" src="${contextPath}/Category/Member/js/LoginService.js"></script>
     <style>
         /* find pwd */
 .pwd_wrap{width: 670px;height: 300px; margin: 50px;}

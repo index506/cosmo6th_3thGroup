@@ -23,55 +23,6 @@
     <link rel="stylesheet" href="${contextPath}/Category/Member/css/login.css">
 	<script type="text/javascript" src="${contextPath}/Category/Member/js/LoginService.js"></script>
     <title>Login Page</title>
-    <script>
-    /* 로그인 유효성 검사  */
-    	function login_validate(){
-    		var frmLogin = document.frmLogin;
-    		var user_id = frmLogin.user_id.value;
-    		var user_pw = frmLogin.user_pw.value;
-    		//var idRegExp = /^[a-z0-9]{4,20}$/;
-
-    		//if(frmLogin.user_id.value==idRegExp){
-    		//	alert("아이디는 영문자와 숫자 5~20자리로 입력해야합니다.");
-    		//	frmLogin.user_id.value = "";
-    		//	frmLogin.user_id.focus();
-    		//}
-    		if((user_id.length==0||user_id=="")||
-    				(user_pw.length==0||user_pw=="")){
-    			alert("ID와 PassWord는 필수입니다. ");
-    			frmLogin.user_id.focus();
-    		}else if(user_id.length<=4||user_id.length>=21){
-    			alert("아이디는 5글자이상 20글자 이하만 입력가능합니다.");    			
-    			frmLogin.user_id.focus();
-    		}else if(user_pw.length<=7||user_pw.length>=17){
-    			alert("비밀번호는 8글자이상 16글자 이하만 입력가능합니다.");
-    			frmLogin.user_pw.focus();
-    		}
-    		//else if(user_id){
-    			
-    		//	frmLogin.user_id.value.replace(/\s/gi, "");
-    		//	user_id.replace(/(^\s*)|(\s*$)/, '');
-    		//}
-    		//else if(document.frm.memberCheck.value!=true){
-	   		//	alert("회원정보가 없습니다.");    			
-    		//}
-    		else{        			
-    			frmLogin.method="post";
-    			frmLogin.action="${contextPath}/login/loginCheck.do";
-    			frmLogin.submit();
-    		}
-    	}
-    /* 페이지 이동  */
-        function member(){
-            window.location.href="Member/An/postRead.html";
-        };
-        function id(){
-            window.location.href="find_id.jsp";
-        };
-        function password(){
-            window.location.href="find_pwd.jsp";
-        };
-    </script>
 </head>
 <body>
     <!--main_header_wrap-->

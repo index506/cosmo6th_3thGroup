@@ -12,32 +12,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="${contextPath}/Category/Member/css/find_pwd.css"/>
-    <link rel="stylesheet" href="${contextPath}/Category/Member/css/init.css"/>
-    <link rel="stylesheet" href="${contextPath}/Category/Member/css/main.css"/>
-    <link rel="stylesheet" href="${contextPath}/Category/Member/css/lnb.css"/>
-    <link rel="stylesheet" href="${contextPath}/Category/Member/css/support.css"/>
-    <script type="text/javascript" src="${contextPath}/Category/Member/js/jquery-2.1.1.min.js"> </script>
-    <script type="text/javascript" src="${contextPath}/Category/Member/js/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="${contextPath}/Category/Member/js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="${contextPath}/Category/Member/js/prefixfree.min.js"></script>
-
+    <link rel="stylesheet" href="${contextPath}/css/init.css"/>
+    <link rel="stylesheet" href="${contextPath}/css/common.css"/>
+    <script type="text/javascript" src="${contextPath}/js/jquery-2.1.1.min.js"> </script>
+    <script type="text/javascript" src="${contextPath}/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/prefixfree.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/common.js"></script>
+    <!--개인 css, js-->
     <title>Find Password2</title>
-    <script language="javascript">
-        var min = 100000, max = 999999;
-        var randomNum = function(min, max){
-            var ranNum = Math.floor(Math.random()*(max-min+1))+min;
-            return ranNum;
-        }
-        function confirm(){
-            if($('.confirmNum').val()==456123){
-            	window.location.href="reset_pwd.jsp";
-            }else if($('.confirmNum').val()!=456123){              	
-            	alert("인증번호가 틀립니다.");           	
-            }                
-        }
-        
-    </script>
+    <link rel="stylesheet" href="${contextPath}/Category/Member/css/find_pwd.css">
+    <script type="text/javascript" src="${contextPath}/Category/Member/js/LoginService.js"></script>
 </head>
 <body>
 <!--main_header_wrap-->
@@ -115,7 +100,7 @@
         </div>
     <div id="PPS" class="content">
     <!--find_password-->
-    <form action="">
+    <form name="frm" method="post">
     <div class="pwd2_wrap">
         <h2>본인 확인</h2>
         <p>E-mail로 인증하기 </p>
@@ -124,7 +109,7 @@
             
             <input type="email" placeholder="이메일을 입력해주세요. "><input type="button" onclick="certiNum();" value="인증번호 보내기"></br>
 
-            <input type="text" class="confirmNum" ><input type="button" onclick="confirm();" value="인증번호 확인" >
+            <input type="text" class="confirmNum" name="userCon"><input type="button" onclick="userConfirm();" value="인증번호 확인" >
 
         </div>
     </div>

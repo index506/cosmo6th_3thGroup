@@ -13,30 +13,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="${contextPath}/Category/Member/css/init.css"/>
-    <link rel="stylesheet" href="${contextPath}/Category/Member/css/common.css"/>
-    <script type="text/javascript" src="${contextPath}/Category/Member/js/jquery-2.1.1.min.js"> </script>
-    <script type="text/javascript" src="${contextPath}/Category/Member/js/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="${contextPath}/Category/Member/js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="${contextPath}/Category/Member/js/prefixfree.min.js"></script>
-    <script type="text/javascript" src="${contextPath}/Category/Member/js/common.js"></script>
+    <link rel="stylesheet" href="${contextPath}/css/init.css"/>
+    <link rel="stylesheet" href="${contextPath}/css/common.css"/>
+    <script type="text/javascript" src="${contextPath}/js/jquery-2.1.1.min.js"> </script>
+    <script type="text/javascript" src="${contextPath}/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/prefixfree.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/common.js"></script>
     <!--개인 css, js-->
     <link rel="stylesheet" href="${contextPath}/Category/Member/css/find_id.css">
-    <script language="javascript">
-        // 인증번호 맞으면 다음 절차로 페이지이동 
-        function numberCheck(){
-        	
-            if(document.frmfindid.numConfirm.value=='456123'){
-            	
-            	document.frmfindid.method="post";
-            	document.frmfindid.action="${contextPath}/login/findid.do";
-            	document.frmfindid.submit();
-                
-            }else if(document.frmfindid.numConfirm.value!='456123'){
-                alert('인증번호가 다릅니다.');
-            }
-        }
-    </script>
+    <script type="text/javascript" src="${contextPath}/Category/Member/js/LoginService.js"></script>
 </head>
 <body>
     <!--main_header_wrap-->

@@ -22,19 +22,12 @@
     <script type="text/javascript" src="./js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="./js/prefixfree.min.js"></script>
 
+<link rel="stylesheet" href="${contextPath}/Category/Member/css/find_pwd.css">
     <title>Reset Password</title>
 	<script type="text/javascript">
-	//비밀번호 유효성 체크 정규식 
-	//if(!/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/.test(password)){            
-    //    alert('숫자+영문자+특수문자 조합으로 8자리 이상 사용해야 합니다.');
-    //    $('#password').val('').focus();
-    //    return false;
-    //}
 		$(document).ready(function(){			
 			$("#pwd_lbl").blur(function(){
-				var value = $(this).val();				
-
-				 
+				var value = $(this).val();								 
 				// 영문/숫자조합 이외의 문자를 입력했을 때의 예외처리
 				var reg1 = /^[a-z0-9]{8,16}$/; // a-z 0-9 중에 7자리 부터 14자리만 허용 한다는 뜻이구요
 				var reg2 = /[a-z]/g;
@@ -49,14 +42,11 @@
 					//$(this).next().text("영문/숫자조합 8~16자리를 입력해주세요.").css(
 					//		'color', 'red');
 				}
-			});
-			
+			});			
 			// 비밀번호 확인 input태그
-			$("#pwd2_lbl").blur(function() {
-				
+			$("#pwd2_lbl").blur(function() {				
 				var pwd1 = $("#pwd_lbl").val();
 				var pwd2 = $("#pwd2_lbl").val();
-
 				if (pwd1 != pwd2) {
 					$(".hidden2").css('display','block').css('color','red');
 					//$(this).next().text("비밀번호가 일치하지 않습니다.").css('color', 'red');
@@ -81,9 +71,9 @@
 			if (pwd1 == pwd2) {
 				alert("here");
 				frmLogin.method="post";
-    			frmLogin.action="${contextPath}/login/resetPWD.do";
+    			frmLogin.action="../../login/resetPWD.do";
     			frmLogin.submit();
-    			$(this).next().text("");
+    			
 			}
 		}		
 	</script>
