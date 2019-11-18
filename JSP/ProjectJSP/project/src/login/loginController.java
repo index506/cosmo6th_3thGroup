@@ -77,20 +77,13 @@ public class loginController extends HttpServlet {
 	    			System.out.println("c="+c);
 	    			
 	    			nextPage = "/index.jsp";
-	    		}else if(action.equals("/logout.do")){
-	                HttpSession session = request.getSession();
-	                session.invalidate();
-	                nextPage ="/index.jsp";
-	           } 		
-	    		else {
+	    		}else {
 	    			HttpSession session = request.getSession();
 	    			System.out.println("DB에 회원정보가 없습니다.");
 	    			session.setAttribute("isLogon", false);
 	    			session.setAttribute("login.id", user_id);
 	    			nextPage ="Category/Member/login_main.jsp";
-	    		}	    		
-	    		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
-			    dispatch.forward(request, response);
+	    		}
 	    	}else if(action!=null && action.equals("/findid.do")) {//아이디 찾기 
 	    		System.out.println("findid.do로 들어왔어");
 	    		String name = request.getParameter("name");
@@ -102,10 +95,10 @@ public class loginController extends HttpServlet {
 	    		memberVO.setEmail(email);	    		
 	    		MemberDAO dao = new MemberDAO();
 	    		memberVO = dao.FindID(memberVO);	    			    		
-	    		request.setAttribute("FindIDinfo", memberVO);	    			    		
-	    		nextPage = "Category/Member/find_id2.jsp";	    		
-	    		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
-			    dispatch.forward(request, response);
+	    		request.setAttribute("FindIDinfo", memberVO);	
+	    		System.out.println("memberVO 값은 "+memberVO);
+	    		nextPage = "/Category/Member/find_id2.jsp";
+	    		
 	    	}else if(action!=null && action.equals("/find_pwd.do")) {//비밀번호 찾기 
 	    		System.out.println("find_pwd.do로 들어왔어");
 	    		String user_id = request.getParameter("user_id");	    		
@@ -117,20 +110,18 @@ public class loginController extends HttpServlet {
 	    		 
 	    		if(result) {
 	    			System.out.println("DB에 회원이 있어요true에요");
-		    		nextPage = "Category/Member/find_pwd2.jsp";	 		    				    		
+		    		nextPage = "/Category/Member/find_pwd2.jsp";	 		    				    		
 	    		}else {
 	    			System.out.println("DB에 회원이 없어요false에요");
-		    		nextPage = "Category/Member/find_pwd1.jsp";	
+		    		nextPage = "/Category/Member/find_pwd_fail.html";	
 	    		}
-	    		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
-			    dispatch.forward(request, response);    			    		
-
 	    	}
 	    	else if(action!=null && action.equals("/resetPWD.do")) {//비밀번호 재설정
 	    		System.out.println("resetPWD로 들어왔어");
 	    		
 	    	}
-		
+	    	RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
+		    dispatch.forward(request, response);
 	    }catch(Exception e) {
 	    	e.printStackTrace();
 	    }
