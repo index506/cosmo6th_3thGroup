@@ -72,19 +72,18 @@ public class AllController extends HttpServlet {
 
 		try {
 			
-			List<CartVO> cartLists = new ArrayList<CartVO>(); // DB내의 장바구니 목록을 저장하기 위한 List 생성
+			// List<CartVO> cartLists = new ArrayList<CartVO>(); // 여기에 생성하는 이유가 뭔지??
 			
-			if(action != null && action.equals("/viewCartLists.do")) { // 장바구니 화면으로 이동시 수행
+			if(action != null && action.equals("/cart.do")) { // 장바구니 화면으로 이동시 수행
 
-				System.out.println("viewCartLists.do"); // if문 수행 확인 출력구문 
+				System.out.println("cart.do 立ち入り");  
 				
-				cartLists = cartService.selectCartLists(); // cartLists 리스트에 DB내의 장바구니 리스트를 모두 저장
+				ArrayList<CartVO> cartLists = new ArrayList<CartVO>();
+				cartLists = cartService.viewCartLists(); // cartLists 리스트에 DB내의 장바구니 리스트를 모두 저장
 				
 				request.setAttribute("cartLists", cartLists); // cartLists 객체를 cartList.jsp(장바구니)로 넘긴다.
 				
-				nextPage = "/cart01/cartList.jsp"; // nextPage : 장바구니 화면으로 이동
-				
-				System.out.println("[1]" + nextPage);
+				nextPage = "/Category/Book/cart.jsp"; // nextPage : 장바구니 화면으로 이동
 
 			} else if (action.equals("/addList.do")){ // [장바구니 담기] 버튼 클릭시 목록 추가
 				
@@ -149,45 +148,63 @@ public class AllController extends HttpServlet {
 				
 			} else if (action.equals("/cartConfirm.do")) {
 				
-				System.out.println("cartConfirm.do");
+				System.out.println("======= cartConfirm.do 立ち入り =======");
 				
-				String id = "세션에서 받아온 ID";  
-				
+				String message;
+				String id = "lee2";  
 				String title = request.getParameter("title");
-				boolean flag = cartService.confirmList(id, title);
+				
+				boolean result = cartService.confirmList(id, title);
 						
-				if(flag) {
+				if(result) { //장바구니에 교재가 존재하지 않을때
 					
-				} else {
-					request.getParameter("");
+					int price = Integer.parseInt((request.getParameter("price")));
+					int salePrice = Integer.parseInt((request.getParameter("salePrice")));
+					int quantity = Integer.parseInt((request.getParameter("quantity")));
+					String imgUrl = request.getParameter("imgUrl");
+					int amountPrice = salePrice*quantity;
+					
+					cartVO.setId(id);
+					cartVO.setTitle(title);
+					cartVO.setPrice(price);
+					cartVO.setSalePrice(salePrice);
+					cartVO.setQuantity(quantity);
+					cartVO.setAmountPrice(amountPrice);
+					cartVO.setImgUrl(imgUrl);
+					
+					cartService.addList(cartVO);
+					
+					message = "선택하신 상품이 장바구니에 담겼습니다." + "'\n'" + "장바구니로 이동하시겠습니까?";
+					
+				} else { //장바구니에 교재가 이미 존재할때
+					
+					message = "선택하신 상품이 이미 장바구니에 존재합니다.";
+					
 				}
 				
-				nextPage = "/cart/buybook.jsp";
+				nextPage = "/book/buybook.do";
 				
+			} else if (action.equals("/buybook.do")) { 
+				
+				System.out.println();
+				System.out.println("교재구매 立ち入り else if");
+				
+				ArrayList<BookVO> bookLists = bookService.selectBookLists();
+				request.setAttribute("bookLists", bookLists);
+				
+				nextPage = "/Category/Book/buybook.jsp";
+				
+			
 			} else {
 				
-				System.out.println("교재구매 立ち入り");
+				System.out.println("교재구매 立ち入り else");
 				
-				List<BookVO> bookLists = bookService.selectBookLists();
-				
-				for (int i = 0; i < bookLists.size(); i++) {
-					
-					System.out.println("AllContoller : bookLists 객체 확인하기");
-					
-					BookVO bl = bookLists.get(i);
-					
-					System.out.println(bl.getTitle());
-					System.out.println(bl.getPrice());
-					System.out.println(bl.getSalePrice());
-					System.out.println(bl.getImgURL());
-					
-				}
-				
+				ArrayList<BookVO> bookLists = bookService.selectBookLists();
 				request.setAttribute("bookLists", bookLists);
 				
 				nextPage = "/Category/Book/buybook.jsp"; 
 				
-			}
+			} 
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 			dispatch.forward(request, response);

@@ -17,7 +17,6 @@ public class BookDAO {
 	private Connection con;
 	private PreparedStatement pstmt;
 	private DataSource dataFactory;
-	private Statement stmt;
 	
 	public BookDAO() {
 		// TODO Auto-generated constructor stub
@@ -34,10 +33,10 @@ public class BookDAO {
 		}
 	}
 
-	public List<BookVO> selectBookLists() { // DB에 저장되어있는 교재 목록을 반환하는 메소드
+	public ArrayList<BookVO> selectBookLists() { // DB에 저장되어있는 교재 목록을 반환하는 메소드
 		// TODO Auto-generated method stub
 		
-		List bookLists = new ArrayList();
+		ArrayList<BookVO> bookLists = new ArrayList<BookVO>();
 		
 		try {
 			
@@ -58,8 +57,7 @@ public class BookDAO {
 				
 				System.out.println("BoardDAO while(rs.next()) 立ち入り");
 				
-				System.out.println("======================");
-						
+				System.out.println("=========== 교재목록 ===========");
 				String title = rs.getString("title");
 				int price = rs.getInt("price");
 				int salePrice = rs.getInt("salePrice");
@@ -80,7 +78,7 @@ public class BookDAO {
 			}
 			
 			rs.close();
-			stmt.close();
+			pstmt.close();
 			con.close();
 			
 		} catch (Exception e) {
@@ -89,7 +87,5 @@ public class BookDAO {
 		
 		return bookLists;
 	}
-	
-	
 
 }

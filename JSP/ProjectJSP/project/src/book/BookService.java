@@ -1,6 +1,6 @@
 package book;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class BookService {
 
@@ -11,10 +11,10 @@ public class BookService {
 		bookDAO = new BookDAO();
 	}
 
-	public List<BookVO> selectBookLists() {
+	public ArrayList<BookVO> selectBookLists() {
 		// TODO Auto-generated method stub
 		
-		List<BookVO> bookLists = bookDAO.selectBookLists();
+		ArrayList<BookVO> bookLists = bookDAO.selectBookLists();
 		
 		return bookLists;
 		

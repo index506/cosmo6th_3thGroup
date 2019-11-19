@@ -116,10 +116,10 @@
 		        <img class="top" src="${contextPath}/images/image_support/201508270312264232403.jpg"/>
 		        <ul>
 		            <li>
-		            	<a href="${contextPath}/Category/Book/buybook.jsp">구매목록</a>
+		            	<a href="${contextPath}/book/buybook.do">구매목록</a>
 		            </li>
 		            <li style="color:rgb(38,130,187);">
-		            	<a href="${contextPath}/Category/Book/cart.jsp">장바구니</a>
+		            	<a href="${contextPath}/book/cart.do">장바구니</a>
 		            </li>
 		        </ul>
 		        <img class="bottom" src="${contextPath}/images/image_support/left_t08.gif" />
@@ -143,25 +143,27 @@
                     <th>합계</th>
                     <th>삭제</th>
                 </tr>
-                <tr>
-                    <td>정보처리기사 필기(ALL-PASS)</td>
-                    <td>
-                        <span class="price">25000</span>원
-                    </td>
-                    <td>
-                        <span class="price">22500</span>원
-                    </td>
-                    <td>
-                        <input type="number" class="inputNumber" value="1">
-                        <img src="${contextPath}/Category/Book/images/icn_modify.gif" class="amtModify" />
-                    </td>
-                    <td>
-                        <span class="price">22500</span>원
-                    </td>
-                    <td>
-                        <span style="color: black;" class="deleteBtn">X</span>
-                    </td>
-                </tr>
+                <c:forEach var="cartLists" items="${cartLists}">
+	                <tr>
+	                    <td>${cartLists.title}</td>
+	                    <td>
+	                        <span class="price">${cartLists.price}</span>원
+	                    </td>
+	                    <td>
+	                        <span class="price">${cartLists.salePrice}</span>원
+	                    </td>
+	                    <td>
+	                        <input type="number" class="inputNumber" value="${cartLists.quantity}">
+	                        <img src="${contextPath}/Category/Book/images/icn_modify.gif" class="amtModify" />
+	                    </td>
+	                    <td>
+	                        <span class="price">${cartLists.amountPrice}</span>원
+	                    </td>
+	                    <td>
+	                        <span style="color: black;" class="deleteBtn">X</span>
+	                    </td>
+	                </tr>
+                </c:forEach>
             </table>
             <!-- //table -->
             <a href="#" class="pay button">결제하기</a>

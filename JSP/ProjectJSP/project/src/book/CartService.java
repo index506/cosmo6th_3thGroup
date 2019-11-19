@@ -1,6 +1,6 @@
 package book;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class CartService {
 
@@ -11,9 +11,9 @@ public class CartService {
 		cartDAO = new CartDAO();
 	}
 	
-	public List<CartVO> selectCartLists(){ // 장바구니의 리스트 전체를 반환하는 메소드
+	public ArrayList<CartVO> viewCartLists(){ // 장바구니의 리스트 전체를 반환하는 메소드
 		
-		List<CartVO> cartLists = cartDAO.selectCartLists();
+		ArrayList<CartVO> cartLists = cartDAO.viewCartLists();
 		
 		return cartLists;
 	}
@@ -22,8 +22,8 @@ public class CartService {
 		cartDAO.delList(title);
 	}
 	
-	public void addList(CartVO cartList) {
-		cartDAO.addList(cartList);
+	public void addList(CartVO cartVO) {
+		cartDAO.addList(cartVO);
 	}
 	
 	public boolean confirmList(String id,String title) { // 장바구니에 교재가 이미 존재하는지 확인하는 메소드

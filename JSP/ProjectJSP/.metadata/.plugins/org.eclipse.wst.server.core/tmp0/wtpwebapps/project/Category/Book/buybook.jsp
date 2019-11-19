@@ -56,8 +56,6 @@
 
             // [장바구니 담기] 클릭 시, confirm(확인/취소)
             $('.buyBox').click(function(){
-                var amount = $(this).prev().find('input[type=number]').val();
-                console.log(amount);
                 var answer = confirm("선택하신 상품이 장바구니에 담겼습니다." + '\n' +"장바구니로 이동하시겠습니까?");
                 if(answer)
                     location.href = 'cart.html';
@@ -72,9 +70,6 @@
         });
 </script>
 <script>
-	function confirmCart(){ // 장바구니에 교재가 이미 있는지 확인하는 메소드
-		alert("click")
-	};
 </script>
 </head>
 <body>
@@ -91,10 +86,10 @@
 		        <img class="top" src="${contextPath}/images/image_support/201508270312264232403.jpg"/>
 		        <ul>
 		            <li style="color:rgb(38,130,187);">
-		            	<a href="${contextPath}/Category/Book/buybook.jsp">구매목록</a>
+		            	<a href="${contextPath}/book/buybook.do">구매목록</a>
 		            </li>
 		            <li>
-		            	<a href="${contextPath}/Category/Book/cart.jsp">장바구니</a>
+		            	<a href="${contextPath}/book/cart.do">장바구니</a>
 		            </li>
 		        </ul>
 		        <img class="bottom" src="${contextPath}/images/image_support/left_t08.gif" />
@@ -110,7 +105,7 @@
         <c:forEach var="bookLists" items="${bookLists}">
             <!-- boxWrap -->
             <div class="boxWrap">
-                <h3>정보처리기사 필기(ALL-PASS)</h3>
+                <h3>${bookLists.title}</h3>
                 <!-- box1 -->
                 <div class="box">
                     <!-- imageBox -->
@@ -119,7 +114,7 @@
                     </div>
                     <!-- //imageBox -->
 
-					<form action="AllController/cartConfirm.do" name="frm" method="post">
+					<form action="${contextPath}/book/cartConfirm.do" name="frm" method="post">
                     <!-- textBox -->
                     <div class="textBox">
 		                   <p>
@@ -134,6 +129,8 @@
 			                            <br>
 			                            발행 : ${bookLists.writeDate}
 			               <input type="hidden" name="writeDate" value="${bookLists.writeDate}">
+			               <input type="hidden" name="imgUrl" value="${bookLists.imgURL}">
+			               <input type="hidden" name="title" value="${bookLists.title}">
 			                            <br>
 			                            수량 : <input type="number" name="quantity" value="1">
                            </p>
