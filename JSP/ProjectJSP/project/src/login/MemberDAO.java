@@ -4,8 +4,8 @@ import java.sql.Connection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -69,7 +69,7 @@ public class MemberDAO {
 		   if(rs.next()) {//트루일때 다음 행이 있을때 
 			   memberVO.setId(rs.getString("id"));//rs에 담긴 값을 겟스트링으로 아이디를 가져온다.
 			   memberVO.setAssignDate(rs.getDate("assignDate"));
-			   System.out.println(rs.getString("id"));
+			   System.out.println(rs.getString("ID"));
 		   }	   
 		   rs.close();
 		   pstmt.close();
@@ -91,18 +91,19 @@ public class MemberDAO {
 	    String user_id = memberVO.getId();
 	    try {
 		   con = dataFactory.getConnection();
-		   String sql ="select decode(count(*),1,'true','false') as result from member where id=?";
+		   //String sql ="select decode(count(*),1,'true','false') as result from member where id=?";
+		   String sql ="select id from member where id=?";
 		   pstmt = con.prepareStatement(sql);
 		   pstmt.setString(1, user_id);		   		   	   
 		   rs = pstmt.executeQuery();	
 		   rs.next();
-		   result = Boolean.parseBoolean(rs.getString("result"));
+		   result = Boolean.parseBoolean(rs.getString("id"));
 		   System.out.println("result="+result);
 		   
 		   rs.close();
 		   pstmt.close();
 		   con.close();		   		   
-		}catch(Exception e) {
+		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 	    

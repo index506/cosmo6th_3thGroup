@@ -1,0 +1,168 @@
+
+
+/* wrap (�쟾泥대옪) */
+#wrap{width:970px; overflow: hidden; margin:50px auto 0;}
+
+/* --------------------------------------------------------- */
+
+/* processWrap (�옣諛붽뎄�땲 �옪) */
+div.processWrap{float: right;}
+
+/* process (�옣諛붽뎄�땲,二쇰Ц寃곗젣,二쇰Ц�셿猷�) */
+p.process {float: right; font-size: 19px; font-weight: bold; padding-top:10px;}
+p.process:nth-child(2){color:rgb(38, 130, 187);}
+
+/* --------------------------------------------------------- */
+
+/* lnb (濡쒖뺄�꽕鍮꾧쾶�씠�뀡) */
+.lnb{width: 200px; height: 100%; float:left;}
+.lnb>div{height: 300px; border-left: 1px solid antiquewhite; position: relative;}
+.lnb>div>img{position: absolute; left: 0;}
+.lnb>div>.top{top: 0;}
+.lnb>div>.bottom{bottom: 0;}
+.lnb>div>ul{padding-left: 15px; padding-top: 50px;}
+.lnb>div>ul li{padding-bottom: 10px; font-size: 12px; color: black; font-weight: bold;}
+
+/* --------------------------------------------------------- */
+
+#contentWrap{
+    width:710px;
+    overflow:hidden;
+    float:right;
+    margin-right:40px;
+}
+
+
+#shippingBox{
+    margin-bottom:30px;
+}
+/* shipping (諛곗넚�젙蹂�) */
+#shipping{width:200px;}
+
+/* innerWrap1 (�궡遺��옪) */
+#innerWrap1{width:710px; border:3px solid darkgray; box-sizing: border-box; overflow: hidden;}
+
+#table1 th{width:140px; background:#f9f9f9; color:#666666; text-align: left; 
+padding:20px 5px 20px 25px; border-bottom:1px solid #ededed;}
+
+#table1 td{padding:0 20px; border-bottom:1px solid #ededed;}
+
+#table1 tr{border-bottom: 1px solid black;}
+
+/* value1 (�씠由꾩엯�젰 Input) */
+input.value1{width: 191px;}
+
+/* deliver (諛곗넚吏��꽑�깮) */
+.label{display:inline-block; width:90px; height:35px; line-height: 35px; border:0.5px solid gray; text-align:center; border-radius: 3px;}
+.label:hover{cursor: pointer;}
+
+#first{display:none;}
+#second{display:none;}
+
+#first:checked ~ section.buttons > label:nth-of-type(1){background:#4d5d7b; color:white;}
+#second:checked ~ section.buttons > label:nth-of-type(2){background:#4d5d7b; color:white;}
+
+/* value4 (二쇱냼吏��엯�젰 Input) */
+input.value4{width:460px;}
+
+/* shippingDemand */
+#shippingDemand{vertical-align: middle;}
+.shippingInput{width:460px; vertical-align: middle; display: none;}
+
+/* --------------------------------------------------------- */
+
+/* payment (寃곗젣�젙蹂�) */
+#payment{width:710px; margin-bottom: 30px;}
+
+/* innerWrap2 (�궡遺��옪) */
+#innerWrap2{width:710px; border:3px solid darkgray; box-sizing: border-box;}
+
+#table2 th{width:173px; background:#f9f9f9; color:#666666; text-align: left; padding:20px 5px 20px 25px; border-bottom:1px solid #ededed;}
+
+#table2 td{padding:20px; border-bottom:1px solid #ededed;}
+
+/* 寃곗젣�젙蹂� */
+.payWay{padding:20px; width:450px; overflow:hidden; border:2px solid #ededed;}
+.payWay input[type="text"] {width:180px;}
+.payWay input[type="checkbox"] {display:none;}
+
+.payWay select {width:100px;}
+.payWay .deposit {width:160px; height:35px; line-height: 35px; text-align:center; margin-bottom: 20px; color:white; border-radius: 3px; display:block; border:0.5px solid gray; color:black; cursor: pointer;}
+.depositBox{display:none;}
+.payWay input[id="deposit"]:checked + .deposit {background:#4d5d7b; color:white;}
+.payWay .depositGuide {display:inline-block; width:140px; height:30px; line-height:30px; text-align:center; border:0.5px solid darkgray; vertical-align: middle; border-radius: 3px; font-size: 13px;}
+.payWay .depositGuide:hover{cursor: pointer;}
+.depositExplain{width:425px; margin-top:10px; border:2px    solid #dddddd; font-size: 13px; color:rgb(128, 128, 128); padding:5px 10px; list-style: disc; z-index: 1; background: #f9f9f9; display:none;}
+.depositExplain li{margin:10px 0 10px 10px;}
+
+/* --------------------------------------------------------- */
+
+/* information (二쇰Ц�긽�뭹 �젙蹂�) */
+#information{width:710px; margin-bottom: 30px;}
+
+/* innerWrap3 (�궡遺��옪) */
+#innerWrap3{width:710px; border:3px solid darkgray; overflow: hidden; box-sizing: border-box;}
+
+#table3 th{background:#f9f9f9;; color:#666666; text-align: left; 
+padding:20px; border-bottom:1px solid #ededed; border-right:1px solid #ededed; text-align: center;}
+
+#table3 td{border:1px solid #ededed; text-align: center;}
+
+.productBox{padding-top:20px;}
+.productImg{width:60px; height:80px;}
+.productExplain{line-height: 70px;}
+
+/* --------------------------------------------------------- */
+
+/* paymentSum (寃곗젣湲덉븸) */
+#paymentSum{width:710px;}
+
+/* innerWrap4 (�궡遺��옪) */
+#innerWrap4{width:710px; border:3px solid darkgray; overflow: hidden; box-sizing: border-box;}
+
+#table4 th{background:#f9f9f9;; color:#666666; text-align: left; 
+padding:20px; border-bottom:1px solid #ededed; border-right:1px solid #ededed; text-align: center;}
+
+#table4 td{border:1px solid #ededed; text-align: center; padding:20px;}
+
+/* --------------------------------------------------------- */
+
+/* buyerApproval (二쇰Ц�옄 �룞�쓽) */
+#buyerApproval{width:710px; margin-bottom: 30px;}
+
+/* innerWrap5 (�궡遺��옪) */
+#innerWrap5{width:710px; border:3px solid darkgray; overflow: hidden; box-sizing: border-box; font-size: 12px;}
+
+.slide{width:705px;}
+
+.approvalBox{border-bottom: 1px solid #ededed; padding:20px;}
+
+.approval{width:20px; height:20px; vertical-align: middle;}
+
+.approvalContents{display: inline-block; width:90px; height:30px; line-height:30px; text-align:center; border:1px solid #c3c3c3; font-size: 12px; border-radius:3px; float:right; cursor: pointer;}
+
+.approvalBoxSub{background: #f9f9f9; color:#999; font-size: 11px; padding:20px; margin-top: 10px;}
+
+.approvalBoxSub2{background: #f9f9f9; padding:20px; margin-top: 10px; color:#999;}
+.approvalBoxSub2 textarea{width:255px; height:100px; padding:20px;}
+.approvalBoxSub2 textarea:nth-child(1){margin-right: 20px;}
+.approvalBoxSub2 p {margin-bottom: 10px; color:black;}
+
+.marginLine{border:0.5px solid #ededed; margin:10px 0;}
+
+/* --------------------------------------------------------- */
+
+/* 寃곗젣�븯湲� 踰꾪듉 */
+#payButton{width:270px; height:70px; line-height: 70px; margin:30px 220px; background: #e55; font-size: 20px; color:white; font-weight: bold; text-align: center; border-radius: 5px; cursor: pointer;}
+
+/* --------------------------------------------------------- */
+
+.title{color:white; background: darkgray; padding:7px; border-radius: 5px 5px 0 0; display: inline-block;}
+
+/* input 怨듯넻 */
+input{height:30px; padding:0 10px; text-align: left;}
+input.value2,input.value3{width:35px;}
+
+select{height:34px; padding:0 7px;}
+
+textarea{resize:none; text-align: left;}
