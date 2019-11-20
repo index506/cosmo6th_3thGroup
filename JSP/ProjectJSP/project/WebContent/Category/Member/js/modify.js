@@ -42,7 +42,7 @@ function joinCheck1(){
    }
    else{
 		alert("회원정보 변경이 완료되었습니다.");
-		location.href="../../index.html";
+		location.href="../../main.html";
 	   }
    return true;
 }
