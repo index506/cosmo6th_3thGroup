@@ -12,15 +12,15 @@ public class OrderService {
 	}
 	
 	public void addOrderList() { //주문결제 
-		orderDAO.insertList();
+		//orderDAO.insertList();
 	}
 	
-	public List<OrderVO> selectCartLists(){
+	/*public List<OrderVO> selectCartLists(){
 		
 		List<CartVO>  = orderDAO.selectCartList();
 		
 		return cartLists;
-	}
+	}*/
 	
 	
 	
