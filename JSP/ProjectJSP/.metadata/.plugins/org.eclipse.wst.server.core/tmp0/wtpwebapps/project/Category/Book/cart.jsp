@@ -160,7 +160,8 @@
 	                        <span class="price">${cartLists.amountPrice}</span>원
 	                    </td>
 	                    <td>
-	                        <span style="color: black;" class="deleteBtn">X</span>
+	                        <span style="color: black;" class="deleteBtn" 
+	                        onclick="${contextPath}/book/delete.do?title=${cartLists.title}">X</span>
 	                    </td>
 	                </tr>
                 </c:forEach>

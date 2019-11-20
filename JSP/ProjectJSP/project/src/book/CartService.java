@@ -18,8 +18,8 @@ public class CartService {
 		return cartLists;
 	}
 	
-	public void delList(String title) {
-		cartDAO.delList(title);
+	public void deleteList(String title,String id) {
+		cartDAO.deleteList(title,id);
 	}
 	
 	public void addList(CartVO cartVO) {

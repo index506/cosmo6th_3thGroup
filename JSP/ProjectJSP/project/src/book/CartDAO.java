@@ -160,17 +160,18 @@ public class CartDAO {
 		}
 	}
 	
-	public void delList(String title) { //장바구니 목록 삭제
+	public void deleteList(String title,String id) { //장바구니 목록 삭제
 
-		System.out.println("delList");
+		System.out.println("deleteList");
 		
 		try {
 			con = dataFactory.getConnection();
 			
-			String query = "delete from cart_table where title = ?"; // title명에 해당하는 데이터를 삭제하는 query
+			String query = "delete from cart where title = ? and id = ?";
 			
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, title); // 파라미터의 값으로 가져온 title에 해당하는 값을 set
+			pstmt.setString(2, id);
 			pstmt.executeQuery(); // 쿼리문 실행
 			
 			pstmt.close();

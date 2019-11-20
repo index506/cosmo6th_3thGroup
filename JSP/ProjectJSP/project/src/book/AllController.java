@@ -85,46 +85,19 @@ public class AllController extends HttpServlet {
 				
 				nextPage = "/Category/Book/cart.jsp"; // nextPage : 장바구니 화면으로 이동
 
-			} else if (action.equals("/addList.do")){ // [장바구니 담기] 버튼 클릭시 목록 추가
+			} else if (action.equals("/delete.do")) { // 장바구니 화면에서 삭제[X]버튼 클릭시
 				
-				System.out.println("/addList.do");
-				
-				String id = "세션에서 id 받기";
-				String title = request.getParameter("title"); // 교재의 title(상품명)을 받아온다.
-				
-				System.out.println(id);
-				System.out.println(title);
-				
-				if(cartService.confirmList(id,title)) { // 교재가 존해하는지 여부를 판별하는 메서드
-					
-				} else { // 교재가 존재하지 않음, 장바구니에 저장
-					
-					int quantity = Integer.parseInt(request.getParameter("quantity")); // 교재의 quantity(수량)을 받아온다.
-					int salePrice = Integer.parseInt(request.getParameter("salePrice")); // 교재의 salePrice(수량)을 받아온다
-					
-					System.out.println(quantity);
-					System.out.println(salePrice);
-					cartVO.setId(id); // 세션에서 받아온 id를 cartVO 객체에 저장한다. 
-					cartVO.setTitle(title); // getParameter로 받아온 title를 cartVO 객체에 저장한다.
-					cartVO.setQuantity(quantity); // getParameter로 받아온 quantity를 cartVO 객체에 저장한다.
-					cartVO.setSalePrice(salePrice);
-					cartService.addList(cartVO); // DB에 리스트를 저장(Insert)
-					
-				}
-				
-				nextPage = "/cart/bookList.jsp"; // 다시 구매 페이지로 이동
-				
-			} else if (action.equals("/delList.do")) { // 장바구니 화면에서 삭제[X]버튼 클릭시
-				
-				System.out.println("delList.do");
+				System.out.println("delete.do 立ち入り");
 				
 				String title = request.getParameter("title");
+				String id = "lee2";
+				//String id = request.getSession();
 				
-				cartService.delList(title);
+				cartService.deleteList(title,id);
 
-				nextPage = "/board/viewCartLists.do";
+				nextPage = "/book/cart.do";
 				
-			} else if (action.equals("/updateQuantity.do")) { // 장바구니 화면에서 수량 변경시
+			} else if (action.equals("/update.do")) { // 장바구니 화면에서 수량 변경시
 				
 				System.out.println("updateQuantity.do");
 				
@@ -135,16 +108,6 @@ public class AllController extends HttpServlet {
 				cartService.updateQuantity(title, quantity,salePrice);
 				
 				nextPage = "/board/viewCartLists.do";
-				
-			} else if (action.equals("/viewOrderPage.do")) { // [결제하기] 클릭, order페이지로 이동 시
-				
-				System.out.println("viewOrderPage.do");
-				
-				String id = "세션에서 받아온 ID";
-				request.setAttribute("id", id); // 세션에서 받아온 id를 order.jsp(주문결제)로 넘긴다.
-				
-				nextPage = "/cart/order.jsp";
-				// 세션에서 id를 받아오고, 받아온 id를 setAttribute한 뒤 order.jsp로 넘기기 
 				
 			} else if (action.equals("/cartConfirm.do")) {
 				
