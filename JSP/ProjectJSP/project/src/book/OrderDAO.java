@@ -68,9 +68,7 @@ public class OrderDAO {
 				int quantity = rs.getInt("quantity");
 				int amountPrice = rs.getInt("amountPrice");
 				
-				CartVO cartList = new CartVO(title,price,salePrice,quantity,amountPrice); // 생성자 
 				
-				cartLists.add(cartList);
 				      // .add(cartList) : 선택한 장바구니 목록 cartList를 리스트 cartLists에 저장 
 				
 			}

@@ -1,8 +1,8 @@
 /* wrap (전체랩) */
-#wrap{position: relative; width:970px; height:750px; margin:50px auto 0;}
+#wrap{width:970px; overflow:hidden; margin:50px auto 0;}
 
 /* lnb (로컬네비게이션) */
-.lnb{width: 200px; height: 100%; position: absolute; left:0;}
+.lnb{width: 200px; height: 100%; float:left;}
 .lnb>div{height: 300px; border-left: 1px solid antiquewhite; position: relative;}
 .lnb>div>img{position: absolute; left: 0;}
 .lnb>div>.top{top: 0;}
@@ -10,14 +10,18 @@
 .lnb>div>ul{padding-left: 15px; padding-top: 50px;}
 .lnb>div>ul li{padding-bottom: 10px; font-size: 12px; color: black; font-weight: bold;}
 
-/* innerWrap (내부랩) */
-#innerWrap{position: absolute; right:40px; top:35px; width:710px; height:130px; border:3px solid darkgray;}
+
+/* cartOuterWrap (장바구니 외부랩) */
+#cartOuterWrap{float:right; margin-right: 35px; overflow:hidden;}
+
+/* cartInnerWrap (장바구니 내부랩) */
+#cartInnerWrap{width:710px; border:3px solid darkgray;}
 
 /* processWrap (장바구니 랩) */
-div.processWrap{position: absolute; right:35px;}
+div.processWrap{float:right; margin-right:30px;}
 
 /* process (장바구니,주문결제,주문완료) */
-p.process {float: right; font-size: 19px; font-weight: bold; padding:10px 0;}
+p.process {float: right; font-size: 19px; font-weight: bold; margin-top:10px;}
 p.process:nth-child(3){color:rgb(38, 130, 187);}
 
 /* table (구매테이블) */
@@ -33,11 +37,9 @@ img.amtModify{vertical-align: middle; margin-top:2px;}
 /* cursor (수정이미지,상하버튼) */
 img.amtModify:hover{cursor: pointer;}
 
-.button{position: absolute; width:70px; height:30px; border:1px solid lightgray; background:rgb(96, 160, 199); border-radius: 5px; text-align: center; line-height: 30px; color:white; font-weight: bold;}
-
-.pay{bottom:0; left:270px;}
-.back{bottom:0; right:270px;}
+.buttonBox{text-align: center; clear: both;}
+.button{width:70px; height:30px; border:1px solid lightgray; background:rgb(96, 160, 199); border-radius: 5px; text-align: center; line-height: 30px; color:white; font-weight: bold; display:inline-block; margin:15px 10px 0;}
 
 .deleteBtn{cursor: pointer;}
 
-#orderSheet{position: absolute; left:214px; color:white; background: darkgray; padding:7px; border-radius: 5px;}
+#orderSheet{float:left; color:white; background: darkgray; padding:7px; border-radius: 5px 5px 0 0; margin-left:19px;}

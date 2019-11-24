@@ -11,15 +11,15 @@ public class CartService {
 		cartDAO = new CartDAO();
 	}
 	
-	public ArrayList<CartVO> viewCartLists(){ // 장바구니의 리스트 전체를 반환하는 메소드
+	public ArrayList<CartVO> viewList(){ // 장바구니의 리스트 전체를 반환하는 메소드
 		
-		ArrayList<CartVO> cartLists = cartDAO.viewCartLists();
+		ArrayList<CartVO> cartList = cartDAO.viewList();
 		
-		return cartLists;
+		return cartList;
 	}
 	
-	public void deleteList(String title,String id) {
-		cartDAO.deleteList(title,id);
+	public void deleteList(int cseq) {
+		cartDAO.deleteList(cseq);
 	}
 	
 	public void addList(CartVO cartVO) {

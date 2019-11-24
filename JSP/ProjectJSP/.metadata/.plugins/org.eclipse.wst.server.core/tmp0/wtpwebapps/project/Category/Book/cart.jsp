@@ -20,7 +20,6 @@
 <script type="text/javascript" src="${contextPath}/js/common.js"></script>
 
 <link rel="stylesheet" href="${contextPath}/Category/Book/css/cart.css" />
-
 <script>
         // addComma() : 숫자 타입값을 매개변수로 받아 콤마를 추가하여 문자열로 반환해주는 함수
         function addComma(num) {
@@ -104,11 +103,7 @@
 
     <!-- wrap -->
     <div id="wrap">
-        <div class="processWrap">
-            <p class="process">주문완료&nbsp;</p>
-            <p class="process">주문결제 >&nbsp;</p>
-            <p class="process">장바구니 >&nbsp;</p>
-        </div>
+        
         
         <!-- lnb -->
         <div class="lnb">
@@ -126,13 +121,22 @@
 		    </div>
 		</div>	
         <!-- //lnb -->
-
+        
+        <!-- processWrap -->
+        <div class="processWrap">
+            <p class="process">주문완료&nbsp;</p>
+            <p class="process">주문결제 >&nbsp;</p>
+            <p class="process">장바구니 >&nbsp;</p>
+        </div>
+		<!-- //processWrap -->
+		
         <!-- orderSheet -->
         <h2 id="orderSheet">주문서</h2>
         <!-- //orderSheet -->
 
-        <!-- innerWrap -->
-        <div id="innerWrap">
+		<div id="cartOuterWrap">
+        <!-- cartInnerWrap -->
+        <div id="cartInnerWrap">
             <!-- table -->
             <table id="table" border="1px" cellspacing="0">
                 <tr>
@@ -143,34 +147,49 @@
                     <th>합계</th>
                     <th>삭제</th>
                 </tr>
-                <c:forEach var="cartLists" items="${cartLists}">
-	                <tr>
-	                    <td>${cartLists.title}</td>
-	                    <td>
-	                        <span class="price">${cartLists.price}</span>원
-	                    </td>
-	                    <td>
-	                        <span class="price">${cartLists.salePrice}</span>원
-	                    </td>
-	                    <td>
-	                        <input type="number" class="inputNumber" value="${cartLists.quantity}">
-	                        <img src="${contextPath}/Category/Book/images/icn_modify.gif" class="amtModify" />
-	                    </td>
-	                    <td>
-	                        <span class="price">${cartLists.amountPrice}</span>원
-	                    </td>
-	                    <td>
-	                        <span style="color: black;" class="deleteBtn" 
-	                        onclick="${contextPath}/book/delete.do?title=${cartLists.title}">X</span>
-	                    </td>
-	                </tr>
-                </c:forEach>
+                <c:choose>
+                	<c:when test='${cartList != null}'>
+		                <c:forEach var="cartVO" items="${cartList}">
+			                <tr>
+			                    <td>${cartVO.title}</td>
+			                    <td>
+			                        <span class="price">${cartVO.price}</span>원
+			                    </td>
+			                    <td>
+			                        <span class="price">${cartVO.salePrice}</span>원
+			                    </td>
+			                    <td>
+			                        <input type="number" class="inputNumber" value="${cartVO.quantity}">
+			                        <img src="${contextPath}/Category/Book/images/icn_modify.gif" class="amtModify" />
+			                    </td>
+			                    <td>
+			                        <span class="price">${cartVO.amountPrice}</span>원
+			                    </td>
+			                    <td>
+			                        <a style="color: black;" class="deleteBtn" 
+			                        href="${contextPath}/book/cartDelete.do?cseq=${cartVO.cseq}">X</a>
+			                    </td>
+			                </tr>
+		                </c:forEach>
+	                </c:when>
+	                <c:otherwise>
+	                	<tr>
+	                		<td>
+	                			상품이 존재하지 않습니다.
+	                		</td>
+	                	</tr>
+                	</c:otherwise>
+                </c:choose>
             </table>
             <!-- //table -->
-            <a href="#" class="pay button">결제하기</a>
-            <a href="#" class="back button" onclick="history.back();">구매목록</a>
         </div>
-        <!-- //innerWrap -->
+        <!-- //cartInnerWrap -->
+        <p class="buttonBox">
+	        <a href="#" class="button">결제하기</a>
+	        <a href="#" class="button">구매목록</a>
+        </p>
+        </div>
+        <!-- cartOuterWrap -->
     </div>
     <!-- //wrap -->
 

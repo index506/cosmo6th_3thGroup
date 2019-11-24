@@ -33,14 +33,14 @@ public class BookDAO {
 		}
 	}
 
-	public ArrayList<BookVO> selectBookLists() { // DB에 저장되어있는 교재 목록을 반환하는 메소드
+	public ArrayList<BookVO> selectBookList() { // DB에 저장되어있는 교재 목록을 반환하는 메소드
 		// TODO Auto-generated method stub
 		
-		ArrayList<BookVO> bookLists = new ArrayList<BookVO>();
+		ArrayList<BookVO> bookList = new ArrayList<BookVO>();
 		
 		try {
 			
-			System.out.println("BoardDAO selectBookLists() 立ち入り");
+			System.out.println("BoardDAO selectBookList() 立ち入り");
 			
 			con = dataFactory.getConnection();
 			
@@ -49,9 +49,6 @@ public class BookDAO {
 			
 			pstmt = con.prepareStatement(query);
 			ResultSet rs = pstmt.executeQuery();
-			
-			/* stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(query); */
 			
 			while(rs.next()) {
 				
@@ -72,8 +69,8 @@ public class BookDAO {
 				System.out.println(publisher);
 				System.out.println(writeDate);
 				
-				BookVO bookList = new BookVO(title,price,salePrice,imgURL,publisher,writeDate);
-				bookLists.add(bookList);
+				BookVO bookVO = new BookVO(title,price,salePrice,imgURL,publisher,writeDate);
+				bookList.add(bookVO);
 				
 			}
 			
@@ -85,7 +82,7 @@ public class BookDAO {
 			e.printStackTrace();
 		}
 		
-		return bookLists;
+		return bookList;
 	}
 
 }

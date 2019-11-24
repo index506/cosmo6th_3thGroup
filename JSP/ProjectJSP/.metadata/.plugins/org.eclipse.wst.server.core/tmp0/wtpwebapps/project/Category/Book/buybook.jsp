@@ -24,6 +24,8 @@
 
 <script>
         $(function () {
+        	
+        	
 
             // 교재구매 [수량] 공백일 때, alert(경고창)
             $('input[type=number]').blur(function () {
@@ -53,24 +55,33 @@
                     $(this).val("1").focus();
                 }
             });
-
-            // [장바구니 담기] 클릭 시, confirm(확인/취소)
-            $('.buyBox').click(function(){
-                var answer = confirm("선택하신 상품이 장바구니에 담겼습니다." + '\n' +"장바구니로 이동하시겠습니까?");
-                if(answer)
-                    location.href = 'cart.html';
-            });
-
-            // [장바구니 >>] 클릭 시, confirm(확인/취소)
-            $('.buyButton').click(function(){
-            var answer = confirm("장바구니로 이동하시겠습니까?");
-                if(answer)    
-                    location.href = 'cart.html';
-            });
-        });
+           
 </script>
-<script>
-</script>
+<c:choose>
+
+	<c:when test='${message=="pass"}'>
+		<script>
+			window.onload=function(){
+				var answer = confirm("선택하신 상품이 장바구니에 담겼습니다." + '\n' +"장바구니로 이동하시겠습니까?");
+				if(answer){
+					location.href = '${contextPath}/book/cart.do';
+					message="";
+				}
+					
+			}
+		</script>	
+	</c:when>
+	
+	<c:when test='${message=="fail"}'>
+		<script>
+			window.onload=function(){
+				alert("선택하신 상품은 이미 장바구니에 존재합니다.");
+				message="";
+			}
+		</script>
+	</c:when>
+	
+</c:choose>
 </head>
 <body>
     <!--main_header_wrap-->
@@ -102,35 +113,35 @@
         </h2>
         <!-- buy_book -->
         <div id="buy_book">
-        <c:forEach var="bookLists" items="${bookLists}">
+        <c:forEach var="bookVO" items="${bookList}">
             <!-- boxWrap -->
             <div class="boxWrap">
-                <h3>${bookLists.title}</h3>
+                <h3>${bookVO.title}</h3>
                 <!-- box1 -->
                 <div class="box">
                     <!-- imageBox -->
                     <div class="imageBox">
-                        <img src="${contextPath}/Category/Book/images/buybook/img_book_${bookLists.imgURL}.jpg"/>
+                        <img src="${contextPath}/Category/Book/images/buybook/img_book_${bookVO.imgURL}.jpg"/>
                     </div>
                     <!-- //imageBox -->
 
-					<form action="${contextPath}/book/cartConfirm.do" name="frm" method="post">
+					<form action="${contextPath}/book/cartInsert.do" name="frm" method="post">
                     <!-- textBox -->
                     <div class="textBox">
 		                   <p>
-			                            정가 : ${bookLists.price}원
-			               <input type="hidden" name="price" value="${bookLists.price}">
+			                            정가 : ${bookVO.price}원
+			               <input type="hidden" name="price" value="${bookVO.price}">
 			                            <br>
-			                            할인가 : ${bookLists.salePrice}원
-			               <input type="hidden" name="salePrice" value="${bookLists.salePrice}">
+			                            할인가 : ${bookVO.salePrice}원
+			               <input type="hidden" name="salePrice" value="${bookVO.salePrice}">
 			                            <br>
-			               ${bookLists.publisher}<span style="font-size:12px;">(저)</span>
-			               <input type="hidden" name="publisher" value="${bookLists.publisher}">
+			               ${bookVO.publisher}<span style="font-size:12px;">(저)</span>
+			               <input type="hidden" name="publisher" value="${bookVO.publisher}">
 			                            <br>
-			                            발행 : ${bookLists.writeDate}
-			               <input type="hidden" name="writeDate" value="${bookLists.writeDate}">
-			               <input type="hidden" name="imgUrl" value="${bookLists.imgURL}">
-			               <input type="hidden" name="title" value="${bookLists.title}">
+			                            발행 : ${bookVO.writeDate}
+			               <input type="hidden" name="writeDate" value="${bookVO.writeDate}">
+			               <input type="hidden" name="imgUrl" value="${bookVO.imgURL}">
+			               <input type="hidden" name="title" value="${bookVO.title}">
 			                            <br>
 			                            수량 : <input type="number" name="quantity" value="1">
                            </p>

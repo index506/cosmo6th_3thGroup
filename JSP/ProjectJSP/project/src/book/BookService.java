@@ -11,10 +11,10 @@ public class BookService {
 		bookDAO = new BookDAO();
 	}
 
-	public ArrayList<BookVO> selectBookLists() {
+	public ArrayList<BookVO> selectBookList() {
 		// TODO Auto-generated method stub
 		
-		ArrayList<BookVO> bookLists = bookDAO.selectBookLists();
+		ArrayList<BookVO> bookLists = bookDAO.selectBookList();
 		
 		return bookLists;
 		
