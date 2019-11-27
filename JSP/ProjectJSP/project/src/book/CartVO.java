@@ -20,13 +20,14 @@ public class CartVO { // 장바구니 객체
 		
 	}
 	
-	public CartVO(String title, int price, int salePrice, int quantity, int amountPrice, int cseq) {
+	public CartVO(String title, int price, int salePrice, int quantity, int amountPrice, int cseq, String imgurl) {
 		
 		this.title = title;
 		this.price = price;
 		this.salePrice = salePrice;
 		this.quantity = quantity;
 		this.amountPrice = amountPrice;
+		this.imgUrl = imgurl;
 		this.cseq = cseq;
 		
 	}

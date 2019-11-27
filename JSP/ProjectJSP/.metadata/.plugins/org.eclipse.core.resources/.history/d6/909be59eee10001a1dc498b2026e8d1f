@@ -1,0 +1,17 @@
+package book;
+
+public class OrderVO { // 주문결제 객체
+
+	private String Orderer; //주문자
+	private String name; //이름
+	private int phoneNumber; //연락처
+	private String address; //주소
+	private String shippingDemand; //배송시 요청사항
+	private String depositBank; //입금은행
+	private String depositNumber; //입금계좌
+	private int Price; // 총상품금액
+	private int allPrice; // 총결제금액
+	
+	
+	
+}

@@ -113,68 +113,44 @@ public class OrderDAO {
 		}
 		
 	}
-	
 
-	public void insertList(CartVO cartList) { // 장바구니 목록 추가 메서드
+	public OrderVO selectPrice() {
+		// TODO Auto-generated method stub
+		System.out.println("selectPrice()");
 		
-		System.out.println("insertList");	
-		
-		String id = cartList.getId();
-		String title = cartList.getTitle();
-		int price = cartList.getPrice();
-		int salePrice = cartList.getSalePrice();
-		int quantity = cartList.getQuantity();
-		int amountPrice = cartList.getAmountPrice();
-		String imgUrl = cartList.getImgUrl();
+		OrderVO orderVO = new OrderVO();
 		
 		try {
+
 			con = dataFactory.getConnection();
+			String id = "lee2";
+			String query = "select sum(price),sum(salePrice) from cart where id = ?";
+			// update 쿼리문을 query 변수에 저장
 			
-			String query = "insert into t_board values (?,?,?,?,?,?,?)";
 			System.out.println(query);
 			
-			pstmt = con.prepareStatement(query);
+			pstmt = con.prepareStatement(query); 
 			pstmt.setString(1, id);
-			pstmt.setString(2, title);
-			pstmt.setInt(3, price);
-			pstmt.setInt(4, salePrice);
-			pstmt.setInt(5, quantity);
-			pstmt.setInt(6, amountPrice);
-			pstmt.setString(7, imgUrl);
+			ResultSet rs = pstmt.executeQuery();
 			
-			pstmt.executeQuery();
+			rs.next();
+			orderVO.setPrice(rs.getInt("sum(price)"));
+			orderVO.setAllPrice(rs.getInt("sum(salePrice)"));
+			
+			System.out.println("sum(price) : " + rs.getInt("sum(price)"));
+			System.out.println("sum(salePrice) : " + rs.getInt("sum(salePrice)"));
+			
 			pstmt.close();
 			con.close();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void delList(String title) {
 
-		System.out.println("delList");
-		
-		try {
-			con = dataFactory.getConnection();
-			
-			String query = "delete from cart_table where title = ?"; // title명에 해당하는 데이터를 삭제하는 query
-			
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, title); // 파라미터의 값으로 가져온 title에 해당하는 값을 set
-			pstmt.executeQuery(); // 쿼리문 실행
-			
-			pstmt.close();
-			con.close();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
+		
 		}
 		
-		
+		return orderVO;
 	}
-	
-	
+
 }
 
 

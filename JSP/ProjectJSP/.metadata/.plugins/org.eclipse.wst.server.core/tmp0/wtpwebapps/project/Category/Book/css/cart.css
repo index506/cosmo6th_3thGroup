@@ -27,15 +27,12 @@ p.process:nth-child(3){color:rgb(38, 130, 187);}
 /* table (구매테이블) */
 #table{width:100%; border:1px solid lightgray; text-align: center; margin-top: 20px;}
 #table th {background: rgb(233, 233, 233); color:rgb(70, 70, 70);}
+#table tr {padding:20px;}
 
 /* inputNumber (수량 입력태그) */
-.inputNumber {width:50px; height:15px; text-align: center; vertical-align: middle;}
+.inputNumber {width:50px; height:15px; text-align: center; vertical-align:middle;}
 
-/* img (수정이미지) */
-img.amtModify{vertical-align: middle; margin-top:2px;}
-
-/* cursor (수정이미지,상하버튼) */
-img.amtModify:hover{cursor: pointer;}
+input[type="button"]{vertical-align:middle;}
 
 .buttonBox{text-align: center; clear: both;}
 .button{width:70px; height:30px; border:1px solid lightgray; background:rgb(96, 160, 199); border-radius: 5px; text-align: center; line-height: 30px; color:white; font-weight: bold; display:inline-block; margin:15px 10px 0;}

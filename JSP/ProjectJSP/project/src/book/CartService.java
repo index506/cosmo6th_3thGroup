@@ -11,9 +11,9 @@ public class CartService {
 		cartDAO = new CartDAO();
 	}
 	
-	public ArrayList<CartVO> viewList(){ // 장바구니의 리스트 전체를 반환하는 메소드
+	public ArrayList<CartVO> selectCartList(){ // 장바구니의 리스트 전체를 반환하는 메소드
 		
-		ArrayList<CartVO> cartList = cartDAO.viewList();
+		ArrayList<CartVO> cartList = cartDAO.selectCartList();
 		
 		return cartList;
 	}
@@ -33,8 +33,8 @@ public class CartService {
 		return result;
 	}
 	
-	public void updateQuantity(String title, int quantity, int salePrice) {
-		cartDAO.updateQuantity(title,quantity,salePrice);
+	public void updateList(int cseq, int quantity, int salePrice) {
+		cartDAO.updateList(cseq,quantity,salePrice);
 	}
 	
 }

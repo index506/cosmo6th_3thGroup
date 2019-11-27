@@ -37,7 +37,7 @@ public class CartDAO {
 		
 	}
 
-	public ArrayList<CartVO> viewList() { // 장바구니 리스트 List 객체 반환 메소드
+	public ArrayList<CartVO> selectCartList() { // 장바구니 리스트 List 객체 반환 메소드
 		
 		ArrayList<CartVO> cartList = new ArrayList<CartVO>(); 
 		
@@ -48,9 +48,7 @@ public class CartDAO {
 			
 			con = dataFactory.getConnection();
 			
-			String query = "select title, price, salePrice, quantity, amountPrice, cseq "
-					+"from cart "
-					+"where id = ?"; // 세션에서 id를 가져와 해당 id에 해당하는 장바구니 목록들을 선택하는 query  
+			String query = "select * from cart where id = ?";
 
 			String id = "lee2"; // 세션에서 가져온 id를 저장
 			pstmt = con.prepareStatement(query); 
@@ -66,12 +64,23 @@ public class CartDAO {
 				int salePrice = rs.getInt("salePrice");
 				int quantity = rs.getInt("quantity");
 				int amountPrice = rs.getInt("amountPrice");
+				String imgUrl = rs.getString("imgurl");
 				int cseq = rs.getInt("cseq");
+				
+				/*
+				private String id; //사용자 id 
+				private String title; //교재명 
+				private int price; //판매가
+				private int salePrice; //할인가
+				private int quantity; //수량  
+				private int amountPrice; //합계액 
+				private String imgUrl; //이미지URL
+				private int cseq;
+				*/
 				
 				System.out.println("cseq : " + rs.getInt("cseq"));
 				
-				CartVO cartVO = new CartVO(title,price,salePrice,quantity,amountPrice,cseq); // 생성자 
-				
+				CartVO cartVO = new CartVO(title,price,salePrice,quantity,amountPrice,cseq,imgUrl); // 생성자 
 				cartList.add(cartVO);
 			}
 			
@@ -86,16 +95,16 @@ public class CartDAO {
 	}
 
 	
-	public void updateQuantity(String title, int quantity, int salePrice) { // 장바구니 목록 업데이트 메서드(제목,수량,할인가)
+	public void updateList(int cseq, int quantity, int salePrice) { // 장바구니 목록 업데이트 메서드(제목,수량,할인가)
 
-		System.out.println("updateQuantity");
+		System.out.println("updateList() 立ち入り");
 		
 		int amountPrice = quantity*salePrice;
 		
 		try {
 
 			con = dataFactory.getConnection();
-			String query = "update cart_table set quantity=?, amountprice=? where title=?";
+			String query = "update cart set quantity=?, amountprice=? where cseq=?";
 			// update 쿼리문을 query 변수에 저장
 			
 			System.out.println(query);
@@ -103,7 +112,7 @@ public class CartDAO {
 			pstmt = con.prepareStatement(query); 
 			pstmt.setInt(1, quantity);
 			pstmt.setInt(2, amountPrice);
-			pstmt.setString(3, title);
+			pstmt.setInt(3, cseq);
 			
 			pstmt.executeUpdate();
 			pstmt.close();

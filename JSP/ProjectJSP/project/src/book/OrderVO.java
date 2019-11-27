@@ -2,69 +2,78 @@ package book;
 
 public class OrderVO { // 주문결제 객체
 
-	private String Orderer; //주문자
+	private String userName; //주문자
 	private String name; //이름
 	private int phoneNumber; //연락처
 	private String address; //주소
 	private String shippingDemand; //배송시 요청사항
+	private String shippingInput; //직접입력
 	private String depositBank; //입금은행
 	private String depositNumber; //입금계좌
+	private int price; // 총상품금액
+	private int allPrice; // 총결제금액
 	
 	
-	// Orderer get/set 
-	public String getOrderer() {
-		return Orderer;
+	
+	public String getShippingInput() {
+		return shippingInput;
 	}
-	public void setOrderer(String orderer) {
-		Orderer = orderer;
+	public void setShippingInput(String shippingInput) {
+		this.shippingInput = shippingInput;
 	}
-	
-	// name get/set
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		userName = userName;
+	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	// phoneNumber get/set
 	public int getPhoneNumber() {
 		return phoneNumber;
 	}
 	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
-	// address get/set
 	public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	// shippingDemand get/set
 	public String getShippingDemand() {
 		return shippingDemand;
 	}
 	public void setShippingDemand(String shippingDemand) {
 		this.shippingDemand = shippingDemand;
 	}
-	
-	// depositBank get/set
 	public String getDepositBank() {
 		return depositBank;
 	}
 	public void setDepositBank(String depositBank) {
 		this.depositBank = depositBank;
 	}
-	
-	// depositNumber get/set
 	public String getDepositNumber() {
 		return depositNumber;
 	}
 	public void setDepositNumber(String depositNumber) {
 		this.depositNumber = depositNumber;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getAllPrice() {
+		return allPrice;
+	}
+	public void setAllPrice(int allPrice) {
+		this.allPrice = allPrice;
 	}
 	
 }

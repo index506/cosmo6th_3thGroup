@@ -23,24 +23,32 @@
 <script src="${contextPath}/Category/Book/js/order.js"></script>
 
 <script>
-        $(function () {
 
-            // 기본배송지/신규배송지 선택
-            $('input[type="radio"]').change(function () {
-                if ($('#first').is(':checked')) {
-                    $('input.value1').val("이유의");
-                    $('input.value2').val("4106");
-                    $('input.value3').val("1562");
-                    $('input.value4').val("서울특별시 송파구 가락2동 쌍용APT");
-                } else if ($('#second').is(':checked')) {
-                    for(var i=1; i<=4; i++)
-                        $('input.value'+i).val("");
-                }
-            }).click();
+		function get_UserInfo(){
+				
+		}
+
+        $(function () {
 
             // [입금은행] 선택
             $('.selectBank').change(function () {
-                var value = $(this).find('option:not(:first):selected').val();
+                var selectBank = $(this).find('option:not(:first):selected').val();
+                var value;
+                
+                if(selectBank == "기업은행"){
+                	value = "112-562-876312";
+                } else if (selectBank == "외환은행"){
+                	value = "869-232-418332";
+                } else if (selectBank == "국민은행"){
+                	value = "209-745-968032";
+                } else if (selectBank == "농협은행"){
+                	value = "142-535-150153";
+                } else if (selectBank == "우리은행"){
+                	value = "532-445-867492";
+                } else if (selectBank == "신한은행"){
+                	value = "993-481-102480";
+                }
+                
                 $('.selectedBank').val(value);
             });
 
@@ -110,7 +118,7 @@
                 // 모든 조건 만족시, 페이지 이동
                 if(index == 7){ 
                     if(confirm("결제를 진행하시겠습니까?"))
-                        location.href = "completed.html";
+                        $('input[type="submit"]').click();
                 }
                 /* 
                     location.href : 새로운 페이지로 이동
@@ -187,8 +195,10 @@
                 <h2 class="title">배송정보</h2>
                 <!-- //title1 -->
 
+		<form name="frm" method="post" action="${contextPath}/book/completed.do">
                 <!-- innerWrap -->
                 <div id="innerWrap1">
+           
                     <table id="table1" cellspacing="0" width="100%">
                         <tr>
                             <th>주문자</th>
@@ -197,8 +207,8 @@
                         <tr>
                             <th>배송지선택</th>
                             <td>
-                                <input id="second" type="radio" name="tab" />
-                                <input id="first" type="radio" name="tab" />
+                                <input id="second" type="radio" name="tab"/>
+                                <input id="first" type="radio" name="tab" onclick="get_UserInfo();"/>
                                 <section class="buttons">
                                     <label class="label" for="first">기본배송지</label>
                                     <label class="label" for="second">신규배송지</label>
@@ -211,30 +221,31 @@
                         <tr>
                             <th>이름</th>
                             <td>
-                                <input type="text" placeholder="이름을 입력해주세요." class="value1">
+                                <input type="text" name="name"
+                                placeholder="이름을 입력해주세요." class="value1">
                             </td>
                         </tr>
                         <tr>
                             <th>연락처</th>
                             <td>
-                                <select>
+                                <select name="phoneNumber">
                                     <option>010</option>
                                     <option>011</option>
                                 </select> -
-                                <input type="text" class="value2" maxlength="4"> -
-                                <input type="text" class="value3" maxlength="4">
+                                <input type="text" name="phoneNumber" class="value2" maxlength="4"> -
+                                <input type="text" name="phoneNumber" class="value3" maxlength="4">
                             </td>
                         </tr>
                         <tr>
                             <th>주소</th>
                             <td>
-                                <input type="text" class="value4" placeholder="주소를 입력해주세요.">
+                                <input type="text" name="address" class="value4" placeholder="주소를 입력해주세요.">
                             </td>
                         </tr>
                         <tr>
                             <th>배송시 요청사항</th>
                             <td>
-                                <select id="shippingDemand">
+                                <select id="shippingDemand" name="shippingDemand">
                                     <option selected>배송시 요청사항 선택</option>
                                     <option>부재시 경비실에 맡겨주세요.</option>
                                     <option>부재시 휴대폰으로 연락 바랍니다.</option>
@@ -242,7 +253,7 @@
                                     <option>택배함에 넣어주세요.</option>
                                     <option value="input">직접입력</option>
                                 </select>
-                                <input type="text" class="shippingInput">
+                                <input type="text" class="shippingInput" name="shippingInput">
                             </td>
                         </tr>
                     </table>
@@ -269,18 +280,26 @@
                                 <label class="deposit" for="deposit">무통장입금</label>
                                 <div class="depositBox">
                                     <strong>입금은행</strong> &nbsp;&nbsp;&nbsp;
-                                    <select class="selectBank">
+                                    <select class="selectBank" name="depositBank">
                                         <option selected>은행선택</option>
-                                        <option value="112-562-876312">기업은행</option>
-                                        <option value="869-232-418332">외환은행</option>
-                                        <option value="209-745-968032">국민은행</option>
-                                        <option value="142-535-150153">농협은행</option>
-                                        <option value="532-445-867492">우리은행</option>
-                                        <option value="993-481-102480">신한은행</option>
+                                        <option value="기업은행">기업은행</option>
+                                        <option value="외환은행">외환은행</option>
+                                        <option value="국민은행">국민은행</option>
+                                        <option value="농협은행">농협은행</option>
+                                        <option value="우리은행">우리은행</option>
+                                        <option value="신한은행">신한은행</option>
+									<!-- 
+										  기업 112-562-876312 
+										  외환 869-232-418332
+										  국민 209-745-968032
+										  농협 142-535-150153
+										  우리 532-445-867492
+										  신한 993-481-102480
+										  					-->
                                     </select>
                                     <br><br>
                                     <strong>입금계좌</strong> &nbsp;&nbsp;&nbsp;
-                                    <input type="text" placeholder="입금은행 선택시 표시됩니다." class="selectedBank">&nbsp;
+                                    <input type="text" name="depositNumber" placeholder="입금은행 선택시 표시됩니다." class="selectedBank">&nbsp;
                                     <div class="depositGuide">무통장입금 이용안내</div>
                                     <ul class="depositExplain">
                                         <li>
@@ -325,26 +344,38 @@
                         <th>할인적용금액</th>
                         <th>배송비</th>
                     </tr>
-                    <tr>
-                        <td>
-                            <div class="productBox">
-                                <img src="${contextPath}/Category/Book/images/buybook/img_book_01.jpg" alt="상품이미지" class="productImg"/><br>
-                                <div class="productExplain">정보처리기사 필기(ALL-PASS)</div>
-                            </div>
-                        </td>
-                        <td>1</td>
-                        <td><strong>25,000</strong>원</td>
-                        <td><strong>2,500</strong>원</td>
-                        <td><strong style="color:red;">22,500</strong>원</td>
-                        <td>무료</td>
-                    </tr>
+                    <c:forEach items="${cartList}" var="cartVO">
+	                    <tr>
+	                        <td>
+	                            <div class="productBox">
+	                                <img src="${contextPath}/Category/Book/images/buybook/img_book_${cartVO.imgUrl}.jpg" alt="상품이미지" class="productImg"/><br>
+	                                <div class="productExplain">${cartVO.title}</div>
+	                            </div>
+	                        </td>
+	                        <td>${cartVO.quantity}</td>
+	                        <td>
+	                        	<strong>
+	                        		<fmt:formatNumber value="${cartVO.price}"/>
+	                        	</strong>원
+	                        </td>
+	                        <td>
+	                        	<strong>
+	                        		<fmt:formatNumber value="${cartVO.price - cartVO.salePrice}"/>
+	                        	</strong>원
+	                        </td>
+	                        <td>
+	                        	<strong style="color:red;">
+	                        		<fmt:formatNumber value="${cartVO.salePrice}"/>
+	                        	</strong>원
+	                        </td>
+	                        <td>무료</td>
+	                    </tr>
+                    </c:forEach>
                 </table>
             </div>
             <!-- //innerWrap3 -->
         </div>
         <!-- //information -->
-
-
 
         <!-- buyerApproval -->
         <div id="buyerApproval">
@@ -457,16 +488,24 @@
                         <th>최종 결제금액</th>
                     </tr>
                     <tr>
-                        <td>25,000원</td>
+                        <td>
+                        	<fmt:formatNumber value="${orderVO.price}"/>
+                        </td>
                         <td>무료</td>
-                        <td>2,500원</td>
-                        <td>22,500원</td>
+                        <td>
+                        	<fmt:formatNumber value="${orderVO.price - orderVO.allPrice}"/>	
+                        </td>
+                        <td>
+                        	<fmt:formatNumber value="${orderVO.allPrice}"/>	
+                        </td>
                     </tr>
                 </table>
             </div>
             <!-- //innerWrap4 -->
         </div>
         <!-- //paymentSum -->
+        <input type="submit" name="submit" style="display:none;">
+        </form>
 
         <div id="payButton">결제하기</div>
         
