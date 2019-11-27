@@ -1,7 +1,8 @@
-.pwd_wrap{
+.content.pwd_wrap{
     width: 670px;
     height: 300px;
-    margin: 50px;
+    margin-top: 80px;
+    margin-left:50px;
 }
 .pwd_img{
     width: 260px; height: 130px;
@@ -38,15 +39,15 @@ hr{
 /* find password 2 */
 
 .pwd2_wrap{
-    width: 700px; 
-    margin: 30px; 
+    margin-left:50px;
+    margin-top: 30px ; 
 }
 .pwd2_wrap h2 { }
 .pwd2_wrap p{
     margin: 5px 0;
 }
 .certi_box{
-    width: 400px; height: 200px; 
+    width: 415px; height: 200px; 
     border: 1px solid #999;
 
 }
@@ -59,8 +60,7 @@ hr{
 
 /* reset password */
 .pwd3_wrap{
-    width: 700px;
-    margin: 30px;
+   margin:30px auto 50px 60px;
 }
 .pwd3_wrap h2{ margin-bottom: 10px;}
 .tit_lbl {
@@ -86,7 +86,7 @@ input[type=password] {
 }
 .repwd_box{
     margin-top: 5px;
-    width: 410px; height: 240px;
+    width: 420px; 
     border: 1px solid #999;
 }
 .hidden1{display:none;}
@@ -96,7 +96,7 @@ input[type=password] {
 .btn { 
     background-color: bisque;
     width: 70px; height: 35px;
-    margin: 5px 30px;
+    margin: 5px 30px 15px 30px;
 }
 .confirm{ width:100px;}
 .cancel{

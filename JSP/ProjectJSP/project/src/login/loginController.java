@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+
 /**
  * Servlet implementation class loginServlet
  */
@@ -102,24 +104,77 @@ public class loginController extends HttpServlet {
 	    	}else if(action!=null && action.equals("/find_pwd.do")) {//비밀번호 찾기 
 	    		System.out.println("find_pwd.do로 들어왔어");
 	    		String user_id = request.getParameter("user_id");	    		
-	    		System.out.println("넘어온ID="+user_id);	    		
-	    		MemberVO memberVO = new MemberVO();
-	    		memberVO.setName(user_id);	    			    		
+	    		System.out.println("넘어온ID="+user_id);	  
+	    		
+	    		
 	    		MemberDAO dao = new MemberDAO();
-	    		boolean result = dao.FindPWD(memberVO);
-	    		 
-	    		if(result) {
+	    		String DBId = dao.FindPWD(user_id);
+	    		
+	    		if(user_id.equals(DBId)) {
 	    			System.out.println("DB에 회원이 있어요true에요");
+		    		HttpSession session = request.getSession();
+		    		session.setAttribute("login.id", user_id);
 		    		nextPage = "/Category/Member/find_pwd2.jsp";	 		    				    		
 	    		}else {
 	    			System.out.println("DB에 회원이 없어요false에요");
 		    		nextPage = "/Category/Member/find_pwd_fail.html";	
 	    		}
 	    	}
-	    	else if(action!=null && action.equals("/resetPWD.do")) {//비밀번호 재설정
-	    		System.out.println("resetPWD로 들어왔어");
+	    	
+	    	else if(action!=null && action.equals("/mwc.do")) {//회원탈퇴 전 비밀번호 재확인 
+	    		System.out.println("MembershipWithdrawal 비밀번호 확인하기");
+	    		String user_pwd = request.getParameter("user_pwd");
+	    		
+	    		HttpSession session = request.getSession();	    		
+	    		MemberVO memberVO = new MemberVO();
+	    		memberVO.setId((String)session.getAttribute("login.id"));
+	    		System.out.println("세션에서 받은 아이디 : "+(String)session.getAttribute("login.id"));
+	    		memberVO.setPwd(user_pwd);
+	    		System.out.println(user_pwd);
+	    		MemberDAO dao = new MemberDAO();
+	    		boolean result = dao.isExisted(memberVO);//로그인 기능을 다시 활용한다. 	    			    			    		
+	    		
+	    		if(result) {
+	    			System.out.println("비밀번호 맞아요");
+	    			
+		    		nextPage = "/Category/Member/membership_Withdrawal2.jsp";
+	    		}else {
+	    			System.out.println("비밀번호 틀렸어요");
+		    		nextPage = "/Category/Member/reconfirm_fail.html";		    		
+	    		}
+	    		
+	    		
+	    	}else if(action!=null && action.equals("/memberOut.do")) {//회원탈퇴 
+	    		System.out.println("회원탈퇴로 들어왔어");
+	    		nextPage = "/Category/Member/memberOutOK.html";
+	    		HttpSession session = request.getSession();
+	    		String user_id = (String) session.getAttribute("login.id");
+	    		MemberDAO dao = new MemberDAO();
+	    		dao.memberOut(user_id);
 	    		
 	    	}
+	    	else if(action!=null && action.equals("/resetPWD.do")) {//비밀번호 재설정
+	    		System.out.println("resetPWD로 들어왔어");
+	    		nextPage = "../../Category/Member/login_main.jsp";
+	    		HttpSession session = request.getSession();
+	    		String user_id = (String) session.getAttribute("user_id");
+	    		String user_pwd = request.getParameter("user_pwd");
+	    		System.out.println(user_id);
+	    		if(user_id==null) {
+	    			nextPage ="../../Category/Member/find_pwd.jsp";
+	    		}else {
+	    			
+	    			MemberVO memberVO = new MemberVO();
+		    		memberVO.setId((String)session.getAttribute("user_id"));
+		    		System.out.println("세션에서 받은 아이디 : "+(String)session.getAttribute("user_id"));
+		    		memberVO.setPwd(user_pwd);
+		    		MemberDAO dao = new MemberDAO();
+		    		memberVO = dao.resetPWD(memberVO);
+		    		
+		    		nextPage="/Category/Member/login_main.jsp";
+	    		}
+	    	}
+	    	
 	    	RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		    dispatch.forward(request, response);
 	    }catch(Exception e) {
