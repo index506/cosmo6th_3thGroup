@@ -24,8 +24,6 @@
 
 <script>
         $(function () {
-        	
-        	
 
             // 교재구매 [수량] 공백일 때, alert(경고창)
             $('input[type=number]').blur(function () {
@@ -55,10 +53,10 @@
                     $(this).val("1").focus();
                 }
             });
-           
+        });
 </script>
-<c:choose>
 
+<c:choose>
 	<c:when test='${message=="pass"}'>
 		<script>
 			window.onload=function(){
@@ -76,11 +74,9 @@
 		<script>
 			window.onload=function(){
 				alert("선택하신 상품은 이미 장바구니에 존재합니다.");
-				message="";
 			}
 		</script>
 	</c:when>
-	
 </c:choose>
 </head>
 <body>
@@ -170,8 +166,5 @@
     <jsp:include page="/WEB-INF/view/footer.jsp" flush="false"/>
     <!--//main_footer-->
 
-</body>
-
-</html>
 </body>
 </html>

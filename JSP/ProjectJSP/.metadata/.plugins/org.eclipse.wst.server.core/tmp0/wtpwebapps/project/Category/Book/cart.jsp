@@ -21,20 +21,36 @@
 
 <link rel="stylesheet" href="${contextPath}/Category/Book/css/cart.css" />
 <script>
-        // addComma() : 숫자 타입값을 매개변수로 받아 콤마를 추가하여 문자열로 반환해주는 함수
-        function addComma(num) {
-            var regexp = /\B(?=(\d{3})+(?!\d))/g;
-            return num.toString().replace(regexp, ',');
+		
+		function go_order(){
+								   // undefined : 속성의 length가 1일때 undefined가 반환된다. 
+			if(document.frm.length == undefined){
+				return false;
+			}
+		}
+
+        function go_cart_update(stsIndex){
+        	
+        	alert("stsIndex : " + stsIndex);
+        	    		
+       		if(document.getElementsByClassName('frm').length == 1){
+       			document.frm.action = "${contextPath}/book/cartUpdate.do";
+           		document.frm.submit();
+       		} else {
+       			document.frm[stsIndex].action = "${contextPath}/book/cartUpdate.do";
+           		document.frm[stsIndex].submit();	
+       		}
+        }
+        
+        function go_cart_delete(){
+        	if(confirm("삭제하시겠습니까?")){
+        		return true;
+        	} else {
+        		return false;
+        	}
         }
 
         $(function () {
-
-            // 페이지 출력시 판매가,할인가,합계를 최초입력
-            // addComma() : 숫자 타입값을 매개변수로 받아 콤마를 추가하여 문자열로 반환해주는 함수
-            $('span.price').each(function () {
-                var value = $(this).text();
-                $(this).text(addComma(Number(value)));
-            });
 
             // 장바구니 [수량] 변경 시, 1보다 작은 값을 입력하면 alert(알림창)
             $('.inputNumber').on("change keyup paste", function () {
@@ -63,22 +79,6 @@
                     alert("최소 구매수량은 1개입니다.");
                     $(this).val("1").focus();
                 }
-            });
-
-            // [수정] 버튼 클릭 시, alert(알림창)
-            $('.amtModify').click(function () {
-                var price = Number($('span.price:eq(1)').text().replace(",", ""));
-                var aftPrice = price * $('.inputNumber').val();
-                var amountSpan = $('span.price:eq(2)');
-                amountSpan.text(addComma(aftPrice));
-                alert("변경되었습니다.");
-            });
-
-            // [삭제] 버튼 클릭 시
-            $('.deleteBtn').click(function () {
-                var row = $(this).parent().parent();
-                if (confirm("삭제하시겠습니까?"))
-                    row.remove();
             });
 
             // [결제하기] 버튼 클릭 시
@@ -148,28 +148,38 @@
                     <th>삭제</th>
                 </tr>
                 <c:choose>
-                	<c:when test='${cartList != null}'>
-		                <c:forEach var="cartVO" items="${cartList}">
-			                <tr>
-			                    <td>${cartVO.title}</td>
-			                    <td>
-			                        <span class="price">${cartVO.price}</span>원
-			                    </td>
-			                    <td>
-			                        <span class="price">${cartVO.salePrice}</span>원
-			                    </td>
-			                    <td>
-			                        <input type="number" class="inputNumber" value="${cartVO.quantity}">
-			                        <img src="${contextPath}/Category/Book/images/icn_modify.gif" class="amtModify" />
-			                    </td>
-			                    <td>
-			                        <span class="price">${cartVO.amountPrice}</span>원
-			                    </td>
-			                    <td>
-			                        <a style="color: black;" class="deleteBtn" 
-			                        href="${contextPath}/book/cartDelete.do?cseq=${cartVO.cseq}">X</a>
-			                    </td>
-			                </tr>
+                	<c:when test="${!empty cartList}">
+                											   <!-- varStatus="status" : 인덱스를 활용한 태그 상태 속성 -->
+		                <c:forEach var="cartVO" items="${cartList}" varStatus="status">
+		                	<form name="frm" method="post" class="frm">
+				                <tr>
+				                    <td>${cartVO.title}</td>
+				                    <td>
+				                        <span class="price">
+				                        	<fmt:formatNumber value="${cartVO.price}"/>
+				                        </span>원
+				                    </td>
+				                    <td>
+				                        <span class="price">
+				                        	<fmt:formatNumber value="${cartVO.salePrice}"/>
+				                        </span>원
+				                    </td>
+				                    <td>
+				                        <input type="number" name="quantity" value="${cartVO.quantity}" class="inputNumber" >
+				                        <input type="hidden" name="cseq" value="${cartVO.cseq}">
+				                        <input type="hidden" name="salePrice" value="${cartVO.salePrice}">
+				                        <input type="button" value="수정" onclick="go_cart_update(${status.index});">
+				                    </td>
+				                    <td>
+				                        <span class="price">
+				                        	<fmt:formatNumber value="${cartVO.amountPrice}"/>
+				                        </span>원
+				                    </td>
+				                    <td>
+				                        <a href="${contextPath}/book/cartDelete.do?cseq=${cartVO.cseq}" onclick="return go_cart_delete();"style= "color: black" class="deleteBtn">X</a>
+				                    </td>
+				                </tr>
+			                </form>
 		                </c:forEach>
 	                </c:when>
 	                <c:otherwise>
@@ -185,8 +195,8 @@
         </div>
         <!-- //cartInnerWrap -->
         <p class="buttonBox">
-	        <a href="#" class="button">결제하기</a>
-	        <a href="#" class="button">구매목록</a>
+	        <a href="${contextPath}/book/order.do" onclick="return go_order();"class="button">결제하기</a>
+	        <a href="${contextPath}/book/buybook.do" class="button">구매목록</a>
         </p>
         </div>
         <!-- cartOuterWrap -->
@@ -196,6 +206,3 @@
     <!--main_footer-->
     <jsp:include page="/WEB-INF/view/footer.jsp" flush="false"/>
     <!--//main_footer-->
-
-</body>
-</html>

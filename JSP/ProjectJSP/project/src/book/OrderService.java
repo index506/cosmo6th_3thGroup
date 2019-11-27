@@ -14,6 +14,12 @@ public class OrderService {
 	public void addOrderList() { //주문결제 
 		//orderDAO.insertList();
 	}
+
+	public OrderVO selectPrice() {
+		// TODO Auto-generated method stub
+		OrderVO orderVO = orderDAO.selectPrice();
+		return orderVO;
+	}
 	
 	/*public List<OrderVO> selectCartLists(){
 		

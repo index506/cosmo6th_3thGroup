@@ -136,3 +136,11 @@
 11월 19, 2019 24:23:38.21 [12176:15420:1119/002338.153:ERROR:in_progress_cache_impl.cc(203)] Cache is not initialized, cannot RetrieveEntry.
 11월 19, 2019 24:23:38.21 [12176:15420:1119/002338.153:ERROR:in_progress_cache_impl.cc(203)] Cache is not initialized, cannot RetrieveEntry.
 11월 19, 2019 24:23:38.21 [12176:15420:1119/002338.153:ERROR:in_progress_cache_impl.cc(203)] Cache is not initialized, cannot RetrieveEntry.
+
+11월 26, 2019 23:08:00.61 NEW SESSION
+11월 26, 2019 23:08:00.61 
+11월 26, 2019 23:08:00.61 KLIB_SelfTest return : KLR_OK
+
+11월 27, 2019 18:47:35.26 NEW SESSION
+11월 27, 2019 18:47:35.26 
+11월 27, 2019 18:47:35.26 KLIB_SelfTest return : KLR_OK
