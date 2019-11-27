@@ -18,7 +18,7 @@
         <header id="main_header">
             <!--main_logo-->
             <h1 id="main_logo">
-                <a href="${contextPath}/board/main.do" title="title"><img src="${contextPath}/images/main.jpg" alt="title" width="150px" height="70px"></a>
+                <a href="${contextPath}/index.jsp" title="title"><img src="${contextPath}/images/main.jpg" alt="title" width="150px" height="70px"></a>
             </h1>
             <!--//main_logo-->
             <!--main_gnb-->

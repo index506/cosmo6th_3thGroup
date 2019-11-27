@@ -14,11 +14,10 @@
 #main_gnb .hover{display: block;}
 
 /*top_menu*/
-#top_menu ul{position: absolute; right: 0; top: 0; display: none;}
+#top_menu ul{position: absolute; right: 0; top: 0;}
 #top_menu li{float: left; margin: 10px 8px 0;}
 #top_menu a{font-size: 12px; height: 26px; line-height: 26px; font-weight: bold; color: rgb(162,162,162);}
-#top_menu .on{display: block;}
-/* //header */
+
 
 section>div{float: left;}
 

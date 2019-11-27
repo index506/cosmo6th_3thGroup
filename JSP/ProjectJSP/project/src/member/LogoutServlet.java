@@ -37,15 +37,13 @@ public class LogoutServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 	    response.setContentType("text/html;charset=utf-8");
-	    String action = request.getPathInfo();//경로 정보를 담을 action 선언 
-	    System.out.println("action :"+action);//action에 담긴 값 확인   
-	    String nextPage=null;
+	    //String action = request.getPathInfo();//경로 정보를 담을 action 선언 
+	    //System.out.println("action :"+action);//action에 담긴 값 확인
+	    String nextPage ="/index.jsp";
 	    try {
-	    	if(action != null && action.equals("/logout.do")){
-				HttpSession session = request.getSession();
-	      		session.invalidate();
-	      		nextPage ="/index.jsp";
-			}
+			HttpSession session = request.getSession();
+      		session.invalidate();
+			
 	    	System.out.println("로그아웃 완료!");
 	    	RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 	        dispatch.forward(request, response);

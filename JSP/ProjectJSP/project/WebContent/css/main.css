@@ -12,8 +12,8 @@ section{margin: 3px auto; width: 970px; overflow: hidden;}
 section>div{float: left;}
 
 /*main_login*/
-div.member{width: 319px; height: 97px; background-color: rgb(58, 126, 207); position: relative; display: none;}
-div.member.on{display: block;}
+#main_login{width: 319px; height: 97px; background-color: rgb(58, 126, 207); position: relative;}
+#main_logout{width: 319px; height: 97px; background-color: rgb(58, 126, 207); position: relative;}
 #main_login div{width: 110px; height: 60px; background-color: yellowgreen; position: absolute; top: 20px; font-size: 23px; font-weight: bold; text-align: center; line-height: 60px; color: black;}
 #main_login .loginBtn{left: 30px;}
 #main_login .assignBtn{right: 30px;}
