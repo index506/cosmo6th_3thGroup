@@ -50,12 +50,12 @@
     border-radius: 3px;
     width: 186px; height: 30px;
 }
-hr{ margin: 70px 0 15px 0;}
+.IDhr{ margin: 70px 0 15px 0;}
 
 /* find_id2 */
 .customer_idbox{ 
     margin-top: 50px; 
-    width: 760px; 
+     
 }
 .customer_idbox h2 { margin-left: 50px; margin-bottom: 7px;}
 .customer_idbox p { margin-left: 50px; }

@@ -16,7 +16,7 @@ public class MemberDAO {
 	private PreparedStatement pstmt;
 	private DataSource dataFactory;
 	public MemberDAO() {		
-		// TODO Auto-generated constructor stub		
+		// TODO Auto-generated constructor stub	
 		try {
 			Context ctx = new InitialContext();
 			Context envContext = (Context)ctx.lookup("java:/comp/env");
@@ -25,7 +25,7 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
-	public boolean isExisted(MemberVO memberVO) {
+	public boolean isExisted(MemberVO memberVO) {//login
 		boolean result = false;
 		String id = memberVO.getId();
 		String pwd = memberVO.getPwd();
@@ -80,25 +80,25 @@ public class MemberDAO {
 		return memberVO;
 						
 	}
-	public boolean FindPWD(MemberVO memberVO) {
+	public String FindPWD(String user_id) {//비밀번호 찾기 find_pwd.jsp
 		// TODO Auto-generated method stub
 		System.out.println("MemberDAO에서 FindPWD로 들어왔어 ");
-		boolean result = false;
+		String result = null;
 		Connection con = null;
 	    PreparedStatement pstmt = null;	
 	    ResultSet rs = null;
 		   
-	    String user_id = memberVO.getId();
 	    try {
 		   con = dataFactory.getConnection();
 		   //String sql ="select decode(count(*),1,'true','false') as result from member where id=?";
-		   String sql ="select id from member where id=?";
+		   String sql ="select * from member where id=?";
 		   pstmt = con.prepareStatement(sql);
 		   pstmt.setString(1, user_id);		   		   	   
-		   rs = pstmt.executeQuery();	
-		   rs.next();
-		   result = Boolean.parseBoolean(rs.getString("id"));
-		   System.out.println("result="+result);
+		   rs = pstmt.executeQuery();
+		   if(rs.next()) {
+			   result = rs.getString("id");
+			   System.out.println("result="+result);
+		   }		   		   
 		   
 		   rs.close();
 		   pstmt.close();
@@ -108,6 +108,88 @@ public class MemberDAO {
 		}
 	    
 		return result;
+	}
+	public boolean pwdConfirm(MemberVO memberVO) {//회원탈퇴 전 비밀번호 확인하기 
+		// TODO Auto-generated method stub
+		System.out.println("MemberDAO에서 pwdConfirm로 들어왔어 ");
+		String sql ="select * from member where id=?";
+		boolean result=false;
+		Connection con = null;
+	    PreparedStatement pstmt = null;	
+	    ResultSet rs = null;
+	    
+	    String user_id = memberVO.getId();
+	    String user_pwd = memberVO.getPwd();
+	    
+	    System.out.println(user_pwd);
+	    try {
+		   con = dataFactory.getConnection();		   		   
+		   pstmt = con.prepareStatement(sql);
+		   pstmt.setString(1, user_id);		   		   	   
+		   rs = pstmt.executeQuery();
+		   
+		   if(rs.next()) {
+			   memberVO.setPwd(rs.getString("pwd"));
+			   System.out.println(rs.getString("pwd"));
+			   memberVO.setId(rs.getString("id"));
+		   }		   		   
+		   
+		   rs.close();
+		   pstmt.close();
+		   con.close();		   		   
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	    
+		
+		return result;
+	}
+	public MemberVO resetPWD(MemberVO memberVO) {//비밀번호 재설정하기 
+		// TODO Auto-generated method stub
+		System.out.println("MemberDAO에서 resetPWD로 들어왔어 ");
+		String sql ="update member set pwd=? where id=?";
+		
+		Connection con = null;
+	    PreparedStatement pstmt = null;	
+	    
+	    String user_id = memberVO.getId();
+	    String user_pwd = memberVO.getPwd();
+	    System.out.println(user_id +" and "+ user_pwd);
+		try {
+		   con = dataFactory.getConnection();		   		   
+		   pstmt = con.prepareStatement(sql);
+		   pstmt.setString(1, user_pwd);	
+		   pstmt.setString(2, user_id);
+		   pstmt.executeUpdate();
+		   System.out.println("비밀번호변경했다.");
+		   
+		   con.close();
+		   pstmt.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return memberVO;
+	}
+	public void memberOut(String user_id) {// 회원탈퇴하기 
+		// TODO Auto-generated method stub
+		System.out.println("DB의 회원 삭제하기");
+		String sql ="delete from member where id=?";		
+		Connection con = null;
+	    PreparedStatement pstmt = null;	
+	    
+	    try {
+	    	con = dataFactory.getConnection();		   		   
+	    	pstmt = con.prepareStatement(sql);
+	    	pstmt.setString(1, user_id);
+	    	pstmt.executeUpdate();
+	    	System.out.println("삭제했다.");
+	    	
+		   con.close();
+		   pstmt.close();
+	    }catch(Exception e) {
+	    	e.printStackTrace();
+	    }
 	}
 }
 

@@ -1,6 +1,8 @@
 /**
  * 
  */
+
+
 /* 아이디 찾기 인증번호 확인하기 find_id.jsp  */
         // 인증번호 맞으면 다음 절차로 페이지이동 
         function numberCheck(){
@@ -92,14 +94,86 @@
             var ranNum = Math.floor(Math.random()*(max-min+1))+min;
             return ranNum;
         }
-        function userConfirm(){
-        	alert("asdf");
-            if(document.frm.userCon.value=='456123'){
-            	
-            	window.location.href="reset_pwd.jsp";
+        function userConfirm(){        	
+            if(document.frm.userCon.value=='456123'){            	
+            	window.location.href="../../Project/Category/Member/reset_pwd.jsp";
             }else if(document.frm.userCon.value!='456123'){              	
             	alert("인증번호가 틀립니다.");           	
             }                
         }
         
+/* reset_pwd.jsp  */
+
+        /* 비밀번호 입력칸에 작성시  */
+$(document).ready(function(){
+	$(".pwd3_wrap #pwd_lbl").blur(function(){
+		var pwd1 = document.frmReset.pwd1.value;
+    	var pwd2 = document.frmReset.user_pwd.value;
+		var getCheck = /^[A-Za-z0-9+]{8,15}$/;
+		var pattern1 = /[0-9]/;
+	    var pattern2 = /[a-zA-Z]/;
+	    var pattern3 = /[~!@\#$%<>^&*]/;     // 원하는 특수문자 추가 제거
+	    
+
+     	if(!pattern1.test(pwd1)||!pattern2.test(pwd1)||!pattern3.test(pwd1)||pwd1.length<8||pwd1.length>16){
+ 	        document.frmReset.pwd1.value=""; 	        
+ 	        $(".hidden1").show().css("color","red"); 	        
+ 	    }else{
+ 	    	$(".hidden1").hide();
+ 	    }
+	    if(pwd1 != pwd2){
+	    	$(".hidden2").show().css("color","red");
+	    }else {
+	    	$(".hidden2").hide();
+	    }
+	});
+});
+	        
         
+        
+        /* 비밀번호 변경 버튼을 눌렀을때  */
+        function resetPwd(){           	    	    
+        	if(document.frmReset.pwd1.value.length == 0) {
+ 	           alert("비밀번호를 입력해주세요");
+ 	           return false;
+        	}else{
+ 	            if( document.frmReset.pwd1.value  !=  document.frmReset.user_pwd.value) {
+ 	                  alert("비밀번호가 일치하지 않습니다.");
+ 	                  return false;
+ 	             }
+        	}
+        	document.frmReset.action="../../login/resetPWD.do";
+        	document.frmReset.submit();
+        }
+        
+        
+/* -----------------------------------------MemberShipWithDrawal----------------------------------------------------------------*/        
+/* MemberShipWithDrawal.jsp */
+            function pwdConfirm(){
+        	
+            if(document.frmOUT.user_pwd.value==''){
+            	alert('비밀번호를 입력해주세요');
+            	$('#mem_pwd').focus();           	           	                
+            }else{
+            	document.frmOUT.method="post";
+            	document.frmOUT.action="../../login/mwc.do";
+            	document.frmOUT.submit();
+            }
+        }
+        
+ /*  MemberShipWithDrawal2.jsp  */ 
+            
+            function mv_cancle(){
+            	if (confirm("정말 취소하시겠습니까??") == true){
+            	    window.location.href="/index.html";
+            	}else{//취소
+            	    return;
+            	}
+            	}
+            function withdrawal(){
+            	if (confirm("정말 회원 탈퇴하시겠습니까??") == true){
+            	    window.location.href="../../Project/login/memberOut.do";
+            	}else{//취소
+            	    return;
+            	}
+            	}

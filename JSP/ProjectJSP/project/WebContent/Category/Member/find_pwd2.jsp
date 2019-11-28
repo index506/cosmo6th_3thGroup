@@ -6,6 +6,8 @@
 <%
     request.setCharacterEncoding("UTF-8"); //요청 받아온 글자 깨지지 안도록 UTF-8설정
 %>
+    
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -20,84 +22,19 @@
     <script type="text/javascript" src="${contextPath}/js/prefixfree.min.js"></script>
     <script type="text/javascript" src="${contextPath}/js/common.js"></script>
     <!--개인 css, js-->
-    <title>Find Password2</title>
+	<title>Find Password2</title>
     <link rel="stylesheet" href="${contextPath}/Category/Member/css/find_pwd.css">
     <script type="text/javascript" src="${contextPath}/Category/Member/js/LoginService.js"></script>
 </head>
 <body>
-<!--main_header_wrap-->
-<div id="main_header_wrap">
-        <!--main_header-->
-        <header id="main_header">
-            <!--main_logo-->
-            <div id="main_logo">
-                <a href="#"><img src="http://placehold.it/150x70" alt="iriver"/></a>
-            </div>
-            <!--//main_logo-->
-            <!--main_gnb-->
-            <div id="main_gnb">
-                <ul class="list">
-                    <li class="item_0">
-                        <a href="#"><p>시험안내</p></a>
-                    </li>
-                    <li class="item_1">
-                        <a href="#"><p>교재구매</p></a>
-                        <ul class="list hover">
-                            <a href="#"><li class="item_0">구매목록</li></a>
-                            <a href="#"><li class="item_1">장바구니</li></a>
-                        </ul>
-                    </li>
-                    <li class="item_2">
-                        <a href="#"><p>문제유형</p></a>
-                    </li>
-                    <li class="item_3">
-                        <a href="#"><p>커뮤니티</p></a>
-                        <ul class="list hover">
-                            <a href="#"><li class="item_0">공지사항</li></a>
-                            <a href="#"><li class="item_1">자유 게시판</li></a>
-                            <a href="#"><li class="item_2">질문 게시판</li></a>
-                        </ul>
-                    </li>
-                    <li class="item_4">
-                        <a href="#"><p>고객센터</p></a>
-                        <ul class="list hover">
-                            <a href="#"><li class="item_0">Q&A</li></a>
-                            <a href="#"><li class="item_1">개인정보보호정책</li></a>
-                            <a href="#"><li class="item_2">이용약관</li></a>
-                            <a href="#"><li class="item_3">사이트맵</li></a>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <!--//main_gnb-->
-            <!--top_menu-->
-            <div id="top_menu">
-                <ul class="list">
-                    <a href="#"><li class="item_0"><p>회원가입</p></li></a>
-                    <a href="./login_main.html"><li class="item_1"><p>로그인</p></li></a>
-                    <a href="#"><li class="item_2"><p>FAQ</p></li></a>
-                    <a href="#"><li class="item_3"><p>사이트맵</p></li></a>
-                </ul>
-            </div>
-            <!--//top_menu-->
-        </header>
-        <!--//main_header-->
-    </div>
+    <!--main_header_wrap-->
+	<jsp:include page="../../WEB-INF/view/header.jsp" flush="false"/>
     <!--//main_header_wrap-->
+    
     <!--section-->
     <section>
-        <div class="lnb">
-            <div>
-                <img class="top" src="./images/image_support/201508270312264232400.jpg"/>
-                <ul>
-                    <a href="#"><li>Q&A</li></a>
-                    <a href="#"><li>개인정보보호정책</li></a>
-                    <a href="#"><li>이용약관</li></a>
-                    <a href="./sitemap.html"><li>사이트맵</li></a>
-                </ul>
-                <img class="bottom" src="./images/image_support/left_t08.gif"/>
-            </div>
-        </div>
+	<jsp:include page="../../WEB-INF/view/sideMember.jsp" flush="false"/>
+
     <div id="PPS" class="content">
     <!--find_password-->
     <form name="frm" method="post">
@@ -118,18 +55,5 @@
     </div>
     </section>
     <!--//section-->
-    <!--main_footer-->
-    <footer id="main_footer">
-        <img src="./images/bottom_long_bar.gif">
-        <ul>
-            <li><a href="#"><img src="./images/footer_menu_2.gif"/></a></li><li>|</li>
-            <li><a href="#"><img src="./images/footer_menu_3.gif"/></a></li><li>|</li>
-            <li><a href="#"><img src="./images/footer_menu_4.gif"/></a></li><li>|</li>
-            <li><a href="#"><img src="./images/footer_menu_5.gif"/></a></li><li>|</li>
-            <li><a href="#"><img src="./images/footer_menu_6.gif"/></a></li>
-        </ul>
-        <hr/>
-    </footer>
-    <!--//main_footer-->
-</body>
-</html>
+
+<%@ include file="../../WEB-INF/view/footer.jsp" %> 
