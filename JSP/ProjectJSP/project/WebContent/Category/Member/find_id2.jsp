@@ -50,7 +50,7 @@
             <p >아이디 : <em>${FindIDinfo.id} </em> <span>가입일 : ${FindIDinfo.assignDate}</span></p>
         </div>
         <p class="btns">
-            <button onclick="window.location.href='../../Project/Category/Member/login_main.jsp'">로그인하기</button>
+            <button onclick="window.location.href='../../Project/Category/Member/login_main.jsp'" >로그인하기</button>
             <button onclick="window.location.href='../../Project/Category/Member/find_pwd.jsp'">비밀번호 찾기</button>
         </p>
         </div>

@@ -28,11 +28,17 @@
     margin-bottom: 7px;
     position: relative;
 }
-.mail_add > input {
+.mail_add > input:first-child {
     line-height: 40px;
     position: absolute; left: 130px;
     border-radius: 3px;
     width: 300px; height: 40px;
+}
+.mail_add > input:last-child {
+    line-height: 40px;
+    position: absolute; left: 450px;
+    border-radius: 3px;
+    width: 150px; height: 40px;
 }
 .mail_add > button{
     position: absolute;left: 435px;
@@ -63,5 +69,5 @@
 .idInfoBox p {margin: 50px; }
 .idInfoBox span { margin-left: 50px; }
 
-.btns button:first-child { margin-left: 100px;}
+.btns button:first-child { margin-left: 100px; }
 .btns button{ float: left; margin: 15px 30px; }

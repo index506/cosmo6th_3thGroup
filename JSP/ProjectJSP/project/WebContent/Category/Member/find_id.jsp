@@ -42,7 +42,8 @@
             <p class="name">이름   <input type="text" name="name" ></p><br>
             <p class="mail_add">이메일 주소  
                 <input type="email" name="email">
-                <button>인증번호 보내기</button>
+                <input type="button" onclick="return random();" value="인증번호 보내기" name="randomNum">
+                
             </p>
             <p class="numcheck" >
                 <input type="text" class="numConfirm" name="numConfirm">

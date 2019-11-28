@@ -3,17 +3,37 @@
  */
 
 
+
+
 /* 아이디 찾기 인증번호 확인하기 find_id.jsp  */
+
+//인증번호를 위한 난수 생성 
+var randomInt;
+
+	var generateRandom = function (min, max) {
+		var ranNum = Math.floor(Math.random()*(max-min+1)) + min;
+		  return ranNum;
+		}
+//인증번호 보내기 난수 
+function random(){
+	randomInt = generateRandom(100000,999999);
+	
+	console.log("인증번호는");
+	console.log(randomInt);
+	
+	return randomInt;
+}
+
         // 인증번호 맞으면 다음 절차로 페이지이동 
-        function numberCheck(){
-        	
-            if(document.frmfindid.numConfirm.value=='456123'){
+        function numberCheck(){        	
+        	console.log(randomInt);
+            if(document.frmfindid.numConfirm.value==randomInt){
             	
             	document.frmfindid.method="post";
             	document.frmfindid.action="../../login/findid.do";
             	document.frmfindid.submit();
                 
-            }else if(document.frmfindid.numConfirm.value!='456123'){
+            }else if(document.frmfindid.numConfirm.value!=randomInt){
                 alert('인증번호가 다릅니다.');
             }
         }
@@ -89,15 +109,14 @@
         }
         
 /* find_pwd2.jsp  */
-        var min = 100000, max = 999999;
-        var randomNum = function(min, max){
-            var ranNum = Math.floor(Math.random()*(max-min+1))+min;
-            return ranNum;
-        }
-        function userConfirm(){        	
-            if(document.frm.userCon.value=='456123'){            	
+        // 비밀번호 찾기에서 인증번호 확인하기 
+        function userConfirm(){  
+        	
+        	console.log(randomInt);
+        	
+            if(document.frmPWD2.userCon.value==randomInt){            	
             	window.location.href="../../Project/Category/Member/reset_pwd.jsp";
-            }else if(document.frm.userCon.value!='456123'){              	
+            }else if(document.frmPWD2.userCon.value!=randomInt){              	
             	alert("인증번호가 틀립니다.");           	
             }                
         }

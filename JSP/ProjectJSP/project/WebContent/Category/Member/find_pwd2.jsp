@@ -37,14 +37,14 @@
 
     <div id="PPS" class="content">
     <!--find_password-->
-    <form name="frm" method="post">
+    <form name="frmPWD2" method="post">
     <div class="pwd2_wrap">
         <h2>본인 확인</h2>
         <p>E-mail로 인증하기 </p>
         <div class="certi_box">
             <p>회원 가입시 입력한 이메일을 적어주시면 인증번호를 보내드립니다.</p>
             
-            <input type="email" placeholder="이메일을 입력해주세요. "><input type="button" onclick="certiNum();" value="인증번호 보내기"></br>
+            <input type="email" placeholder="이메일을 입력해주세요. "><input type="button" onclick="random();" value="인증번호 보내기"></br>
 
             <input type="text" class="confirmNum" name="userCon"><input type="button" onclick="userConfirm();" value="인증번호 확인" >
 

@@ -157,16 +157,17 @@ public class loginController extends HttpServlet {
 	    		System.out.println("resetPWD로 들어왔어");
 	    		nextPage = "../../Category/Member/login_main.jsp";
 	    		HttpSession session = request.getSession();
-	    		String user_id = (String) session.getAttribute("user_id");
+	    		String user_id = (String) session.getAttribute("login.id");
 	    		String user_pwd = request.getParameter("user_pwd");
 	    		System.out.println(user_id);
+	    		System.out.println(user_pwd);
 	    		if(user_id==null) {
 	    			nextPage ="../../Category/Member/find_pwd.jsp";
 	    		}else {
 	    			
 	    			MemberVO memberVO = new MemberVO();
-		    		memberVO.setId((String)session.getAttribute("user_id"));
-		    		System.out.println("세션에서 받은 아이디 : "+(String)session.getAttribute("user_id"));
+		    		memberVO.setId((String)session.getAttribute("login.id"));
+		    		System.out.println("세션에서 받은 아이디 : "+(String)session.getAttribute("login.id"));
 		    		memberVO.setPwd(user_pwd);
 		    		MemberDAO dao = new MemberDAO();
 		    		memberVO = dao.resetPWD(memberVO);
