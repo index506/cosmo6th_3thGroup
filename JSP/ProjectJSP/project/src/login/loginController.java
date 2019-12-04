@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-
 /**
  * Servlet implementation class loginServlet
  */
@@ -60,31 +58,24 @@ public class loginController extends HttpServlet {
 	    		MemberVO memberVO = new MemberVO();
 	    		memberVO.setId(user_id);
 	    		memberVO.setPwd(user_pw);
+	    		
 	    		MemberDAO dao = new MemberDAO();	
 	    		boolean result = dao.isExisted(memberVO);
 	    		
 	    		if(result) {
 	    			System.out.println("DB에 회원이 있어요true에요");
+	    			memberVO = dao.selectMember(memberVO);
 	    			//session에 정보 담기 
 	    			HttpSession session = request.getSession();
 	    			session.setAttribute("isLogon", true);
-	    			session.setAttribute("login.id", user_id);
-	    			session.setAttribute("login.pwd", user_pw);
-	    			//값을 확인하기 위해 세션의 값을 출력
-	    			String a = (String) session.getAttribute("login.id");
-	    			String b = (String) session.getAttribute("login.pwd");
-	    			String c = session.getId();	    			
-	    			System.out.println("a="+a);
-	    			System.out.println("b="+b);
-	    			System.out.println("c="+c);
+	    			session.setAttribute("loginUser", memberVO);	    			
 	    			
 	    			nextPage = "/index.jsp";
 	    		}else {
 	    			HttpSession session = request.getSession();
 	    			System.out.println("DB에 회원정보가 없습니다.");
 	    			session.setAttribute("isLogon", false);
-	    			session.setAttribute("login.id", user_id);
-	    			nextPage ="Category/Member/login_main.jsp";
+	    			nextPage ="/Category/Member/login_fail.html";
 	    		}
 	    	}else if(action!=null && action.equals("/findid.do")) {//아이디 찾기 
 	    		System.out.println("findid.do로 들어왔어");

@@ -124,28 +124,32 @@ function random(){
 /* reset_pwd.jsp  */
 
         /* 비밀번호 입력칸에 작성시  */
-$(document).ready(function(){
-	$(".pwd3_wrap #pwd_lbl").blur(function(){
-		var pwd1 = document.frmReset.pwd1.value;
+$(document).ready(function(){	
+    $(".pwd3_wrap #pwd_lbl").blur(function(){	 
+    	var pwd1 = document.frmReset.pwd1.value;
     	var pwd2 = document.frmReset.user_pwd.value;
-		var getCheck = /^[A-Za-z0-9+]{8,15}$/;
-		var pattern1 = /[0-9]/;
-	    var pattern2 = /[a-zA-Z]/;
-	    var pattern3 = /[~!@\#$%<>^&*]/;     // 원하는 특수문자 추가 제거
-	    
-
+    	var getCheck = /^[A-Za-z0-9+]{8,15}$/;
+    	var pattern1 = /[0-9]/;
+        var pattern2 = /[a-zA-Z]/;
+        var pattern3 = /[~!@\#$%<>^&*]/;     // 원하는 특수문자 추가 제거
      	if(!pattern1.test(pwd1)||!pattern2.test(pwd1)||!pattern3.test(pwd1)||pwd1.length<8||pwd1.length>16){
  	        document.frmReset.pwd1.value=""; 	        
  	        $(".hidden1").show().css("color","red"); 	        
  	    }else{
  	    	$(".hidden1").hide();
  	    }
-	    if(pwd1 != pwd2){
+     	
+	});
+    $(".pwd3_wrap #pwd2_lbl").blur(function(){
+    	var pwd1 = document.frmReset.pwd1.value;
+    	var pwd2 = document.frmReset.user_pwd.value;
+    	if(pwd1 != pwd2){
 	    	$(".hidden2").show().css("color","red");
+	    	pwd2="";
 	    }else {
 	    	$(".hidden2").hide();
 	    }
-	});
+    });
 });
 	        
         

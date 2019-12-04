@@ -10,8 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class MemberDAO {
-	
+public class MemberDAO {	
 	private Connection con;
 	private PreparedStatement pstmt;
 	private DataSource dataFactory;
@@ -190,6 +189,43 @@ public class MemberDAO {
 	    }catch(Exception e) {
 	    	e.printStackTrace();
 	    }
+	}
+	public MemberVO selectMember(MemberVO memberVO) {//로그인한 회원정보 memberVO에 담기 
+		// TODO Auto-generated method stub
+		Connection con = null;
+	    PreparedStatement pstmt = null;	
+	    ResultSet rs = null;
+		System.out.println("MemberDAO에서 selectMember로 들어왔어 ");
+		String sql ="select * from member where id=?";
+	    String user_id = memberVO.getId();
+	    String user_pwd = memberVO.getPwd();
+	    try {
+	    	con = dataFactory.getConnection();		   		   
+	    	pstmt = con.prepareStatement(sql);
+	    	pstmt.setString(1, user_id);
+	    	rs = pstmt.executeQuery();
+		   if(rs.next()) {
+			   memberVO.setId(rs.getString("id"));
+			   memberVO.setPwd(rs.getString("pwd"));
+			   System.out.println(rs.getString("pwd"));
+			   memberVO.setName(rs.getString("name"));
+			   memberVO.setEmail(rs.getString("email"));
+			   memberVO.setAddress(rs.getString("address"));
+			   memberVO.setTel(Integer.parseInt(rs.getString("tel")));
+			   memberVO.setPhone(Integer.parseInt(rs.getString("phone")));
+			   memberVO.setAssignDate(rs.getDate("assigndate"));
+		   }
+	    	
+	    	rs.close();
+		   con.close();
+		   pstmt.close();
+		   
+	    }catch(Exception e) {
+	    	e.printStackTrace();
+	    }
+	    
+		
+		return memberVO;
 	}
 }
 
