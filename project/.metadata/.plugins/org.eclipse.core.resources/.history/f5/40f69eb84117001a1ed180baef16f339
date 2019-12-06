@@ -1,0 +1,37 @@
+#mypage p{margin-left: 10px; margin-bottom: 10px;}
+#mypage h3{font-size: 28px; margin-bottom: 5px;}
+
+#mypage table{width: 750px; border-spacing: 0px; border-collapse: separate; margin-bottom: 50px;}
+
+#mypage table tr.head{height: 30px; background-color: #676767;}
+#mypage table tr.head th{background: url('//pics.gmarket.co.kr/pc/ko/myg/bg_myg_table.png') repeat-x; color: white; font: 12px/16px "�룍��",Dotum,Tahoma,-apple-system,BlinkMacSystemFont,sans-serif;} 
+
+#mypage table tr.body td{height: 100px; border: 1px solid rgb(241, 241, 241);}
+#mypage table tr.body td.date{font-family: Tahoma, Geneva, sans-serif; font-size: 13px; font-weight: bold; color: #444;}
+#mypage table tr.body td.content{position: relative;}
+#mypage table tr.body td.content img{width: 60px; height: 80px; position: absolute; top: 10px; left: 20px;}
+#mypage table tr.body td.content p{position: absolute; font-size: 13px; left: 90px;}
+#mypage table tr.body td.content p.first{top: 15px;}
+#mypage table tr.body td.content p.second{top: 35px;}
+#mypage table tr.body td.content p.third{top: 55px; color: #777; font-size: 12.5px;}
+#mypage table tr.body td.status{font-size: 16px; font-weight: bold;}
+
+#mypage table tr.foot td{height: 2px; background-color: rgb(170, 170,170);}
+
+#mypage table tr.number td{height: 33px;}
+#mypage table tr.number td span{margin-left: 15px; cursor: pointer;}
+
+#mypage table tr.number td span:first-of-type{margin-left: 0;}
+
+#mypage table tr.number td span.on{cursor: text; font-weight: bold; color: red; font-size: 15px;}
+
+#mypage table.order{height: 480px;}
+#mypage table.test{height: 270px;}
+#mypage table.test tr.body td{height: 50px;}
+
+/*#mypage table.order tr.body.off{display: none;}*/
+
+th,td{text-align: center;}
+
+
+.test td.body:nth-of-type(1){background-color: red;}

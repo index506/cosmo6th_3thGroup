@@ -1,0 +1,26 @@
+package service;
+
+import java.util.ArrayList;
+
+import dao.LogDAO;
+import dao.MemberDAO;
+
+public class MemberService {
+	MemberDAO memberDAO;
+	LogDAO logDAO;
+
+	public MemberService() {
+		memberDAO = new MemberDAO();
+		logDAO = new LogDAO();
+	}
+	
+	public ArrayList<LogDAO> listTestLog(String id) {
+		ArrayList<LogDAO> testLogList = logDAO.selectTestListById(id);
+		return testLogList;
+	}
+
+	public static void AddMember() {
+		// TODO Auto-generated method stub
+		memberDAO.updateMember();
+	}
+}

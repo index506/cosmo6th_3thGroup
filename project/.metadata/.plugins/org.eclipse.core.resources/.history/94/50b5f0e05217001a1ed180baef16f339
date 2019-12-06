@@ -1,0 +1,111 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>${title}</title>
+    <!-- 철욱 -->
+    <link rel="stylesheet" href="${contextPath}/css/init.css"/>
+    <link rel="stylesheet" href="${contextPath}/css/common.css"/>
+     <script type="text/javascript" src="${contextPath}/js/jquery-2.1.1.min.js"> </script> 
+    <script type="text/javascript" src="${contextPath}/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/prefixfree.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/common.js"></script>
+    <!-- //철욱 -->
+    <link rel="stylesheet" href="${contextPath}/Category/Board/css/postRead.css"/>
+    <script type="text/javascript" src="${contextPath}/Category/Board/js/board.js"></script>   
+</head>
+<body>
+	<!-- header -->
+	<%@include file="/WEB-INF/view/header.jsp"%>
+	<!-- //header -->	
+    <!--section-->
+    <!--section-->
+    <section>
+    	<!-- lnb -->
+        <div class="lnb">
+            <div>
+                <img class="top" src="../images/image_support/sideTitle_community.jpg"/>
+                <ul>
+                    <li><a href="${contextPath}/board/noticeList.do" class="on">공지사항</a></li>
+                    <li><a href="${contextPath}/board/communityList.do">자유 게시판</a></li>
+                    <li><a href="${contextPath}/board/questionList.do">질문 게시판</a></li>
+                </ul>
+                <img class="bottom" src="../images/image_support/left_t08.gif"/>
+            </div>
+        </div>
+        <!-- //lnb -->
+        <!-- board_wrap -->
+        <div class="board_wrap">
+        	<!-- board_title -->
+        	<div class="board_title">
+        		<h3>${title}</h3>
+        	</div>
+        	<!-- //board_title -->
+        	<!-- postRead -->
+        	<table class="post_read">
+        		<thead>
+					<tr class="title">
+						<th align="left" colspan="3" width="85%"><h4>게시글 제목입니다........</h4></th>
+						<th align="right"><span>조회수</span> 50</>
+					</tr>
+					<tr>
+						<th align="left" colspan="2" ><span>작성자</span> admin</th>
+						<th align="right" colspan="2"><span>작성일</span> 2019-11-28</th>
+					</tr>
+        		</thead>
+        		<tbody>
+        			<tr class="image">
+        				<td align="left" colspan="4"><img width="100%" src="http://placehold.it/1500x300" /></td>
+        			</tr>
+        			<tr>
+        				<td align="left" colspan="4">
+        					Where does it come from?
+        					Contrary to popular belief, Lorem Ipsum is not simply random text.<br>
+        					It has roots in a piece of classical Latin literature from 45 BC, 
+        					making it over 2000 years old. Richard McClintock, 
+        					a Latin professor at Hampden-Sydney College in Virginia, 
+        					looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, 
+        					and going through the cites of the word in classical literature, 
+        					discovered the undoubtable source. <br>
+        					Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" 
+        					(The Extremes of Good and Evil) by Cicero, written in 45 BC. 
+        					This book is a treatise on the theory of ethics, very popular during the Renaissance.<br>
+        					The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.<br>
+							The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. <br>
+							Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" <br>
+							by Cicero are also reproduced in their exact original form, accompanied by English versions from 
+							the 1914 translation by H. Rackham.
+        				</td>
+        			</tr>
+        			<tr class="file">
+        				<td align="right" colspan="4"><span>첨부파일</span> <a href="file.zip">파일.zip</a></td>
+        			</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+        				<td align="center" width="15%"><a href="#"><b>▲</b> 이전글</a></td>
+        				<td align="left" colspan="3"><a href="#">prev1232a43t3</a></td>
+        			</tr>
+        			<tr>
+        				<td align="center" width="15%"><a href="#"><b>▼</b> 다음글</a></td>
+        				<td align="left" colspan="3"><a href="#">next34tat</a></td>
+        			</tr>
+				</tfoot>
+        	</table>
+        	<!-- //postRead -->
+        	<div class="post_menu">
+        	</div>
+        </div>
+        <!-- //board_wrap -->
+    </section>
+    <!--//section-->
+    <!-- footer -->
+    <%@include file="/WEB-INF/view/footer.jsp"%>
+    <!-- //footer -->
+</body>
+</html>

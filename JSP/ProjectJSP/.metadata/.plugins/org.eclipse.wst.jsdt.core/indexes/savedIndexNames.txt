@@ -1,2 +1,0 @@
-INDEX VERSION 1.4+C:\Users\KOSMO-08\Documents\GitHub\cosmo6th_3thGroup\JSP\ProjectJSP\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3581163120.index

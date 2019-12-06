@@ -1,0 +1,111 @@
+/* board_search */
+form.board_search {
+	margin-bottom: 15px;
+}
+
+.board_search::after {
+	content: '';
+	display: table;
+	clear: both;
+}
+
+.board_search span {
+	padding: 5px 10px;
+	background-color: #ddeedd;
+	float: right;
+}
+
+.board_search span input[type='radio'] {
+	width: 16px;
+	height: 16px;
+	position: relative;
+	top: 3px;
+	right: 1px;
+}
+
+.board_search span input[type='text'] {
+	height: 20px;
+    position: relative;
+    bottom: 2px;
+}
+
+.board_search span input[type='button'] {
+	font-size: 12px;
+	padding: 0 5px;
+}
+
+.board_search span label {
+	margin-right: 5px;
+}
+
+/* post_list */
+table.post_list {
+	width: 750px;
+	border-top: 2px solid green;
+	border-bottom: 2px solid green;
+	border-collapse: collapse;
+	text-align: center;
+	margin-bottom: 15px;
+	table-layout: fixed;
+}
+
+table.post_list td, table.post_list th {
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; 
+}
+
+table.post_list th, table.post_list td {
+	padding: 6px 4px;
+}
+
+table.post_list thead tr {
+	
+	background-color: #aaddaa
+}
+
+
+
+table.post_list tbody tr {
+	border-top: 1px solid gray;
+}
+
+table.post_list a {
+	padding: 2px;
+	color: black;
+}
+
+table.post_list a:hover {
+	text-decoration: underline;
+	background-color: #ddeedd;
+}
+
+/* board_paging */
+div.board_paging {
+	text-align: center;
+}
+
+.board_paging ul li {
+	display: inline-block;
+	margin: 0 5px;
+}
+
+.board_paging ul li a, .board_paging ul li span {
+	display: block;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	font-weight: bold;
+	color: black;
+}
+
+.board_paging ul li a:hover {
+	background-color: #ddeedd;
+}
+
+/* board_button */
+.board_button {
+	text-align: right;
+}
+.board_button .small
+

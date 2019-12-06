@@ -1,0 +1,17 @@
+$(document).ready(function(){
+//	var i=0;
+//	$(".test .body").each(function(){
+//		var grade = 0;
+//		$(".test .body .grade p").each(function(){
+//			grade += parseInt($(this).text());
+//		});
+//		$(".test .body:nth-of-type("+i+") .grade").text(i);
+//		console.log(i);
+//		i++;
+//	});
+	
+	console.log($(".test .body"));
+	console.log($(".test .body").eq(1));
+	console.log($(".test .body").eq(1).find(".grade"));
+	$(".test .body").eq(1).find(".grade").text("hi");
+});

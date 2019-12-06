@@ -1,0 +1,49 @@
+package service;
+
+import java.util.List;
+
+import dao.BoardDAO;
+import dto.PostVO;
+
+public class BoardService { // MVC : 컨트롤러
+	BoardDAO boardDAO;
+
+	public BoardService() {
+		boardDAO = new BoardDAO();
+	}
+	
+	public List<PostVO> listPosts(String board_category) {
+		System.out.println("BoardService.java - listPost()");
+		List<PostVO> postsList = boardDAO.selectAllPosts(board_category);
+		return postsList;
+	}
+			
+	public PostVO readPost (String board_category,int num) {
+		System.out.println("BoardService.java - readPost()");
+		PostVO postVO = boardDAO.selectPost(board_category, num);
+		return postVO;
+	}
+	
+	public void addPost(PostVO postVO) {
+		System.out.println("BoardService.java - addPost()");
+	}
+
+	public void modPost(PostVO postVO) {
+		System.out.println("BoardService.java - modPost()");
+	}
+	
+	public void delPost(PostVO postVO) {
+		System.out.println("BoardService.java - delPost()");
+	}
+
+	public void replyPost(PostVO postVO) {
+		System.out.println("BoardService.java - replyPost()");
+	}
+
+
+
+
+
+
+		
+}

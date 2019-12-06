@@ -1,0 +1,430 @@
+package controller;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FileUtils;
+
+import dto.PostVO;
+import service.BoardService;
+
+@WebServlet("/board/*")
+public class BoardController extends HttpServlet {
+	/* 경로 변수 */
+	private static String POST_FILE_PATH; // 파일 업로드 경로
+	
+	/* 참조변수 */
+	BoardService boardService;
+	PostVO postVO;
+	
+    public BoardController() {
+		boardService = new BoardService();
+		postVO = new PostVO();
+    }
+    
+    public void init(ServletConfig config) throws ServletException {
+		/* 경로 설정 */
+		String arg0 = "\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps";
+		POST_FILE_PATH = config.getServletContext().getRealPath("/WebContent/postUpload").replace(arg0, "");
+		System.out.println("게시글 파일 업로드 경로 -- " + POST_FILE_PATH);
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doHandle(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doHandle(request, response);
+	}
+
+	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+		String nextPage = ""; // forward 경로를 담기 위한 변수
+		request.setCharacterEncoding("utf-8"); // 다른 페이지로부터 요청(request)받을 때의 인코딩 방식
+		response.setContentType("text/html; charset=utf-8"); // 다른 페이지에 응답(response) 보낼때의 charset
+		String action = request.getPathInfo(); // servlet 매핑 주소인 "~/test" 뒤의 정보 (servlet 경로나 ~.do)
+		System.out.println("action : " + action);	
+		
+		try { /* 동작 MODE */
+			if (action != null) { // equals 계열은 null 일때 null 익셉션 발생 -> try catch 발생함으로, action != null 처리
+				switch (action) {
+				
+					case "/deletePost.do": { // <게시글 삭제>	
+						/* 데이터 받기  */
+						String board_category = request.getParameter("board_category");
+						String head_title = util.Conversion.boardCategory(board_category); // 게시판 제목						
+						int num = Integer.parseInt(request.getParameter("num"));
+						System.out.println(head_title);
+						
+						/* 게시글, 답변글 삭제 & 업로드 파일 삭제 */
+						List<Integer> numList = boardService.removePost(board_category, num);
+						for (int numFolder : numList) {
+							File fileDir = new File(POST_FILE_PATH + "\\" + board_category + "\\" + numFolder);
+							System.out.println(fileDir);
+							if (fileDir.exists()) {
+								FileUtils.deleteDirectory(fileDir);
+							}
+						}
+						
+						/* 리다이렉트 - 게시글 목록 */
+						switch (board_category) {
+							case "question_List": nextPage = "questionList.do"; break;
+							case "community_List": nextPage = "communityList.do"; break;
+							case "notice_List": default : nextPage = "noticeList.do"; break;
+						}
+						response.sendRedirect(nextPage);
+						break;
+					} // end of <게시글 삭제>
+					
+	
+					case "/replyPostRegister.do": { // <게시글 답변 등록>
+						/* 데이터 받기  */
+						String board_category = request.getParameter("board_category");
+						String head_title = util.Conversion.boardCategory(board_category); // 게시판 제목
+						System.out.println(head_title);
+						
+						/* 게시글 답변 등록 */
+						int num=0;
+						Map<String, String> postMap = upload(request, response);
+						String title = postMap.get("title");
+						String content = postMap.get("content");
+						int parentNum = Integer.parseInt(postMap.get("parentNum"));
+						String imageName = postMap.get("imageName");
+						String fileName = postMap.get("fileName");
+						
+						tempUploadFileMove(postMap, board_category, num, imageName); // 임시 폴더에 이미지 존재시 - 게시글 번호 폴더로 이동
+						tempUploadFileMove(postMap, board_category, num, fileName); // 임시 폴더에 파일 존재시 - 게시글 번호 폴더로 이동
+						
+						postVO.setParentNum(parentNum);
+						postVO.setId("kosmo");
+						postVO.setTitle(title);
+						postVO.setContent(content);
+						postVO.setImageName(imageName);
+						postVO.setFileName(fileName);
+						num = boardService.addPost(board_category, postVO);
+							
+						/* 리다이렉트 (새로고침 문제 방지) */
+						nextPage = "readPost.do";
+						response.sendRedirect(nextPage+"?board_category="+board_category+"&head_title="+head_title+"&num="+num);
+						break;
+					} // end of <게시글 답변 등록>
+					
+					case "/replyPostForm.do": { // <게시글 답변 화면>	
+						/* 데이터 받기 & 변환  */
+						String board_category = request.getParameter("board_category");
+						String head_title = util.Conversion.boardCategory(board_category); // 게시판 제목
+						String now_pnum = request.getParameter("now_pnum"); // 페이지 번호
+						int parentNum = Integer.parseInt(request.getParameter("parentNum")); // 답변 달 부모 게시글 번호
+						System.out.println(head_title);
+						
+						/* 게시글 쓰기 화면으로 포워드 */
+						request.setAttribute("head_title", head_title);
+						request.setAttribute("board_category", board_category);
+						request.setAttribute("parentNum", parentNum);
+						request.setAttribute("now_pnum", now_pnum);
+						nextPage = "/Category/Board/replyForm.jsp";
+						RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
+						dispatcher.forward(request, response);
+						break;
+					} // end of <게시글 답변 화면>
+					
+					case "/modifyPostRegister.do": { // <게시글 수정 등록>
+						/* 데이터 받기  */
+						String board_category = request.getParameter("board_category");
+						String head_title = util.Conversion.boardCategory(board_category); // 게시판 제목
+						System.out.println(head_title);
+						
+						/* 수정한 게시글 등록 */
+						Map<String, String> postMap = upload(request, response);
+						int num = Integer.parseInt(postMap.get("num")); 
+						String title = postMap.get("title");
+						String content = postMap.get("content");
+						String imageName = postMap.get("imageName");
+						String fileName = postMap.get("fileName");
+						String originalImageName = postMap.get("originalImageName");
+						String originalFileName = postMap.get("originalFileName");
+						postVO.setNum(num);
+						postVO.setId("kosmo");
+						postVO.setTitle(title);
+						postVO.setContent(content);
+						postVO.setImageName(imageName);
+						postVO.setFileName(fileName);
+						boardService.modifyPost(board_category, postVO); // 게시글 수정 후 
+
+						modifyUplodingFile(postMap, board_category, num, imageName, originalImageName); // temp 폴더 => /[카테고리]/[게시글 번호] 폴더 (이미지) & 이전 이미지 삭제
+						modifyUplodingFile(postMap, board_category, num, fileName, originalFileName); // temp 폴더 => /[카테고리]/[게시글 번호] 폴더 (파일) & 이전 파일 삭제
+	
+						/* 리다이렉트 (새로고침 문제 방지) */
+						nextPage = "readPost.do";
+						response.sendRedirect(nextPage+"?board_category="+board_category+"&head_title="+head_title+"&num="+num);
+						break;
+					} // end of <게시글 수정 등록>
+					
+					case "/modifyPostForm.do": { // <게시글 수정 화면>	
+						/* 데이터 받기  */
+						String board_category = request.getParameter("board_category");
+						String head_title = util.Conversion.boardCategory(board_category); // 게시판 제목
+						String now_pnum = request.getParameter("now_pnum"); // 페이지 번호
+						int num = Integer.parseInt(request.getParameter("num")); // 수정 할 게시글 번호
+						System.out.println(head_title);
+						
+						/* 수정할 게시글 가져오기 */
+						PostVO postVO = boardService.readPost(board_category, num);
+						
+						/* 게시글 쓰기 화면으로 포워드 */
+						request.setAttribute("head_title", head_title);
+						request.setAttribute("board_category", board_category);
+						request.setAttribute("now_pnum", now_pnum);
+						request.setAttribute("postVO", postVO);
+						nextPage = "/Category/Board/modifyForm.jsp";
+						RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
+						dispatcher.forward(request, response);
+						break;
+					} // end of <게시글 수정 화면>
+					
+					case "/writePostRegister.do": { // <게시글 쓰기 등록>
+						/* 데이터 받기  */
+						String board_category = request.getParameter("board_category");
+						String head_title = util.Conversion.boardCategory(board_category); // 게시판 제목
+						System.out.println(head_title);
+						
+						/* 게시글 등록 */
+						int num=0;
+						Map<String, String> postMap = upload(request, response);
+						String title = postMap.get("title");
+						String content = postMap.get("content");
+						String imageName = postMap.get("imageName");
+						String fileName = postMap.get("fileName");
+						postVO.setId("kosmo");
+						postVO.setTitle(title);
+						postVO.setContent(content);
+						postVO.setImageName(imageName);
+						postVO.setFileName(fileName);
+						num = boardService.addPost(board_category, postVO); // 게시글 등록 후 게시글 번호 반환 
+						
+						tempUploadFileMove(postMap, board_category, num, imageName); // 임시 폴더에 이미지 존재시 - 게시글 번호 폴더로 이동
+						tempUploadFileMove(postMap, board_category, num, fileName); // 임시 폴더에 파일 존재시 - 게시글 번호 폴더로 이동
+	
+						/* 리다이렉트 (새로고침 문제 방지) */
+						nextPage = "readPost.do";
+						response.sendRedirect(nextPage+"?board_category="+board_category+"&head_title="+head_title+"&num="+num);
+						break;
+					} // end of <게시글 쓰기 등록>
+					
+					case "/writePostForm.do": { // <게시글 쓰기 화면>	
+						/* 데이터 받기  */
+						String board_category = request.getParameter("board_category");
+						String search_option = request.getParameter("search_option"); // 검색 옵션
+						String search_value = request.getParameter("search_value"); // 검색 값
+						String now_pnum = request.getParameter("now_pnum"); // 페이지 번호
+						String head_title = util.Conversion.boardCategory(board_category); // 게시판 제목
+						System.out.println(head_title);
+						
+						/* 게시글 쓰기 화면으로 포워드 */
+						request.setAttribute("head_title", head_title);
+						request.setAttribute("board_category", board_category);
+						request.setAttribute("now_pnum", now_pnum);
+						nextPage = "/Category/Board/writeForm.jsp";
+						RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
+						dispatcher.forward(request, response);
+						break;
+					} // end of <게시글 쓰기 화면>
+					
+					case "/readPost.do": { // <게시글 읽기>
+						/* 데이터 받기  */
+						String board_category = request.getParameter("board_category");
+						String head_title = util.Conversion.boardCategory(board_category); // 게시판 제목
+						String now_pnum = request.getParameter("now_pnum"); // 페이지 번호
+						int num = Integer.parseInt(request.getParameter("num"));
+						System.out.println("게시판 : "+head_title);
+						System.out.println("번호 : "+request.getAttribute("num"));
+						
+						/* 해당 번호의 게시글 가져오기 (현재/이전/다음) */
+						PostVO postVO = boardService.readPost(board_category, num); // 현재 게시글
+						PostVO[] postPNArr = boardService.readPostPN(board_category, num);
+						
+						/* 게시글 읽기 화면으로 포워드 */
+						request.setAttribute("head_title", head_title);
+						request.setAttribute("board_category", board_category);
+						request.setAttribute("now_pnum", now_pnum);
+						request.setAttribute("postVO", postVO);
+						request.setAttribute("postPNArr", postPNArr);
+						nextPage = "/Category/Board/postRead.jsp";
+						RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
+						dispatcher.forward(request, response);
+						break;
+					} // end of <게시글 읽기>
+					
+					case "/questionList.do": { // <게시글 목록 - 질문 게시판>
+						/* 데이터 받기 */				
+						String search_option = request.getParameter("search_option"); // 검색 옵션
+						String search_value = request.getParameter("search_value"); // 검색 값
+						String now_pnum = request.getParameter("now_pnum"); // 페이지 번호
+						String url = request.getRequestURI();
+						String board_category = "question_List";
+						
+						if(search_value==null || search_value.equals("")) {	search_value = "";	}
+						if(now_pnum==null || now_pnum.equals("")) {		now_pnum = "1";	}
+						
+						/* DB에서 게시글 목록 가져오기 */
+						List<PostVO> postsList = boardService.listQnaPosts(board_category, search_option, search_value, Integer.parseInt(now_pnum)); // DB에서 게시글 목록 받아오기
+						String paging = boardService.paging(url, board_category, search_option, search_value, Integer.parseInt(now_pnum));
+						
+						/* 질문 게시판 화면으로 포워드 */
+						request.setAttribute("search_option", search_option);
+						request.setAttribute("search_value", search_value);
+						request.setAttribute("paging", paging);
+						request.setAttribute("board_category", board_category);
+						request.setAttribute("postsList", postsList);
+						nextPage = "/Category/Board/listQuestion.jsp";
+						RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
+						dispatcher.forward(request, response);
+						break;
+					} // end of <게시글 목록 - 질문 게시판>
+					
+					case "/communityList.do": { // <게시글 목록 - 자유 게시판>
+						/* 데이터 받기 */				
+						String search_option = request.getParameter("search_option"); // 검색 옵션
+						String search_value = request.getParameter("search_value"); // 검색 값
+						String now_pnum = request.getParameter("now_pnum"); // 페이지 번호
+						String url = request.getRequestURI();
+						String board_category = "community_List";
+						
+						if(search_value==null || search_value.equals("")) {	search_value = "";	}
+						if(now_pnum==null || now_pnum.equals("")) {		now_pnum = "1";	}
+						
+						/* DB에서 게시글 목록, 페이징 가져오기 */
+						List<PostVO> postsList = boardService.listPosts(board_category, search_option, search_value, Integer.parseInt(now_pnum)); // DB에서 게시글 목록 받아오기
+						String paging = boardService.paging(url, board_category, search_option, search_value, Integer.parseInt(now_pnum));
+						
+						/* 자유 게시판 화면으로 포워드 */
+						request.setAttribute("search_option", search_option);
+						request.setAttribute("search_value", search_value);
+						request.setAttribute("paging", paging);
+						request.setAttribute("board_category", board_category);
+						request.setAttribute("postsList", postsList);
+						nextPage = "/Category/Board/listCommunity.jsp";
+						RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
+						dispatcher.forward(request, response);
+						break;
+					} // end of <게시글 목록 - 자유 게시판>
+					
+					case "/noticeList.do": default: { // <게시글 목록 - 공지사항>
+						/* 데이터 받기 */				
+						String search_option = request.getParameter("search_option"); // 검색 옵션
+						String search_value = request.getParameter("search_value"); // 검색 값
+						String now_pnum = request.getParameter("now_pnum"); // 페이지 번호
+						String url = request.getRequestURI();
+						String board_category = "notice_List";
+						
+						if(search_value==null || search_value.equals("")) {	search_value = "";	}
+						if(now_pnum==null || now_pnum.equals("")) {		now_pnum = "1";	}
+						
+						/* DB에서 게시글 목록, 페이징 가져오기 */
+						List<PostVO> postsList = boardService.listPosts(board_category, search_option, search_value, Integer.parseInt(now_pnum)); // DB에서 게시글 목록 받아오기
+						String paging = boardService.paging(url, board_category, search_option, search_value, Integer.parseInt(now_pnum));
+						
+						System.out.println("postsList:"+postsList);
+						System.out.println("postsList.size():"+postsList.size());
+						
+						
+						if(postsList.isEmpty()) {
+							System.out.println("postsList:empty");	
+						}
+						
+						
+						/* 공지사항 화면으로 포워드 */
+						request.setAttribute("search_option", search_option);
+						request.setAttribute("search_value", search_value);
+						request.setAttribute("paging", paging);
+						request.setAttribute("board_category", board_category);
+						request.setAttribute("postsList", postsList);
+						nextPage = "/Category/Board/listNotice.jsp";
+						RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
+						dispatcher.forward(request, response);
+						break;
+					} // end of <게시글 목록 - 공지사항>
+				} // end of switch
+			} // end of if
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	} // end of doHandle()
+	
+	private void modifyUplodingFile(Map<String, String> postMap, String board_category, int num, String uploadName, String originalName) throws IOException {
+		tempUploadFileMove(postMap, board_category, num, uploadName); // 새로 파일 업로드 작업
+		if(uploadName!=null && uploadName.length()!=0) { // 글쓰기 화면에서 등록한 이미지가 있을 시
+			File oldFile = new File(POST_FILE_PATH + "\\" + board_category + "\\" + num + "\\" + originalName);
+			System.out.println("originalName  "+originalName);
+			System.out.println("oldFile  "+oldFile);
+			oldFile.delete();
+		}
+	}
+	
+	private void tempUploadFileMove(Map<String, String> postMap, String board_category, int num, String uploadName) throws IOException {
+		if(uploadName!=null && uploadName.length()!=0) { // 글쓰기 화면에서 등록한 이미지가 있을 시
+		    File srcFile = new File(POST_FILE_PATH +"\\"+"temp"+"\\"+uploadName); // temp에 임시로 파일 저장
+			File destDir = new File(POST_FILE_PATH +"\\"+board_category+"\\"+num);
+			destDir.mkdirs(); // 이름을 글번호로 하는 폴더 생성
+			FileUtils.moveFileToDirectory(srcFile, destDir, true); // temp의 이미지 파일을 글번호 폴더로 이동	
+		}
+	}
+	
+	
+	
+	private Map<String, String> upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Map<String, String> postMap = new HashMap<String, String>();
+		String encoding = "utf-8";
+		File currentDirPath = new File(POST_FILE_PATH); // 파일을 저장할 경로 넣기		
+		DiskFileItemFactory factory = new DiskFileItemFactory(); // FileItem 객체 생성
+		factory.setRepository(currentDirPath); // 임시 저장소 지정
+		factory.setSizeThreshold(1024 * 1024);  // 파일 최대 사이즈 지정
+		ServletFileUpload upload = new ServletFileUpload(factory);
+		try {
+			List items = upload.parseRequest(request);  // 모든 request 값
+			for (int i = 0; i < items.size(); i++) {
+				FileItem fileItem = (FileItem) items.get(i);  // 게시글 데이터를 형 변환
+				if (fileItem.isFormField()) {// true : 게시글 데이터
+					System.out.println(fileItem.getFieldName() + "=" + fileItem.getString(encoding));
+					postMap.put(fileItem.getFieldName(), fileItem.getString(encoding)); // 게시글 데이터를 map 형태로 저장
+				} else { // false : 업로드할 파일
+					System.out.println("파라미터명:" + fileItem.getFieldName());
+					System.out.println("파일크기:" + fileItem.getSize() + "bytes");
+					if (fileItem.getSize() > 0) {
+						int idx = fileItem.getName().lastIndexOf("\\"); // '\\' : 윈도우 일때의 경로 구분 -->  '\\'가 없으면 -1 반환 , 있으면 해당 index 반환
+						if (idx == -1) {
+							idx = fileItem.getName().lastIndexOf("/"); // '/' : 리눅스 일때의 경로 구분 --> 해당 index 반환
+						}
+
+						String fileName = fileItem.getName().substring(idx + 1);  // 마지막 \\의 이후 문자열 : 업로드할 파일의 이름 (브라우저 경로 제거)
+						System.out.println("파일명:" + fileName);
+						postMap.put(fileItem.getFieldName(), fileName);  // 파일명만 map에 저장
+						File uploadFile = new File(currentDirPath + "\\temp\\" + fileName); // 임시 저장 경로에 파일 업로드 준비
+						fileItem.write(uploadFile); // 지정된 경로와 이름으로 파일 생성 (업로드)
+
+					} // end of if (fileItem.getSize() > 0)
+				} // end of if (fileItem.isFormField())
+			} // end of for
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return postMap;
+	} // end of Map()
+	
+} // end of BoardController

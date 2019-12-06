@@ -1,0 +1,566 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+import dto.PostVO;
+
+public class BoardDAO {
+	/* DB 연결 변수 */
+	private Connection conn;
+	private PreparedStatement pstmt;
+	private ResultSet rs;
+	private DataSource dataFactory; 
+	
+	/* 페이징 계산 변수 */
+	int page_counts; // 한 페이지에 출력할 페이지 번호들의 개수
+	int post_counts; // 한 페이지에 출력할 게시글의 개수
+	
+	
+	public BoardDAO() {
+		try {
+			/* 커넥션 풀
+			 * 1. Context 인터페이스 타입으로 InitialContext 객체 생성 (커넥션 풀에 접근을 위한 JNDI 서비스)
+			 * 2. "java:comp/env" 에 해당하는 객체를 찾아서 envContext에 삽입
+			 * 3. "jdbc/orcl"에 해당하는 객체를 찾아서 dataFactory에 삽입
+			 */
+			Context ctx = new InitialContext();
+			Context envContext = (Context)ctx.lookup("java:/comp/env");
+			dataFactory = (DataSource)envContext.lookup("jdbc/oracle");
+		} catch (Exception e){
+			e.printStackTrace();
+			System.out.println("DB 연결 실패");
+		}
+	}
+	
+	public BoardDAO(int page_counts, int post_counts) {
+		this();
+		this.page_counts = page_counts;
+		this.post_counts = post_counts;
+	}
+		
+	/* 글목록 조회 */
+	public List<PostVO> selectAllPosts(String board_category, String search_option, String search_value, int now_pnum ) {
+		System.out.println("BoardDAO.java - selectAllPosts()");
+		List<PostVO> postsList = new ArrayList<PostVO>(); // PostVO 객체를 바인딩 하기 위한 ArrayList
+		int abspage = 1;
+		
+		try {
+			String sql = "SELECT num, title, content, writeDate, readcount, imageName, fileName, id";
+			sql += " FROM "+board_category;
+			if(!search_value.equals("")) { sql += " WHERE "+search_option+" LIKE '%'||?||'%'";	}
+			sql += " ORDER BY num DESC";
+			System.out.println(sql);
+			
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY );
+			if(!search_value.equals("")) { pstmt.setString(1, search_value); }
+			rs = pstmt.executeQuery(); // pstmt 안의 쿼리문 실행 후 결과 반환			
+						
+//			abspage = (now_pnum-1)*post_counts + 1;
+//			if(rs.next()) {
+//				rs.absolute(abspage);
+//				int count = 0;
+//				while(count < post_counts) { // 한 페이지 출력 개수만큼 반복
+//					PostVO postVO = new PostVO();
+//					postVO.setNum(rs.getInt("num"));
+//					postVO.setTitle(rs.getString("title"));
+//					postVO.setContent(rs.getString("content"));
+//					postVO.setWriteDate(rs.getDate("writeDate"));
+//					postVO.setReadcount(rs.getInt("readcount"));
+//					postVO.setImageName(rs.getString("imageName")); // null 일 수 있음
+//					postVO.setFileName(rs.getString("fileName")); // null 일 수 있음
+//					postVO.setId(rs.getString("id"));
+//					postsList.add(postVO); // List에 post 객체 추가
+//					if(rs.isLast()) 	{ break; }
+//					rs.next();
+//					count++;
+//				} // end of while
+//			} // end of if
+
+			/* 해당 페이지의 게시글 list에 담기 */
+			abspage = (now_pnum-1)*post_counts + 1; // 현재 페이지의 첫 게시글 열 번호 계산
+			if(rs.next()) { // 출력 결과가 존재하면
+				rs.absolute(abspage); // 해당하는 곳으로 커서 위치 이동
+				for(int i=0; i< post_counts; i++) {  // 게시글 출력 개수만큼 반복
+					/* 결과값 객체에 담기 & List에 add */
+					PostVO postVO = new PostVO();
+					postVO.setNum(rs.getInt("num"));
+					postVO.setTitle(rs.getString("title"));
+					postVO.setContent(rs.getString("content"));
+					postVO.setWriteDate(rs.getDate("writeDate"));
+					postVO.setReadcount(rs.getInt("readcount"));
+					postVO.setImageName(rs.getString("imageName")); // null 일 수 있음
+					postVO.setFileName(rs.getString("fileName")); // null 일 수 있음
+					postVO.setId(rs.getString("id"));
+					postsList.add(postVO); // List에 post 객체 추가
+					
+					if(rs.isLast())	{ break; } // 커서가 마지막에 위치하면 while 종료 (주로 맨 마지막 페이지 일 때)
+					rs.next();
+				} // end of for(int i=0; i< post_counts; i++)
+			} // end of if(rs.next)
+			
+			/* 사용한 DB 실행 객체들을 역순으로 종료 */
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+
+		return postsList;
+	} // end of selectAllPosts()
+	
+	/* 질문 게시판의 글 목록 조회 */
+	public List<PostVO> selectAllQnaPosts(String board_category, String search_option, String search_value, int now_pnum ) {
+		System.out.println("BoardDAO.java - selectAllQnaPosts()");
+		List<PostVO> postsList = new ArrayList<PostVO>(); // PostVO 객체를 바인딩 하기 위한 ArrayList
+		int abspage = 1;
+		
+		try {
+			/* 쿼리문 작성 */
+			String sql = "SELECT LEVEL, num, parentNum, title, content";
+			sql += ", imageName, fileName, readcount, writeDate, id";
+			sql += " FROM " + board_category;
+			if(!search_value.equals("")) { sql += " WHERE "+search_option+" LIKE '%'||?||'%'"; }
+			sql += " START WITH parentNum = 0";  
+			sql += " CONNECT BY PRIOR num = parentNum"; 
+			sql += " ORDER SIBLINGS BY num DESC"; // 게시글 에 필요한 내용들을 불러오고 답글일 경우의 설정도 함께 해준다.
+			System.out.println(sql);
+			
+			/* DB 연결, 쿼리 실행 결과 반환 */
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY );
+			if(!search_value.equals("")) {	pstmt.setString(1, search_value);	}
+			rs = pstmt.executeQuery(); // pstmt 안의 쿼리문 실행 후 결과 반환
+			
+//			abspage = (now_pnum-1)*post_counts + 1;
+//			int count = 0;
+//			while(count < post_counts) { // 한 페이지 출력 개수만큼 반복
+//				/* 결과값 객체에 담기 & List에 add */
+//				PostVO postVO = new PostVO();
+//				postVO.setLevel(rs.getInt("level")); 
+//				postVO.setNum(rs.getInt("num"));
+//				postVO.setParentNum(rs.getInt("parentNum"));
+//				postVO.setTitle(rs.getString("title"));
+//				postVO.setContent(rs.getString("content"));
+//				postVO.setWriteDate(rs.getDate("writeDate"));
+//				postVO.setReadcount(rs.getInt("readcount"));
+//				postVO.setImageName(rs.getString("imageName"));
+//				postVO.setFileName(rs.getString("fileName"));
+//				postVO.setId(rs.getString("id"));
+//				postsList.add(postVO); // List에 post 객체 추가
+//				if(rs.isLast())	{ break; } // 커서가 마지막에 위치하면 while 종료
+//				rs.next();
+//				count++;
+//			} // end of while
+			
+			/* 해당 페이지의 게시글 list에 담기 */
+			abspage = (now_pnum-1)*post_counts + 1; // 현재 페이지의 첫 게시글 열 번호 계산
+			if(rs.next()) { // 출력 결과가 존재하면
+				rs.absolute(abspage); // 해당하는 곳으로 커서 위치 이동
+				for(int i=0; i< post_counts; i++) {  // 게시글 출력 개수만큼 반복
+					/* 결과값 객체에 담기 & List에 add */
+					PostVO postVO = new PostVO();
+					postVO.setLevel(rs.getInt("level")); 
+					postVO.setNum(rs.getInt("num"));
+					postVO.setParentNum(rs.getInt("parentNum"));
+					postVO.setTitle(rs.getString("title"));
+					postVO.setContent(rs.getString("content"));
+					postVO.setWriteDate(rs.getDate("writeDate"));
+					postVO.setReadcount(rs.getInt("readcount"));
+					postVO.setImageName(rs.getString("imageName"));
+					postVO.setFileName(rs.getString("fileName"));
+					postVO.setId(rs.getString("id"));
+					postsList.add(postVO); // List에 post 객체 추가
+					if(rs.isLast())	{ break; } // 커서가 마지막에 위치하면 while 종료 (주로 맨 마지막 페이지 일 때)
+					rs.next();
+				} // end of for(int i=0; i< post_counts; i++)
+			} // end of if(rs.next)
+
+			/* 사용한 DB 실행 객체들을 역순으로 종료 */
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+
+		return postsList;
+	} // end of selectAllQnAPosts()
+		
+	/* 글 조회 */
+	public PostVO selectPost(String board_category, int num) {
+		System.out.println("BoardDAO.java - selectPost()");
+		PostVO postVO = null;
+		
+		try {
+			/* 쿼리문 작성 */
+			String sql = "SELECT * FROM " + board_category;
+			sql += " WHERE num = ?";
+			
+			/* DB 연결, 쿼리 실행, 결과 반환 */
+			conn = dataFactory.getConnection(); // 커센션 풀로부터 커넥션 얻기
+			pstmt = conn.prepareStatement(sql); // 쿼리문 담기
+			pstmt.setInt(1, num); // ?에 파라매터 set 
+			ResultSet rs = pstmt.executeQuery(); // select 쿼리 실행, 그 후 결과를 rs에 저장
+
+			/* 해당 페이지의 글을 객체에 저장 */
+			if(rs.next()) { // 커서를 다음 튜플 위치로 -> 존재 여부 확인
+				/* 결과값 객체에 담기 */
+				postVO = new PostVO();
+				postVO.setNum(rs.getInt("num"));
+				if("question_List".equals(board_category)) { postVO.setParentNum(rs.getInt("parentNum")); } // 질문 게시판일 때만 (답변기능)				
+				postVO.setTitle(rs.getString("title"));
+				postVO.setContent(rs.getString("content"));
+				postVO.setImageName(rs.getString("imageName")); // null 일 수 있음
+				postVO.setFileName(rs.getString("fileName")); // null 일 수 있음
+				postVO.setId(rs.getString("id"));
+				postVO.setWriteDate(rs.getDate("writeDate"));
+				System.out.println("이미지 검증-"+postVO.getImageName());
+			}
+
+			/* 사용한 DB 실행 객체들을 역순으로 종료 */
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+
+		return postVO;
+	} // end of selectPost()
+	
+	public PostVO[] selectPostPN(String board_category, int num) {
+		System.out.println("BoardDAO.java - selectPostPN()");
+		PostVO[] postPNArr = new PostVO[2];
+		
+		try {
+			/* 쿼리문 작성 */
+			
+			
+			String sql = "SELECT * FROM";
+				sql += "(";
+					sql += "  SELECT num";
+					if(board_category.equals("question_List")) { sql += " ,parentNum"; }
+					sql += " ,LAG(num) OVER(ORDER BY num DESC) AS prev_num";
+					sql += " ,LAG(title) OVER(ORDER BY num DESC) AS prev_title";
+					sql += " ,LEAD(num) OVER(ORDER BY num DESC) AS next_num";
+					sql += " ,LEAD(title) OVER(ORDER BY num DESC) AS next_title";
+					sql += " FROM " + board_category;
+					if(board_category.equals("question_List")) { sql += " WHERE parentNum=0"; }
+				sql +=")";
+			sql += " WHERE num = ?";
+						
+			/* DB 연결, 쿼리 실행, 결과 반환 */
+			conn = dataFactory.getConnection(); // 커센션 풀로부터 커넥션 얻기
+			pstmt = conn.prepareStatement(sql); // 쿼리문 담기
+			pstmt.setInt(1, num); // 파라매터 set 
+			ResultSet rs = pstmt.executeQuery(); // select 쿼리 실행, 그 후 결과를 rs에 저장
+
+			/* 이전글, 다음글 정보 */
+			if(rs.next()) { // 커서를 다음 튜플 위치로 -> 존재 여부 확인
+				/* 결과값 객체에 담기 */
+				PostVO postVOPrev = new PostVO();
+				PostVO postVONext = new PostVO();
+				postVOPrev.setNum(rs.getInt("prev_num"));
+				postVOPrev.setTitle(rs.getString("prev_title"));
+				postVONext.setNum(rs.getInt("next_num"));
+				postVONext.setTitle(rs.getString("next_title"));
+				
+				postPNArr[0] = postVOPrev;
+				postPNArr[1] = postVONext;
+			}
+
+			/* 사용한 DB 실행 객체들을 역순으로 종료 */
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+
+		return postPNArr;
+	}
+
+	/* 글 삽입 (쓰기, 답변) */
+	public int insertPost(String board_category, PostVO postVO) {
+		System.out.println("BoardDAO.java - insertPost()");
+		System.out.println("parentNum"+postVO.getParentNum());
+		try {
+			/* 쿼리문 작성 */
+			String sql = "INSERT INTO " + board_category;
+			sql += " (num,";
+			if(postVO.getParentNum() > 0) { sql += " parentNum,"; } // 답변 - 부모 번호
+			sql += " title, content, imageName, fileName, id)";
+			sql += " VALUES (table_seq";
+			if(postVO.getParentNum() > 0) { sql += ",?"; } // 답변 - 부모 번호
+			sql +=  ",? ,?, ?, ?, ?)";
+			switch (board_category) { // seq 변경
+				case "notice_List":
+					sql = sql.replace("table_seq", "notice_seq.NEXTVAL");
+					break;
+				case "community_List":
+					sql = sql.replace("table_seq", "commu_seq.NEXTVAL");
+					break;
+				case "question_List":
+					sql = sql.replace("table_seq", "quest_seq.NEXTVAL");
+					break;
+				default : System.out.println("board_category 예외 값");
+					break;
+			}
+			System.out.println(sql);
+			
+			/* DB 연결, 쿼리 실행 */
+			int cnt=0;
+			conn = dataFactory.getConnection(); // 커센션 풀로부터 커넥션 얻기
+			pstmt = conn.prepareStatement(sql); // 쿼리문 담기
+			if(postVO.getParentNum() > 0) { pstmt.setInt(++cnt, postVO.getParentNum()); } // 답변 - 부모 번호
+			pstmt.setString(++cnt, postVO.getTitle());
+			pstmt.setString(++cnt, postVO.getContent());
+			pstmt.setString(++cnt, postVO.getImageName());
+			pstmt.setString(++cnt, postVO.getFileName());
+			pstmt.setString(++cnt, postVO.getId());
+			pstmt.executeUpdate(); // select 쿼리 실행, 그 후 결과를 rs에 저장
+
+			/* 사용한 DB 실행 객체들을 역순으로 종료 */
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return selectNewestNum(board_category);
+	} // end of insertPost()
+	
+	/* 글 수정 (수정) */
+	public void updatePost(String board_category, PostVO postVO) {
+		System.out.println("BoardDAO.java - updatePost()");
+		try {
+			/* 쿼리문 작성 */
+			String sql = "UPDATE " + board_category;
+			sql += " SET title=?";
+			sql += " , content=?";
+			if(isCheck(postVO.getImageName())) sql += " , imageName=?";
+			if(isCheck(postVO.getFileName())) sql += " , fileName=?";
+			sql += " WHERE num=?";
+			System.out.println(sql);
+
+			/* DB 연결, 쿼리 실행 */
+			int cnt=0;
+			conn = dataFactory.getConnection(); // 커센션 풀로부터 커넥션 얻기
+			pstmt = conn.prepareStatement(sql); // 쿼리문 담기
+			pstmt.setString(++cnt, postVO.getTitle());
+			pstmt.setString(++cnt, postVO.getContent());
+			if(isCheck(postVO.getImageName())) { pstmt.setString(++cnt, postVO.getImageName()); }
+			if(isCheck(postVO.getFileName())) { pstmt.setString(++cnt, postVO.getFileName()); }
+			pstmt.setInt(++cnt, postVO.getNum());
+			pstmt.executeUpdate(); // select 쿼리 실행, 그 후 결과를 rs에 저장
+
+			/* 사용한 DB 실행 객체들을 역순으로 종료 */
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+	} // end of updatePost()
+	
+	/* 파일 이름 존재 여부 체크 */
+	private boolean isCheck(String Fname) {
+		if (Fname != null && Fname.length() != 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	
+	
+	public void deletePost(String board_category, int num) {
+		System.out.println("BoardDAO.java - deletePost()");
+		try {
+			/* 쿼리문 작성 */
+			String query = "DELETE FROM " + board_category;
+			query += " WHERE num in (";
+			if("question_List".equals(board_category)) { // 질문 게시판 - 해당 게시글 + 답변까지 삭제
+				query += " SELECT num FROM " + board_category;
+				query += " START WITH num = ?";
+				query += " CONNECT BY PRIOR  num = parentNum )";
+			} else { // 해당 게시글만 삭제
+				query += "?)";
+			}
+			System.out.println(query);
+			
+			/* DB 연결, 쿼리 실행 */
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
+			/* 종료 */
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	} // end of deletePost()
+	
+	/* 최신 글 번호 */
+	private int selectNewestNum(String board_category) {
+		System.out.println("BoardDAO.java - selectNewestNum()");
+		int num=0;
+		
+		try {
+			/* 쿼리문 작성 */
+			String sql = "SELECT max(num)";
+			sql += " FROM "+board_category;
+			System.out.println(sql);
+			
+			/* DB 연결, 쿼리 실행 */
+			conn = dataFactory.getConnection(); // 커센션 풀로부터 커넥션 얻기
+			pstmt = conn.prepareStatement(sql); // 쿼리문 담기
+			rs = pstmt.executeQuery(); // select 쿼리 실행, 그 후 결과를 rs에 저장
+
+			if(rs.next()) { // 커서를 다음 튜플 위치로 -> 존재 여부 확인
+				num = rs.getInt(1);
+				System.out.println("newestNum:"+num);
+			}
+
+			/* 사용한 DB 실행 객체들을 역순으로 종료 */
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return num;
+	} //  end of selectNewestNum()
+
+	public List<Integer> selectConnNums(String board_category, int num) {
+		System.out.println("BoardDAO.java - selectConnNums()");
+		List<Integer> numList = new ArrayList<Integer>();
+		
+		try {
+			/* 쿼리문 작성 */
+			String sql = "SELECT num FROM " + board_category;
+			sql += " START WITH num = ?";
+			sql += " CONNECT BY PRIOR  num = parentNum";
+			System.out.println(sql);
+			
+			/* DB 연결, 쿼리 실행 */
+			conn = dataFactory.getConnection(); // 커센션 풀로부터 커넥션 얻기
+			pstmt = conn.prepareStatement(sql); // 쿼리문 담기
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery(); // select 쿼리 실행, 그 후 결과를 rs에 저장
+
+			while(rs.next()) { // 커서를 다음 튜플 위치로 -> 존재 여부 확인
+				int connNum = rs.getInt(1);
+				numList.add(connNum);
+			}
+
+			/* 사용한 DB 실행 객체들을 역순으로 종료 */
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return numList;
+	} // selectConnNums()
+	
+
+	/* 페이징 번호 만들기 */
+	public String pageNumber(String url, String board_category, String search_option, String search_value, int now_pnum) {
+		int total_post = totalRecord(board_category, search_option, search_value); // 총 게시글 수
+		int total_page = total_post / post_counts + 1; // 총 페이지 수 (총 게시글 수 / 페이지 당 게시글 수)
+		String str="";
+		
+		if(total_post % post_counts == 0) total_page--; // 나머지가 0일 때 더한 1을 뺌		
+		
+		if(now_pnum < 1) now_pnum = 1; // 비정상적인 페이지 번호 예외 처리 (1보다 작을 때)
+		if(now_pnum > total_page) now_pnum = total_page; // 비정상적인 페이지 번호 예외 처리 (총 페이지 수보다 클 때)
+			
+		int start_pnum = now_pnum - (now_pnum % page_counts) + 1 ; // 각 페이지에 출력되는 번호의 시작점
+		if((now_pnum % page_counts == 0)) start_pnum = start_pnum - page_counts; // 시작점 계산 예외 처리
+			
+		int end_pnum = start_pnum + (page_counts - 1) ; // 각 페이지에 출력되는 번호의 끝점
+		
+		if(end_pnum > total_page) end_pnum = total_page; // 맨 마지막 페이지 번호 계산
+		
+		
+		if(page_counts < start_pnum) { // [<<] [<] (맨 처음은 출력 안함)
+			str += "<li><a href='"+url+"?now_pnum=1&search_option="+search_option+"&search_value="+search_value+"'>&lt;&lt;</a></li>"; // 맨 첫 페이지
+			str += "<li><a href='"+url+"?now_pnum="+(start_pnum-1)+"&search_option="+search_option+"&search_value="+search_value+"'>&lt;</a></li>";
+		}
+		
+		for(int i=start_pnum; i<=end_pnum; i++) { // [n] [n+1] [n+2] [n+3] [n+4]
+			if(i==now_pnum) {
+				str += "<li><span style='color:green'>"+i+"</span></li>";
+			} else {
+				str += "<li><a href='"+url+"?now_pnum="+i+"&search_option="+search_option+"&search_value="+search_value+"'>"+i+"</a></li>";
+			}
+		}
+		
+		if(end_pnum < total_page) { // [>] [>>] (맨 마지막은 출력 안함)
+			str += "<li><a href='"+url+"?now_pnum="+(end_pnum+1)+"&search_option="+search_option+"&search_value="+search_value+"'>&gt;</a></li>";
+			str += "<li><a href='"+url+"?now_pnum="+(total_page)+"&search_option="+search_option+"&search_value="+search_value+"'>&gt;&gt;</a></li>"; // 맨 마지막 페이지
+		}	
+		
+		return str;
+	} // end of pageNumber()
+
+	public int totalRecord(String board_category, String search_option,  String search_value) {
+		int total_post = 0; // 총 게시글 개수
+		
+		String sql = "SELECT count(*) FROM " + board_category;
+		if(!search_value.equals("")) {
+			sql += " WHERE " + search_option + " LIKE '%'||?||'%'";
+		}
+		
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			if(!search_value.equals("")) {
+				pstmt.setString(1, search_value);
+			}
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				total_post = rs.getInt(1); // 레코드 개수
+			}
+			
+			/* 종료 */
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return total_post;
+	} // end of totalRecord()
+
+
+}

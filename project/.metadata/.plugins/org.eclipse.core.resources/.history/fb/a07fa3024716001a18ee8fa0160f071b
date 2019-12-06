@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script > 
+	alert("회원정보가 없습니다. 아이디를 다시 입력해주세요.");
+	window.location.href="../Project/Category/Member/find_pwd.jsp";
+</script>
+</head>
+<body>
+
+</body>
+</html>

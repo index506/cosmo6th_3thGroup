@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+
+	alert("비밀번호가 틀렸습니다.");
+	window.location.href="../form/membership_Withdrawal_form.do";
+	
+</script>
+<title></title>
+</head>
+<body>
+
+</body>
+</html>

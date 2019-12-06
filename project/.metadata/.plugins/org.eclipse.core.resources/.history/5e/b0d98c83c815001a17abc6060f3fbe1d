@@ -1,0 +1,71 @@
+package controller;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.MemberDAO;
+import dto.MemberVO;
+import service.MemberService;
+
+/**
+ * Servlet implementation class SignupServlet
+ */
+@WebServlet("/signup/*")
+public class SignupController extends HttpServlet {
+	//private static final long serialVersionUID = 1L;
+	MemberService memberService;
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doHandle(request,response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doHandle(request,response);
+	}
+
+	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String action = request.getPathInfo();
+	    System.out.println("action :"+action);
+	    memberService = new MemberService();
+	    String nextPage=null;
+	    try {
+	    	if(action!=null && action.equals("/signup.do")) {
+		    	
+		    	
+		    	MemberVO memberVO = new MemberVO();
+		    	memberVO.setId(request.getParameter("id"));
+		    	memberVO.setPwd(request.getParameter("pwd"));
+		    	memberVO.setName(request.getParameter("name"));
+		    	memberVO.setEmail(request.getParameter("email"));
+		    	memberVO.setAddress(request.getParameter("address"));
+		    	memberVO.setTel(Integer.parseInt(request.getParameter("tel")));
+		    	memberVO.setPhone(Integer.parseInt(request.getParameter("phone")));
+		    	
+		    	memberService.AddMember();
+		    	System.out.println("회원가입 완료!");
+		    	System.out.println("로그인 페이지 이동!");
+		    	nextPage="/Category/Member/login_main.jsp";
+	    	}
+	    }catch(Exception e) {
+	    	e.printStackTrace();
+	    }
+	    RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
+        dispatch.forward(request, response);
+	}
+
+}

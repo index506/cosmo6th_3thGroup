@@ -1,0 +1,166 @@
+package dao;
+
+import java.awt.image.ImageFilter;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+import dto.PostVO;
+
+public class BoardDAO { // MVC : 모델
+	
+	private Connection conn; // DB 커넥션 참조 변수
+	private PreparedStatement pstmt; // 
+	private ResultSet rs;
+	private DataSource dataFactory; 
+	
+	public BoardDAO() {
+		try {
+			/* 
+			 * - 커넥션 풀
+			 * 1. Context 인터페이스 타입으로 InitialContext 객체 생성 (커넥션 풀에 접근을 위한 JNDI 서비스)
+			 * 2. "java:comp/env" 에 해당하는 객체를 찾아서 envContext에 삽입
+			 * 3. "jdbc/orcl"에 해당하는 객체를 찾아서 dataFactory에 삽입
+			 */
+			Context ctx = new InitialContext();
+			Context envContext = (Context)ctx.lookup("java:/comp/env"); // lookup(): 등록된 naming 서비스로부터 자원을 찾고자할 때 사용하는 메서드
+			dataFactory = (DataSource)envContext.lookup("jdbc/oracle");
+		} catch (Exception e){
+			e.printStackTrace();
+			System.out.println("DB 연결 실패");
+		}
+	}
+		
+	public List<PostVO> selectAllPosts(String board_category) {
+		System.out.println("BoardDAO.java - selectAllPosts()");
+		List<PostVO> postsList = new ArrayList<PostVO>(); // PostVO 객체를 바인딩 하기 위한 ArrayList
+		
+		try {
+			String sql = "SELECT num, title, content, writeDate, imageFileName, id FROM "+board_category;
+			System.out.println(sql);
+			
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery(); // pstmt 안의 쿼리문 실행 후 결과 반환			
+			
+			while(rs.next()) {
+				/* 결과값 객체에 담기 & List에 add */
+				PostVO postVO = new PostVO();
+				postVO.setNum(rs.getInt("num"));
+				postVO.setTitle(rs.getString("title"));
+				postVO.setContent(rs.getString("content"));
+				postVO.setWriteDate(rs.getDate("writeDate"));
+				postVO.setImageFileName(rs.getString("imageFileName")); // null 일 수 있음
+				postVO.setId(rs.getString("id"));
+				postsList.add(postVO); // List에 post 객체 추가
+			}
+
+			/* 사용한 DB 실행 객체들을 역순으로 종료 */
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+
+		return postsList;
+	} // end of selectAllPosts()
+	
+	public List<PostVO> selectAllQnAPosts(String board_category) {
+		System.out.println("BoardDAO.java - selectAllQnAPosts()");
+		List<PostVO> postsList = new ArrayList<PostVO>(); // PostVO 객체를 바인딩 하기 위한 ArrayList
+		
+		try {
+			String sql = "SELECT num, parentNum, title, content, writeDate, imageFileName, id FROM "+board_category;
+			sql  += "select LEVEL, num, parentNum, " 
+		               + "LPAD(' ',4*(LEVEL-1)) || title title," 
+		               + "content,writeDate,id " 
+		               + "from t_board " 
+		               + "start with parentNum=0 "  
+		               + "connect by prior num = parentNum " 
+		               + "order siblings by num desc"; // 게시글 에 필요한 내용들을 불러오고 답글일 경우의 설정도 함께 해준다.
+			System.out.println(sql);
+			
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery(); // pstmt 안의 쿼리문 실행 후 결과 반환			
+			
+			while(rs.next()) {
+				/* 결과값 객체에 담기 & List에 add */
+				PostVO postVO = new PostVO();
+				postVO.setLevel(rs.getInt("level")); 
+				postVO.setNum(rs.getInt("num"));
+				postVO.setNum(rs.getInt("parentNum"));
+				postVO.setTitle(rs.getString("title"));
+				postVO.setContent(rs.getString("content"));
+				postVO.setWriteDate(rs.getDate("writeDate"));
+				postVO.setImageFileName(rs.getString("imageFileName")); // null 일 수 있음
+				postVO.setId(rs.getString("id"));
+				postsList.add(postVO); // List에 post 객체 추가
+			}
+
+			/* 사용한 DB 실행 객체들을 역순으로 종료 */
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+
+		return postsList;
+	} // end of selectAllQnAPosts()
+		
+	public PostVO selectPost(String board_category, int num) {
+		System.out.println("BoardDAO.java - selectPost()");
+		PostVO postVO = null;
+		
+		try {
+			String sql = "SELECT * FROM " + board_category;
+			sql += " WHERE num = ?";
+			
+			/* 쿼리문 준비 & 실행 */
+			conn = dataFactory.getConnection(); // 커센션 풀로부터 커넥션 얻기
+			
+			pstmt = conn.prepareStatement(sql); // 쿼리문 담기
+			pstmt.setInt(1, num); // ?에 파라매터 set 
+			ResultSet rs = pstmt.executeQuery(); // select 쿼리 실행, 그 후 결과를 rs에 저장
+
+			if(rs.next()) { // 커서를 다음 튜플 위치로 -> 존재 여부 확인
+				/* 결과값 객체에 담기 */
+				postVO = new PostVO();
+				postVO.setNum(rs.getInt("num"));
+				if("question_List".equals(board_category)) postVO.setParentNum(rs.getInt("parentNum")); // 질문 게시판일 때만 (답변기능)				
+				postVO.setTitle(rs.getString("title"));
+				postVO.setContent(rs.getString("content"));
+				postVO.setImageFileName(rs.getString("imageFileName")); // null 일 수 있음
+				postVO.setId(rs.getString("id"));
+				postVO.setWriteDate(rs.getDate("writeDate"));
+				System.out.println("이미지 검증-"+postVO.getImageFileName());
+			}
+
+			/* 사용한 DB 실행 객체들을 역순으로 종료 */
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+
+		return postVO;
+	}
+
+
+	
+	
+
+}

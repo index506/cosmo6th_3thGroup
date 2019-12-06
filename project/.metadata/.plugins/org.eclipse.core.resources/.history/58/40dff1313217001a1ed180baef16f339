@@ -1,0 +1,144 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"></c:set>
+<%
+	request.setCharacterEncoding("utf-8");
+%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mypage</title>
+    <link rel="stylesheet" href="${contextPath}/css/init.css"/>
+    <link rel="stylesheet" href="${contextPath}/css/common.css"/>
+    <script type="text/javascript" src="${contextPath}/js/jquery-2.1.1.min.js"> </script>
+    <script type="text/javascript" src="${contextPath}/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/prefixfree.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/common.js"></script>
+
+    <link rel="stylesheet" href="${contextPath}/Category/Member/css/mypage.css"/>
+    <script type="text/javascript" src="${contextPath}/Category/Member/js/mypage.js"></script>
+</head>
+<body>
+    <!--main_header_wrap-->
+    <jsp:include page="/WEB-INF/view/header.jsp" flush="false"/>
+	<!--//main_header_wrap-->
+    <!--section-->
+    <section>
+    	<!-- sideNav -->
+        <jsp:include page="/WEB-INF/view/sideMember.jsp" flush="false"/>
+        <!-- //sideNav -->
+        <div id="mypage" class="content">
+            <p><b>${loginId}</b> 회원님 안녕하세요!</p>
+            <br>
+            <!--주문내역-->
+            <h3>주문내역</h3>
+            <div class="day_search">
+                <input type="button" name="one_month" value="1개월"/>
+                <input type="button" name="three_month" value="3개월"/>
+                <input type="button" name="sixth_month" value="6개월"/>
+                <input type="date" name="min_day" value="2019-11-12"/> ~ 
+                <input type="date" name="max_day" value="2019-11-12"/>
+                <input type="button" name="search" value="검색"/>
+            </div>
+            <table class="order">
+                <tr class="head">
+                    <th width="20%">날짜</th>
+                    <th width="65%">상품정보</th>
+                    <th>상태</th>
+                </tr>
+                <c:choose>
+                	<c:when test="${a}">
+                		<c:forEach items="${a}" var="a">
+			                <tr class="body on">
+			                    <td class="date"></td>
+			                    <td class="content">
+			                        <img src="">
+			                        <p class="first company"></p>
+			                        <p class="second bookname"></p>
+			                        <p class="third">수량: <span class="count"></span> / 주소 : <span class="address"></span></p>
+			                    </td>
+			                    <td class="status"></td>
+			                </tr>
+		                </c:forEach>
+		            </c:when>
+		            <c:otherwise>
+						<tr class="body off">
+		                    <td colspan="3">주문내역이 없습니다.</td>
+		                </tr>
+		            </c:otherwise>
+                </c:choose>
+                <tr class="foot">
+                    <td colspan="3"></td>
+                </tr>
+                <tr class="number">
+                    <td colspan="3">
+                        <br>
+                        <span class="on">1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                    </td>
+                </tr>
+                <tr></tr>
+            </table>
+            <!--//주문내역-->
+            <!--문제기록-->
+            <h3>문제기록</h3>
+            <table class="test">
+                <tr class="head">
+                    <th width="30%">문제 풀기 완료 시간</th>
+                    <th width="15%">소요 시간</th>
+                    <th width="15%">과목명</th>
+                    <th width="25%">기출문제 날짜</th>
+                    <th width="15%">점수</th>
+                </tr>
+                <c:choose>
+                	<c:when test="${logList.size()!=0}">
+                		<c:forEach items="${logList}" var="log">
+			                <tr class="body on">
+			                    <td class="finish">
+			                    	${log.log_date}
+			                    </td>
+			                    <td class="lead">${log.log_time}</td>
+			                    <td class="name">${log.license_name}</td>
+			                    <td class="day">${log.year_date}</td>
+			                    <td class="grade">
+			                    	<input type="hidden" value="${log.subjects_current}">
+			                    	<script>
+			                    		$(document).ready(function(){
+				                    		var log = $(".grade input").val();
+				                    		alert(log[2]);
+			                    		});
+			                    	</script>
+			                    </td>
+			                </tr>
+		                </c:forEach>
+		            </c:when>
+		            <c:otherwise>
+						<tr class="body off">
+		                    <td colspan="5">문제 기록이 없습니다.</td>
+		                </tr>
+		            </c:otherwise>
+                </c:choose>
+                <tr class="foot">
+                    <td colspan="5"></td>
+                </tr>
+                <tr class="number">
+                    <td colspan="5" style="text-align:center;">
+                        <br>
+                        ${paging}
+                    </td>
+                </tr>
+                <tr></tr>
+            </table>
+            <!--//문제기록-->
+        </div>
+    </section>
+    <!--//section-->
+    <!-- footer -->    
+	<jsp:include page="/WEB-INF/view/footer.jsp" flush="false"/>
+	<!-- //footer -->
+</body>
+</html>

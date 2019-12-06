@@ -1,0 +1,11 @@
+package service;
+
+import dao.BoardDAO;
+
+public class MemberService {
+	BoardDAO boardDAO;
+
+	public BoardService() {
+		boardDAO = new BoardDAO();
+	}
+}

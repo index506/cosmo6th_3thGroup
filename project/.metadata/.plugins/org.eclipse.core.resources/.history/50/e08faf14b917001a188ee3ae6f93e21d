@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//WebContent/Category/Book/css/order.css=UTF-8
+encoding//WebContent/Category/Member/css/mypage.css=UTF-8
+encoding//src/controller/LoginController.java=UTF-8
+encoding//src/dao/MemberDAO.java=UTF-8
+encoding//src/dto/MemberVO.java=UTF-8

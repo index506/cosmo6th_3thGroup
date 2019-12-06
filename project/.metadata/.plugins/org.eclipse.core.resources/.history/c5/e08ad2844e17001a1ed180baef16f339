@@ -1,0 +1,24 @@
+$(document).ready(function(){
+	var i=0;
+	$(".test .body").each(function(){
+		var grade = 0;
+		$(".test .body").eq(i).find(".grade p").each(function(){
+			grade += parseInt($(this).text());
+		});
+		
+		if($(".test .body").eq(i).find(".name").text()=="정보처리기사"){
+			var time = $(".test .body").eq(i).find(".lead p").text();
+			    
+		    var yyyy = time .substr(0,4);
+		    var mm = time .substr(5,2);
+		    var dd = time .substr(8,2);                        
+		    
+		    var com_ymd = new Date(yyyy, mm-1, dd);
+
+
+		}
+		
+		$(".test .body").eq(i).find(".grade").text(grade+"점");
+		i++;
+	});
+});

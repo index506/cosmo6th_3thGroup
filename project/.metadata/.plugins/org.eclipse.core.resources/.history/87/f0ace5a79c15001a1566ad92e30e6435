@@ -1,0 +1,16 @@
+package service;
+
+import dao.LogDAO;
+import dao.MemberDAO;
+
+public class MemberService {
+	MemberDAO memberDAO;
+	LogDAO logDAO;
+
+	public MemberService() {
+		memberDAO = new MemberDAO();
+		logDAO = new LogDAO();
+	}
+	
+	
+}

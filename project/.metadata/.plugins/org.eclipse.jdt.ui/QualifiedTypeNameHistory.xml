@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="login.MemberVO"/>
+    <fullyQualifiedTypeName name="dao.MemberDAO"/>
+    <fullyQualifiedTypeName name="service.MemberService"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="dto.LogVO"/>
+    <fullyQualifiedTypeName name="dto.MemberVO"/>
+    <fullyQualifiedTypeName name="dto.OrderVO"/>
+    <fullyQualifiedTypeName name="dto.CartVO"/>
+    <fullyQualifiedTypeName name="dto.BookVO"/>
+</qualifiedTypeNameHistroy>

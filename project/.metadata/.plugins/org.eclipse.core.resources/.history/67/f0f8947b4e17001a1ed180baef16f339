@@ -1,0 +1,26 @@
+$(document).ready(function(){
+	var i=0;
+	$(".test .body").each(function(){
+		var grade = 0;
+		$(".test .body").eq(i).find(".grade p").each(function(){
+			grade += parseInt($(this).text());
+		});
+		
+		if($(".test .body").eq(i).find(".name").text()=="정보처리기사"){
+			var time = $(".test .body").eq(i).find(".lead p").text();
+			
+			var end_ymd = "2019.03.22";    
+		    var yyyy = end_ymd.substr(0,4);
+		    var mm = end_ymd.substr(5,2);
+		    var dd = end_ymd.substr(8,2);                        
+		    
+		    var com_ymd = new Date(yyyy, mm-1, dd);
+
+
+		출처: https://shxrecord.tistory.com/139 [첫 발]
+		}
+		
+		$(".test .body").eq(i).find(".grade").text(grade+"점");
+		i++;
+	});
+});

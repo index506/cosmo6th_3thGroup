@@ -1,0 +1,193 @@
+package controller;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dao.MemberDAO;
+import dto.MemberVO;
+
+
+
+/**
+ * Servlet implementation class loginServlet
+ */
+@WebServlet("/login/*")
+public class LoginController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException {
+		// TODO Auto-generated method stub		
+	}
+	/**
+	 * @see Servlet#destroy()
+	 */
+	public void destroy() {
+		// TODO Auto-generated method stub
+	}
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doHandle(request,response);
+	}
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doHandle(request, response);
+	}
+	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String action = request.getPathInfo();//경로 정보를 담을 action 선언 
+	    System.out.println("action :"+action);//action에 담긴 값 확인	
+	    String nextPage=null;
+	    try {
+	    	if(action!=null && action.equals("/loginCheck.do")) {//로그인하기
+	    		System.out.println("loginCheck로 들어왔어");
+	    		String user_id = request.getParameter("user_id");
+	    		String user_pw = request.getParameter("user_pw");
+	    		System.out.println("넘어온 아이디="+user_id);
+	    		System.out.println("넘어온 비밀번호="+user_pw);
+	    		MemberVO memberVO = new MemberVO();
+	    		memberVO.setId(user_id);
+	    		memberVO.setPwd(user_pw);
+	    		MemberDAO dao = new MemberDAO();	
+	    		boolean result = dao.isExisted(memberVO);
+	    		
+	    		if(result) {
+	    			System.out.println("DB에 회원이 있어요true에요");
+	    			//session에 정보 담기 
+	    			HttpSession session = request.getSession();
+	    			session.setAttribute("isLogon", true);
+	    			session.setAttribute("loginId", user_id);
+	    			session.setAttribute("loginPwd", user_pw);
+	    			//값을 확인하기 위해 세션의 값을 출력
+	    			String a = (String) session.getAttribute("login.id");
+	    			String b = (String) session.getAttribute("login.pwd");
+	    			String c = session.getId();	    			
+	    			System.out.println("a="+a);
+	    			System.out.println("b="+b);
+	    			System.out.println("c="+c);
+	    			
+	    			nextPage = "/index.jsp";
+	    		}else {
+	    			HttpSession session = request.getSession();
+	    			System.out.println("DB에 회원정보가 없습니다.");
+	    			session.setAttribute("isLogon", false);
+	    			session.setAttribute("login.id", user_id);
+	    			nextPage ="/Category/Member/login_main.jsp";
+	    		}
+	    	}else if(action!=null && action.equals("/findid.do")) {//아이디 찾기 
+	    		System.out.println("findid.do로 들어왔어");
+	    		String name = request.getParameter("name");
+	    		String email = request.getParameter("email");
+	    		System.out.println("넘어온이름="+name);
+	    		System.out.println("가져온 email="+email);
+	    		MemberVO memberVO = new MemberVO();
+	    		memberVO.setName(name);
+	    		memberVO.setEmail(email);	    		
+	    		MemberDAO dao = new MemberDAO();
+	    		memberVO = dao.FindID(memberVO);	    			    		
+	    		request.setAttribute("FindIDinfo", memberVO);	
+	    		System.out.println("memberVO 값은 "+memberVO);
+	    		nextPage = "/Category/Member/find_id2.jsp";
+	    		
+	    	}else if(action!=null && action.equals("/find_pwd.do")) {//비밀번호 찾기 
+	    		System.out.println("find_pwd.do로 들어왔어");
+	    		String user_id = request.getParameter("user_id");	    		
+	    		System.out.println("넘어온ID="+user_id);	  
+	    		
+	    		
+	    		MemberDAO dao = new MemberDAO();
+	    		String DBId = dao.FindPWD(user_id);
+	    		
+	    		if(user_id.equals(DBId)) {
+	    			System.out.println("DB에 회원이 있어요true에요");
+		    		HttpSession session = request.getSession();
+		    		session.setAttribute("login.id", user_id);
+		    		nextPage = "/Category/Member/find_pwd2.jsp";	 		    				    		
+	    		}else {
+	    			System.out.println("DB에 회원이 없어요false에요");
+		    		nextPage = "/Category/Member/find_pwd_fail.html";
+	    		}
+	    	}
+	    	
+	    	else if(action!=null && action.equals("/mwc.do")) {//회원탈퇴 전 비밀번호 재확인 
+	    		System.out.println("MembershipWithdrawal 비밀번호 확인하기");
+	    		String user_pwd = request.getParameter("user_pwd");
+	    		
+	    		HttpSession session = request.getSession();	    		
+	    		MemberVO memberVO = new MemberVO();
+	    		memberVO.setId((String)session.getAttribute("loginID"));
+	    		System.out.println("세션에서 받은 아이디 : "+(String)session.getAttribute("login.id"));
+	    		memberVO.setPwd(user_pwd);
+	    		System.out.println(user_pwd);
+	    		MemberDAO dao = new MemberDAO();
+	    		boolean result = dao.isExisted(memberVO);//로그인 기능을 다시 활용한다. 	    			    			    		
+	    		
+	    		if(result) {
+	    			System.out.println("비밀번호 맞아요");
+	    			
+		    		nextPage = "/Category/Member/membership_Withdrawal2.jsp";
+	    		}else {
+	    			System.out.println("비밀번호 틀렸어요");
+		    		nextPage = "/Category/Member/reconfirm_fail.html";		    		
+	    		}
+	    		
+	    		
+	    	}else if(action!=null && action.equals("/memberOut.do")) {//회원탈퇴 
+	    		System.out.println("회원탈퇴로 들어왔어");
+	    		nextPage = "/Category/Member/memberOutOK.html";
+	    		HttpSession session = request.getSession();
+	    		String user_id = (String) session.getAttribute("login.id");
+	    		MemberDAO dao = new MemberDAO();
+	    		dao.memberOut(user_id);
+	    		
+	    	}
+	    	else if(action!=null && action.equals("/resetPWD.do")) {//비밀번호 재설정
+	    		System.out.println("resetPWD로 들어왔어");
+	    		nextPage = "../../Category/Member/login_main.jsp";
+	    		HttpSession session = request.getSession();
+	    		String user_id = (String) session.getAttribute("login.id");
+	    		String user_pwd = request.getParameter("user_pwd");
+	    		System.out.println(user_id);
+	    		System.out.println(user_pwd);
+	    		if(user_id==null) {
+	    			nextPage ="../../Category/Member/find_pwd.jsp";
+	    		}else {
+	    			
+	    			MemberVO memberVO = new MemberVO();
+		    		memberVO.setId((String)session.getAttribute("login.id"));
+		    		System.out.println("세션에서 받은 아이디 : "+(String)session.getAttribute("login.id"));
+		    		memberVO.setPwd(user_pwd);
+		    		MemberDAO dao = new MemberDAO();
+		    		memberVO = dao.resetPWD(memberVO);
+		    		
+		    		nextPage="/Category/Member/login_main.jsp";
+	    		}
+	    	}
+	    	
+	    	RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
+		    dispatch.forward(request, response);
+	    }catch(Exception e) {
+	    	e.printStackTrace();
+	    }
+	}
+}
+
+
+
+

@@ -1,0 +1,14 @@
+package service;
+
+import dao.MemberDAO;
+
+public class MemberService {
+	MemberDAO memberDAO;
+	
+
+	public MemberService() {
+		memberDAO = new MemberDAO();
+	}
+	
+	
+}

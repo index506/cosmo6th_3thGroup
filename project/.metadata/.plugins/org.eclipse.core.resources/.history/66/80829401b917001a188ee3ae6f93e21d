@@ -1,0 +1,19 @@
+/* board_wrap */
+div.board_wrap {
+	margin-bottom: 45px;
+	margin-left: 10px;
+	width: 750px;
+}
+
+/* board_title */
+div.board_title {
+	border: 1px solid #cccccc;
+	padding: 10px 20px;
+	margin-bottom: 15px;
+	box-shadow: 5px 5px 4px -2px #cccccc;
+}
+
+.board_title h3 {
+	padding-left: 7px;
+	border-left: 7px solid #004480;
+}

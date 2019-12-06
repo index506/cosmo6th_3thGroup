@@ -1,0 +1,381 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+import dto.LogVO;
+import util.Conversion;
+
+public class LogDAO {
+	private Connection conn;
+	private PreparedStatement pstmt;
+	private ResultSet rs;
+	private DataSource dataFactory; 
+	
+	public LogDAO() {
+		try {
+			// 커넥션 풀
+			// Context 인터페이스 타입으로 InitialContext 객체 생성 (커넥션 풀에 접근을 위한 JNDI 서비스)
+			Context ctx = new InitialContext();
+						
+			// lookup(): 등록된 naming 서비스로부터 자원을 찾고자할 때 사용하는 메서드
+			// "java:comp/env" 에 해당하는 객체를 찾아서 envContext에 삽입
+			Context envContext = (Context)ctx.lookup("java:/comp/env"); 
+			
+			//"jdbc/orcl"에 해당하는 객체를 찾아서 dataFactory에 삽입
+			dataFactory = (DataSource)envContext.lookup("jdbc/oracle");
+		} catch (Exception e){
+			e.printStackTrace();
+			System.out.println("DB 연결 실패");
+		}
+	}
+	
+	public LogVO selectLogById(String id, String submityn) {
+		System.out.println("LogDAO.java - selectLogById()");
+		LogVO logVo = null;		
+		
+		String sql = "SELECT log_seq, license_name, license_abbreviation";
+		sql += ", year_date, subject_names, subject_ranges, subject_numbers, subject_currents";
+		sql += ", test_answer, log_time, submityn, log_date";
+		sql += " FROM test_log";
+		sql += " WHERE log_date = (";
+			sql += " select max(log_date) from test_log";
+			sql += " where id=?";
+			sql += " and submityn=?";
+			sql += " )";
+		System.out.println(sql);
+		
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, submityn);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				logVo = new LogVO();
+				int log_seq = rs.getInt("log_seq");
+				String license_name = rs.getString("license_name");
+				String license_abbreviation = rs.getString("license_abbreviation");
+				Date year_date = rs.getDate("year_date");
+				String[] subjects_name = rs.getString("subject_names").split("/");
+				String[] subjects_range = rs.getString("subject_ranges").split("/");
+				String[] subjects_number = rs.getString("subject_numbers").split("/");
+				
+				String[] subjects_current = null;
+				if(rs.getString("subject_currents") != null) {
+					subjects_current = rs.getString("subject_currents").split("/");
+				}
+				
+				ArrayList<int[]> test_answer = Conversion.devideAnswer(rs.getString("test_answer"));
+				String log_time = rs.getString("log_time");
+				Timestamp log_date = rs.getTimestamp("log_date");
+
+				logVo.setLog_seq(log_seq);
+				logVo.setLicense_name(license_name);
+				logVo.setLicense_abbreviation(license_abbreviation);
+				logVo.setYear_date(year_date);
+				logVo.setSubjects_name(subjects_name);
+				logVo.setSubjects_range(subjects_range);
+				logVo.setSubjects_number(subjects_number);
+				logVo.setSubjects_current(subjects_current);
+				logVo.setTest_answer(test_answer);
+				logVo.setLog_time(log_time);
+				logVo.setSubmityn(submityn);
+				logVo.setLog_date(log_date);
+				logVo.setId(id);
+			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return logVo;
+	} // end of selectLogById()
+
+
+	public void InsertLogByTestInfo(LogVO logVo) {
+		System.out.println("LogDAO.java - InsertLogByTestInfo()");
+		
+		/* 과목의 속성별로 합친 후 문자열로 변환 */
+		String subject_names=Conversion.combineSubject(logVo.getSubjects_name());
+		String subject_ranges=Conversion.combineSubject(logVo.getSubjects_range());
+		String subject_numbers=Conversion.combineSubject(logVo.getSubjects_number());
+		
+		/* 초기 답안 생성 */
+		String test_answer = Conversion.tmpAnswer(logVo.getSubjects_range());	
+		
+		String sql = "INSERT INTO test_log (log_seq, license_name, license_abbreviation, year_date";
+		sql += ", subject_names, subject_ranges, subject_numbers";
+		sql += ", test_answer , log_time ,id)";
+		sql += " VALUES (log_seq.NEXTVAL,?,?,?,?,?,?,?,?,?)";
+		
+		try {
+			int cnt=0;
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(++cnt, logVo.getLicense_name());
+			pstmt.setString(++cnt, logVo.getLicense_abbreviation());
+			pstmt.setDate(++cnt, logVo.getYear_date());
+			pstmt.setString(++cnt, subject_names);			
+			pstmt.setString(++cnt, subject_ranges);
+			pstmt.setString(++cnt, subject_numbers);
+			pstmt.setString(++cnt, test_answer);
+			pstmt.setString(++cnt, logVo.getLog_time());
+			pstmt.setString(++cnt, logVo.getId());
+			pstmt.executeUpdate(); // 쿼리 실행 후 DB 내용 변경
+			
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	} // end of InsertLogByTestInfo()
+	
+	public void UpdateLogById(String answer_string, String log_time, String id) {
+		// TODO Auto-generated method stub
+		System.out.println("LogDAO.java - UpdateLogById()");
+		System.out.println("test_string : "+answer_string+" , id : "+id);
+		
+		String sql = "UPDATE test_log";
+		sql += " SET test_answer=?";
+		sql += " ,log_time=?";
+		sql += " ,log_date=SYSTIMESTAMP";
+		sql += " WHERE id=?";
+		sql += " AND submityn=?";
+		
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, answer_string);
+			pstmt.setString(2, log_time);
+			pstmt.setString(3, id);
+			pstmt.setString(4, "N");
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	} // end of UpdateLogById()
+
+	public void deleteLogById(String id) {
+		// TODO Auto-generated method stub
+		System.out.println("LogDAO.java - deleteLogById()");
+		
+		String sql = "DELETE test_log";
+		sql += " WHERE id=?";
+		sql += " AND submityn='N'";
+		
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	} // end of deleteLogById()
+
+	public void updateLogByIdSeq(String id, String log_seq) {
+		System.out.println("LogDAO.java - updateLogByIdSeq()");
+		
+		String sql = "UPDATE test_log";
+		sql += " SET submityn='Y'";
+		sql += " WHERE id=?";
+		sql += " AND log_seq=?";
+		sql += " AND submityn='N'";
+		System.out.println(sql);
+		
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, Integer.parseInt(log_seq));
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	} // end of updateLogByIdSeq()
+
+	public void updateLogResult(LogVO logVo, String log_seq) {
+		System.out.println("LogDAO.java - updateLogResult()");
+		System.out.println("log_seq"+log_seq+"_  id:"+logVo.getId());
+		
+		String sql = "UPDATE test_log";
+		sql += " SET test_answer=?";
+		sql += " , subject_currents=?";
+		sql += " WHERE log_seq=?";
+		System.out.println(sql);
+		
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, Conversion.combineAnswer(logVo.getTest_answer()));
+			pstmt.setString(2, Conversion.combineSubject(logVo.getSubjects_current()));
+			pstmt.setInt(3, Integer.parseInt(log_seq));
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	static int view_rows = 5; // 페이지의 개수
+	static int counts = 4; // 한 페이지에 나타낼 개수
+	
+	// 작성자 : 정철욱
+	// 내용 : 마이페이지 문제 이력 출력 메소드
+	public ArrayList<LogVO> selectTestListById(String id, int tpage) {
+		// TODO Auto-generated method stub
+		ArrayList<LogVO> testLogList = new ArrayList<LogVO>();
+		
+		String sql = "select * from test_log where id=?";
+		int abspage=1;
+		try {
+			conn = dataFactory.getConnection();
+			abspage = (tpage-1)*counts+1;
+			pstmt = conn.prepareStatement(sql,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				rs.absolute(abspage);
+				int count = 0;
+				while(count < counts) {
+					LogVO logVO = new LogVO();
+					
+					String[] subjects_current = null;
+					if(rs.getString("subject_currents") != null) {
+						subjects_current = rs.getString("subject_currents").split("/");
+					}
+					logVO.setLog_date(rs.getTimestamp("log_date"));
+					logVO.setLog_time(rs.getString("log_time"));
+					logVO.setLicense_name(rs.getString("license_name"));
+					logVO.setYear_date(rs.getDate("year_date"));
+					logVO.setSubjects_current(subjects_current);
+					testLogList.add(logVO);
+					if(rs.isLast()) {
+						break;
+					}
+					rs.next();
+					count++;
+				}
+			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return testLogList;
+	}
+
+	public String pageNumber(String id, int tpage) {
+		// TODO Auto-generated method stub
+		String str = "";
+		int total_pages = totalRecord(id); 
+		int page_count = total_pages/counts+1;
+		
+		if(total_pages % counts == 0) {
+			page_count--;
+		}
+		if(tpage < 1) {
+			tpage = 1;
+		}
+		
+		int start_page = tpage - (tpage % view_rows)+1;
+		
+		if(tpage % view_rows==0) {
+			start_page = start_page - view_rows;
+		}
+			
+		int end_page = start_page + (view_rows-1);
+		
+		System.out.println("tpage="+tpage);
+		System.out.println("start="+start_page);
+		System.out.println("end="+end_page);
+		
+		if(end_page > page_count) {
+			end_page = page_count;
+		}
+		
+		if(start_page > view_rows) {
+			str+="<a href=''>&lt;&lt;</a>&nbsp;&nbsp;";
+			str+="<a href='../'>&lt;</a>&nbsp;&nbsp;";
+		}
+		
+		for(int i=start_page; i<=end_page; i++) {
+			if(i==tpage) {
+				str+="<font color='red'>["+i+"]&nbsp;&nbsp;</font>";
+			}else {
+				str+="<a href='EsquireServlet?command=admin_product_list&tpage="+i+"&key="+product_name+"'>["+i+"]</a>&nbsp;&nbsp;";
+			}
+		}
+		
+		if(page_count > end_page) {
+			str+="<a href='EsquireServlet?command=admin_product_list&tpage="+(end_page+1)+"&key="+product_name+"'>&gt;</a>&nbsp;&nbsp;";
+			str+="<a href='EsquireServlet?command=admin_product_list&tpage="+page_count+"&key="+product_name+"'>&gt;&gt;</a>&nbsp;&nbsp;";
+			
+		}
+		
+		return str;
+	}
+	
+	public int totalRecord(String id) {
+		int total_pages=0;
+		String sql = "select count(*) from test_log where id=?";
+		
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				total_pages = rs.getInt(1);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return total_pages;
+	}
+
+	
+
+}

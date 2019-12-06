@@ -1,0 +1,73 @@
+#find_id_wrap{
+    width: 670px; height: 500px;
+    margin: 30px ;
+    position: relative;
+}
+
+.id_img{
+    padding: 10px 0;
+    margin: 20px auto 50px auto;
+    width: 232px; height: 50px;
+}
+
+.name{
+    line-height: 40px;
+    font-size: 20px;
+    position: relative;
+    margin-bottom: 15px;
+}
+.name > input {
+    line-height: 25px;
+    position: absolute; left: 130px;
+    border-radius: 3px;
+    width: 300px; height: 40px;
+}
+.mail_add{
+    line-height: 40px;
+    font-size: 20px;
+    margin-bottom: 7px;
+    position: relative;
+}
+.mail_add > input:first-child {
+    line-height: 40px;
+    position: absolute; left: 130px;
+    border-radius: 3px;
+    width: 300px; height: 40px;
+}
+.mail_add > input:last-child {
+    line-height: 40px;
+    position: absolute; left: 450px;
+    border-radius: 3px;
+    width: 150px; height: 40px;
+}
+.mail_add > button{
+    position: absolute;left: 435px;
+    height: 40px;
+    
+}
+.numcheck{
+    margin-top: 10px;
+    line-height: 12px;
+    position: absolute;
+    left: 130px;
+    
+}
+.numcheck > input{
+    border-radius: 3px;
+    width: 186px; height: 30px;
+}
+.IDhr{ margin: 70px 0 15px 0;}
+
+/* find_id2 */
+.customer_idbox{ 
+    margin-top: 50px; 
+     
+}
+.customer_idbox h2 { margin-left: 50px; margin-bottom: 7px;}
+.customer_idbox p { margin-left: 50px; }
+.idInfoBox{margin: 5px 50px 10px; width: 400px;height: 100px; border:1px solid #333; }
+.idInfoBox p {margin: 50px; }
+.idInfoBox span { margin-left: 50px; }
+
+.btns button:first-child { margin-left: 100px; }
+.btns button{ float: left; margin: 15px 30px; }
