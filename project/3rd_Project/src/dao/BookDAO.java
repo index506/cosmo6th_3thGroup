@@ -38,6 +38,8 @@ public class BookDAO {
 	public ArrayList<BookVO> selectBookList() { // DB에 저장되어있는 교재 목록을 반환하는 메소드
 		// TODO Auto-generated method stub
 		
+		System.out.println("BookDAO selectBookList()");
+		
 		ArrayList<BookVO> bookList = new ArrayList<BookVO>();
 		
 		try {

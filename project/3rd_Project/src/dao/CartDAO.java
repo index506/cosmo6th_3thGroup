@@ -94,8 +94,6 @@ public class CartDAO {
 			String query = "update cart set quantity=?, amountprice=? where cseq=?";
 			// update 쿼리문을 query 변수에 저장
 			
-			System.out.println(query);
-			
 			pstmt = con.prepareStatement(query); 
 			pstmt.setInt(1, quantity);
 			pstmt.setInt(2, amountPrice);
@@ -122,6 +120,7 @@ public class CartDAO {
 		int amountprice = cartVO.getAmountPrice();
 		String imgUrl = cartVO.getImgUrl();
 		String publisher = cartVO.getPublisher();
+		int bseq = cartVO.getBseq();
 		
 		/*
 		System.out.println("id : " + id);
@@ -136,8 +135,8 @@ public class CartDAO {
 		try {
 			con = dataFactory.getConnection();
 			
-			String query = "insert into cart (id,title,price,salePrice,quantity,amountprice,imgUrl,cseq,publisher) "
-					+ "values (?,?,?,?,?,?,?,cart_seq.nextval,?)";
+			String query = "insert into cart (id,title,price,salePrice,quantity,amountprice,imgUrl,cseq,publisher,bseq) "
+					+ "values (?,?,?,?,?,?,?,cart_seq.nextval,?,?)";
 			
 			pstmt = con.prepareStatement(query);
 			
@@ -149,6 +148,7 @@ public class CartDAO {
 			pstmt.setInt(6, amountprice);
 			pstmt.setString(7, imgUrl);
 			pstmt.setString(8, publisher);
+			pstmt.setInt(9, bseq);
 			
 			pstmt.executeQuery();
 			pstmt.close();
@@ -183,13 +183,15 @@ public class CartDAO {
 	
 	public boolean confirmList(String id, int bseq) {
 		
+		System.out.println("CartDAO confirmList()");
+		
 		boolean result = true;
 		
 		try {
 			
 			con = dataFactory.getConnection();
 			
-			String query = "select title from cart where bseq = ? and id = ? and result = 1";
+			String query = "select * from cart where bseq = ? and id = ? and result = 1";
 			
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, bseq);

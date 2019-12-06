@@ -84,7 +84,7 @@ public class ProductController extends HttpServlet {
 			
 			if(action != null && action.equals("/cart.do")) { // 장바구니 화면으로 이동시 수행
 
-				System.out.println("cart.do");  
+				System.out.println("book/cart.do");  
 				
 				ArrayList<CartVO> cartList = cartService.selectCartList(loginUser.getId());
 				
@@ -121,8 +121,9 @@ public class ProductController extends HttpServlet {
 				String message;
 				
 				int bseq = Integer.parseInt(request.getParameter("bseq"));
+				
 				boolean result = cartService.confirmList(loginUser.getId(), bseq);
-						
+				
 				if(result) { //장바구니에 교재가 존재하지 않을때(추가)
 					
 					String title = request.getParameter("title");
