@@ -100,6 +100,7 @@ $(function () {
 	</c:when>
 </c:choose>
  -->
+
 </head>
 <body>
     <!--main_header_wrap-->
@@ -146,6 +147,7 @@ $(function () {
 			               <input type="hidden" name="writeDate" value="${bookVO.writeDate}">
 			               <input type="hidden" name="imgUrl" value="${bookVO.imgURL}">
 			               <input type="hidden" name="title" value="${bookVO.title}">
+			               <input type="hidden" name="bseq" value="${bookVO.bseq}">
 			                            <br>
 			                            수량 : <input type="number" name="quantity" value="1">
                            </p>

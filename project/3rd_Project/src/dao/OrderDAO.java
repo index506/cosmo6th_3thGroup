@@ -54,7 +54,6 @@ public class OrderDAO {
 					+ "from cart where id = ? and result = 1";
 			// update 쿼리문을 query 변수에 저장
 			
-			
 			pstmt = con.prepareStatement(query); 
 			pstmt.setString(1, id);
 			ResultSet rs = pstmt.executeQuery();
@@ -77,8 +76,8 @@ public class OrderDAO {
 		// TODO Auto-generated method stub
 		
 		System.out.println("OrderDAO addOrderList()");
-		
-		String id = "lee2";
+
+		String id = orderVO.getId();
 		String orderName = orderVO.getOrderName();
 		String phoneNumber = orderVO.getPhoneNumber();
 		String address = orderVO.getAddress();
@@ -105,8 +104,8 @@ public class OrderDAO {
 			for(CartVO cartVO:cartList) {
 				
 				String query = "insert into orderList(id,ordername,phonenumber,address,shippingdemand,depositbank,"
-						+ "depositnumber,allprice,imgurl,publisher,title,quantity) "
-						+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
+						+ "depositnumber,allprice,imgurl,publisher,title,quantity,oseq) "
+						+ "values(?,?,?,?,?,?,?,?,?,?,?,?,orderlist_seq.currval)";
 				
 				pstmt = con.prepareStatement(query);
 				pstmt.setString(1, id);
@@ -124,6 +123,8 @@ public class OrderDAO {
 				
 				pstmt.executeUpdate();
 			}
+			
+			
 			
 			pstmt.close();
 			con.close();

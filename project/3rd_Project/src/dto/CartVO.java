@@ -12,13 +12,24 @@ public class CartVO { // 장바구니 객체
 	private int quantity; //수량  
 	private int amountPrice; //합계액 
 	private String imgUrl; //이미지URL
-	private int cseq;
-	private String publisher;
+	private int cseq; //장바구니번호
+	private String publisher; //출판사
+	private int bseq; //상품번호
 	
 	// private으로 정의하고 메소드를 사용하지 않으면 jvm에 의해 자동소거됨 
 	
+	
+	
 	public String getPublisher() {
 		return publisher;
+	}
+
+	public int getBseq() {
+		return bseq;
+	}
+
+	public void setBseq(int bseq) {
+		this.bseq = bseq;
 	}
 
 	public void setPublisher(String publisher) {

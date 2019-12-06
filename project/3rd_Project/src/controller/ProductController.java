@@ -36,7 +36,6 @@ public class ProductController extends HttpServlet {
 	BookService bookService;
 	CartService cartService;
 	OrderService orderService;
-	
 
 	/**
 	 * @see Servlet#init(ServletConfig)
@@ -83,9 +82,6 @@ public class ProductController extends HttpServlet {
     		HttpSession session = request.getSession();
 			MemberVO loginUser = (MemberVO) session.getAttribute("loginUser"); 
 			
-			
-			// List<CartVO> cartLists = new ArrayList<CartVO>(); // 여기에 생성하는 이유가 뭔지??
-			
 			if(action != null && action.equals("/cart.do")) { // 장바구니 화면으로 이동시 수행
 
 				System.out.println("cart.do");  
@@ -98,7 +94,7 @@ public class ProductController extends HttpServlet {
 
 			} else if (action.equals("/cartDelete.do")) { // 장바구니 화면에서 삭제[X]버튼 클릭시
 				
-				System.out.println("cartDelete.do");
+				System.out.println("book/cartDelete.do");
 				
 				int cseq = Integer.parseInt(request.getParameter("cseq"));
 				
@@ -108,7 +104,7 @@ public class ProductController extends HttpServlet {
 				
 			} else if (action.equals("/cartUpdate.do")) { // 장바구니 화면에서 [수량] 변경시
 				
-				System.out.println("cartUpdate.do");
+				System.out.println("book/cartUpdate.do");
 				
 				int cseq = Integer.parseInt(request.getParameter("cseq"));
 				int quantity = Integer.parseInt(request.getParameter("quantity"));
@@ -120,15 +116,16 @@ public class ProductController extends HttpServlet {
 				
 			} else if (action.equals("/cartInsert.do")) { // [장바구니 담기] 버튼 클릭시
 				
-				System.out.println("cartInsert.do");
+				System.out.println("book/cartInsert.do");
 				
 				String message;
-				String title = request.getParameter("title");
 				
-				boolean result = cartService.confirmList(loginUser.getId(), title);
+				int bseq = Integer.parseInt(request.getParameter("bseq"));
+				boolean result = cartService.confirmList(loginUser.getId(), bseq);
 						
-				if(result) { //장바구니에 교재가 존재하지 않을때
+				if(result) { //장바구니에 교재가 존재하지 않을때(추가)
 					
+					String title = request.getParameter("title");
 					int price = Integer.parseInt((request.getParameter("price")));
 					int salePrice = Integer.parseInt((request.getParameter("salePrice")));
 					int quantity = Integer.parseInt((request.getParameter("quantity")));
@@ -144,6 +141,7 @@ public class ProductController extends HttpServlet {
 					cartVO.setAmountPrice(amountPrice);
 					cartVO.setImgUrl(imgUrl);
 					cartVO.setPublisher(publisher);
+					cartVO.setBseq(bseq);
 					
 					cartService.addList(cartVO);
 					
@@ -161,7 +159,7 @@ public class ProductController extends HttpServlet {
 				
 			} else if (action.equals("/buybook.do")) { 
 				
-				System.out.println("buybook.do");
+				System.out.println("book/buybook.do");
 				
 				ArrayList<BookVO> bookList = bookService.selectBookList();
 				request.setAttribute("bookList", bookList);
@@ -170,7 +168,7 @@ public class ProductController extends HttpServlet {
 			
 			} else if (action.equals("/order.do")) {  
 				
-				System.out.println("order.do");
+				System.out.println("book/order.do");
 				
 				// 세션 회원정보 받기
 				ArrayList<CartVO> cartList = cartService.selectCartList(loginUser.getId()); //장바구니 리스트
@@ -180,9 +178,6 @@ public class ProductController extends HttpServlet {
 				orderVO.setAddress(loginUser.getAddress());
 				orderVO.setPhoneNumber(loginUser.getPhone());
 				
-				System.out.println("[order.do] orderVO.getPrice() : " + orderVO.getPrice());
-				System.out.println("[order.do] orderVO.getAllPrice() : " + orderVO.getAllPrice());
-				
 				request.setAttribute("cartList", cartList);
 				request.setAttribute("orderVO", orderVO);
 				
@@ -190,7 +185,7 @@ public class ProductController extends HttpServlet {
 				
 			} else if (action.equals("/completed.do")) {  
 				
-				System.out.println("completed.do");
+				System.out.println("book/completed.do");
 				
 				String name = request.getParameter("name"); //받는사람(orderName)
 				String[] phoneNumArray = request.getParameterValues("phoneNumber"); 
@@ -213,22 +208,23 @@ public class ProductController extends HttpServlet {
 				System.out.println("phoneNumArray : " + Arrays.toString(phoneNumArray)); //휴대폰번호
 				System.out.println();
 				
-				orderVO.setOrderName(name); //받는사람
-				orderVO.setAddress(address); //주소
+				orderVO.setId(loginUser.getId()); //아이디
+				orderVO.setOrderName(name); //받는사람(orderName)
+				orderVO.setAddress(address); //주소(address)
 				if(shippingDemand.equals("배송시 요청사항 선택")) {
 					shippingDemand = null;
 				} else if (shippingDemand.equals("직접입력")) {
 					shippingDemand = request.getParameter("shippingInput");
 				}
-				orderVO.setShippingDemand(shippingDemand); //배송시 요청사항
+				orderVO.setShippingDemand(shippingDemand); //배송시요청사항(shippingDemand)
 				
-				orderVO.setDepositBank(depositBank); //입금은행
-				orderVO.setDepositNumber(depositNumber); //입금계좌
+				orderVO.setDepositBank(depositBank); //입금은행(depositBank)
+				orderVO.setDepositNumber(depositNumber); //입금계좌(depositNumber)
 				
 				for(int i=0; i<phoneNumArray.length; i++) {
 					phoneNumber += phoneNumArray[i];
 				}
-				orderVO.setPhoneNumber(phoneNumber); //휴대폰번호
+				orderVO.setPhoneNumber(phoneNumber); //휴대폰번호(phoneNumber)
 				
 				System.out.println("orderVO.getOrderName() : " + orderVO.getOrderName()); //OrderName
 				System.out.println("orderVO.getPhoneNumber() : " + orderVO.getPhoneNumber()); //PhoneNumber
@@ -241,6 +237,7 @@ public class ProductController extends HttpServlet {
 				
 				
 				request.setAttribute("orderVO", orderVO);
+				
 				ArrayList<CartVO> cartList = cartService.selectCartList(loginUser.getId()); //장바구니 리스트
 				
 				orderService.addOrderList(orderVO,cartList); //orderList테이블 추가
@@ -249,18 +246,17 @@ public class ProductController extends HttpServlet {
 				
 				////////////////////////////// cartList
 				
-				
 				nextPage = "/Category/Book/completed.jsp";
 				
 			} else {
 				
-				System.out.println("교재구매 立ち入り else");
+				System.out.println("book/buybook.do");
 				
 				ArrayList<BookVO> bookList = bookService.selectBookList();
 				request.setAttribute("bookList", bookList);
 				
-				nextPage = "/Category/Book/buybook.jsp"; 
-			} 
+				nextPage = "/Category/Book/buybook.jsp";
+			}
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 			dispatch.forward(request, response);

@@ -29,9 +29,9 @@ public class CartService {
 		cartDAO.addList(cartVO);
 	}
 	
-	public boolean confirmList(String id,String title) { // 장바구니에 교재가 이미 존재하는지 확인하는 메소드
+	public boolean confirmList(String id, int bseq) { // 장바구니에 교재가 이미 존재하는지 확인하는 메소드
 		
-		boolean result = cartDAO.confirmList(id,title);
+		boolean result = cartDAO.confirmList(id,bseq);
 		
 		return result;
 	}

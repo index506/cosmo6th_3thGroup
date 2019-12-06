@@ -57,8 +57,9 @@ public class BookDAO {
 				String imgURL = rs.getString("imgurl");
 				String publisher = rs.getString("publisher");
 				Date writeDate = rs.getDate("writeDate");
+				int bseq = rs.getInt("bseq");
 				
-				BookVO bookVO = new BookVO(title,price,salePrice,imgURL,publisher,writeDate);
+				BookVO bookVO = new BookVO(title,price,salePrice,imgURL,publisher,writeDate,bseq);
 				bookList.add(bookVO);
 				
 			}

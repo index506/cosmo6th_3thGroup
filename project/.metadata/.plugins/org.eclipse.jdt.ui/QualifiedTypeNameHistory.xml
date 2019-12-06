@@ -10,4 +10,5 @@
     <fullyQualifiedTypeName name="dto.OrderVO"/>
     <fullyQualifiedTypeName name="dto.CartVO"/>
     <fullyQualifiedTypeName name="dto.BookVO"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
 </qualifiedTypeNameHistroy>
