@@ -198,17 +198,6 @@ public class ProductController extends HttpServlet {
 				String depositBank = request.getParameter("depositBank"); //입금은행(depositBank)
 				String depositNumber = request.getParameter("depositNumber"); //입금계좌(depositNumber)
 				
-				
-				System.out.println();
-				System.out.println("request.getParameter(name) : " + request.getParameter("name")); //받는사람이름
-				System.out.println("request.getParameter(address) : " + request.getParameter("address")); //주소
-				System.out.println("request.getParameter(shippingDemand) : " + request.getParameter("shippingDemand")); //배송시 요청사항
-				System.out.println("request.getParameter(shippingInput) : " + request.getParameter("shippingInput")); //배송시요청사항 직접입력 태그
-				System.out.println("request.getParameter(depositBank) : " + request.getParameter("depositBank")); //입금은행
-				System.out.println("request.getParameter(depositNumber) : " + request.getParameter("depositNumber")); //입금계좌
-				System.out.println("phoneNumArray : " + Arrays.toString(phoneNumArray)); //휴대폰번호
-				System.out.println();
-				
 				orderVO.setId(loginUser.getId()); //아이디
 				orderVO.setOrderName(name); //받는사람(orderName)
 				orderVO.setAddress(address); //주소(address)
@@ -226,16 +215,6 @@ public class ProductController extends HttpServlet {
 					phoneNumber += phoneNumArray[i];
 				}
 				orderVO.setPhoneNumber(phoneNumber); //휴대폰번호(phoneNumber)
-				
-				System.out.println("orderVO.getOrderName() : " + orderVO.getOrderName()); //OrderName
-				System.out.println("orderVO.getPhoneNumber() : " + orderVO.getPhoneNumber()); //PhoneNumber
-				System.out.println("orderVO.getAddress() : " + orderVO.getAddress()); //Address
-				System.out.println("orderVO.getShippingDemand() : " + orderVO.getShippingDemand()); //ShippingDemand
-				System.out.println("orderVO.getDepositBank() : " + orderVO.getDepositBank()); //DepositBank
-				System.out.println("orderVO.getDepositNumber() : " + orderVO.getDepositNumber()); //DepositNumber
-				System.out.println("orderVO.getAllPrice() : " + orderVO.getAllPrice()); //AllPrice
-				System.out.println("");
-				
 				
 				request.setAttribute("orderVO", orderVO);
 				

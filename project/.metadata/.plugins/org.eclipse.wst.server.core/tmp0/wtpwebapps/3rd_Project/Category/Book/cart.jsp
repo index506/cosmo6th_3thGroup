@@ -25,7 +25,7 @@
 		function go_order(){
 			
 			// undefined : 속성.length 사용시, 속성의 length가 1일때 undefined가 반환된다.
-			alert("document.getElementsByName.length : " + document.getElementsByName("frm").length);
+			// alert("document.getElementsByName.length : " + document.getElementsByName("frm").length);
 			
 			/* 
 			alert("document.frm.length : " + document.frm.length);
@@ -64,13 +64,14 @@
             // 장바구니 [수량] 변경 시, 1보다 작은 값을 입력하면 alert(알림창)
             $('.inputNumber').on("change keyup paste", function () {
                 var value = $(this).val();
-                 // window.event.keyCode == 13 : 엔터(Enter)
+                 
                 if (value != "" && value < 1)  {
                     alert("최소 구매수량은 1개입니다.");
                     $(this).val("1").focus();
                 } else if (value != "" && value > 999){
                     alert("최대 구매수량은 999개입니다.");
                     $(this).val("999").focus();
+                 					   // window.event.keyCode == 13 : 엔터(Enter)
                 } else if (value != "" && window.event.keyCode == 13) {
                     $('.amtModify').click();
                     $('.inputNumber').blur();
@@ -79,7 +80,6 @@
                     $(this).val("1").focus();
                 }
             });
-
 
             // 장바구니 [수량] 공백일 때, alert(알림창)
             $('.inputNumber').blur(function () {

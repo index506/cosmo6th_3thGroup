@@ -50,6 +50,7 @@ public class OrderDAO {
 		try {
 
 			con = dataFactory.getConnection();
+			
 			String query = "select sum(price*quantity) price,sum(salePrice*quantity) salePrice "
 					+ "from cart where id = ? and result = 1";
 			// update 쿼리문을 query 변수에 저장
@@ -86,26 +87,18 @@ public class OrderDAO {
 		String depositNumber = orderVO.getDepositNumber();
 		int allPrice = orderVO.getAllPrice();
 		
-		System.out.println();
-		System.out.println("====orderDAO====");
-		System.out.println("orderVO.getOrderName() : " + orderVO.getOrderName()); //OrderName
-		System.out.println("orderVO.getPhoneNumber() : " + orderVO.getPhoneNumber()); //PhoneNumber
-		System.out.println("orderVO.getAddress() : " + orderVO.getAddress()); //Address
-		System.out.println("orderVO.getShippingDemand() : " + orderVO.getShippingDemand()); //ShippingDemand
-		System.out.println("orderVO.getDepositBank() : " + orderVO.getDepositBank()); //DepositBank
-		System.out.println("orderVO.getDepositNumber() : " + orderVO.getDepositNumber()); //DepositNumber
-		System.out.println("orderVO.getAllPrice() : " + orderVO.getAllPrice()); //AllPrice
-		System.out.println();
 		
 		try {
 			
 			con = dataFactory.getConnection();
-
+			
+			int oseq = selectOseq();
+			
 			for(CartVO cartVO:cartList) {
 				
 				String query = "insert into orderList(id,ordername,phonenumber,address,shippingdemand,depositbank,"
 						+ "depositnumber,allprice,imgurl,publisher,title,quantity,oseq) "
-						+ "values(?,?,?,?,?,?,?,?,?,?,?,?,orderlist_seq.currval)";
+						+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				
 				pstmt = con.prepareStatement(query);
 				pstmt.setString(1, id);
@@ -115,11 +108,12 @@ public class OrderDAO {
 				pstmt.setString(5, shippingDemand);
 				pstmt.setString(6, depositBank);
 				pstmt.setString(7, depositNumber);
-				pstmt.setInt(8, allPrice);
-				pstmt.setString(9, cartVO.getImgUrl());
-				pstmt.setString(10, cartVO.getPublisher());
-				pstmt.setString(11, cartVO.getTitle());
-				pstmt.setInt(12, cartVO.getQuantity());
+				pstmt.setInt(8, cartVO.getQuantity()*cartVO.getSalePrice());
+				pstmt.setString(9, cartVO.getImgUrl()); //imgurl
+				pstmt.setString(10, cartVO.getPublisher()); //publisher
+				pstmt.setString(11, cartVO.getTitle()); //title
+				pstmt.setInt(12, cartVO.getQuantity()); //quantity
+				pstmt.setInt(13, oseq); //oseq
 				
 				pstmt.executeUpdate();
 			}
@@ -131,6 +125,35 @@ public class OrderDAO {
 			e.printStackTrace();
 		}
 		
+	}
+
+	private int selectOseq() {
+		// TODO Auto-generated method stub
+		
+		System.out.println("OrderDAO selectOseq()");
+		
+		int oseq = 0;
+		
+		try {
+			
+			con = dataFactory.getConnection();
+			
+			String query = "select orderlist_seq.nextval oseq from dual";
+			
+			pstmt = con.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next())
+				oseq = rs.getInt("oseq");
+
+			pstmt.close();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return oseq;
 	}
 
 }
